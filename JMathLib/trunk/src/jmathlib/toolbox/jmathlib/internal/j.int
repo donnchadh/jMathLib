@@ -1,0 +1,14 @@
+@GROUP
+general
+@SYNTAX
+j
+@DOC
+imaginary unit
+@EXAMPLES
+<programlisting>
+1+j
+3i
+5j
+</programlisting>
+@SEE
+i

@@ -1,0 +1,97 @@
+<html>
+<head> 
+<title> 
+	JMathLib 
+</title> 
+</head> 
+<body>  
+<CENTER>
+	<H2>Demonstration</H2>
+</CENTER>
+<HR>
+
+<center>
+
+<!--test if the browser is internet explorer-->  
+<SCRIPT LANGUAGE="JavaScript"> 
+<!--     
+var _info = navigator.userAgent;
+var _ns   = false;
+var _ie   = (_info.indexOf("MSIE") > 0 && _info.indexOf("Win") >  0 && _info.indexOf("Windows 3.1") < 0); 
+//--> 
+</SCRIPT>  
+
+<!--test if the browser is netscape, and which version-->
+<SCRIPT LANGUAGE="JavaScript1.1"> 
+<!--     
+var _ns = !_ie;
+//(navigator.appName.indexOf("Netscape") >= 0); &&
+//     ((_info.indexOf("Win") > 0 && _info.indexOf("Win16") < 0 && java.lang.System.getProperty("os.version").indexOf("3.5") < 0) ||
+//     (_info.indexOf("Sun") > 0) || (_info.indexOf("Linux") > 0)));     */
+//var _ns6 = ((_ns == true) && (_info.indexOf("Mozilla") >= 0));
+//--> 
+</SCRIPT> 
+
+<SCRIPT LANGUAGE="JavaScript"> 
+<!--
+var i;
+var _name="MathLib";   
+var _codebase="Classes";   
+var _classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93";   
+var _iecodebase="http://southgatesoftware.com/javaplugin/1.3/jinstall-131-win32.cab#Version=1,3,0,0";   
+var _nspluginspage="http://home.netscape.com/plugins/jvm.html";
+var _width=700;   
+var _height=400;   
+var _class="MathLib.UI.Applet.MathLibGUI.class";   
+var _align="middle";   
+var _vspace=0;   
+var _hspace=0;   
+var _jarfiles="JMathLibSmallApplet.jar";   
+var scrap,scrap2;   
+if (_ie == true)
+{
+	document.writeln('<OBJECT classid="'+_classid+'" ');
+	document.writeln('WIDTH='+_width+' HEIGHT='+_height);
+	document.writeln('NAME='+_name+' ALIGN='+_align);
+	document.writeln('VSPACE='+_vspace+' HSPACE='+_hspace);
+	document.writeln('codebase="'+_iecodebase+'">');
+	document.writeln('<PARAM NAME=CODE VALUE="'+_class+'" >');
+	document.writeln('<PARAM NAME=CODEBASE VALUE="'+_codebase+'" >');
+	document.writeln('<PARAM NAME="cache_option" VALUE="Plugin">');
+	document.writeln('<PARAM NAME="cache_archive" VALUE="'+_jarfiles+'">');     	document.writeln('<PARAM NAME="NAME" VALUE="'+_name+'" >');
+	document.writeln('<PARAM NAME="type" VALUE="application/x-java-applet;version=1.3">');
+	document.writeln('<PARAM NAME="scriptable" VALUE="true">');
+	document.writeln('<PARAM NAME="mayscript" VALUE="true">');
+	document.writeln('</object>');
+}
+else 
+{
+	document.writeln('<APPLET ');
+	document.writeln('CODE     ="'+_class+'" ');
+	document.writeln('CODEBASE ="'+_codebase+'" ');
+	document.writeln('ARCHIVE  ="'+_jarfiles+'" ');
+	document.writeln('WIDTH    ='+_width+' ');
+	document.writeln('HEIGHT   ='+_height+' ');
+	document.writeln('ALIGN    ='+_align+' ');
+	document.writeln('VSPACE   ='+_vspace+' HSPACE = '+_hspace);
+	document.writeln('>');
+	//document.writeln('<PARAM NAME="startup" VALUE="disp(\'hello you\');plot(rand(2,30))">');
+	//document.writeln('<PARAM NAME="fgcolor" VALUE="ff00ff">');
+	//document.writeln('<PARAM NAME="bgcolor" VALUE="f64033">');
+	document.writeln('</applet>');
+}
+//-->
+</SCRIPT> 
+</center> 
+
+<hr noshade>
+
+<SCRIPT LANGUAGE="JavaScript"> 
+<!--
+document.writeln("You are using the following browser: "+navigator.userAgent);
+//-->
+</SCRIPT> 
+
+</body> 
+</html>  
+ 
