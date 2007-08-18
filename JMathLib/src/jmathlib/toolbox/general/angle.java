@@ -1,8 +1,8 @@
-package MathLib.Functions.General;
+package jmathlib.toolbox.general;
 
-import MathLib.Tokens.*;
-import MathLib.Tokens.NumberTokens.*;
-import MathLib.Functions.ExternalFunction;
+import jmathlib.core.tokens.*;
+import jmathlib.core.tokens.numbertokens.*;
+import jmathlib.core.functions.ExternalFunction;
 
 public class angle extends ExternalFunction
 {
