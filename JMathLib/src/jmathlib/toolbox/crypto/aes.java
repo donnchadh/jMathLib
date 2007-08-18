@@ -4,7 +4,7 @@ package jmathlib.toolbox.crypto;
  * */
 
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.NumberTokens.DoubleNumberToken;
+import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 
 
