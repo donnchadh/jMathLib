@@ -1,0 +1,2146 @@
+--  Mnemonics
+--
+--  + Added (or created) file or directory
+--  - Removed file or directory
+--  * Modified file
+--  ! Bug found
+--  # Bug fixed
+
+
+---- Functional Changes:  version 0.8.0 -> 0.x.x ------------------------------
+New functions:
+cla, clf, gca, gcf, get,
+global, set, isglobal, polar
+
+Updated functions:
+blanks, checkForUpdates, patch, path, substring
+
+---- HISTORY ------------------------------------------------------------------
+2007/08/xx 
+stefan + 
+
+2007/08/18 
+stefan + switched development over to a subversion repository
+
+2007/08/14 
+jason * SwingGUI.java added requestFocus after starting 
+jason # num2str.java bugfix
+jason # AddPath.java bugfix
+jason # rehash.java bugfix
+jason + testGlobal.java new tests
+jason * testNum2Str.java new tests
+jason * Functions/* corrections and add on to rehashing of functions
+
+2007/08/13 
+jason + major update to the swing user interface
+
+2007/07/28 
+stefan * ui/questdlg.java modal dialog with choice
+
+2007/07/08 
+stefan + Graphics/CartesianAxesObject.java extends AxesObject.java for
+         better separation of various axes: polar, cartesian, 3D,... 
+
+2007/07/08 
+stefan * Functions/Graphics/Graph2d/polar.java when called as polar([3,5,3])add an x-axis 
+         like [1,2,3] instead of [0,1,2]
+stefan * Functions/Graphics/Graph2d/plot.java when called as plot([3,5,3])add an x-axis 
+         like [1,2,3] instead of [0,1,2]
+stefan * Graphics/LineObject.java enhancements for polar plots
+stefan * Graphics/PolarAxesObject.java enhancements for polar plots
+
+2007/07/01 
+stefan * Functions/Finance/vol.m copied from Octave
+stefan # Functions/String/_double.java added DoubleNumberToken as input
+stefan * Functions/miscellaneous/single.m copied from Octave
+
+2007/06/23 
+stefan - removed a lot of files from the Classes-subdirectories.
+
+2007/06/22 
+stefan # minor corrections to SwingGUI
+stefan + Classes/MathLib/work  for local and private work of the user
+   standard search path
+
+2007/06/15 
+stefan + Documentation/src/graphics.xml for documentation of the
+         graphical subsystem
+
+2007/06/07 
+stefan - Functions/Graphics/Graph3d/path.java wrong file name
+stefan + Functions/Graphics/Graph3d/patch.java new file name
+stefan * Functions/String/Blanks.java replaced checkArguements()
+stefan * Functions/String/SubString.java replaced checkArguements()
+stefan + readme_how_to_contribute.txt
+
+2007/06/07 
+jason + Functions/FunctionLoader.java abstract class for all function loaders
+jason * Functions/General/getPFileCaching.java changes due to new path-system
+jason * Functions/General/setPFileCaching.java changes due to new path-system
+jason * Functions/System/path.java changes due to new path-system
+jason * Functions/System/createfunctionslist.java changes due to new path-system
+jason * Functions/System/addpath.java changes due to new path-system
+jason * Functions/System/rmpath.java changes due to new path-system
+jason * Interpreter/Flags.java changes due to new path-system
+jason * Interpreter/Interpreter.java changes due to new path-system
+jason * Interpreter/RootObject.java changes due to new path-system
+jason * Functions/ExternalFunctionClassloader.java changes due to new path-system
+jason + Functions/FileFunctionLoader.java changes due to new path-system
+jason + Functions/FunctionPathBroker.java changes due to new path-system
+jason * Functions/MFileLoader.java changes due to new path-system
+jason + Functions/MFileWebLoader.java changes due to new path-system
+
+2007/06/06 
+stefan * Functions/System/checkForUpdates.java added separate thread class
+         for checking the updates. 
+stefan * UI/AWT/GUI.java added check for updates during startup
+
+2007/05/19
+stefan * Functions/General/clear.java support for global variables
+stefan * Functions/General/whos.java support for global variables
+stefan + Functions/General/global.java
+stefan + Functions/General/isglobal.java
+stefan * Interpreter/*
+stefan * Tokens/*
+
+2007/05/17 
+stefan *  Graphics/*.* lot of changes to handle graphics
+stefan *  Functions/Graphics/set.java more features
+stefan *  Functions/Graphics/get.java more features 
+
+2007/05/13 
+stefan *  Functions/Graphics/gcf.java  
+stefan +  Functions/Graphics/set.java  
+stefan +  Functions/Graphics/get.java  
+stefan +  Graphics/Properties/ moved all property files to new location
+stefan +  Graphics/Properties/DoubleStructProperty.java 
+stefan +  Graphics/Properties/UnitsProperty.java 
+
+2007/05/12
+stefan + Functions/Graphics/gcf.java get current figure
+stefan + Functions/Graphics/gca.java get handle to current axes
+stefan + Functions/Graphics/clf.java clear current figure
+stefan + Functions/Graphics/clf.java clear current axes
+
+2007/05/07
+stefan * Graphics/FigureObject.java more menu items
+
+2007/05/06 
+stefan * Interpreter/Interpreter.java disabled rehashing for applet-version
+
+2007/05/02 
+stefan * Tokens/NumberTokens/DoubleNumberToken.java support for 2+'abc'+44
+
+2007/05/01 
+stefan * creation of release 0.8.0
+
+---- Functional Changes:  version 0.7.0 -> 0.8.0 ------------------------------
+New functions:
+_class.java, angle.java, bench.m, beta.m, betaln.m, center.m, class.m, 
+cloglog.m, close.java, compan.m, complement.m, 
+cov.m, createnewfile.java, cumprod.java, cumsum.m, create_set.m, conj.java, 
+delete.java, det.m, dot.m, eq.m, false.m, gammaln.m, ge.m, gray2ind.m, gray.m, 
+gt.m, hankel.m, hurst.m, inf.java, int16.java, int32.java, int64.java, 
+int8.java, inv.m, is_leap_year.m,
+isa.java, isdefinite.m, isdirectory.java, isfile.java,
+isfinite.java, ishidden.java, islogical.java, isnan.java, isinf.java, 
+issymmetric.m, lastmodified.java, le.m, loadvariables.java, logical.java, 
+logspace.m, lookup.m, mean.m, meansq.java,
+mkdir.java, nan.java, ne.m, npv.m, nthroot.m, ntsc2rgb.m, nper.m, numel.java, 
+orth.m, 
+pascal.m, perms.m, pmt.m, polyval.m, polyreduce.m, poly.m, print_usage.java, 
+pv.m, pvl.m, qconj.m, qderiv.m, qderivmat.m, qinv.m, qmult.m, qtrans.m, 
+qtransv.m, qtransvmat.m, quaternion.m, randperm.m, rehash.java,
+repmat.java, rmdir.java, roots.m, save_variables.java, size_equal.m, sort.java, 
+std.m, stril.m, sylvester_matrix.m, toeplitz.m, triangle_lw.m, triangle_sw.m, 
+triu.m, true.m, uint8.java, union.m, var.m, vech.m, wilkinson.m
+
+Updated functions:
+col.m, diag.java, ndims.java, imag.java, isempty.java, ones.java, rand.java, 
+real.java, row.m, size.java, tic.java, whos.java, zeros.java
+All trigonometric functions have been updated
+
+2007/04/29
+stefan * Functions/Graphics/set.java as an empty stub
+stefan * Functions/Graphics/get.java as an empty stub
+
+2007/04/02 
+stefan * JMathLibInstall.nsi added version string to windows shortcut
+stefan * TestSuite/Functions/testFunctions.java added tests for x.^x
+
+2007/04/01 
+stefan * added handle based graphics system (courtesy of Michael)
+
+2007/03/15 
+stefan * _double.java added support for uint8 and int8
+
+2007/03/02 
+stefan * Tokens/NumberTokens/Int8NumberToken.java added subtract-method
+stefan * Tokens/NumberTokens/UInt8NumberToken.java added add-method
+
+2007/02/24 
+stefan * UInt16NumberToken.java
+stefan * UInt32NumberToken.java
+stefan + uint16.java
+
+2007/02/20 
+stefan + int16.java
+stefan + int32.java
+stefan + int64.java
+stefan + uint8.java
+stefan * Int16NumberToken.java
+stefan * Int32NumberToken.java
+stefan * Int64NumberToken.java
+stefan * UInt8NumberToken.java
+
+2007/02/15 
+stefan * DoubleNumberToken.java added support for int8+double
+
+2007/02/15
+stefan * changed a lot of functions: NumberToken.java -> DoubleNumberToken.java
+
+2007/02/11 
+stefan * Functions/General/int8.java convert a double array to an int8 array
+
+2007/02/10
+stefan * Functions/Time/is_leap_year.m 
+
+2007/02/04
+stefan # Functions/General/whos.java added treatment of tokens without "size""
+stefan # Tokens/MathLibObject.java added correct name of token
+
+2007/02/03 
+stefan + Functions/set/union.m
+stefan + Functions/General/randperm.m
+stefan + Functions/Finanan/npv.m
+stefan * Functions/Matrix/submatrix.java added support for logical tokens
+stefan + Functions/General/_class.java
+stefan + Functions/General/class.m
+stefan + TestSuite/Functions/General/testClass.java
+stefan + testCtranspose.java added tests for ctranspose(a)
+stefan + testTranspose.java  added tests for ctranspose(a)
+
+2007/01/30 
+stefan # Functions/Matrix/not.java fixed wrong evaluation of numbers
+
+2007/01/21 
+stefan * Tokens/RelationOperatorToken.java now returning LogicalTokens 
+stefan * Tokens/ConditionToken.java added support for LogicalTokens
+stefan + Functions/General/bench.m
+stefan * Interpreter/Interpreter.java reading boolean scalars/arrays
+
+2007/01/20 
+stefan + Tokens/NumberTokens/DoubleNumberToken.java 
+stefan + Tokens/NumberTokens/Int16NumberToken.java
+stefan + Tokens/NumberTokens/Int32NumberToken.java
+stefan + Tokens/NumberTokens/Int64NumberToken.java
+stefan + Tokens/NumberTokens/Int8NumberToken.java
+stefan + Tokens/NumberTokens/SingleNumberToken.java
+stefan + Tokens/NumberTokens/UInt16NumberToken.java
+stefan + Tokens/NumberTokens/UInt32NumberToken.java
+stefan + Tokens/NumberTokens/UInt64NumberToken.java
+stefan + Tokens/NumberTokens/UInt8NumberToken.java preparations for future
+         extensions of the NumberToken
+stefan * whos.java added support for all DataToken
+stefan + Functions/General/islogical.java
+stefan + Functions/General/logical.java
+stefan + Tokens/LogicalToken.java
+stefan + Functions/General/true.m
+stefan + Functions/General/false.m
+stefan + Functions/General/isa.java
+stefan + Functions/General/isuint8.m
+stefan + Functions/General/isuint16.m
+stefan + Functions/General/isuint32.m
+stefan + Functions/General/isuint64.m
+stefan + Functions/General/isint8.m
+stefan + Functions/General/isint16.m
+stefan + Functions/General/isint32.m
+stefan + Functions/General/isint64.m
+stefan + Functions/General/issingle.m
+
+2007/01/18
+stefan * Tokens/CellArrayToken.java added better support for empty constructor
+stefan + Functions/Statistics/base/center.m
+stefan + Functions/Statistics/base/meansq.m
+stefan + Functions/Statistics/base/cloglog.m
+
+2007/01/17 
+stefan + Functions/General/nthroot.m
+
+2007/01/16 
+stefan + Functions/System/print_usage.java
+stefan + Functions/quaternion/qconj.m
+stefan + Functions/quaternion/qderiv.m
+stefan + Functions/quaternion/qderivmat.m
+stefan + Functions/quaternion/qinv.m
+stefan + Functions/quaternion/qmult.m
+stefan + Functions/quaternion/qtrans.m
+stefan + Functions/quaternion/qtransv.m
+stefan + Functions/quaternion/qtransvmat.m
+stefan + Functions/quaternion/quaternion.m
+
+2007/01/14 
+stefan + Functions/signal/hurst.m
+stefan + Functions/Statistics/base/var.m
+stefan + Functions/Statistics/base/cov.m
+stefan - Functions/Statistics/StdDev.java
+
+2007/01/12 
+stefan + Functions/Statistics/base/mean.m
+stefan + Functions/Statistics/base/std.m
+
+2007/01/11 
+stefan + moved lots of internal standard functions and trigonometric function
+         to individual java-classes
+
+2007/01/10 
+stefan + ExternalElementWiseFunction.java for evaluation of functions which work
+         the same on all elements of an array (e.g. sin())
+
+2007/01/09 
+stefan * NumberToken.java, zeros.java, ones.java added support for ND-arrays
+
+2007/01/08 
+stefan * NumberToken.java, CellArrayToken.java, DataToken.java, ndims.java,
+         size.java, rand.java added (better) support for ND-arrays.
+
+2007/01/06 
+stefan * NumberToken.java ... Reorganized NumberToken. Elements are now stored
+         as a single vector instead of an array. This is a preparation for 
+         future usage of NDArrays.
+
+2007/01/05
+stefan + MathLib/Functions/IO/loadvariables.java
+stefan + MathLib/Functions/IO/savevariables.java Moved loading and saving of 
+         variable into two external functions. Variables are not loaded/saved 
+         automotically at the start/end of JMathLib any more.
+
+2007/01/05 
+stefan * MathLib/Functions/UserFunction.java added handling of "varargin"
+stefan * MathLib/Tools/Testsuite/Functions/Matrix/* added lots of tests
+stefan * MathLib/Tools/Testsuite/Functions/Matrix/* added lots of tests
+
+2007/01/05 
+stefan + Functions/specfun/_private/ContinuedFraction.java
+stefan + Functions/specfun/_private/ConvergenceException.java
+stefan + Functions/specfun/_private/Gamma.java
+stefan + Functions/specfun/bessel.m
+stefan + Functions/specfun/beta.m
+stefan + Functions/specfun/betaln.m
+stefan + Functions/specfun/gammaln.m
+
+2007/01/02 
+stefan * Function.java, FunctionManager.java, MFileLoader.java and added support
+         for rehashing of m-files
+stefan + Functions/General/rehash.java
+stefan * Interpreter.java added rehashing of m-files to the end of each execute
+
+2006/12/30
+stefan * Functions/Matrix/sort.java added support for two return arguments [x,y]=sort(A)
+stefan + Functions/General/lookup.m
+stefan + Functions/General/issymmetric.m
+stefan + Functions/General/isdefinite.m
+stefan # removed html-tags br and BR from all files
+stefan + Functions/IO/createnewfile.java
+stefan + Functions/IO/delte.java
+stefan + Functions/IO/isdirectory.java
+stefan + Functions/IO/isfile.java
+stefan + Functions/IO/ishidden.java
+stefan + Functions/IO/lastmodified.java
+stefan + Functions/IO/mkdir.java
+stefan + Functions/IO/rmdir.java
+
+2006/12/28
+stefan + Functions/Matrix/col.m created m-file instead of MatrixFunction
+stefan + Functions/Matrix/row.m created m-file instead of MatrixFunction
+
+2006/12/27
+stefan + Functions/General/real.java  moved from complex internal functions
+stefan + Functions/General/imag.java  moved from complex internal functions
+stefan + Functions/General/conj.java  moved from complex internal functions
+stefan + Functions/General/angle.java moved from complex internal functions
+
+2006/12/26
+stefan + Functions/Matrix/eq.m
+stefan + Functions/Matrix/ge.m
+stefan + Functions/Matrix/gt.m
+stefan + Functions/Matrix/le.m
+stefan + Functions/Matrix/ne.m
+stefan + Functions/quearternion/qtransvmat.m
+stefan + Functions/specialmatrix/pascal.m
+stefan + Functions/Matrix/det.m
+stefan + Functions/Matrix/inv.m
+
+2006/12/21
+stefan + Functions/LinearAlgebra/dot.m
+stefan + Functions/LinearAlgebra/orth.m
+stefan + Functions/LinearAlgebra/vech.m
+stefan + Functions/signal/triangle_lw.m
+stefan + Functions/signal/triangle_sw.m
+
+2006/12/18
+stefan + Functions/General/size_equal.m compares two arrays
+
+2006/12/17
+stefan + Functions/Matrix/nan.java
+stefan + Functions/Matrix/inf.java
+stefan + Functions/Matrix/isnan.java
+stefan + Functions/Matrix/isinf.java
+stefan + Functions/Matrix/isfinite.java
+
+2006/12/16
+stefan + Functions/Finance/pv.m
+stefan + Functions/Finance/pvl.m
+stefan + Functions/General/triu.m
+stefan + Functions/General/tril.m
+stefan + Functions/specialmatrix/hankel.m
+stefan + Functions/specialmatrix/sylvester_matrix.m
+stefan + Functions/specialmatrix/toeplitz.m
+stefan + Functions/specialmatrix/wilkinson.m
+
+2006/12/16
+stefan * Functions/Matrix/cumsum.java added summing of row vector
+stefan + Functions/Matrix/cumprod.java
+
+2006/12/16
+stefan + Functions/Finance/pmt.m
+stefan + Functions/Finance/nper.m
+
+2006/12/09
+stefan + Functions/Matrix/cumsum.m
+
+2006/12/05
+stefan + Functions/Polynomial/roots.m
+
+2006/12/05
+stefan + Functions/Polynomial/polyval.m
+
+2006/12/05
+stefan + Functions/Polynomial/polyreduce.m
+
+2006/12/05
+stefan + Functions/Polynomial/poly.m
+
+2006/12/05
+stefan + Functions/Polynomial/compan.m
+
+2006/12/05
+stefan * Functions/Matrix/diag.java added support for diag([2,3,4]),
+         diag([2,3,4],2), diag([2,3,4],-1), diag([2,3;4,5],1)
+
+2006/12/04
+stefan + Functions/set/complement.m function returning complements
+
+2006/12/03
+stefan + Functions/set/create_set.m function for creating sets of arrays
+
+2006/12/03
+stefan + Functions/Matrix/numel.java function for counting number of elements
+         inside an array.
+
+2006/12/03
+stefan + Functions/Matrix/sort.java function for sorting arrays
+
+2006/11/26
+stefan * worked on the documentation: added pubdate and image of JMathLib to
+         the title page. Customization of fo/titlepage.my.xsl
+
+2006/11/25
+stefan * Functions/* worked on  the documentation process. Many bugfixes.
+
+2006/11/25
+stefan # Functions/specfun/perms.m (replaced i by x, because i is always treated 
+         as an imaginary number)
+
+2006/11/24
+stefan + Functions/specfun/perms.m
+
+2006/11/24
+stefan * Functions/General/size.java added support for size([2,3,4],n)
+
+2006/11/24
+stefan + Functions/Matrix/repmat.java created this file from repmat.java
+stefan - Functions/Matrix/remat.java wrong filename, should be repmat.java
+
+2006/11/24
+stefan # Functions/time/tic.java  tic now returns nothing (returned 1 before)
+
+2006/11/20
+stefan * Parser.java LexicalAnalyzer.java better handling of \n e.g.
+    switch (x) \n     or for i=1:5 \n 
+
+2006/11/20
+stefan + Functions/graphics/close.java
+
+2006/11/18
+stefan + Functions/image/ntsc2rgb.m 
+
+2006/11/18
+stefan + Functions/image/gray2ind.m 
+
+2006/11/18
+stefan + Functions/image/gray.m 
+
+2006/11/18
+stefan * MatrixToken.java added support for Strings e.g. ['asdf' 'dfgh'] or ['asdf' 65]
+stefan * testMatrixToken.java added tests for ['asdf' 65]
+
+2006/11/17
+stefan * JMathLib.nsi added splash screen during starting of JMathLib
+
+2006/11/xx
+stefan * UI/Applet/MathLibGUI.java added parameters for startup-code, 
+         foreground color, background color
+
+2006/11/11
+stefan # UI/Console.java changed way of adding \n to output, also fixed
+         bug when pressing return many times
+
+2006/11/11
+stefan * Release of JMathLib 0.7.0
+
+2006/11/08
+stefan * UI/AWT/AboutGUIDialog.java changed from MathLib to JMathLib
+
+2006/11/07
+stefan * preparations for new release 0.7.0
+
+2006/11/06
+stefan * lots of work on the documentation
+stefan * the release can now be done with one ant task: ant fulldist
+
+2006/11/02
+stefan * a new file for Frequently asked Questions: faq.xml to the documentation
+
+2006/11/01
+stefan * Graphics/FigureObject.java, AxesObject.java added functionality in order
+         to print to an external printer.
+
+2006/10/31
+stefan * Functions/Graphics/print.java added function to print graphs to external printers 
+
+2006/10/22
+stefan + documentation: glossary.xml
+stefan * documentation: added better support for jedit 
+
+2006/10/16
+stefan + documentation: pictures for installation on windows
+
+2006/08/31
+stefan # UserFunction.java evaluate code of m-file only if code!=null
+
+2006/08/30
+stefan # Parser.java removed bug when parsing parameters,
+         e.g.  ceil(4;5) and not throwing an exception because of ";"
+
+2006/08/30
+stefan + Functions/General/finish.m Functions is called at each exit of JMathLib
+
+2006/08/29
+stefan * transition to Eclipse 3.2
+
+2006/08/27
+stefan + JMathLib.properties file with properties for JMathLib
+
+2006/08/11
+stefan * checkForUpdates() minor changes
+
+2006/08/11
+stefan * GUI.java improved handling of checkForUpdates()
+
+2006/08/27
+stefan * rand.java improved handling of rand(0,3), rand(3,0)
+
+2006/08/27  
+stefan * Variable.java VariableToken.java FunctionsToken.java improved
+         handling of "NULL" as return value
+
+2006/08/2x
+stefan * many improvements to the documention process
+
+2006/08/11
+stefan + Functions/signal/hamming.m
+
+2006/08/06
+stefan * Functions/miscellaneous/flops.m  is a dummy function, always returns 0
+
+2006/08/06
+stefan * Functions/General/fft.java added to project
+
+2006/08/06
+stefan * TrigonometricFunction.java moved from degrees back to radians
+
+2006/08/03
+stefan * VariableList.java added support for a=5 and A=6
+stefan * UserFunction.java number of arguments variables:
+         NARGIN, NARGOUT converted to lower letter nargin, nargout
+
+2006/07/31
+stefan * JMathLibInstall.nsi added call to JMathLib.nsi in order to generate 
+         startup-exe-program during release
+
+2006/07/30
+stefan  * creation of release 0.5.0
+
+2006/07/23
+stefan * StringToken.java added more methods for set/get of elements
+
+2006/07/17
+stefan * NumberToken.java added support for .\ and \ (left divide)
+
+2006/07/16
+stefan * Subassign.java added support for a([2,5,3])=555
+stefan * Subassign.java added support for a([2,5],8)=555
+
+2006/07/15
+stefan + RelationOperatorToken.java added handling of strings
+stefan + Functions/String/isspace.java return vector indicating whitespaces
+stefan + Functions/General/numel.m returns number of elements of argument
+stefan + Functions/Matrix/min.java  e.g. min(2,3) or min([2,3,4],3)
+stefan + Functions/Matrix/max.java  e.g. max(2,3) or max([2,3,4],3)
+
+2006/07/14
+stefan * Tokens/*.java removed toString(Operands[] op) from token files
+
+2006/07/10
+stefan + Functions/specialmatrix/hilb.m
+
+2006/07/09
+stefan + Functions/specialmatrix/magic.m 
+stefan + mod(x)
+stefan + rem(x)
+stefan + isimaginary(x) returns 1 if all real elements are zero
+stefan + isreal(x) returns 1 if all imaginary elements are zero
+stefan + all(x) returns 1 if all elements of x are nonzero
+stefan + MathLib/Functions/deprecated/isstr.m deprecated function: use 
+         ischar() instead
+stefan + MathLib/Functions/General/ischar.java  return true for strings and
+         false otherwise
+         
+2006/07/08
+stefan * MathLib/Functions/Function.java added debugLine("") for easier usage in functions
+stefan * DataToken.java, NumberToken.java added getElement(n) in additonto getElement(y,x)
+
+2006/07/02
+stefan * MathLib/UI/AWT/GUI.java added support for JMathLib icon
+stefan * MathLib/UI/AWT/smalllogo.gif new JMathLib icon
+
+2006/06/30
+stefan + currently working on something like a([2,6,13])
+  
+2006/06/25
+stefan + Tokens/AssignmentOperatorToken.java added better support for cell arrays
+stefan + Tokens/VariableToken.java added better support for cell arrays
+stefan + Functions/Matrix/SubMatrix.java added better support for cell arrays
+stefan + Functions/Matrix/SubAssign.java added better support for cell arrays
+stefan + Functions/specialmatrix/rosser.m
+
+2006/06/17
+stefan + improments to handling of cell arrays
+
+2006/06/15
+stefan + Functions/General/iscell.java to check if variable is a cell token
+
+2006/06/13
+stefan + Functions/General/whos.java to display variable names and sizes
+stefan + Functions/General/cell.java to create empty cell arrays
+
+2006/06/11
+stefan * SubAssign.java added support for a(6)=88 when a equals null before
+
+2006/06/11
+stefan + NumberToken.java return "null" when array is of size y*x=0*0
+
+2006/06/10
+stefan * new mailing list mathib-commitlog@lists.sourceforge.net
+stefan + NumberToken.java introduced setSize(dy,dx) method
+stefan + DataToken.java introduced setSize(dy,dx) method
+
+2006/06/07
+stefan * Functions/Matrix/SubAssign.java code improvements
+
+2006/06/04
+stefan + Functions/String/sprintf.java initial commit
+
+2006/05/28
+stefan * Parser.java added support to parse cell arrays
+stefan + Token/CellArrayToken.java introduction of cell arrays 
+         (e.g. a={2, rand(3), "hello"} )
+stefan + Functions/General/cell.java
+
+2006/05/28
+stefan + Functions/Matrix/rows.m     counting the rows of a matrix
+stefan + Functions/Matrix/columns.m  counting the columns of a matrix
+stefan * LexicalAnalyzer.java added support for ...
+stefan * UserFunction.java now only set "nargin" to number of parameters
+         which are actually used by the calling function
+
+2006/05/25
+stefan # Functions/Control/system/is_sample.m copied from octave
+stefan + Functions/General/isstruct.java for checking on structs
+stefan * Parser.java, Variable.java, VariableToken.java, AssignmentOperatorToken.java,
+         MathLibObject.java to improve handling of structs
+stefan + Functions/Control/util/swap.m copied from octave
+stefan + Functions/Control/system/is_abcd.m copied from octave
+stefan * UI/AWT/GUI.java added menu item: check for updates
+stefan + Functions/System/checkForUpdates.java a first version of an update
+         checking mechanism
+stefan * Parser.java Error.java introduced throwParserError("") for easier usage
+
+2006/05/24
+stefan * Parser.java simplified parsing of if-then-else and switch-case
+
+2006/05/24
+stefan # Parser.java parsing of switch-case
+stefan # LexicalAnalyzer.java changed direct parsing of delimiters
+stefan # LexicalAnalyzer.java added delimiters for switch-case-default-
+         otherwise-endswitch
+stefan * testSwitchOperatorToken.java added lots of tests
+stefan + Functions/test/test_switch001.m
+
+2006/05/16
+stefan + Functions/Control/system/abcddim.m from octave
+stefan # Return.java
+
+2006/05/15
+stefan + _char.java
+stefan + char.m
+stefan * num2str.java
+stefan + _double.java
+stefan + double.m  (also removed Functions/test/double.m)
+stefan * str2num.java
+
+2006/05/14
+stefan * testSubmatrix.java added more tests
+stefan * testVec.java added more tests
+stefan * testTrace.java added more tests
+stefan * Functions/Matrix/Submatrix.java added handling of x(:) -> return column vector
+stefan + Interpreter/Preferences.java to read write preferences to disc
+
+2006/05/08
+stefan + Functions/Linear-Algebra/trace.m from octave
+stefan + Functions/Linear-Algebra/vec.m   from octave
+
+2006/04/30
+stefan + Testsuite/General/testIssquare.java new tests
+
+2006/04/29
+stefan + Functions/Matrix/diag.java return the diagonal of a matrix
+stefan + Functions/Control/system/__abcddims__.m from octave
+
+2006/04/24
+stefan # Parser.java bugfix handling of "endfunction"
+stefan + Testsuite/General/testIsmatrix.java new tests
+
+2006/04/24
+stefan * Parser.java improved handling of delimiter
+stefan * Parser.java improved handling of if-elseif-else-end-endif
+        if (b<3) a=4; elseif (b>5) a=5; else b=8 end
+        if (b<3) a=4; elseif (b>5) a=5; else b=8 endif
+stefan + TestIfThenOperatorToken.java added lots of tests
+
+2006/04/22
+stefan + Functions/Finance/ new directory
+stefan + Functions/Finance/fvl.m  from Octave
+stefan + Functions/Finance/fv.m   from Octave
+
+2006/04/22
+stefan  * Parser.java added support for && and ||
+stefan  * Parser.java added support for !3 and ~3
+stefan  * LexicalAnalyzer.java added support for && and ||
+stefan  * LexicalAnalyzer.java added support for !3 and ~3
+stefan  * RelationOperatorToken.java added support for && and ||
+
+2006/04/10
+stefan  + Functions/General/issquare.m from octave: returns if matrix is square or not
+
+2006/04/09
+stefan  + Functions/General/ndims.java new function returns the dimensions of a number 1,2
+stefan  + Functions/General/ismatrix.m new function
+stefan  + Functions/General/isscalar.m added from octave
+stefan  * LexicalAnalyser.java added support for if-elseif-else-endif (octave style)
+stefan  * Parser.java added support for if-elseif-else-endif (octave style)
+stefan  * Functions/Matrix/prod.java added support for prod([1,2,3]) -> 6
+
+2006/01/15
+stefan  + jmathlib.ico icon for JMathLib in various formats
+stefan  * JMathLibInstall.nsi added support for icon
+  
+2006/01/08
+stefan  * UI/Applet/MathLib.java  changed title "MathLib" to "JMathLib" 
+stefan  * UI/AWT/GUI.java         changed title "MathLib" to "JMathLib"
+stefan  * UI/Swing/SwingGUI.java  changed title "MathLib" to "JMathLib"
+   
+2006/01/07
+stefan  * creation of release 0.5.0
+
+2006/01/07
+stefan  + license.txt new license file
+stefan  + JMathLib.nsi NSI installer which works as a starter for JMathLib. Now
+          it is possible to start JMathLib with a mouse click on windows systems.
+stefan  + JMathLibInstatt.nsi  NSI installer for JMathLib. It creates an exe-file
+          which contain all necessary files and can be used as an easy to use
+          installer on Windows systems.
+
+2005/10/15
+stefan   + ChangeLog.txt moved old history to new changelog file
+stefan   * MathLib/Tokens/*.java removed not necessary constructors
+
+2005/06/12
+    + MathLib/Functions/SFunction.java template for SFunctions
+    + MathLib/Functions/SFunctions/ directory for SFunctions
+
+2005/05/05
+    * MathLib/Tools/TestSuite/Functions/String/AllTests.java
+    * MathLib/Tools/TestSuite/Functions/String/testNum2str.java
+    + MathLib/Tools/TestSuite/Functions/String/testLower.java
+    + MathLib/Tools/TestSuite/Functions/String/testUpper.java
+    + MathLib/Tools/TestSuite/Functions/String/testStr2num.java
+    * MathLib/Tools/TestSuite/Functions/Crypto/AllTests.java
+    + MathLib/Tools/TestSuite/Functions/Crypto/testAES.java
+
+2005/05/01
+    + MathLib/Functions/Crypto
+    + MathLib/Functions/Crypto/AES.java the AES (Advanced encryption standard) algorithm
+    + tests for AES
+    + MathLib/Functions/String/str2num.java
+    # MathLib/Functions/String/num2str.java
+	* MathLib/Interpreter/Interpreter.java   and the getString(string) method 
+    
+2005/04/01
+    + MathLib/Functions/FunFun/feval.java external function for evaluating functions. first version
+
+2005/03/28
+    + MathLib/Functions/FunFun new dirctory for functions on functions
+    + MathLib/Functions/FunFun/euler.java integration method named after Euler
+    
+2005/03/13
+	# MathLib/Tokens/FunctionToken.java added cloning of UserFunctions so that the m-script
+		or m-function stays untouched after evaluating its code
+
+2005/01/31
+	# MathLib/Functions/ExternalClassLoader.java had a problem with JDK1.4.2_06. changed loading of classes
+
+2005/01/08
+	* MathLib/Functions/FunctionManager.java support for loading m-files via the applet version
+	* MathLib/Functions/MFileLoader.java support for loading m-files via the applet version
+	+ MathLib/Functions/Demos/demo001.m automatic demo
+	* webFunctionsList.dat and created newest version. changed format shlightly. Now starts with "MathLib/..."
+	# createFunctionsList.java and now use relative paths to class, m-files
+
+2005/01/05
+    # JMathLib.html did contain some wrong html and javascript code
+
+2005/01/04
+	* MathLib/Tools/TestSuite/Functions/AllTests.java added link to Grahics
+	+ MathLib/Tools/TestSuite/Functions/Graphics/AllTests.java 
+	+ MathLib/Tools/TestSuite/Functions/Graphics/Graph3d/AllTests.java 
+	+ MathLib/Tools/TestSuite/Functions/Graphics/Graph3d/testMeshgrid.java added test cases for meshgrid
+	# MathLib/Tokens/Expression.java for evaluation of e.g. [x,y]=meshgrid, number of left handside argument has not been assigned
+
+2005/01/04
+        * creation of release 0.4.6
+
+2004/12/05
+	# MathLib/Interpreter/LexicalAnalyzer.java when parsing [1,2 ] problem with space in " ]" 
+	* MathLib/Interpreter/Parser.java cleanup 
+
+2004/11/21
+	- MathLib/Tokens/ScalarToken.java not used anywhere
+	- MathLib/Tokens/ImaginaryNumberToken.java not used anywhere
+    * MathLib/Tokens/RelationOperatorToken.java support for matrix comparison, e.g. [1,2;3,4]>[3,4;4,5]
+	# MathLib/Interpreter/LexicalAnalyzer.java scanning of != did not work
+	* MathLib/Interpreter/Interpreter.java added support for throwing exceptions. Needed by test suite
+	   evaluate test cases which throw exceptions
+	* MathLib/Tools/TestSuite/Tokens/TestRelationsOperatorToken.java lots of tests
+	* MathLib/Tools/TestSuite/Tokens/TestUnaryOperatorToken.java some tests
+	
+2004/11/21
+	* MathLib/TestSuite/Tokens/AllTests.java more tests
+	+ MathLib/TestSuite/Tokens/... several files for testing of tokens. Tough many have not test cases inside.
+
+2004/11/15
+	* MathLib/Functions/Function.java moved getName() setName() from UserFunction to Function.java
+	* MathLib/Functions/UserFunction.java
+	* MathLib/Functions/ExternalFunction.java
+
+2004/11/14
+	+ MathLib/Functions/General/setPFileCaching.java enable or disable caching of p-files
+	+ MathLib/Functions/General/getPFileCaching.java return status of caching of p-files
+	* MathLib/Functions/MFileLoader.java  implement enable or disable caching of p-files
+	+ MathLib/Tools/TestSuite/Functions/General/testSetPFileCaching.java added test cases for setPFileCaching
+
+2004/11/13
+	* MathLib/Functions/ Userfunctions	changed context handling of user functions
+	* MathLib/Interpreter/ Context		changed context handling of user functions
+	* MathLib/Tools/TestSuite/Functions/test/TestUserFunctions.java added more tests for m-functions
+
+2004/11/08
+	# MathLib/Tools/TestSuite/Functions/testFunctions.java  for a wrong test case
+
+2004/11/01
+	* MathLib/UI/AWT/GUI.java removed function building code
+	# MathLib/UI/Common/Console.java changed handling of TextArea
+	- MathLib/UI/AWT/Console.java   use MathLib/UI/Common/Console.java instead
+	- MathLib/UI/AWT/ConsoleKeyHandler.java use MathLib/UI/Common/ConsoleKeyHandler.java instead
+    * MathLib/Interpreter/Interpreter.java moved executeExpression("startup;") to GUI, otherwise 
+      text output of the startup-script is not displayed correctly.
+
+2004/10/30
+    + more tests in the test-suite
+
+2004/10/17
+	+ new function MathLib/General/fix.java rounds numbers to integer towards zero
+    * MathLib/Tools/TestSuite/Functions/General/AllTests.java
+    + MathLib/Tools/TestSuite/Functions/General/testFix.java for testing of the fix() function
+	
+2004/07/04
+    * added more tests to MathLib/Tools/TestSuite/Functions/AllTests.java
+    # includes missings tests in  MathLib/Tools/TestSuite/Functions/General/AllTests.java
+    + tests for m-functions MathLib/Tools/TestSuite/Functions/testFunctions.java
+
+2004/06/20
+    * synch_mail option for sending emails after a developer comitted a file
+
+2004/06/06
+    # MathLib/Tokens/RelationOperatorToken.java added support for "&" and "|"
+    * MathLib/Tokens/Conditions.java improvement of toString() method 
+
+2004/05/30
+    * clear.java added clearing of user functions
+
+2004/05/22
+    + WindowHandler.java 
+    + smalllogo.gif 
+    + RemoteAccesible.java 
+    + OptionsGUIDialog.java 
+    + GUIOutput.java 
+    + GUIDialog.java 
+    + GUICanvas.java 
+    + GUI.java 
+    + ConsoleKeyHandler.java 
+    + Console.java 
+    + AboutGUIDialog.java 
+    + and copied files from the directory MathLib/GUI/* to MathLib/UI/AWT/. The
+      files in MathLib/GUI/ are obsolete now.
+    * lots of files with not neccessary includes
+
+2004/05/02
+    # removed lots of not necessary "import" commands
+
+2004/04/26
+    + Source/Functions/Net/urlread.java to read files over the network
+
+2004/04/25
+    + Source/Functions/Matrix/magic.java magic squares function. All sums of
+      each row and column are equal.
+
+2004/04/19
+    - Source/Functions/Matrix/_private/Jampack/Jampack.jcp  
+    - Source/Functions/Matrix/_private/Jampack/Jampack.java just an empty window
+    - Source/Functions/Matrix/_private/Jampack/src_jampack.txt 
+
+2004/04/18
+    * Source/Interpreter/Interpreter.java    code cleanup
+    * Source/Interpreter/GlobalValues.java   code cleanup
+    * Source/Interpreter/RootObject.java     code cleanup
+    * Source/Plugins/PluginsManager.java     code cleanup
+    * Source/Plugins/Plugin.java             code cleanup
+    * Source/Plugins/JavaPlugin.java         code cleanup
+    * the new plugin mechanism make it possible to load plugins during runtime.
+      There is still much to do. Loading of JAR-Files is not implemented
+      right now. Nevertheless JMathLib now runs as an applet without loading
+      the koala-java interpreter.
+
+2004/04/18
+    + Source/Tools/Testsuite/Functions/Matrix/TestFliplr to test fliplr
+    + Source/Tools/Testsuite/Functions/Matrix/TestFlipud to test flipud
+    * Source/Tools/Testsuite/Functions/Matrix/TestFliplr and added fliplr, flipud
+
+2004/04/13
+    * BaseTestRunner.java disabled "Reload classes every run"
+
+2004/04/12
+   + Plugins directory for future plugins
+   + PluginsManager for future plugins
+   + Plugin.java basic class for plugins
+   + JavaPlugin.java moved java plugin to this class
+
+2004/04/12
+   + new function fliplr() for flipping matrices from left to right
+   + new function flipud() for flipping matrices from up to down
+
+2004/03/02
+   * more documentation for Functions/System/Java.java
+
+2004/02/16
+   + Documentation/src/Docbook/v4.3 new docbook style
+   + files htmltblx.mod docbookx.dtd docbook.cat dbpoolx.mod dbnotnx.mod 
+      dbhierx.mod dbgenent.mod dbcentx.mod ChangeLog catalog.xml calstblx.dtd 
+   + Documentation/src/Tools/createtdbh.pl createdocs.pl createdoclist_xml.pl
+   + Version 0.4.5 to Documentation/src/versions.txt
+   - Documentation/VersionList.txt 
+
+2004/02/08
+   - removed version.txt  The changelog has moved to Changes/..
+   - removed Source/spoke/... directories
+   - removed Classes/spoke/... directories
+
+2004/01/25
+   * several .java and .int files. Removed html-links in SeeAlso Sections
+
+2004/01/04
+    + Mathlib/Documentation/src/Tools/dbdoclet.jar  doclet to create docbook-style
+       XML-files
+
+2003/10/05
+    # Mathlib/Interpreter/Parser.java changed printing of a string to debug message
+    # Mathlib/Functions/UserFunction.java caught two possible null pointers
+
+2003/10/04
+    - removed several .class-files from the CVS-repository
+    # Mathlib/Constants/ErrorCodes.java  added ERR_FUNCTION_NOT_IMPLEMENTED 
+
+2003/03/24
+    # MathLib/Functions/General/Struct.java   added MathLibObject to import command
+   
+2003/03/23
+    # MathLib/Tokens/FunctionToken.java     corrected handling of getOperand(index)
+    # MathLib/Tokens/VariableToken.java     added MathLibObject to import command
+
+2003/03/16
+    # MathLib/Tokens/FunctionToken.java     corrected handling of "who" and "who()"
+    # MathLib/Tokens/VariableToken.java
+
+2003/03/16
+    * MathLib/Tokens/FunctionToken.java     cleanup of function handling
+    * MathLib/Interpreter/RootObject.java
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Interpreter/GlobalValues.java
+    * MathLib/Functions/System/Return.java
+    * MathLib/Functions/UserFunction.java
+    * MathLib/Functions/FunctionManager.java
+    # MathLib/Tokens/Expression.java        correction of setDisplay handling
+
+2003/03/14
+    * MathLib/Interpreter/Parser.java  added support for (e.g. min (2,3) ) more whitespace support
+    * MathLib/Tools/TestSuite/Interpreter/testParser.java  more tests on whitespaces (functions)
+
+2003/03/08
+    * MathLib/Tokens/FunctionToken.java     moved FunctionToken from OperatorToken to OperandToken
+    * MathLib/Tokens/Expression.java        moved FunctionToken from OperatorToken to OperandToken
+    * MathLib/Tokens/VariableToken.java     moved FunctionToken from OperatorToken to OperandToken
+
+2003/02/01
+    + MathLib/Functions/Time/pause.java      wait for n-seconds
+
+2003/01/27
+    + MathLib/Functions/Graphics/Graph3d/rotate.java  rotate a 3d graph
+
+2003/01/06
+    * MathLib/Interpreter/LexicalAnalyser.java added support for Inf,-Inf,NaN
+    * MathLib/Tokens/NumberToken.java          added support for Inf,-Inf,NaN
+
+2002/12/15
+    + MathLib/Functions/Matrix/minus.m       wrapper for internal function
+    + MathLib/Functions/Matrix/mtimes.m      wrapper for internal function
+    + MathLib/Functions/Matrix/plus.m        wrapper for internal function
+    + MathLib/Functions/Matrix/uplus.m       wrapper for internal function
+    + MathLib/Functions/Matrix/ldivide.m     wrapper for internal function
+    + MathLib/Functions/Matrix/mldivide.m    wrapper for internal function
+    + MathLib/Functions/Matrix/mpower.m      wrapper for internal function
+    + MathLib/Functions/Matrix/mrdivide.m    wrapper for internal function
+    + MathLib/Functions/Matrix/power.m       wrapper for internal function
+    + MathLib/Functions/Matrix/rdivide.m     wrapper for internal function
+    + MathLib/Functions/Matrix/ctranspose.m  wrapper for internal function
+    + MathLib/Functions/Matrix/times.m       wrapper for internal function
+    + MathLib/Functions/Matrix/times.m       wrapper for internal function
+    + MathLib/Functions/Matrix/uminus.m      wrapper for internal function
+
+2002/12/11
+    # MathLib/Interpreter/Parser.java        fixed bug when dot operators inside matrices
+
+2002/12/11
+    # MathLib/Casts/Cast_Number_Object.java  changed path to MathLibObject
+    # MathLib/Functions/Matrix/Sum.java      changed path to MathLibObject
+    # MathLib/Functions/Matrix/SimultaneousEg.java  MulDivOperator/() change
+
+2002/12/04
+    # MathLib/Interpreter/Parser.java        fixed bug when parsing matrices and functions
+    * MathLib/Tools/TestSuite/Interpreter/TestParser.java  added more tests
+
+2002/11/26
+    # MathLib/Functions/Polynomial/Polynomial.java          exchanged VariableToken with Symbolic..
+    # MathLib/Functions/Polynomial/BinomialExpression.java
+
+2002/11/25
+    # MathLib/Interpreter/Interpreter.java   no error if any empty expression is evaluated
+    # MathLib/Interpreter/Parser.java        fixing parsing of (2+3)*4
+    # MathLib/Tokens/Expression.java         fixed display of expressions 
+    # MathLib/Tokens/AssignmentOperatorToken.java  fixed display of expressions
+
+2002/11/24
+    * MathLib/Tokens/NumberToken.java         added abs() (real and complex versions)
+    * MathLib/Functions/FunctionManager.java  display index of found function
+    * MathLib/Tools/TestSuite/Interpreter/TestParser.java  added more tests
+    # MathLib/Functions/Symbolic/_private/*   fixed usage of constructors
+
+2002/11/24
+    * MathLib/Interpreter/LexicalAnalyser.java removed usage of constructors with priority
+    # MathLib/Interpreter/Parser.java           changed handling of dot-operators 
+    * MathLib/Tokens/AddSubOperatorToken.java
+    * MathLib/Tokens/AssignmentOperatorToken.java
+    * MathLib/Tokens/CaseToken.java
+    * MathLib/Tokens/ColonOperatorToken.java
+    * MathLib/Tokens/DotOperatorToken.java
+    * MathLib/Tokens/MatrixToken.java
+    * MathLib/Tokens/MulDivOperatorToken.java
+    * MathLib/Tokens/PowerOperatorToken.java
+    * MathLib/Tokens/RelationOperatorToken.java
+    * MathLib/Tokens/ScalarToken.java
+    * MathLib/Tokens/UnaryOperatorToken.java
+    * MathLib/Functions/TrigonometricFunction.java
+    * MathLib/Tools/TestSuite/Interpreter/TestLexicalAnalyser.java  
+    * MathLib/Tools/TestSuite/Tokens/TestDotOperatorToken.java       added more tests
+    
+2002/11/21
+    * MathLib/Tokens/VariableToken.java removed setFactor() setExponent()
+    * MathLib/Interpreter/LexicalAnalyser.java removed variable.setFactor()
+    * MathLib/Interpreter/Parser.java added handling of "-a" 
+    * MathLib/Tools/TestSuite/*  added more tests
+
+2002/11/17
+    # MathLib/Interpreter/Parser.java changed parsing of DotOperatorToken
+    # MathLib/Tokens/DotOperatorToken.java
+    # MathLib/Tokens/VariableToken.java
+    # MathLib/Tokens/Expression.java
+    # MathLib/Tokens/AssignmentOperator.java
+    # MathLib/Interpreter/Variable.java
+    + MathLib/Tools/TestSuite/Tokens/TestDotOperatorToken.java added tests for a.b a.sin()
+    * MathLib/Tools/TestSuite/Tokens/TestAll.java
+
+2002/11/04
+    # bugfix parsing of expressions and parameters: handling of ")"
+    # MathLib/Interpreter/Parser.java changed parsing now used LL1-grammar parser
+
+2002/11/02
+    # bugfix parsing of expressions and parameters: handling of ")" (still unresolved)
+    * added some more tests 
+    # MathLib/Interpreter/Parser.java changed parsing of arithmetric expressions
+    * MathLib/Constants/TokenConstants.java
+    # MathLib/Functions/UserFunction.java
+    # MathLib/Functions/MFileLoader.java
+    # MathLib/Tokens/IfThenOperatorToken.java
+    * MathLib/Tools/TestSuite/Interpreter/testParser.java 
+    * MathLib/Tools/TestSuite/Tokens/TestIfThenOperatorToken.java 
+    * MathLib/Tools/TestSuite/Tokens/TestSwitchOperatorToken.java 
+    * MathLib/Tools/TestSuite/Functions/AllTests.java 
+    + MathLib/Tools/TestSuite/Functions/Internal/ 
+    + MathLib/Tools/TestSuite/Functions/Internal/AllTests.java 
+    + MathLib/Tools/TestSuite/Functions/Internal/testMinMax.java
+    + MathLib/Tools/TestSuite/Functions/test/AllTests.java
+    + MathLib/Tools/TestSuite/Functions/test/TestUserFunctions.java
+
+2002/10/28
+    * added some more tests (if-elseif-else, switch-case-default)
+    * MathLib/Tools/TestSuite/Tokens/TestIfThenOperatorToken.java 
+    * MathLib/Tools/TestSuite/Tokens/TestSwitchOperatorToken.java 
+
+2002/10/27
+    # bugfix parsing of expression 1+2*3+4*5 did not return 27
+    * added some more tests
+    * added icon to MathLibGUI
+    # MathLib/Interpreter/Parser.java changed parsing of arithmetric expressions
+    * MathLib/Tools/TestSuite/Interpreter/testParser.java 
+    * MathLib/Tools/TestSuite/Tokens/AllTests.java 
+    # MathLib/Tokens/ForOperatorToken.java 
+    + MathLib/Tools/TestSuite/Tokens/TestIfThenOperatorToken.java 
+    + MathLib/Tools/TestSuite/Tokens/TestForOperatorToken.java 
+    + MathLib/Tools/TestSuite/Tokens/TestSwitchOperatorToken.java 
+    + MathLib/Tools/TestSuite/Tokens/TestWhileOperatorToken.java
+    * MathLib/GUI/MathLibGUI.java added support for icon on gui window
+    * MathLib/GUI/smalllogo.gif   added icon for MathLib
+
+2002/10/08
+    # bugfix parsing of expression 1/2-1+9 did not return 8.5
+    # MathLib/Interpreter/Parser.java changed parsing of arithmetric expressions (2+3*4)
+    # MathLib/Constants/TokenConstants.java
+
+2002/09/23
+    * the operands in the children[]-array of expressions are in increasing order now
+      (e.g.: children[0]= left operand,  children[1]= right operand) This has been
+      vice versa before. 
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Tokens/Expression.java
+    * MathLib/Tokens/ColonOperatorToken.java
+    * MathLib/Tokens/AssignmentOperatorToken.java
+    * MathLib/Tokens/VariableToken.java
+    * MathLib/Functions/Matrix/SubAssign.java
+    * MathLib/Functions/Matrix/SubMatrix.java
+
+2002/09/23
+    * Removed factorise()-methods, because symbolic computations are done in other
+      classes (SPOKE package)
+    * MathLib/Tokens/Expression.java           removed factorise()-methods
+    * MathLib/Tokens/PowerOperatorToken.java   removed factorise()-methods
+    * MathLib/Tokens/OperatorToken.java        removed factorise()-methods
+    * MathLib/Tokens/MulDivOperatorToken.java  removed factorise()-methods
+    * MathLib/Tokens/AddSubOperatorToken.java  removed factorise()-methods
+
+2002/09/22
+    + MathLib/Functions/test/testFunctionIfElse001.m   test function for if-else
+    + MathLib/Functions/test/testFunctionFor001.m      test function for "for"
+    + MathLib/Functions/test/testFunctionFor002.m      test function for "for"
+    + MathLib/Functions/test/testFunctionSwitch001.m   test function for switch-case
+    + MathLib/Functions/test/testFunctionSwitch002.m   test function for switch-case-otherwise
+    + MathLib/Functions/test/testFunctionWhile001.m    test function for while
+    # MathLib/Interpreter/Parser.java                  bugfix for parsing of (....), while(
+
+2002/09/22
+    * Added method to return a string of the currently scanned line of code 
+        for logging/display of error messages.
+    * MathLib/Interpreter/LexicalAnalyser.java  
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Interpreter/Interpreter.java
+
+2002/09/17
+    # MathLib/Interpreter/Parser.java  Fixed bug when parsing switch-case
+    # MathLib/Tokens/IfThenOperatorToken.java fixed bug
+    # MathLib/Tokens/ConditionToken.java fixed bug
+
+2002/09/09
+    + added some new directories to MathLib/Functions/* to set up a scheme for committing new functions
+
+2002/09/08
+    # MathLib/Interpreter/Parser.java  Fixed bug when parsing if-then commands
+    * MathLib/Interpreter/Parser.java  Changed arguments of type Expression to OperandToken
+    * MathLib/Tokens/*.java            Changed arguments of type Expression to OperandToken 
+    # MathLib/Interpreter/Parser.java  Added error.printStackTrace() again
+
+2002/09/01
+    * Source/MathLib/Interpreter/ErrorLogger.java  commented out two methods which are not used
+    * Source/MathLib/Interpreter/Interpreter.java  changed logError() to debugLine()
+    + Source/MathLib/Graphics/ImageObject.java     empty class for future use
+    + Source/MathLib/Graphics/CircleObject.java    empty class for future use
+    + Source/MathLib/Graphics/PolarAxesObject.java empty class for future use
+
+2002/08/28
+    + Source/MathLib/Functions/General/startup.m    put startup command in this file
+
+2002/08/28
+    + Source/MathLib/Functions/test/testFunction001.m
+    + Source/MathLib/Functions/test/testFunction002.m
+    + Source/MathLib/Functions/test/testFunction003.m
+    + Source/MathLib/Functions/test/testFunction004.m
+    + Source/MathLib/Functions/test/testFunction005.m
+    + Source/MathLib/Functions/test/testFunction006.m
+    + Source/MathLib/Functions/test/testFunction006a.m
+    + Source/MathLib/Functions/test/testFunction006b.m
+    * build.xml     added the target "mfiles" to copy all m-files from the "Source" to "Classes"
+
+2002/08/27
+    # Source/MathLib/Functions/Matrix/_private/Jampack/Zmat.java  added missing variables
+
+2002/08/25
+    + rewrote function parser. Now the original parser and lexical analyser
+      combination is used for parsing m-functions or m-scripts
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Interpreter/LexicalAnalyser.java
+    * MathLib/Interpreter/Interpreter.java
+    * MathLib/Functions/FunctionManager.java
+    * MathLib/Functions/FunctionParser.java
+    * MathLib/Functions/UserFunctions.java
+    * MathLib/Functions/MFileLoader.java
+    * MathLib/Tokens/VariableToken.java
+    * MathLib/Tokens/AssignmentToken.java
+    * MathLib/Tokens/FunctionToken.java
+    * MathLib/GUI/GUI.java
+    * MathLib/GUI/MathLibGUI.java
+
+2002/07/22
+    + more matrix support: a=[1,2 3 4] is the same as a=[1,2,3,4] 
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Interpreter/LexicalAnalyser.java
+    * MathLib/Constants/TokenConstants.java
+
+2002/07/15
+    * MANY functions: added check or arguments and return of null
+    * MathLib/Functions/ *.*
+    * changed inheritance of some tokens
+    + introduced DataToken as parent of NumberToken,MatrixToken,VariableToken...
+    + MathLib/Tokens/DataToken.java
+    - MathLib/Tokens/ScalarToken.java
+    * MathLib/Tokens/*.*
+    * MathLib/Interpreter/Parser.java
+
+2002/07/08 
+    * inheritance of some command tokens
+    * MathLib/Tokens/CommandToken
+    * MathLib/Tokens/StringToken
+    * MathLib/Tokens/WhileOperatorToken
+    * MathLib/Tokens/SwitchOperatorToken
+    * MathLib/Tokens/IfThenOperatorToken
+    * MathLib/Tokens/ForOperatorToken
+    * MathLib/Tokens/CaseToken
+                                 
+2002/07/07  
+    * Completely reworked the handling of ; and , as delimiters of expressions. 
+    * e.g.: a=1,b=2;  should display a=1 to the console
+    * e.g.: a=1;b=2;  should display nothing to the console
+    * Reworked the parser. It is now returning operand tokens where possible.
+    * E.g.: 2+3 returned expression(data= "+", child0= "2", child1= expression(child0= "3"))
+      now is returns     expression(data= "+", child0= "2", child1= "3")
+    * MathLib/Interpreter/Interpreter.java
+    * MathLib/Interpreter/Parser.java
+    * MathLib/Tokens/Expression.java
+    * MathLib/Tokens/OperandToken.java
+    * MathLib/Tokens/Token.java
+    * MathLib/Tokens/...  (* more tokens)
+    * MathLib/Tools/TreeAnalyser/TreeAnalyser.java           
+
+2002/07/07
+    + MathLib/Functions/Time/date.java (returns current date)
+    + MathLib/Functions/Time/time.java (returns current date and time)
+    + MathLib/Functions/Time/tic.java  (start stop watch)
+    + MathLib/Functions/Time/toc.java  (stop stop watch)
+    * MathLib/Tokens/NumberToken.java (matrix*scalar didn't work)
+
+2002/07/05
+    * bugfix graphical system: changed throwArithmeticException()
+         to throwMathLibException()
+    * MathLib/Functions/Graphics/Graph3d/plot3.java
+    * MathLib/Functions/Graphics/Graph3d/surf.java
+    * MathLib/Functions/Graphics/Graph3d/meshgrid.java
+            
+2002/07/02
+    * Enabled NumberToken.transpose(..) again (has been removed by accident)
+    * MathLib/Tokens/NumberToken.java
+
+2002/06/21
+    * many files in Functions/ Interpreter/ Tokens/ changed to
+        a MathLib specific exception: throwMathLibException
+    + Functions/Symbolic/sym.java  (no functionality yet)
+    + Functions/Symbolic/syms.java (no functionality yet)
+    + Tokens/SymbolicToken.java
+
+2002/06/13
+ Added surfaces to the graphical subsystem: surf(matrix)
+            +   MathLib/Graphics/SurfaceObject.java
+            * MathLib/Graphics/*
+            +   MathLib/Functions/Graphics/Graph/surf.java
+            +   MathLib/Functions/Graphics/Graph/meshgrid.java
+
+            Enabled scalar matrix multiplication again [1,2,3].*[2,3,0]=[2,6,0]
+            * MathLib/Tokens/NumberToken.java
+            * MathLib/Tools/TestSuite/Tokens/NumberToken.java 
+            
+            Added a template external function for all future functions
+            +   MathLib/Functions/General/template.java
+
+2002/06/09
+    Removed parameter passing with Vectors form Lex.Ana. to Parser. Now only
+              one method is neccessary getNextToken();
+            bugfix MathLib/Functions/FunctionManager.java
+            * Parser.java
+            * LexicalAnalyser.java
+            * some tests 
+
+2002/06/03
+    + more features to graphical subsystem: plot3(x,y,z)
+            + MathLib/Functions/Graphics/Graph3d/plot3.java
+            + MathLib/Graphics/* several files
+
+2002/05/20
+    # several bugfixes: SubAssign, power of, tests
+            + constant pi=3.1415... to VariableToken
+            + more tests
+            * MathLib/Tokens/VariableToken.java
+            * MathLib/Tokens/NumberToken.java
+            * MathLib/Tokens/AssignOperatorToken.java
+            * MathLib/Tools/TestSuite/Functions/General/testLinspace.java
+            +   MathLib/Tools/TestSuite/Functions/Matrix/SubAssign.java
+            * MathLib/Tools/TestSuite/Tokens/TestNumberToken.java
+
+2002/05/13
+    # bugfix for SubMatrix
+            + method getReValues() to NumberToken
+            + more tests: Submatrix
+            * MathLib/Tokens/NumberToken.java
+            * MathLib/Functions/Matrix/SubMatrix.java
+            +   MathLib/Tools/TestSuite/Functions/Matrix/TestSubMatrix.java
+            * MathLib/Tools/TestSuite/Functions/Matrix/AllTests.java
+
+2002/05/09
+    + get/set methods to Interpreter.java to get and set scalars and arrays
+            * some "import junit..." to "MathLib.Tools.junit...." 
+            * MathLib/Interpreter/Interpreter.java
+            # bugfix  MathLib/Interpreter/LexicalAnalyser.java
+            +   MathLib/Tools/TestSuite/Functions/Matrix/ some files
+
+2002/05/07
+            + helper class to compare numerical arrays of type double[][]
+            + MathLib/Tools/TestSuite/Compare.java
+
+2002/05/02
+            * package names of JUnit to fit into MathLib's structure
+            + MathLib/Tools/junit/*
+            + many more test
+            + many files and (empty) directories in MathLib/Tools/TestSuite/* 
+
+2002/04/27
+            + methods to NumberToken: isScalar(), isReal(), isImaginary(), isComplex()
+            + methods to Interpreter
+            + automatic test suite (JUnit, from JUnit.org)
+            * MathLib/Tokens/NumberToken.java
+            * MathLib/Interpreter/Interpreter.java
+            + MathLib/Tools/TestSuite/* 
+
+2002/04/25
+            # bugfix matrix support: a=[1,2;4,5] then b=[a,a]  -> b=[1,2,1,2;4,5,4,5]
+            * MathLib/Tokens/NumberToken.java
+            * MathLib/Tokens/MatrixToken.java
+ 
+2002/04/22
+            * more matrix support: a=[1,2] then b=[a,3;4,5,6] result in b=[1,2,3;4,5,6] 
+            * MathLib/Interpreter/Parser.java
+            * MathLib/Tokens/MatrixToken.java
+ 
+2002/04/08
+    # corrected typing error
+    * MathLib/Functions/Matrix/_private/Jama/Matrix.java
+
+2002/04/07
+    + implemented "class"-loader for applets  
+    * Interpreter/Interpreter.java
+    *         Functions/FunctionManager.java
+    *         GUI/MathLibGUI.java
+    + Functions/WebFunctionsLoader.java (no functionality yet, see FunctioManager)
+    + Classes/MathLib/webFunctionsList.java
+    + Functions/System/createFunctionsList.java
+
+2002/03/30 
+    * Interpreter/RootObject.java   new cloning mechanism
+
+2002/03/29
+    + moved all files from Functions/Control to Functions/System
+
+2002/03/15: a(0,b:2) with b=1 did not work 
+    # Interpreter/Parser.java
+    # Functions/Matrix/SubMatrix.java
+    # Functions/Matrix/SubAssign.java
+    * Interpreter/LexicalAnalyser.java  ~= and != implement NOT-EQUAL
+
+2002/03/08
+    * added getNArgIn(..) and getNArgOut() to number of inputs and outputs
+    * Functions/Function.java check no. of inputs and outputs
+    *        Functions/Matrix/zeros.java    new input-output check
+    *        Functions/Matrix/eig.java      new input-output check
+    *        Functions/Matrix/svd.java      new input-output check
+    *        Functions/Matrix/isEmpty.java  new input-output check
+    *        Functions/Matrix/find.java     new input-output check
+    +        Interpreter/Error.java
+
+2002/03/05
+    + Functions/Matrix/find.java returns positions of nonzero elements
+    +  Functions/Matrix/isEmpty.java checks wether a matrix is empty or not
+    * Functions/General/who.java
+    * update: make.bat
+    * Functions/ExternalFunction.java throwArithmeticException(String)
+
+2002/03/03
+    + wrappers for Jama-classes: lu, svd, eig, chol, qr
+    + LU-Decompostion, SingularValue decomposition
+    +  lu.java
+    *        svd.java
+    *        chol.java
+    *        qr.java
+    * LUDecomposition.java
+    *         SingularValueDecomposition.java
+    *         CholeskyDecomposition.java
+    *         QRDecomposition.java
+
+2002/02/27
+    * eig.java   a=eig(A) returns eigenvalues
+    *  [a,b]=eig(A) returns a=eigen vectors b=eigen value block matrix
+
+2002/02/26
+    + added matrix package: JAMA
+    + CholeskyDecomposition.java
+    +       EigenvalueDecomposition.java
+    +       SingularvalueDecomposition.java
+    +       QRDecomposition.java
+    +       LUDecomposition.java
+    +       eig.java
+
+2002/02/23
+    * Code cleanup for Variable storage. Reduced methods for VariableList.
+    * Code cleanup for VariableToken.
+    * Added equals method for NumberToken
+    * Added support for upper-lower letters. "aAa", "AAA", "aaa" are different  variables now.
+    * Variable.java
+    *         VariableList.java
+    *         VariableToken.java
+    *         AssignmentOperatorToken.java
+    *         UnaryOperatorToken.java
+    *         NumberToken.java
+    *         UserFunktion.java
+    *         LexicalAnalyser.java
+
+2002/02/20 
+    * a(1,:) returns the first row of matrix "a"
+    *       a(2,2:3) returns the third row elements 2 and 3 of matrix-"a" 
+    *       a(3,:)= b; replaces the third row of matrix a with the row vector b
+    * Expression.java
+    *         AssignOperatorToken.java
+    *         VariableToken.java
+
+2002/02/18
+    + Implement a function to subassign values of a replacement
+           matrix to the original matrix: a=subassign(a,b,1:2,1:2)
+    + Functions\Matrix\SubAssign.java
+
+2002/02/12
+    * bugfix for SubMatrix, resolved problems with ":"-operator
+    * SubMatrix.java
+    * Parser.java
+
+2002/02/10
+    + added features to lexical analyser: 
+    +        and & 
+    +        or  |
+    +        nonconjugate transpose .'
+    +        numbers starting with "." .345e+5
+    +        left division \
+    +        scaler left division .\
+    * LexicalAnalyser.java
+
+2002/02/09
+    + added dot-operator for future use: e.g. some_variable.getSize()
+    +   DotOperatorToken.java
+
+2002/02/08
+    + bugfix for disp("...'..") and disp('..."...')
+    * LexicalAnalyser.java
+
+2002/02/07
+     * Expression.java
+     *         VariableToken.java
+     *         SubMatrix.java
+
+2002/02/05
+    #  bugfix: typing errors
+    * Binomial.java
+    * Polynomial.java
+
+2002/01/29
+    # bugfix, looping evaluation
+    * Expression.java
+    * Interpreter.java
+
+2002/01/28
+    + implemented colon operator
+           4:8   -> [4,5,6,7,8]
+           3:2:9 -> [3,5,7,9]
+    * Parser.java
+    * ColonOperatorToken.java
+ 
+2002/01/27
+    * enhancement for TreeAnalyser: added support for
+           Switch-case, if-then, for operators
+    * ForOperatorToken.java
+    *          SwitchToken.java
+    *          CaseToken.java
+    *          IfThenOperatorToken.java
+    *          Parser.java
+    *          TreeAnalyser.java
+    *          TreeData.java
+
+2002/01/27
+     * reworked Parser
+     * Parser.java
+     * FunctionParser.java
+
+2002/01/24
+    * enhancement for Expression.java to allow more than a fixed number
+      of children for each expression.
+    * Expression.java
+
+2002/01/20
+    # bugfix for LexicalAnalyser:  'some_text' was not correctly scanned
+    * LexicalAnalyser.java
+
+2002/01/15
+    + I created a tree analyser which displays the operand tree that is
+      returned from the parser. This is to make it possible to analyse
+      commands, m-files and functions for proper functionality and to
+      find bugs. The output of this tool will be a swing tree.
+    * Interpreter.java
+    + MathLib/Tools/TreeAnalyser/...
+
+2002/01/11
+    * parser: complex-numbers for matrices, scalar matrix
+           operations (e.g. [1,2].*[3,2] -> [3,4]
+    * Interpreter/LexicalAnalyser.java    ' .* ./ .^
+    *         Interpreter/Parser.java             [1,i,3i]
+    *         Tokens/NumberToken.java             transpose, scalarMultiply
+    *         Tokens/UnaryOperatorToken.java      transpose
+
+2002/01/06
+    * the lexical analyser
+    * Interpreter/LexicalAnalyser.java
+
+2002/01/03
+    + more features for plot(x,y,'b') (color option)
+    +   Graphics/LineObject.java
+    +         Functions/Graphics/hold.java
+    +         Functions/Graphics/grid.java
+    * Graphics/GraphicalManager.java
+    + Graphics/FigureObject.java
+    +         Graphics/AxesObject.java
+    +         Functions/Graphics/Graph2d/plot.java
+
+2001/21/31
+    + more features and redesign of graphical subsystem
+    + Functions/Graphics/figure.java
+    + Functions/Graphics/xlabel.java
+    + Functions/Graphics/ylabel.java
+    + Functions/Graphics/zlabel.java (no effect yet)
+    + Functions/Graphics/title.java
+    + Functions/Graphics/figure.java
+    + Functions/Graphics/subplot.java
+    * Graphics/GraphicalManager.java
+    + Graphics/FigureObject.java
+    + Graphics/AxesObject.java
+
+2001/12/26 
+    + committed new graphical subsystem:
+	* Interpreter/RootObject.java
+	* Interpreter/GlobalValues.java
+	+ Graphics/GraphicalManager.java
+	+ Graphics/FigureObject.java
+	+ Graphics/AxesObject.java
+	- removed Functions/Graphics/axes.java
+	+ Functions/Graphics/Graph2d/plot.java
+
+2001/12/16 
+    # bugfix FunctionParser
+	* modified to work with new Parser, LexicalAnalyser
+
+2001/12/16
+    # bugfix VariableToken
+	+ dir, cd are recognized as functions again (e.g. type: dir)
+
+2001/12/15 
+    + separated Interpreter - Parser - LexicalAnalyser
+	* compile LexicalAnalyser, Parser, Interpreter
+
+2001/12/15 
+    * moved creation of variables from LexicalAnalyser to AssignmentOp..To..
+	* recompile AssignmentOperator, VariableToken, LexicalAnalyser
+
+2001/12/09 
+    * RootObject, GlobalValues
+    + Functions/Matrix/and.java
+    + Functions/Matrix/any.java
+    + Functions/Matrix/eye.java
+    + Functions/Matrix/not.java
+    + Functions/Matrix/or.java
+    + Functions/Matrix/pow2.java
+    + Functions/Matrix/prod.java
+    + Functions/Matrix/remat.java
+    + Functions/Matrix/reshape.java
+    + Functions/Matrix/xor.java
+    + Functions/Matrix/ones.java
+    + Functions/Matrix/zeros.java
+    + Functions/General/clear.java
+    + Functions/General/who.java
+    * Functions/IO/RunFile.java
+    + Functions/IO/cd.java
+    + Functions/IO/dir.java
+
+2001/12/01 
+    + functions can call getNoOfLeftHandArguments() to get no. of left-hand args. 
+    + functions may return multiple values (e.g: [a,b]=example04() )
+
+2001/11/25 
+    # parser fixed priority problem  
+    * simplified parser  
+    + function: plot(x),plot(X),plot(x,y),plot(x,Y)  
+    + Lex.Ana.: new String identifier "..." or '...'  
+
+2001/11/24 
+    + function: size(X)  
+    + function: upper('aA')  
+    + function: lower('aA')  
+    + function: isnumeric(number)  
+    + function: rand(x), rand(x,y)  
+    + function: linspace(1,10,100)  
+    + function: length(x)  
+
+2001/11/23
+    + Lex.Ana.: comments # ....  
+    + Lex.Ana.: comments % ....  
+
+2003/08/06
+    +Java.java				Function to execute java commands
+    +dynamicjava.jar			Java interpreter
+    *MFileLoader.java			creates p file after parsing m-file
+    *UserFunction.java			and uses that if m-file hasn't changed
+    *VariableList.java			Made serializable
+    *Interpreter.java			creates instance of java interpreter, added function to call it
+    *build.xml				run action uses same class path as compile action
+
+2003/08/01
+    #ExpressionToken.java
+    #OperandToken.java			Removed traverseTree function	
+    #DataType.java			
+    #ComplexFunction.java		uses getChildren rather than traverseTree
+    -ExpressionList.java
+    -ExpressionListElement.java		
+    	
+2003/07/25
+    #OperandToken.java			Trig functions were only working with	
+    #NumberToken.java			NumberTokens.
+    #TrigonetricFunctions.java		Fixed
+    *MathLibObject.java			changed to use hash to store values
+    *VariableList.java			changed to use hash to store values
+
+2003/07/22
+    *build.xml				changed settings for generating docs 	
+
+2003/07/19
+    *Interpreter/Interpreter.java	Turn debug off by default
+    *UI/AWT/GUI.java			Turn on debug if run with -d option
+    *build.xml				run target passes -d option into mathlib 	
+
+2003/07/17
+    *MathLib/Tokens/*		modified documentation	
+
+2003/07/14
+    *MathLib/Interpreter/*	modified documentation	
+
+2003/03/05
+    *AddSubOperatorToken.java
+    *MulDivOperatorToken.java
+    *PowerOperatorToken.java	added constants for operators
+    *TrigonometricFunction.java	added derivative
+    
+2003/02/20
+    *NumberToken.java 		Numers are now immutable
+    
+2003/02/18
+    *StandardFunction.java
+    *FunctionManager.java	Made PATH an internal function
+    -Path.java
+
+2002/12/04
+    *ExpressionElement.java 
+    *Integral.java                  changed method of calculating integral
+    
+2002/12/03
+    *ExpressionElement.java 
+    *Derivative.java                changed method of calculating derivative
+    *Conversion.java                added method to simplify an expression list
+
+2002/12/02
+    +UI/*                           Common directory for user interfaces
+    +Interfaces/MathLibOutput.java
+    +Interfaces/RemoteAssecible.java moved to interfaces directory
+    
+2002/11/28
+    *OperatorToken.java     Added function to cast operands
+    *AddSubOperatorToken.java
+    *MulDivOperatorToken.java
+    *PowerOperatorToken.java    If the operand returns null when evaluating the expression
+    *UnaryOperatorToken.java    return the origional expression.
+
+2002/11/25
+    *Expand.java
+    *Simplify.java
+    *Convert.java           Fixed unit test errors
+
+2002/11/15
+    *Expression element      changed internal representation to improve simplification
+    
+2002/11/14
+    *ExpressionElement.java  fixed so simplify(x*y + y*x) returns 2*x*y
+
+2002/11/13
+	#FunctionManager.java	fixed bug
+	#Simplify.java			correct behaviour for simplify(x^2 + x*y)
+	
+2002/11/12
+    *Expand.java             Implement expansion of Expressions
+    *Simplify.java           correct exception when running simplify(x*y)
+    *NumberToken.java        Add function to test if a number is an integer
+    *FunctionManager.java    Allow a function to be run by name
+    
+2002/09/04
+	*Expression.java			Function to return children as an enumeration
+	*UserFuntion.java		Allow variable length argument lists
+	*ForOperatorToken.java	When used in matrix mode allow a variable that refers to a matrix, allow non numeric matrices.
+	
+2002/09/28
+	+ContextList.java		Class for storing a list of function contexts
+	*RootObject.java
+	*GlobalValues.java
+	*UserFunction.java
+	*FunctionParser.java	Changed to use ContextList
+	*Expression.java		Added functions to access the current expression
+	+PrintStackTrace.java	print a trace of all function calls
+	
+2002/09/27
+	*MathLibTUI.java		replaced DataInputStream with a BufferedReader, since DataInputStream.readLine has been deprecated
+	
+2002/09/26
+	*Sym.java				if no return value is expected, it creates a variable to store the symbol
+	
+2002/09/24
+	+test_recursion.m		m file for testing recursive functions
+	*UserFunction.java
+	*FunctionParser.java
+	*RootObject.java
+	*GlobalValues.java
+	*VariableList.java		Change the way function's local variables are handled.
+	+ExpressionElement.java	Used when converting MathLib expressions for symbolic processing
+	*conversion.java
+	*Simplify.java			No longer uses meditor functions
+
+2002/09/22
+	+EmbeddedCommand.java	Allow Mathlib Commands to be embedded within a web page
+	
+2002/09/06
+	*Flags.java				Changed path.clear() to path.removeAllElements in clearPath function
+	
+2002/09/03
+	*LineObject3D.java
+	*SurfaceObject.java		removed cast to Graphics 2D
+	*PlotFunctoin.java		Allow more than 3 parameters
+2002/08/31
+	*CastClassLoader.java		Changed to use same method as ExternalFunctionClassLoader
+	*TestSuite/AllTests.java	Disable debug info unless passed -debug option
+
+2002/08/30
+	*Interpreter.java			Uses class path when determining list of function directories
+	*ExternalFunctionClassLoader.java
+
+2002/08/29
+	*SymbolicToken.java			outputs 0 rather than
+						0.0 if factor = 0
+	*Integral.java				change interface to meditor
+	+TestSimplify.java
+	+TestDerivative.java
+	+TestIntegral.java
+	+TestFactorize.java			unit tests
+
+2002/08/26
+	*test_complex.m				changed img to i
+	*test_standard.m			removed function d
+	*NumberToken.java			fixed (1+i)^1 = 1.141
+	bug
+
+2002/08/20
+	* AssignmentOperatorToken.java		commented out display
+	lines
+
+2002/08/19
+	* createdoclist_xml.pl
+	* createdocs.pl
+	+ createtdbh.pl
+
+2002/08/17
+	+ Source/spoke/*			Symbolic computation library
+	+ Factorise.java
+	+ Factorize.java
+	+ Expand.java
+	+ Derivative.java
+	+ Integral.java
+	+ Simplify.java				Symbolic functions
+
+2002/08/15
+	* SymbolicToken.Java
+	* NumberToken.Java			allow symbolic variables to
+	* Expression.Java	 		be used in expressions
+
+2002/07/29
+	* SymbolicToken.java			Changed eval function
+	* NumberToken.java			fixed isNull
+						method(would on return
+						false if both complex
+						and real parts were != 0)
+2002/06/12
+	+ Cast_Number_Object.java		converts a number to a structure
+	* MathLibObject.java			Added math functions to structures.
+
+2002/06/10
+	* VariableToken.java		Corrected b=b error
+
+2002/06/08
+	* Parser.java			Corrected error when parsing multiple statements, 2+3;5*5
+	* LexicalAnalyser.java		Corrected error with ++ and --
+
+2002/06/07
+	* MathLibObject.java
+	* Struct.java			Allow structures to inherit from other structures
+	* Sum.java			Allow summing of structures
+
+2002/05/29
+	+ Struct.java			Function for creaeting structures
+	+ MathLibObject.java		stores structures
+	+ Parser.java
+	+ FunctionManager.java		structures, changed function calling method
+
+2002/05/09
+	+ TUI/MathLibTUI.java		Text user interface
+
+2002/05/08
+	* LexicalAnalyser.java		split into seperate functions
+
+2002/05/02
+	* IfToken.java			Allow if/elseif commands
+	+ TestLexicalAnalayser.java
+	+ TestNumberToken.java		Test clases for	Lexical Analyser and Number Token
+	+ ConditionToken.java		Used for if/elseif commands
+	* NumberToken.java	Corrected Min/Max functions
+
+2002/04/27
+	* Interpreter.java	don't include _private directories in function search path
+2002/04/26
+	* Parser.java		Changed function call syntax to remove need to brackets and commas
+
+2002/04/22
+	* BitAnd.java		Bitwise and function
+	* BitOr.java		Bitwise or function
+	* BitXOr.java		Bitwise xor function
+	* BitShift		Bitwise shift function
+
+2002/04/07
+	* Interpreter.java	adds subdirectories of function directories
+	* Jama/util/Maths.java	corrected typo in package name
+
+2002/03/22
+	* Z.java			Added method for checking if two complex numbers are equal
+
+2002/03/21
+	+ Path.java			Lists the current search path
+	+ AddPath.java		Adds directories to the search path
+	+ RmPath.java			Removes directories from the search path
+	* Flags.java
+	* Interpreter.java			Only check for files in  directories list in
+	* ExternalClassLoader.java	Flags.path
+	* NumberToken.java		Added static variables for 1 and 0
+
+2002/03/19
+	+ SetDebug.java			turn on/off debug information
+	+ Flags.java			contains system flags
+	* GlobalValues.java
+	* ErrorLogger.java		Don't display debug info if turned off
+
+2002/03/14
+	+ Jampack\*.java
+	* NumberToken.java	Changed way numbers are stored internally
+
+2002/02/28
+	+ StrMatch.java	Finds one string within a set of strings
+	+ StrRep.java		Replaces a part of a string with a new string
+	+ StrTok.java		Returns the first token from a string
+	+ Rank.java		Returns the rank of a matrix
+	+ Delete.java		Deletes a file
+	+ FileSep.java	Returns the system file separator
+	+ PWD.java		Returns the current working directory
+	+ MkDir.java		Creates a directory
+	+ RealMin.java	Returns the minimum real value supported
+	+ RealMax.java	Returns the maximum real value supported
+	+ GetEnv.java		Returns the enviromental variable
+	* String.java		Allow string tokens to be created from a 							StringBuffer object
+2002/02/27
+	+ CSVRead.java	reads a numeric matrix from a csv file
+	+ CSVWrite.java	Writes a numeric matrix to a csv file
+	+ Return.java		return from a user function
+	+ StrCat.java		concatenate a set of strings
+	+ StrCmp.java		compare two strings
+	+ StrCmpI.java	Case insensitive string comparison
+	+ StrNCmp.java	compare the first N characters of two strings
+	+ StrCmpI.java	Case insensitive string comparison of the first 					N strings
+	+ StrFind.java	find occurences of one string within another
+	+ StrVCat.java	Concatenate a set of strings into a vertical 						vector
+	* RootObject.java
+	* GlobalValues.java
+	* UserFunction.java
+	* Expression.java	modified to implement return function
+
+2002/02/26
+	+ Clock.java		returns data/time as a vector
+	+ Date.java		returns date as a string in dd-mm-yyyy format
+	+ NNZ.java		returns number of non zero elements in a matrix
+	+ IsPrime.java	checks if elements of a matrix are primes
+	+ Primes.java		returns a vector of primes
+	+ Factor.java		returns a vector of factors of a number
+	+ FindStr.java	finds occurences of a string within another string
+	+ Blanks.java		creates a string out of n spaces
+	+ NargChk.java	checks the number of input arguments for a function
+	+ NargOutChk.java	checks the number of output arguments for a function
+	* Error.java		don't display an error if argument is a null string
+
+2002/02/20
+	* RootObject.java
+	* GlobalValues.java		Use File.separator variable to ensure portability
+
+2002/02/18
+	+ ATan2.java			Calculate the angle of a gradient
+	* ExternalFunctionClassLoader	Use File.separator variable to ensure portability
+
+2002/02/16
+	+ Beep.java			Emits a beep sound
+
+2002/02/15
+	* Parser.java
+	* ForOperatorToken.java	use matlab style for command (for x=[1,2,3],)
+
+2002/02/13
+	* LexicalAnalyser.java		allow matlab style if/while/switch and for commands
+	* Parser.java
+	* DelimiterToken.java
+
+2002/02/9
+	+ Sign.java	- sign function
+	* FunctionManager.java			Add cosecant, secant, cotangent + hyperbolic
+	* TrigonometricFunction.java		+ inverse forms
+	* Sum.java					-modified to work in same was as MatLab sum 								function
+
+2002/02/7
+	+ Warning.java	- display a message and set the lastwarning variable
+	+ Usage.java		- display an error message
+	+ Complex.java	- creates a complex number
+	* Interpreter.java	- sets the lasterror variable on an error
+
+2002/02/6
+	+ Error.java - display an error message
+	+ Exists.java - return 1 if a file exists
+	+ SystemCommand.java	- execute an external program
+	* UserFunction.java
+	* FunctionParser.java	- allow for multiple return values, add nargout variable
+	* Assignment.java		- corrected error in [a,b] = function if a or b undefined
+	* General\Length.java	- works with matrices or strings
+	* FunctionManager.java
+	* ComplexFunctions.java	- removed length function
+	* cd.java			- correct display of path if no parameters given
+	* Expression.java		- set noLeftHandArguments when expressions has form a=func()
+	* Intepreter.java		- read in the file startup.m, if it exists, when starting
+
+2002/02/05
+	+ BinomialExpression.java creates a polynomial which is the binomial expansion of (x+y)^n
+
+2002/02/04
+	+ Polynomial.java	create polynomials with 1 or 2 variables
+
+2002/02/01
+	* Clear.java		allowed variables to be input using a string
+	+ DegToGrad.java
+	+ DegToRad.java
+	+ GradToDeg.java
+	+ GradToRad.java
+	+ RadToGrad.java
+	+ RadToDeg.java -- external functions for converting between degrees, gradients and radians
+	+ Combinations.java	--external function for calculating no of combinations
+	+ Permutations.java	--external function for calculating no of permutations
+	+ Binomial.java	external function for calculating the nth binomial coefficient
+	+ Harmonic.java	--external function for calculating the nth harmonic number
+	+ Fibonacci.java	--external function for calculating the nth Fibonacci number
+
+2002/01/31
+	* LexicalAnalyser.java	-- added // and /* */ style comments
+	* MFileLoader.java		-- corrected problem with comments
+	* PlotFunction.java
+	* PerformFunction.java
+	* LinSpace.java		-- allowed for colour codes when plotting functions
+	+ Test_graph.m		-- displays graphs of sin and cos functions
+
+2002/01/28
+	* FunctionParser.java
+	* MathLibGUI.java
+	* MFileLoader.java	- FunctionParser will accept functions as strings
+
+2002/01/22
+	+ ForEach.java	- added foreach function - foreach([1,2,3], "x", disp(x))
+	* ScalarToken.java  - moved common functions to ScalarToken.
+	* NumberToken.java
+	* MatrixToken.java
+
+2002/01/16
+	+ SwitchToken.java
+	+ CaseToken.java
+	* Parser.java
+	* FunctionParser.java
+
+2002/01/14
+	+ ForOperatorToken.java
+	+ test_for.m
+	* Parser.java
+
+2002/01/07
+	* Parser.java
+
+2002/01/06
+	+ Functions/Control/NewLine.java
+
+	* test/test_standard.m
+	* test/test_trig.m
+	* test/test_complex.m
+
+
+2002/01/05
+	+ test/test_standard.m
+	+ test/test_trig.m
+	+ test/test_complex.m
+
+2001/12/23
+	* MFileLoader.java		Changed parsing of M files
+	* UserFunction.java
+	* FunctionParser.java
+
+2001/12/18
+	* ComplexFunctions.java	changed functions to use NumberToken
+	* NumberToken.java		add conjugate function
+	- ErrorBundle_en_GB.java
+
+2001/12/17
+	* NumberToken.java added asinh, acosh, atanh
+
+2001/12/16
+	* NumberToken.java 		corrected multiplication and division bug,
+	* FunctionManager.java	added sinh, cosh and tanh functions
+	* TrigonometricFunction.java
+
+2001/12/15
+	* NumberToken	modified functions to work with complex numbers
+
+2001/12/13
+	* NumberToken	added constructors for creating complex values modifed toString to display complex values
+	* LexicalAnalyser.java modifed so Img creates a NumberToken
+	*VariableToken.java	corrected isNumericFunction
+
+2001/12/12
+	* OperandToken.java
+	* Expression.java
+	* VariableToken.java
+	* ImaginaryNumberToken.java
+	* NumberToken.java			Added isNumericFunction.
+	* FunctionToken.java			Set priority so now sin(x)*sin(y) produces the correct result
+	* AddSubOperatorToken.java	Corrected error which was causing a cast error when entering sin(x) + sin(y)
+	* FunctionParser.java
+	* Interpreter.java		removed deprecated functions
+
+2001/12/11
+	* Expression.java				added standard and trigonometric functions
+	* OperatorToken.java			added standard and trigonometric functions
+	* AddSubOperatorToken.java	added exp, sin, cos, tan
+	* ImaginaryNumberToken.java	add ln and log
+
+2001/12/10
+	* ImaginaryNumberToken.java - added exp, sin, cos, tan
+	* NumberToken.java		  - now calculates x/img as -x*img
+
+2001/12/08
+	* UpperTriangle.java	- corrected compile error
+	* Sum.java			- corrected compile error
