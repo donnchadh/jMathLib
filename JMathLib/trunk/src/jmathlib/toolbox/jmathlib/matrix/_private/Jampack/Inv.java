@@ -1,4 +1,4 @@
-package jmathlib.toolbox.jmathlib.matrix._private.Jampackk;
+package jmathlib.toolbox.jmathlib.matrix._private.Jampack;
 
 /**
    Inv computes the inverse of a matrix.
