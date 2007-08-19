@@ -19,6 +19,9 @@ blanks, checkForUpdates, patch, path, substring
 2007/08/xx 
 stefan + 
 
+2007/08/19 
+stefan + committed lots of files to new repository
+
 2007/08/18 
 stefan + switched development over to a subversion repository
 
