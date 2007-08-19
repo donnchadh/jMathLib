@@ -105,6 +105,12 @@ public class Interpreter extends RootObject
         String answer = "";
         Parser p = new Parser();
 
+        // if required rehash m-files
+	if(runningStandalone)
+	{
+	  getFunctionManager().checkAndRehashTimeStamps();
+	}        
+
         try
         {
 	        // separate expression into tokens and return tree of expressions
@@ -155,11 +161,6 @@ public class Interpreter extends RootObject
             var.assign(new CharToken(answer));	
         }
 
-        // if required rehash m-files
-	    if(runningStandalone)
-	    {
-	    	getFunctionManager().checkAndRehashTimeStamps();
-	    }
 	    
         return answer;
     }
