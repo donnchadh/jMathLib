@@ -1,0 +1,114 @@
+package jmathlib.toolbox.jmathlib.graphics;
+
+import jmathlib.core.tokens.*;
+import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
+import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.graphics.*;
+
+public class get extends ExternalFunction
+{
+
+	public OperandToken evaluate(Token[] operands)
+	{
+
+
+        double x=0;
+        
+        if (getNArgIn(operands) > 2)
+			throwMathLibException("get: number of arguments >2");
+
+        if (getNArgIn(operands) >= 1)
+        {
+            if (!(operands[0] instanceof DoubleNumberToken)) 
+            throwMathLibException("get: argument must be a number");
+
+            x = ((DoubleNumberToken)operands[0]).getValueRe();
+        }
+        
+        
+        HandleObject ho = null;
+        
+        try {
+        ho = HandleObject.getHandleObject((int)x);
+        }
+        catch (Exception e)
+        {
+            
+        }
+        
+        HandleObject.listObjects();
+        
+        if (ho!=null)
+        {
+            ho.show();
+        }
+        
+        if (getNArgIn(operands) == 1)
+        {
+            // e.g. get(1234)
+            return new DoubleNumberToken(x);
+        }
+        else if (getNArgIn(operands) == 2)
+        {
+            // e.g. get(1234, 'Children')
+            if (!(operands[1] instanceof CharToken)) 
+            throwMathLibException("get: second argument must be a string");
+
+            String prop = ((CharToken)operands[1]).toString();
+            
+            Object obj = null;
+            try {
+                obj = HandleObject.getHandleObject((int)x).getProperty(prop).get();
+            }
+            catch (Exception e)
+            {
+               e.printStackTrace();
+            }
+            
+            if (obj instanceof Boolean)
+            {
+                boolean b = ((Boolean)obj).booleanValue();
+
+                if (b)
+                    return new DoubleNumberToken( 1 );
+                else
+                    return new DoubleNumberToken( 0 );
+            }
+            else if (obj instanceof String)
+            {
+                return new CharToken ( ((String)obj).toString() ); 
+            }
+            else if (obj instanceof Number)
+            {
+                return new DoubleNumberToken ( ((Number)obj).intValue() ); 
+            }
+            else if (obj instanceof double[])
+            {
+                double[] d = ((double[])obj);
+                
+                return new DoubleNumberToken ( new double[][] {d} ); 
+            }
+            else
+                throwMathLibException("get: unknown return value ");
+                
+            
+        }
+        
+		return null;
+	}
+}
+
+/*
+@GROUP
+graphics
+@SYNTAX
+get
+@DOC
+.
+@EXAMPLES
+.
+@NOTES
+@SEE
+set, plot
+*/
+
