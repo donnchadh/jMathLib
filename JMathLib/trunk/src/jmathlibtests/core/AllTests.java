@@ -16,6 +16,7 @@ public class AllTests {
 
 		/* include subdirectories here */
 		suite.addTest(jmathlibtests.core.interpreter.AllTests.suite());
+        suite.addTest(jmathlibtests.core.tokens.AllTests.suite());
         
 
 		/* include tests in this directory here */
