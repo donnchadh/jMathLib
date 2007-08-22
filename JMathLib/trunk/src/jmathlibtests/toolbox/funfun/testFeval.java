@@ -1,8 +1,7 @@
-package MathLib.Tools.TestSuite.Functions.FunFun;
+package jmathlibtests.toolbox.funfun;
 
-import MathLib.Tools.junit.framework.*;
-//import MathLib.Tools.TestSuite.*;
-import MathLib.Interpreter.*;
+import jmathlib.core.interpreter.Interpreter;
+import jmathlib.tools.junit.framework.*;
 
 public class testFeval extends TestCase {
 	protected Interpreter ml;
@@ -11,7 +10,7 @@ public class testFeval extends TestCase {
 		super(name);
 	}
 	public static void main (String[] args) {
-		MathLib.Tools.junit.textui.TestRunner.run (suite());
+		jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
 	protected void setUp() {
 		ml = new Interpreter(true);
