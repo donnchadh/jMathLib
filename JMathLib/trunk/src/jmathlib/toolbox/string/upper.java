@@ -1,9 +1,9 @@
-package MathLib.Functions.String;
+package jmathlib.toolbox.string;
 
-import MathLib.Tokens.Token;
-import MathLib.Tokens.OperandToken;
-import MathLib.Tokens.CharToken;
-import MathLib.Functions.ExternalFunction;
+import jmathlib.core.tokens.Token;
+import jmathlib.core.tokens.OperandToken;
+import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.tokens.CharToken;
 
 /**An external function for creating random numbers*/
 public class upper extends ExternalFunction
