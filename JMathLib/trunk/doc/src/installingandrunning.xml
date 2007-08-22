@@ -1,0 +1,166 @@
+<!-- :xml.root=doc.xml: -->
+<part id="installandrunning">
+<title>Installing And Running</title>
+<chapter id="installingandrunning">
+
+    <title>Installing And Running</title>
+    
+<sect1 id="obtaining">
+    <title >Obtaining <application class="software">JMathLib</application ></title >
+    <para>The latest release of <application class="software">JMathLib</application > can be obtained 
+         from the Sourceforge site.</para>
+
+<para>
+Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ulink>
+</para>
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="jmathlib_website_01.gif" format="GIF" width="80%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+<para>
+  and click on <ulink url="http://mathlib.sourceforge.net/download.php">Download</ulink>
+</para>
+
+        <para>Also the latest development version can be downloaded using anonymous cvs</para>            
+        <para>use the following commands</para>
+        <para><command>cvs -d:pserver:anomynous@cvs.mathlib.sourceforge.net:/cvsroot/mathlib login</command></para>
+        <para><command>cvs -z8 -d:pserver:anomynous@cvs.mathlib.sourceforge.net:/cvsroot/mathlib co mathlib</command></para>
+</sect1>
+    
+<sect1 id="installing">
+        <title>Installing <application class="software">JMathLib</application></title>
+        <para>
+			JMathLib has a couple of ways to install: there is a windows installer, there is
+			the option to download the source, there is the option to download the class files,
+			there is the option to run a java applet.
+        </para>
+
+<sect2 id="install_windows">
+<title>Installing JMathLib on Windows systems</title>
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_010.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_020.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_030.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_040.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_050.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+       <imagedata fileref="install_win32_060.gif" format="GIF" width="90%" />
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_070.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+      <imagedata fileref="install_win32_080.gif" format="GIF" width="90%"/>
+    </imageobject>
+  </inlinemediaobject>
+</para>
+</sect2>
+
+<sect2>
+<title>Installation on other systems</title>
+ 	<para>
+            To install <application class="software">JMathLib</application > you should just
+            need to uncompress the downloaded file.
+        </para>
+</sect2>
+</sect1>
+    
+<sect1 id="running">
+<title>Running <application class="software">JMathLib</application ></title>
+
+<sect2 id="running_on_windows">
+<title>Running JMathLib on Windows</title>
+<para> For the Windows version just doubleclick on the JMathLib icon</para>
+
+<para>
+  <inlinemediaobject>
+    <imageobject>
+       <imagedata fileref="windows_icon01.gif" format="GIF" />
+    </imageobject>
+  </inlinemediaobject>
+</para>
+
+<para>run <application class="software">JMathLib</application >:</para>
+<para>from the MathLib/classes directory enter
+<code>java MathLib.MathLibGUI.GUI</code></para>
+<para>There are script files to run <application class="software">MathLib</application > from Windows or Linux</para>            
+        <para>just enter
+        <command>execute.bat</command>            
+            </para>
+        <para>options:</para>
+        <para><option>-t</option> run in console mode</para>
+        <para><option>-width</option> specify the width of the gui window</para>
+        <para><option>-height</option> specify the height of the gui window</para>            
+        <para>-width and -height cannot be used with -t</para>  
+        
+        
+        
+</sect2>
+
+<sect2 id="running_on_linux">
+<title>Running JMathLib on Linux</title>
+
+<para>
+HERE I NEED SOME SUPPORT FROM THE USERS
+</para>
+<para>
+There are script files to run <application class="software">MathLib</application > 
+from Linux</para>            
+   <para>just enter
+        <code>execute.sh</code>
+        </para>
+
+</sect2>
+              
+</sect1>
+</chapter>
+</part>

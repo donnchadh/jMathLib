@@ -1,0 +1,69 @@
+<!-- :xml.root=doc.xml: -->
+
+<qandaset defaultlabel='qanda'>
+<para>These are the most frequently asked questions from the users of JMathLib.</para>
+
+
+<qandadiv><title>General Information</title>
+
+<para>These are some general solutions.</para>
+
+<qandadiv><title>General Items</title>
+<qandaentry>
+<question><para>What is the purpose of JMathLib?</para></question>
+<answer>
+<para>JMathLib is designed to be a clone of 
+<ulink url="http://www.mathworks.com/">Matlab</ulink> or
+<ulink url="http://www.gnu.org/software/octave/">Octave</ulink> or
+<ulink url="http://www.scilab.org">Scilab</ulink>.
+</para></answer>
+</qandaentry>
+
+<qandaentry>
+<question><para>Where can I obtain JMathLib?</para></question>
+<answer>
+<para>Look at the 
+<ulink url="http://mathlib.sourceforge.net">website</ulink> or 
+look at the 
+<ulink url="http://mathlib.sourceforge.net/download.php">download page</ulink>.
+</para></answer>
+</qandaentry>
+</qandadiv>
+
+
+<qandadiv><title>Installation of JMathLib</title>
+
+<qandaentry>
+<question><para>Installation on Windows?</para></question>
+<answer><para>...</para></answer>
+</qandaentry>
+
+<qandaentry>
+<question><para>Installation on Linux?</para></question>
+<answer><para>...</para></answer>
+</qandaentry>
+
+</qandadiv>
+
+<qandadiv><title>Starting of JMathLib</title>
+
+<qandaentry>
+<question><para>How to start JMathLib?</para></question>
+<answer><para>...</para></answer>
+</qandaentry>
+
+</qandadiv>
+
+</qandadiv>
+
+<qandadiv><title>Graphics</title>
+<para>These are some solutions to questions related to the grahpical system
+of JMathLib.</para>
+
+<qandaentry>
+<question><para>How do I plot a vector?</para></question>
+<answer><para><code>plot(name_of_vector)</code></para></answer>
+</qandaentry>
+
+</qandadiv>
+</qandaset>

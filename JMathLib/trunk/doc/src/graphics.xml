@@ -1,0 +1,29 @@
+<!-- :xml.root=doc.xml: -->
+<part id="graphics">
+<title>Graphical Subsystem</title>
+<chapter id="graphicsubsystem">
+
+<title>Basics about JMathLib graphics</title>
+    
+<sect1 id="basiccommands">
+<title>Basic Command</title >
+<para>
+Some very simple commands are
+<code>
+plot(...)
+</code>
+
+<code>
+plot3(...)
+</code>
+
+<code>
+bar(...)
+</code>
+
+</para>
+
+</sect1>
+    
+</chapter>
+</part>

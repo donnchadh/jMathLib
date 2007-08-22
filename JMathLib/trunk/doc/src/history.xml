@@ -1,0 +1,13 @@
+<!-- :xml.root=doc.xml: -->
+<sect1 id="history_overview"><title>History</title>
+<para>
+A lot has been done already
+</para>
+
+<itemizedlist mark='opencircle'>
+<listitem>
+<para>0.7.0: added printing of graphs</para>
+</listitem>
+</itemizedlist>
+
+</sect1>

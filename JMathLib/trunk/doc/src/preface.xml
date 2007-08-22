@@ -1,0 +1,55 @@
+<!-- :xml.root=doc.xml: -->
+<preface id="book_foreword">
+
+<title>Foreword</title>
+    <para>
+        This is a the main documentation for the <application>JMathLib</application > Program.
+    </para>
+    <note>
+        <title>Work in progress</title>
+        <para>
+            Like the <application>JMathLib</application > program this is a work in progress.
+            All efforts will be made to keep the documentation in
+            sync with the main program but it might not be completely
+            up to date.
+        </para>
+    </note>
+
+
+<para>
+In mid of 2001 I was looking for a computational engine which has an easy 
+scripting language and which should be very flexible. Also I did have no other 
+projects to spend my leisure time on, the last project was finished and at work 
+was no access to a flexible simulation tool like 
+<ulink url="http://www.mathworks.com/">Matlab</ulink>. A search in the open 
+source world on the internet came up with a couple of hits like octave, scilab,
+rlab and some more. Some were already very advanced, but they are all written 
+in C or C++ and I was looking for something in my favourite programming 
+language, which is java. So finally I found 
+<ulink url="http://mathlib.sourceforge.net">JMathLib</ulink>, which is hosted 
+at sourceforge.net. The project had just started some months ago and only had 
+one developer so far. This is when I met Mark Sparshatt and very soon I became 
+an active member of the developing team. Which had the magical size of two 
+individuals at that time.
+</para>
+
+
+<para>
+Some of my other projects can be found 
+<ulink url="http://www.held-mueller.de/">here</ulink>.
+</para>
+<para>
+
+<mediaobject>
+    <imageobject>
+      <imagedata fileref="stefan_small.jpg" format="JPG" width="20%"/>
+    </imageobject>
+</mediaobject>
+
+</para>
+
+<para>
+Stefan M&uuml;ller  (2006/10/23)
+</para>
+
+</preface>

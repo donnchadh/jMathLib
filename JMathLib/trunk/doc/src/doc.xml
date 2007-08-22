@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<!DOCTYPE book SYSTEM "DocBook/v4.5/docbookx.dtd" [
+    <!ENTITY preface SYSTEM "preface.xml">
+    <!ENTITY functions SYSTEM "functions.xml">
+    <!ENTITY license SYSTEM "lgpl.xml">
+    <!ENTITY faq SYSTEM "faq.xml">
+    <!ENTITY history SYSTEM "history.xml">
+    <!ENTITY oldversions SYSTEM "oldversions.xml">
+    <!ENTITY todo SYSTEM "todo.xml">
+    <!ENTITY bugs SYSTEM "bugs.xml">
+    <!ENTITY installingandrunning SYSTEM "installingandrunning.xml">
+    <!ENTITY usage SYSTEM "usage.xml">
+    <!ENTITY datatypes SYSTEM "datatypes.xml">
+    <!ENTITY graphics SYSTEM "graphics.xml">
+    <!ENTITY extendingandembedding SYSTEM "extendingandembedding.xml">
+    <!ENTITY glossary SYSTEM "glossary.xml">
+    ]>
+<book>
+
+<bookinfo>
+<title>JMathLib Documentation</title>
+<subtitle>Handbook for using JMathLib</subtitle>
+
+<authorgroup>
+  <author><firstname>Stefan</firstname><surname>M&uuml;ller</surname></author>
+</authorgroup>
+
+<copyright>
+  <year>2005</year>
+  <year>2006</year>
+  <year>2007</year>
+  <holder>Stefan M&uuml;ller</holder>
+</copyright>
+
+<mediaobject>
+  <imageobject>
+    <imagedata fileref="jmathlib04.jpg" format="jpg" width="60%"/>
+  </imageobject>
+</mediaobject>
+
+<legalnotice>
+<para>
+Permission to use, copy, modify and distribute
+JMathLib accompanying documentation for any purpose and
+without fee is hereby granted in perpetuity, provided 
+that the above copyright notice and this paragraph 
+appear in all copies.
+</para>
+</legalnotice>
+
+<legalnotice>
+<para>
+The copyright holder makes no representation about the fitness
+of this documentation for any purpose. It is provided <quote>as is</quote>. 
+</para>
+</legalnotice>
+
+<abstract>
+<para>
+<ulink url="http://mathlib.sourceforge.net">JMathLib</ulink>
+or
+<ulink url="http://www.jmathlib.de">JMathLib New Homepage</ulink>
+is a program to evaluate of mathematical functions 
+designed to be used in evaluating complex expressions and 
+display the results graphically. It can be used either 
+interactively or to interpret script files. It's designed to 
+work almost like 
+<ulink url="http://www.mathworks.com">Matlab</ulink>, 
+<ulink url="http://www.gnu.org/software/octave/">Octave</ulink>,
+<ulink url="http://freemat.sourceforge.net">FreeMat</ulink> or
+<ulink url="http://www.scilab.org">Scilab</ulink>.
+</para>
+</abstract>
+
+<pubdate>May 01, 2007</pubdate>
+
+<releaseinfo><para><emphasis>
+This release is connected to JMathLib in Version 0.8.0 and following versions
+</emphasis></para></releaseinfo>
+
+</bookinfo>
+
+&preface;
+
+&installingandrunning;
+
+&usage;
+
+&datatypes;
+
+&graphics;
+
+&extendingandembedding;
+
+<part id="functions">
+    <title>Functions Reference</title >
+    &functions;
+</part>    
+    
+&license;
+
+<appendix id="faq">
+    <title>Frequently Asked Questions</title>
+    &faq;
+</appendix>
+
+<appendix id="history">
+    <title >History</title >
+	&history;
+	&oldversions;
+</appendix >
+
+<appendix id="todo">
+    <title >To Do</title >
+	&todo;
+</appendix>
+
+<appendix id="bugs">
+    <title >Bugs</title >
+	&bugs;
+</appendix >
+
+<index id="book_index">
+    <title>Index</title>
+</index>
+
+&glossary;
+
+</book>

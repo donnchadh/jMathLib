@@ -1,0 +1,358 @@
+<!-- :xml.root=doc.xml: -->
+
+<glossary id="glossary"><title>Glossary</title>
+<para>
+This is the glossary of JMathLib.
+</para>
+
+<glossdiv id="glossdiv_A"><title>A</title>
+
+<glossentry>
+    <glossterm>AAA</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_B"><title>B</title>
+
+<glossentry>
+    <glossterm>BBB</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_C"><title>C</title>
+
+<glossentry>
+    <glossterm>CCC</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_D"><title>D</title>
+
+<glossentry>
+    <glossterm>DDD</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_E"><title>E</title>
+
+<glossentry id="xml">
+<glossterm>Extensible Markup Language</glossterm>
+ <acronym>XML</acronym>
+<glossdef>
+  <para>Some reasonable definition here.</para>
+  <glossseealso otherterm="sgml"></glossseealso>
+</glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_F"><title>F</title>
+
+<glossentry>
+    <glossterm>FFF</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_G"><title>G</title>
+
+<glossentry>
+    <glossterm>GGG</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_H"><title>H</title>
+
+<glossentry>
+    <glossterm>HHH</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_I"><title>I</title>
+
+<glossentry>
+    <glossterm>III</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_J"><title>J</title>
+
+<glossentry>
+    <glossterm>JJJ</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_K"><title>K</title>
+
+<glossentry>
+    <glossterm>KKK</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_L"><title>L</title>
+
+<glossentry>
+    <glossterm>LLL</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+</glossentry>
+
+</glossdiv>
+
+<glossdiv id="glossdiv_M"><title>M</title>
+
+<glossentry id="glossentry_m-File">
+    <glossterm>m-File</glossterm>
+    <glossdef>
+      <para>This a file e.g. foo.m which can contain a sript file or a JMathLib
+      function written in script code.</para>
+      <glossseealso otherterm="glossentry_Script-File"></glossseealso>
+      </glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_N"><title>N</title>
+
+<glossentry>
+    <glossterm>NNN</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_O"><title>O</title>
+
+<glossentry id="glossentry_Octave">
+    <glossterm>Octave</glossterm>
+    <glossdef>
+      <para>
+         <ulink url="http://www.gnu.org/software/octave/">Octave</ulink> 
+         is another clone of 
+         <ulink url="http://www.mathworks.com">Matlab</ulink>.
+      </para>
+      <glossseealso otherterm="glossentry_Scilab"></glossseealso>
+    </glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_P"><title>P</title>
+
+<glossentry>
+    <glossterm>PPP</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_Q"><title>Q</title>
+
+<glossentry>
+    <glossterm>QQQ</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_R"><title>R</title>
+
+<glossentry>
+    <glossterm>RRR</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_S"><title>S</title>
+
+<glossentry id="glossentry_Scilab">
+    <glossterm>Scilab</glossterm>
+    <glossdef>
+      <para>
+         <ulink url="http://www.scilab.org">Scilab</ulink> 
+         is another clone of 
+         <ulink url="http://www.mathworks.com">Matlab</ulink>.
+      </para>
+      <glossseealso otherterm="glossentry_Octave"></glossseealso>
+    </glossdef>
+</glossentry>
+
+<glossentry id="glossentry_Script-File">
+    <glossterm>Script-File</glossterm>
+    <glossdef>
+      <para>This a file e.g. foo.m which contains a sript file.</para>
+      <glossseealso otherterm="glossentry_m-File"></glossseealso>
+    </glossdef>
+</glossentry>
+
+<glossentry><glossterm>SGML</glossterm>
+<glosssee otherterm="sgml"></glosssee>
+</glossentry>
+
+<glossentry id="sgml"><glossterm>Standard Generalized
+  Markup Language</glossterm><acronym>SGML</acronym>
+  <abbrev>ISO 8879:1986</abbrev>
+<glossdef>
+  <para>Some reasonable definition here.</para>
+  <glossseealso otherterm="xml"></glossseealso>
+</glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_T"><title>T</title>
+
+<glossentry>
+    <glossterm>TTT</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_U"><title>U</title>
+
+<glossentry>
+    <glossterm>UUU</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_V"><title>V</title>
+
+<glossentry>
+    <glossterm>VVV</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_W"><title>W</title>
+
+<glossentry>
+    <glossterm>WWW</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_X"><title>X</title>
+
+<glossentry>
+    <glossterm>XXX</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_Y"><title>Y</title>
+
+<glossentry>
+    <glossterm>YYY</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+  </glossentry>
+
+</glossdiv>
+
+
+<glossdiv id="glossdiv_Z"><title>Z</title>
+
+<glossentry>
+    <glossterm>ZZZ</glossterm>
+    <glossdef>
+      <para>Some reasonable definition here.</para>
+    </glossdef>
+</glossentry>
+
+</glossdiv>
+
+
+
+
+</glossary>
+
+
