@@ -18,7 +18,7 @@ public class AllTests {
 		// none
         
 	    /* include tests in this directory here */
-		suite.addTest(jmathlibtests.toolbox.test.TestUserFunctions.suite());
+		suite.addTest(jmathlibtests.toolbox.test.testUserFunctions.suite());
 
 	    return suite;
 	}
