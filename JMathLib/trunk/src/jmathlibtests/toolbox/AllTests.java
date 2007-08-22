@@ -26,6 +26,7 @@ public class AllTests {
         suite.addTest(jmathlibtests.toolbox.image.AllTests.suite());
 		//suite.addTest(jmathlibtests.toolbox.GuiTools.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.io.AllTests.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.linearalgebra.AllTests.suite());
         suite.addTest(jmathlibtests.toolbox.miscellaneous.AllTests.suite());
         suite.addTest(jmathlibtests.toolbox.net.AllTests.suite());
