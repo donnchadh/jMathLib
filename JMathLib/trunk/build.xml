@@ -281,21 +281,21 @@
     <!-- create java launcher for awt gui-->
     <target name="javalauncher" depends="">
     	<exec executable="c:\programme\nsis\makensis">
-    		<arg value="JMathLib.nsi"/>
+    		<arg value="installer\JMathLib.nsi"/>
     	</exec>
     </target>
 
     <!-- create java launcher for swing gui-->
     <target name="javalauncherswing" depends="">
     	<exec executable="c:\programme\nsis\makensis">
-    		<arg value="JMathLibSwing.nsi"/>
+    		<arg value="installer\JMathLibSwing.nsi"/>
     	</exec>
     </target>
 
     <!-- create installer -->
     <target name="installer" depends="">
     	<exec executable="${nsis.path}makensis">
-    		<arg value="JMathLibInstall.nsi"/>
+    		<arg value="installer\JMathLibInstall.nsi"/>
     		<env key="JMathLibVersion" value="${version}"/>
     	</exec>
     </target>

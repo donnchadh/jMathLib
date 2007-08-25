@@ -19,6 +19,12 @@ blanks, checkForUpdates, patch, path, substring
 2007/08/xx 
 stefan + 
 
+2007/08/25 
+stefan * worked a lot on installers and distribution generator
+stefan * new directory installer/ 
+stefan * new directory upload/ 
+stefan * build.xml, build.properties changes due to new distribution
+
 2007/08/19 
 stefan + committed lots of files to new repository
 
