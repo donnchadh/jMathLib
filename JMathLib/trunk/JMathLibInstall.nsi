@@ -123,13 +123,19 @@ Section "Installer Section" SecInstall
   !execute 'makensis.exe /V4 JMathLib.nsi'
   
   ;Class Files
+  SetOutPath "$INSTDIR\bin"
+  File /r "upload\jmathlib\bin\*.*"
+
+  SetOutPath "$INSTDIR\handbook"
+  File /r "upload\jmathlib\handbook\*.*"
+  
   SetOutPath "$INSTDIR"
-  File /r /x CVS "Classes\*.*" 
- 
-  File "JMathLib.properties"
-  File "JMathLib.local.properties"
+  File "upload\jmathlib\JMathLib.exe"
+  File "upload\jmathlib\JMathLibSwing.exe"
+  File "upload\jmathlib\JMathLib.properties"
+  File "upload\jmathlib\JMathLib.local.properties"
   File "ChangeLog.txt"
-  File "JMathLib.html"
+  File "upload\jmathlib\JMathLib.html"
   File "license.txt"
   ;File "..\upload\mathlib\JMathLibSmallApplet.jar"
   File "readme.txt"
@@ -158,8 +164,8 @@ SectionEnd
 Section "Source Code" SecSourceInstall
 
   ;Source Files
-  SetOutPath "$INSTDIR\Source"
-  File /r /x CVS "Source\*.*"
+  SetOutPath "$INSTDIR\src"
+  File /r /x CVS "upload\jmathlib\src\*.*"
 
 SectionEnd
 
@@ -196,8 +202,9 @@ Section "Uninstall"
   ;ADD YOUR OWN FILES HERE...
 
   Delete "$INSTDIR\Uninstall.exe"
-  RMDir /r "$INSTDIR\MathLib"
-  RMDir /r "$INSTDIR\Source"
+  RMDir /r "$INSTDIR\bin"
+  RMDir /r "$INSTDIR\src"
+  RMDir /r "$INSTDIR\handbook"
   Delete "JMathLib.properties"
   Delete "JMathLib.local.properties"
   Delete "$INSTDIR\ChangeLog.txt"

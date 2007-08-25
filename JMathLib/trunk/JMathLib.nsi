@@ -5,15 +5,15 @@
 Name "JMathLib"
 Caption "JMathLib"
 Icon "jmathlib.ico"
-OutFile "Classes\JMathLib.exe"
+OutFile "upload\jmathlib\JMathLib.exe"
  
 SilentInstall silent
 AutoCloseWindow true
 ShowInstDetails nevershow
  
 ;You want to change the next two lines too
-!define CLASSPATH ".;lib;lib\myJar"
-!define CLASS "MathLib.UI.AWT.GUI"
+!define CLASSPATH ".;lib;lib\myJar;bin"
+!define CLASS "jmathlib.ui.awt.GUI"
  
 
 ;----------------------------------------------------------
