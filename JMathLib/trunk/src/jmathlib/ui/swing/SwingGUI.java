@@ -25,7 +25,7 @@ public class SwingGUI extends JFrame {
 
     final String appTitle = "JMathLib SwingGUI";
 
-    static final String DEAFULT_PROPERTIES = "jmathLib/ui/swing/SwingGUI.properties";
+    static final String DEAFULT_PROPERTIES = "jmathlib/ui/swing/SwingGUI.properties";
 
     public static SwingGUI runningReference;
 
@@ -881,7 +881,7 @@ public class SwingGUI extends JFrame {
         String s = answer.getcurrentWord();
         HTMLRenderDialog hrd = new HTMLRenderDialog(SwingGUI.runningReference, "Function reference: " + s, false);
         try {
-            hrd.setPage("file:///" + new File("..").getCanonicalPath() + "\\Documentation\\functions\\" + s + ".html");
+            hrd.setPage("file:///" + new File("").getCanonicalPath() + "\\Documentation\\functions\\" + s + ".html");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -895,7 +895,7 @@ public class SwingGUI extends JFrame {
     void jMenuItem9_actionPerformed(ActionEvent e) {
         HTMLRenderDialog hrd = new HTMLRenderDialog(SwingGUI.runningReference, "JMathLib Documentation", false);
         try {
-            hrd.setPage("file:///" + new File("..").getCanonicalPath() + "\\mathlib\\Documentation\\help\\index.html");
+            hrd.setPage("file:///" + new File("").getCanonicalPath() + "\\Documentation\\help\\index.html");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

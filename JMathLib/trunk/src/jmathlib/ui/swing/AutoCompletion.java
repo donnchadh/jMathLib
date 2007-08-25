@@ -29,7 +29,6 @@ public class AutoCompletion
     }
 
 
-
     public void load()
     {
         String s = System.getProperty("AUTOCOMP_FILE_EXTS");
@@ -62,6 +61,7 @@ public class AutoCompletion
         Vector v = new Vector(200);
         for (int i = 0; i < fileDirectories.length; i++)
         {
+            //System.out.println("load "+fileDirectories[i]);
             v.addAll(recursiveLoad(new File(fileDirectories[i]), fileExtensions));
         }
         Collections.sort(v, new Comparator() {
