@@ -22,7 +22,7 @@ Function .onInit
 
 # the plugins dir is automatically deleted when the installer exits
 InitPluginsDir
-File /oname=$PLUGINSDIR\splash.bmp "images\jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
+File /oname=$PLUGINSDIR\splash.bmp "jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
 
 advsplash::show 200 300 200 0x000000 $PLUGINSDIR\splash
 

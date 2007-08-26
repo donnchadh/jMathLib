@@ -39,7 +39,7 @@
 
  # the plugins dir is automatically deleted when the installer exits
  InitPluginsDir
- File /oname=$PLUGINSDIR\splash.bmp "images\jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
+ File /oname=$PLUGINSDIR\splash.bmp "jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
  #optional
  #File /oname=$PLUGINSDIR\splash.wav "C:\myprog\sound.wav"
 
