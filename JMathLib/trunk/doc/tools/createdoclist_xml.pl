@@ -16,7 +16,7 @@ opendir(DIRECTORY, $srcdir) or die "Cannot open $srcdir";
 my @files = grep !/^[\.|CVS]|src/, readdir(DIRECTORY);
 closedir(DIRECTORY);
 
-$destdir .= "functions.xml";
+$destdir .= "/functions.xml";
 my $writer = new XMLWriter($destdir);
 
 foreach my $file (sort {lc($a) cmp lc($b)} @files)
