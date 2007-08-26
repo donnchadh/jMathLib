@@ -168,7 +168,7 @@
 	<java jar="./libs/saxon.jar" fork="true">
 		<arg value='doc/src/doc.xml' />
 		<arg value='doc/DocBook/xsl/html/chunk2.xsl' />
-		<arg value="base.dir=${dist.dir}/handbook/" />
+		<arg value="base.dir=upload/handbook/" />
 		<arg value='chunk.section.depth="1"' />
 		<arg value='chunk.first.sections="0"' />
 		<arg value='generate.section.toc.level="0"' />
@@ -271,11 +271,17 @@
         <copy todir="${dist.dir}">
 	         <fileset dir="${build.dir}">
 	         <include name="JMathLib.html"/>
-	         <include name="run.bat"/>
-			 <include name="execute.bat"/>
+	         <include name="JMathLib.properties"/>
+	         <include name="JMathLib.local.properties"/>
+	         <include name="license.txt"/>
+		     <include name="ChangeLog.txt"/>
+	         <include name="JMathLib.html"/>
+             </fileset>
+	         <fileset dir="${upload.dir}">
+		     <include name="JMathLibManual_${version}.pdf"/>
 			 </fileset>
         </copy>
-
+    	
     </target>
 
     <!-- create java launcher for awt gui-->
@@ -302,7 +308,7 @@
 	
     <!-- AllInstall: create full installer -->
     <target name="allinstaller" depends="copy_to_upload,
-    	javalauncher, installer"> 
+    	javalauncher, javalauncherswing, installer"> 
     </target>
 
     <!-- ================================================================= -->
