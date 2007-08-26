@@ -23,7 +23,7 @@
   
   
   ;Name of installer-executable
-  OutFile "upload/JMathLibInstall_${VERSION}.exe"
+  OutFile "../upload/JMathLibInstall_${VERSION}.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\JMathLib"
@@ -87,7 +87,7 @@
    
   !define MUI_LICENSEPAGE_CHECKBOX
   
-  !insertmacro MUI_PAGE_LICENSE "license.txt"
+  !insertmacro MUI_PAGE_LICENSE "../upload/jmathlib/license.txt"
   
   !insertmacro MUI_PAGE_COMPONENTS
   
@@ -124,22 +124,21 @@ Section "Installer Section" SecInstall
   
   ;Class Files
   SetOutPath "$INSTDIR\bin"
-  File /r "upload\jmathlib\bin\*.*"
+  File /r "..\upload\jmathlib\bin\*.*"
 
   SetOutPath "$INSTDIR\handbook"
-  File /r "upload\jmathlib\handbook\*.*"
+  File /r "..\upload\jmathlib\handbook\*.*"
   
   SetOutPath "$INSTDIR"
-  File "upload\jmathlib\JMathLib.exe"
-  File "upload\jmathlib\JMathLibSwing.exe"
-  File "upload\jmathlib\JMathLib.properties"
-  File "upload\jmathlib\JMathLib.local.properties"
-  File "ChangeLog.txt"
-  File "upload\jmathlib\JMathLib.html"
-  File "license.txt"
+  File "..\upload\jmathlib\JMathLib.exe"
+  File "..\upload\jmathlib\JMathLibSwing.exe"
+  File "..\upload\jmathlib\JMathLib.properties"
+  File "..\upload\jmathlib\JMathLib.local.properties"
+  File "..\upload\jmathlib\ChangeLog.txt"
+  File "..\upload\jmathlib\JMathLib.html"
+  File "..\upload\jmathlib\license.txt"
   ;File "..\upload\mathlib\JMathLibSmallApplet.jar"
-  File "readme.txt"
-  File "run.bat"
+  ;File "..\upload\jmathlib\readme.txt"
   
   ;Store installation folder
   WriteRegStr HKCU "Software\JMathLib" "" $INSTDIR
@@ -165,7 +164,7 @@ Section "Source Code" SecSourceInstall
 
   ;Source Files
   SetOutPath "$INSTDIR\src"
-  File /r /x CVS "upload\jmathlib\src\*.*"
+  File /r /x CVS "..\upload\jmathlib\src\*.*"
 
 SectionEnd
 
@@ -174,7 +173,7 @@ Section "Documentation" SecDocInstall
 
   ;Dokumentation Files
   SetOutPath "$INSTDIR"
-  File "upload\JMathLibManual_${VERSION}.pdf"
+  File "..\upload\JMathLibManual_${VERSION}.pdf"
 
 SectionEnd
 
@@ -205,8 +204,8 @@ Section "Uninstall"
   RMDir /r "$INSTDIR\bin"
   RMDir /r "$INSTDIR\src"
   RMDir /r "$INSTDIR\handbook"
-  Delete "JMathLib.properties"
-  Delete "JMathLib.local.properties"
+  Delete "$INSTDIR\JMathLib.properties"
+  Delete "$INSTDIR\JMathLib.local.properties"
   Delete "$INSTDIR\ChangeLog.txt"
   Delete "$INSTDIR\JMathLib.exe"
   Delete "$INSTDIR\JMathLibManual_${VERSION}.pdf"
