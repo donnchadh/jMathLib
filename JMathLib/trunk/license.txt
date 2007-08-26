@@ -1,0 +1,35 @@
+*******************  JMathlib License  *************************
+
+This software is liscensed by the GNU Lesser General Public License.
+There is a copy in lgpl.txt
+
+This software is a free software. It comes with no waranty at all.
+
+
+heirachy
+========
+the distribution contains the following directories
+bin   compiled output
+src   all sources
+doc   documentation
+
+Running As Application
+==========================
+The  program can be run using the execute.sh script under GNU/Linux and the execute.bat script under Windows.
+
+Just type:
+run.bat
+
+
+Running as an applet
+=====================
+
+Within the root of the classes folder there is an HTML file which will run
+the JMathLib applet. So far it has been tested on IE 5.5, Netscape Navigator 6 & Opera 5
+on Win ME & Konqueror & Mozilla firebird under GNU/Linux.
+In due course JMathLib will be tested on other browsers and operating systems.
+
+As long as this HTML file is in the same folder as the MathLib folder containing the
+class files then it should run okay.
+
+ 
