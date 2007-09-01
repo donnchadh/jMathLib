@@ -147,14 +147,6 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
            return peekNextToken;
     }
 
-    /**get current Token 
-    @return the current token*/
-    private Token getCurrentToken()                                         
-    {
-        //ErrorLogger.debugLine("Parser: getCurrentToken");
-        return currentToken;
-    }
-
 /*****************************************************************************/
 
     /**parse the expression contained in exp, this method is also called recursivly 
@@ -1738,21 +1730,6 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
 /********             additional/helper methods                              ***********/
 /***************************************************************************************/
    
-    /***********************************************************************************/
-    /**get the name of a delimiter or function token                                   */
-    private String getName(Token nextToken)
-    {
-        String name = "";
-        if (nextToken instanceof FunctionToken || nextToken instanceof DelimiterToken)
-        {
-            if(nextToken instanceof FunctionToken)
-                name = ((FunctionToken)nextToken).getName();
-            else
-                name = ((DelimiterToken)nextToken).getWordValue();
-        }
-        return name;
-    }
-
     /***********************************************************************************/
     /** return false if an expression is terminated by ","                               */
     /** return true if  an expression is terminated by something else ", EOF"          */ 
