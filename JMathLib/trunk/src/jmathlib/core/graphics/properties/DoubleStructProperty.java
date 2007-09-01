@@ -1,8 +1,5 @@
 package jmathlib.core.graphics.properties;
 
-import java.util.Set;
-import java.util.Collections;
-import java.util.HashSet;
 import jmathlib.core.graphics.*;
 import jmathlib.core.interpreter.*;
 
