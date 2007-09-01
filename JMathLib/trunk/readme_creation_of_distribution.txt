@@ -1,4 +1,4 @@
-*******************  JMathlib readme  *************************
+*******************  JMathLib readme  *************************
 
 How to create a distribution:
 
