@@ -8,10 +8,10 @@
     <!ENTITY oldversions SYSTEM "oldversions.xml">
     <!ENTITY todo SYSTEM "todo.xml">
     <!ENTITY bugs SYSTEM "bugs.xml">
-    <!ENTITY installingandrunning SYSTEM "installingandrunning.xml">
+    <!ENTITY installingandrunning SYSTEM "install/installingandrunning.xml">
     <!ENTITY usage SYSTEM "usage.xml">
     <!ENTITY datatypes SYSTEM "datatypes.xml">
-    <!ENTITY graphics SYSTEM "graphics.xml">
+    <!ENTITY graphics SYSTEM "graphics/graphics.xml">
     <!ENTITY extendingandembedding SYSTEM "extendingandembedding.xml">
     <!ENTITY glossary SYSTEM "glossary.xml">
     ]>
