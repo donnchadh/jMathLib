@@ -81,16 +81,16 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
        @param expression - expression to be analysed   */
     public void analyseExpression(String expression)
     {
-	 //ErrorLogger.debugLine(expression);
-	 exp = expression.trim();
+        //ErrorLogger.debugLine(expression);
+        exp = expression.trim();
 		
-	 EOCharsB = false;
+        EOCharsB = false;
     }
 
     /**@return the next token in the input string*/ 
     public Token getNextToken(int type)
     {
-	// switch on/off parsing of whitespaces
+        // switch on/off parsing of whitespaces
         if (type==MATRIX)
         	parseWhitespaceSwitch = true;
         else
