@@ -9,8 +9,6 @@ import jmathlib.core.interpreter.*;
  */
 public class FileFunctionLoader extends FunctionLoader
 {    
-    // the type of function file (class, m-file, p-file) 
-    private int fileType;
     
     // 
     private FunctionPathBroker pathBroker;

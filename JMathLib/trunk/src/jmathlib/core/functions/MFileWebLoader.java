@@ -1,10 +1,8 @@
 package jmathlib.core.functions;
 
 import jmathlib.core.interpreter.*;
-
 import java.io.*;
 import java.net.*;
-import java.util.*;
 
 
 /**Class for storing and managing the m- and p-functions

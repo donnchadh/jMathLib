@@ -1,10 +1,8 @@
 package jmathlib.core.functions;
 
-import java.util.Hashtable;
 import java.io.IOException;
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Vector;
 import jmathlib.core.interpreter.*;
 
 /**Class to load any External functions used*/
