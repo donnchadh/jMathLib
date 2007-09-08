@@ -12,7 +12,7 @@ public class AllTests {
 		jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
 	public static Test suite ( ) {
-		TestSuite suite= new TestSuite("MathLib Tests of Polynomial Functions");
+		TestSuite suite= new TestSuite("polynomial functions");
 
 		/* include subdirectories here */
 		// none
