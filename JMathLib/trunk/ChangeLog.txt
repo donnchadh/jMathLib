@@ -26,6 +26,7 @@ stefan * FunctionToken.java
 stefan - _return.java
 stefan - return.m
 stefan # is_abcd.m bugfix for non-square matrices
+stefan * UInt8NumberToken added "subtract"
 
 2007/08/25 
 stefan * worked a lot on installers and distribution generator
