@@ -16,8 +16,11 @@ Updated functions:
 blanks, checkForUpdates, patch, path, substring
 
 ---- HISTORY ------------------------------------------------------------------
-2007/08/xx 
+2007/09/xx 
 stefan + 
+
+2007/09/08 
+stefan * toolbox/control/* added some minor documentation details 
 
 2007/08/25 
 stefan * worked a lot on installers and distribution generator
