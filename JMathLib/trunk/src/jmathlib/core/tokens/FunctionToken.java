@@ -119,6 +119,14 @@ public class FunctionToken extends OperandToken
         OperandToken result   = null;
         ErrorLogger.debugLine("FunctionToken: eval "+name);
             
+        // special handling for "return" function
+        //  throw control exception
+        if (name.equals("return"))
+        {
+            ErrorLogger.debugLine("FunctionToken: return: control exception");
+            throw new ControlException();
+        }
+        
         // check if the function is overloaded by a variable name
         //if( getVariables().getVariable(name) != null)
         if( getVariable(name) != null)
