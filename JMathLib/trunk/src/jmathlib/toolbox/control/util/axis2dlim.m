@@ -69,3 +69,19 @@ function axvec = axis2dlim (axdata)
   axvec = axmid + axdel;
 endfunction
 
+/*
+@GROUP
+control
+@SYNTAX
+axis2dlim()
+@DOC
+
+@EXAMPLES
+<programlisting>
+axis2dlim()
+</programlisting>
+@NOTES
+@SEE
+
+*/
+

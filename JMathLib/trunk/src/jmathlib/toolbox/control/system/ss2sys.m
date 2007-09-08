@@ -189,3 +189,19 @@ function retsys = ss2sys (varargin )
   retsys = ss(varargin{:});
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+ss2sys()
+@DOC
+
+@EXAMPLES
+<programlisting>
+ss2sys()
+</programlisting>
+@NOTES
+@SEE
+
+*/

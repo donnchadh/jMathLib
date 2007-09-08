@@ -134,7 +134,12 @@ control
 @SYNTAX
 abcddim(A,B,C,D);
 @DOC
-
+Check for compatibility of the dimensions of the matrices defining
+the linear system
 @EXAMPLES
-
+<programlisting>
+abcddim(A,B,C,D);
+</programlisting>
+@NOTES
+@SEE
 */

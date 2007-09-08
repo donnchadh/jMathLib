@@ -46,3 +46,19 @@ function systype = sysgettype (sys)
   systype = typestr{ sys.sys(1) + 1};
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+sysgettype()
+@DOC
+
+@EXAMPLES
+<programlisting>
+sysgettype()
+</programlisting>
+@NOTES
+@SEE
+
+*/

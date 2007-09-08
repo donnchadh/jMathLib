@@ -30,3 +30,19 @@ function T = sysgettsam (sys)
   T = sys.tsam;
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+sysgettsam()
+@DOC
+
+@EXAMPLES
+<programlisting>
+sysgettsam()
+</programlisting>
+@NOTES
+@SEE
+
+*/

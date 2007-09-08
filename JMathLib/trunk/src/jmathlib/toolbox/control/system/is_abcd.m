@@ -96,3 +96,19 @@ function retval = is_abcd (a, b, c, d)
   ## all tests passed, signal ok.
   retval = 1;
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+is_abcd (a, b, c, d)
+@DOC
+
+@EXAMPLES
+<programlisting>
+is_abcd (a, b, c, d)
+</programlisting>
+@NOTES
+@SEE
+abcddim
+*/

@@ -30,3 +30,19 @@ function out = is_sample (Ts)
   out = (isscalar (Ts) && (Ts == abs (Ts)) && (Ts != 0));
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+is_sample(Ts)
+@DOC
+
+@EXAMPLES
+<programlisting>
+is_sample(Ts)
+</programlisting>
+@NOTES
+@SEE
+is_abcd
+*/

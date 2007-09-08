@@ -36,3 +36,19 @@ function [a1, b1] = swap (a, b)
 
 endfunction
 
+/*
+@GROUP
+control
+@SYNTAX
+swap(a,b)
+@DOC
+
+@EXAMPLES
+<programlisting>
+swap(a,b) -> [b,a]
+</programlisting>
+@NOTES
+@SEE
+
+*/
+

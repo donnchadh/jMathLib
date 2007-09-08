@@ -36,3 +36,19 @@ function [y, my, ny] = __abcddims__ (x)
   [my, ny] = size (y);
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+__abcddims(A,B,C,D)__
+@DOC
+Used internally in abcddim.
+@EXAMPLES
+<programlisting>
+__abcddims(A,B,C,D)__
+</programlisting>
+@NOTES
+@SEE
+abcddims(A,B,C,D)
+*/

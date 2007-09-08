@@ -79,3 +79,19 @@ function y = zgfmul (a, b, c, d, x)
   endfor
 
 endfunction
+
+/*
+@GROUP
+control
+@SYNTAX
+zgfmul()
+@DOC
+
+@EXAMPLES
+<programlisting>
+zgfmul()
+</programlisting>
+@NOTES
+@SEE
+
+*/
