@@ -57,10 +57,10 @@ public class Interpreter extends RootObject
     
     /** Publiclic expose of the function manager
      * @return the function manager*/
-    public final jmathlib.core.functions.FunctionManager getFunctionManager()
-    {
-	    return super.getFunctionManager();
-    }
+    //public  final jmathlib.core.functions.FunctionManager getFunctionManager()
+    //{
+	//    return super.getFunctionManager();
+    //}
     
     /**sets the panel to write any text to
        @param _outputPanel = the panel to write to, must implement the

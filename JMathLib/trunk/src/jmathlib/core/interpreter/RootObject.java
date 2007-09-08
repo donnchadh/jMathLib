@@ -3,6 +3,7 @@ package jmathlib.core.interpreter;
 import java.io.*;
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.tokens.OperandToken;
+import jmathlib.core.functions.FunctionManager;
 
 /**This universal the base class for all class define by MathLib. 
 It defines Global values as class variables and also defines functions for creating and accessing the working environment.*/
@@ -82,7 +83,7 @@ abstract public class RootObject implements java.io.Serializable,
     }
 
     /**@return the function manager*/
-    protected jmathlib.core.functions.FunctionManager getFunctionManager()
+    public final FunctionManager getFunctionManager()
     {
 	    return globals.getFunctionManager();
     }
