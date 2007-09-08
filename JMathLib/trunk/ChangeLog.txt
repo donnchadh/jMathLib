@@ -21,6 +21,11 @@ stefan +
 
 2007/09/08 
 stefan * toolbox/control/* added some minor documentation details 
+stefan * handling of "return" command moved to function token
+stefan * FunctionToken.java
+stefan - _return.java
+stefan - return.m
+stefan # is_abcd.m bugfix for non-square matrices
 
 2007/08/25 
 stefan * worked a lot on installers and distribution generator
