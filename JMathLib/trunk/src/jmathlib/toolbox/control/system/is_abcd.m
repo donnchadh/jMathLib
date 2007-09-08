@@ -39,7 +39,8 @@ function retval = is_abcd (a, b, c, d)
       [na, ma] = size(a);
       if (na != ma)
         disp("Matrix A ist not square.")
-      endif
+        return;
+        endif
     case (2)
       ## A, B only
       [na, ma] = size(a);  [nb, mb] = size(b);
