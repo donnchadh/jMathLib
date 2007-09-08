@@ -12,7 +12,7 @@ public class AllTests {
 		jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
 	public static Test suite ( ) {
-		TestSuite suite= new TestSuite("graphics functions");
+		TestSuite suite= new TestSuite("jmathlib functions");
 
 		/* include subdirectories here */
         suite.addTest(jmathlibtests.toolbox.jmathlib.graphics.AllTests.suite());
