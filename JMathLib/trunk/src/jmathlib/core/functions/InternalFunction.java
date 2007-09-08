@@ -6,7 +6,7 @@ import jmathlib.core.tokens.OperandToken;
 /**The base class for all the internal function types*/
 public class InternalFunction extends Function
 {
-	/**Defaul constructor - creates an internal function with a null name*/
+	/**Default constructor - creates an internal function with a null name*/
 	public InternalFunction()
 	{
 		name = "";
@@ -20,7 +20,7 @@ public class InternalFunction extends Function
 	}
 
 	/**Executes the internal function
-	@param operands - the array of paramaters
+	@param operands - the array of parameters
 	@return the result as an OperandToken*/	
 	public OperandToken evaluate(Token[] operands)
 	{
