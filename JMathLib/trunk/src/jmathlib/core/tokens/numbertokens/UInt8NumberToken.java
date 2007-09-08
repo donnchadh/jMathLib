@@ -568,6 +568,113 @@ public class UInt8NumberToken extends NumberToken
             return (short)c;
     }
 
+    /**subtract arg from this object for a number token
+    @param = the value to subtract from
+    @return the result as an OperandToken*/
+    public OperandToken subtract(OperandToken arg)
+    {
+
+        if (arg instanceof UInt8NumberToken)
+        {    
+            UInt8NumberToken nArg = ((UInt8NumberToken)arg);
+    
+            // Check dimensions of matrices 
+            if(checkEqualDimensions(sizeA, nArg.getSize()))
+            {
+                // Add (n*m) - (n*m) or
+                //  same dimensions (n,m,r)==(n,m,r)
+                ErrorLogger.debugLine("UInt8NumberToken: subtract (n*m) - (n*m)");
+                UInt8NumberToken result = new UInt8NumberToken(sizeA, null, null);
+    
+                for(int n = 0; n < noElem; n++)
+                {
+                    short real = subtract(getValueRe(n), nArg.getValueRe(n));
+                    short imag = subtract(getValueIm(n), nArg.getValueIm(n));
+                    result.setValue(n, real, imag);
+                }
+                
+                //ErrorLogger.debugLine("end UInt8NumberToken: add (n*m) - (n*m)");
+                return result;      
+            } 
+            else if(isScalar())
+            {
+                // 1 + [3,4,5]       
+                ErrorLogger.debugLine("UInt8NumberToken: subtract (1*1) - (n*m)");
+                UInt8NumberToken result = new UInt8NumberToken(nArg.getSize(), null, null);
+                
+                for(int n = 0; n < nArg.getNumberOfElements(); n++)
+                {
+                    short realval      = subtract(getValueRe(), nArg.getValueRe(n));
+                    short imaginaryval = subtract(getValueIm(), nArg.getValueIm(n));
+                    result.setValue(n, realval, imaginaryval);
+                }
+                
+                //ErrorLogger.debugLine("end UInt8NumberToken: add (n*m) + (n*m)");
+                return result;      
+            } 
+            else if(nArg.isScalar())
+            {
+                // [3,4,5] +1
+                ErrorLogger.debugLine("UInt8NumberToken: subtract (n,m) - (1,1)");
+                UInt8NumberToken result = new UInt8NumberToken(sizeA, null, null);
+                
+                for(int n = 0; n < noElem; n++)
+                {
+                    short realval      = subtract(getValueRe(n), nArg.getValueRe());
+                    short imaginaryval = subtract(getValueIm(n), nArg.getValueIm());
+                    result.setValue(n, realval, imaginaryval);
+                }
+                
+                //ErrorLogger.debugLine("end UInt8NumberToken: add (n*m) - (n*m)");
+                return result;      
+            } 
+            else
+            {
+                /* Matrices have unequal size: (n*m) != (o*p) */       
+                Errors.throwMathLibException("UInt8NumberToken: subtract matrices of unequal size");
+                return null;
+            }
+        }
+        else if (arg instanceof DoubleNumberToken)
+        {
+            ErrorLogger.debugLine("UInt8NumberToken: subtract (n,m) - (1,1)double");
+            
+            DoubleNumberToken nArg = ((DoubleNumberToken)arg);
+
+            if ((nArg.getSize().length!=2) || 
+                (nArg.getSizeX()      !=1) || 
+                (nArg.getSizeY()      !=1)    )
+                Errors.throwMathLibException("UInt8NumberToken: uint8-double only works if double is scalar");
+                
+            UInt8NumberToken result = new UInt8NumberToken(sizeA, null, null);
+            
+            for(int n = 0; n < noElem; n++)
+            {
+                short realval      = subtract(getValueRe(n), nArg.getValueRe());
+                short imaginaryval = subtract(getValueIm(n), nArg.getValueIm());
+                result.setValue(n, realval, imaginaryval);
+            }
+            return result;
+        }
+
+
+        
+        Errors.throwMathLibException("UInt8NumberToken: subtract: wrong type");
+        return null;
+        
+    } // and add
+
+    private short subtract(double a, double b)
+    {
+        double c= a - b;
+        
+        if (c>255)
+            return 255;
+        else if (c<0)
+            return 0;
+        else
+            return (short)c;
+    }
     
     /**return the number as a string*/
     public String toString()
