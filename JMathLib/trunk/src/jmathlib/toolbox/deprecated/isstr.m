@@ -18,7 +18,8 @@ isstr(s)
 @DOC
 check if argument is a string.
 @EXAMPLES
-.
+<programlisting>
+</programlisting>
 @NOTES
 This function is deprecated.
 @SEE

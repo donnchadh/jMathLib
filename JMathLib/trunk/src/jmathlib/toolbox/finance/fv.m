@@ -88,6 +88,8 @@ v = fv (r, n, p, l, m)
 @DOC
 Future value of an investment
 @EXAMPLES
+<programlisting>
+</programlisting>
 @NOTES
 @SEE
 fvl

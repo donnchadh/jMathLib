@@ -56,6 +56,8 @@ v = fv (r, n, p, l, m)
 @DOC
 Future value of an initial lump sum investment
 @EXAMPLES
+<programlisting>
+</programlisting>
 @NOTES
 @SEE
 fvl

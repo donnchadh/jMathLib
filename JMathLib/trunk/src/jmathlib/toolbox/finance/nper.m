@@ -89,6 +89,8 @@ n = nper (r, p, a, l, m)
 @DOC
 .
 @EXAMPLES
+<programlisting>
+</programlisting>
 @NOTES
 @SEE
 */

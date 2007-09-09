@@ -88,6 +88,8 @@ v = pv (r, n, p, l, m)
 @DOC
 .
 @EXAMPLES
+<programlisting>
+</programlisting>
 @NOTES
 @SEE
 */

@@ -72,3 +72,16 @@ function v = npv (r, p, ii)
   v = sum (d .* p);
 
 endfunction
+
+/*
+@GROUP
+Finance
+@SYNTAX
+npv (r, p, ii)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

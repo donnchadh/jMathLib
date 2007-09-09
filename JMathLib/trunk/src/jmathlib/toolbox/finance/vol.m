@@ -73,3 +73,16 @@ function retval = vol (X, m, n)
 
 endfunction
 
+/*
+@GROUP
+Finance
+@SYNTAX
+vol (X, m, n)
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

@@ -56,6 +56,8 @@ v = pvl (r, n, p)
 @DOC
 .
 @EXAMPLES
+<programlisting>
+</programlisting>
 @NOTES
 @SEE
 */
