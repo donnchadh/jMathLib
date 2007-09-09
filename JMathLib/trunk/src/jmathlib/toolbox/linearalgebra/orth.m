@@ -74,11 +74,12 @@ endfunction
 @GROUP
 LinearAlgebra
 @SYNTAX
-orth
+orth (A, tol)
 @DOC
 .
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

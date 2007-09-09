@@ -50,5 +50,6 @@ dmult
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

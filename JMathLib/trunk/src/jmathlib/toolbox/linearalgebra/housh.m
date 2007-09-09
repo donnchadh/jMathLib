@@ -63,3 +63,17 @@ function [housv, beta, zer] = housh (x, jj, z)
   endif
 
 endfunction
+
+/*
+@GROUP
+LinearAlgebra
+@SYNTAX
+housh()
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

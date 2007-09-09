@@ -108,5 +108,6 @@ duplication_matrix
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

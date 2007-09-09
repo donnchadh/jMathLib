@@ -78,5 +78,6 @@ null()
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

@@ -119,5 +119,6 @@ commutation_matrix
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

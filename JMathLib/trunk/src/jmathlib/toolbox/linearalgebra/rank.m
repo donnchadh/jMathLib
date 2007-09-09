@@ -65,5 +65,6 @@ rank()
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

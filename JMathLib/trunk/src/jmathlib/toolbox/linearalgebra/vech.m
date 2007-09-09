@@ -64,5 +64,6 @@ vech()
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

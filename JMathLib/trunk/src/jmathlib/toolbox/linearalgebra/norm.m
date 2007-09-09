@@ -138,5 +138,6 @@ norm()
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */

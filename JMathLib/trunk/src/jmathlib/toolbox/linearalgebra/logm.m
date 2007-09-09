@@ -34,3 +34,17 @@ function B = logm (A)
   B = V * diag (log (diag (D))) * inv (V);
 
 endfunction
+
+/*
+@GROUP
+LinearAlgebra
+@SYNTAX
+logm(x)
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

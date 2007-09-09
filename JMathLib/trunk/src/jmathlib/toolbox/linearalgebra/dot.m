@@ -63,5 +63,6 @@ dot()
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 */
