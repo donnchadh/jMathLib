@@ -47,7 +47,9 @@ systemcommand(command name)
 @DOC
 A function for running external commands
 @EXAMPLES
+<programlisting>
 systemcommand("EMACS")
+</programlisting>
 @SEE
 runfile
 */

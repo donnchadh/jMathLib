@@ -71,13 +71,15 @@ public class runfile extends ExternalFunction
 @GROUP
 IO
 @SYNTAX
-RUNFILE("filename")
+runfile("filename")
 @DOC
 Runs the script file specified by filename.
 @NOTE
 This is used to run script files, not function files.
 @EXAMPLES
-RUNFILE("script.m");
+<programlisting>
+runfile("script.m");
+<programlisting>
 @SEE
 dir, cd, systemcommand
 */

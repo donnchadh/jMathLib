@@ -45,7 +45,7 @@ createnewfile(filename)
 .
 @EXAMPLES
 <programlisting>
-createnewfile("bar,txt");
+createnewfile("bar.txt");
 </programlisting>
 @SEE
 cd, dir, exist, mkdir, rmdir, delete, isfile, isdirectory, ishidden, lastmodified

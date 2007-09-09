@@ -162,11 +162,13 @@ ErrorLogger.debugLine("4");
 @GROUP
 IO
 @SYNTAX
-matrix=CSVREAD(filename, startrow, endrow)
+matrix=csvread(filename, startrow, endrow)
 @DOC
 Reads in a matrix from a comma seperated value file.
 @EXAMPLES
-CSVREAD("testfile.csv", 0, 0)=[1,2;3,4]
+<programlisting>
+cvsreac("testfile.csv", 0, 0)=[1,2;3,4]
+</programlisting>
 @SEE
 csvwrite, urlread
 */

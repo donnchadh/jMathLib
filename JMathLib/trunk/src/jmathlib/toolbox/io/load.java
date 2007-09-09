@@ -369,7 +369,9 @@ load(file)
 @DOC
 Reads in a matrix from a comma seperated value file.
 @EXAMPLES
-CSVREAD("testfile.csv", 0, 0)=[1,2;3,4]
+<programlisting>
+load
+<programlisting>
 @SEE
 csvread, csvwrite
 */
