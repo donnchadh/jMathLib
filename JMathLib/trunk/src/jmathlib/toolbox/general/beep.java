@@ -26,6 +26,8 @@ beep();
 this sounds an audible beep
 @NOTES
 @EXAMPLES
+<programlisting>
 beep();
+</programlisting>
 @SEE
 */

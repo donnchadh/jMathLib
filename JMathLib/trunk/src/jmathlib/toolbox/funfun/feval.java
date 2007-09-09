@@ -51,8 +51,10 @@ feval(function, parameters)
 @DOC
 evaluates the function on the supplies parameters.
 @EXAMPLES
+<programlisting>
 feval('cos', 1) = 0
 feval("max",1,3) = 3
+</programlisting>
 @NOTES
 @SEE
 */
