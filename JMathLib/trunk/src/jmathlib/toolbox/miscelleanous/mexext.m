@@ -25,3 +25,17 @@
 function retval = mexext ()
   retval = "mex";
 endfunction
+
+/*
+@GROUP
+miscelleanous
+@SYNTAX
+mexext
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

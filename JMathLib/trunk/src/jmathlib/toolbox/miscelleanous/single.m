@@ -35,3 +35,17 @@ function retval = single (val)
   endif
 
 endfunction
+
+/*
+@GROUP
+miscelleanous
+@SYNTAX
+single(x)
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

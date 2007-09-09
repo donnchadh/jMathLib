@@ -15,3 +15,17 @@
 ## not just functions.
 ##function ans ()
 ##endfunction
+
+/*
+@GROUP
+miscelleanous
+@SYNTAX
+ans
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

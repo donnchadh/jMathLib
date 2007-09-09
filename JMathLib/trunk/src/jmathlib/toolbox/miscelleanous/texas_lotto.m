@@ -66,6 +66,7 @@ Pick 6 unique numbers between 1 and 50 that are guaranteed to win.
 texas_lotto
  ans =  [5 ,  16 ,  30 ,  33 ,  34 ,  42]
 </programlisting>
+@NOTES
 @SEE
 
 */

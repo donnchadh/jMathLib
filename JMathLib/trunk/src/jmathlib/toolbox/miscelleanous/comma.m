@@ -22,3 +22,17 @@
 ## Array index, function argument, or command separator.
 ## @seealso{semicolon}
 ## @end deffn
+
+/*
+@GROUP
+miscelleanous
+@SYNTAX
+comma
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/

@@ -22,3 +22,17 @@
 ## Array row or command separator.
 ## @seealso{comma}
 ## @end deffn
+
+/*
+@GROUP
+miscelleanous
+@SYNTAX
+semicolon
+@DOC
+.
+@EXAMPLES
+<programlisting>
+</programlisting>
+@NOTES
+@SEE
+*/
