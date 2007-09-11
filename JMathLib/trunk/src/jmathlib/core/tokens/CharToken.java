@@ -32,6 +32,25 @@ public class CharToken extends DataToken
         sizeA     = new int[]{sizeY,sizeX};
         noElem    = sizeY * sizeX;
     }
+    
+    /**Creates a string with a value of _value
+       @param _value = the value of the string*/
+    public CharToken(String[] _values)
+    {
+        super(99, "char"); 
+        sizeY     = _values.length;
+        sizeX     = _values[0].length();
+        sizeA     = new int[]{sizeY,sizeX};
+        noElem    = sizeY * sizeX;
+        
+        values    = new char[sizeY][1];
+        for (int i=0;i<sizeY;i++) {
+          if (_values[i].length() != sizeX)
+            Errors.throwMathLibException("CharToken: string sizes must be identical");
+          values[i] = _values[i].toCharArray();
+        }
+    }
+    
 
     /**Creates a string with a value of _value
     @param _value = the value of the string*/

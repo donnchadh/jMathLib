@@ -32,6 +32,12 @@ public class testNum2str extends TestCase {
         ml.executeExpression("a=num2str([97 100 56]);");
         assertTrue(ml.getString("a").equals("9710056"));
     }
+    
+    public void testNum2Str03() {
+        ml.executeExpression("a=num2str([97.1 100 56]);");
+        assertTrue(ml.getString("a").equals("97.1 100 56"));
+    }
+    
     //public void testNum2Str03() {
     //    ml.executeExpression(" a=str2num(\"bbbbbbdfasdfasdf\") "); 
     //    ml.executeExpression(" b=num2str(a) ");

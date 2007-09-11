@@ -22,6 +22,7 @@ stefan +
 2007/09/xx 
 stefan * toolbox/deprecated added some documentation 
 stefan * toolbox/finance added some documentation 
+jmh    * toolbox/string/num2str, core/tokens/CharToken now formats a bit more like matlab. More work to be done.
 
 2007/09/08 
 stefan * toolbox/control/* added some minor documentation details 
