@@ -79,7 +79,7 @@ This is used to run script files, not function files.
 @EXAMPLES
 <programlisting>
 runfile("script.m");
-<programlisting>
+</programlisting>
 @SEE
 dir, cd, systemcommand
 */

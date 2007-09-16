@@ -371,7 +371,7 @@ Reads in a matrix from a comma seperated value file.
 @EXAMPLES
 <programlisting>
 load
-<programlisting>
+</programlisting>
 @SEE
 csvread, csvwrite
 */
