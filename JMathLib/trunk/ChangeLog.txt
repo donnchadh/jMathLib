@@ -19,7 +19,11 @@ blanks, checkForUpdates, patch, path, substring
 2007/09/xx 
 stefan + 
 
-2007/09/xx 
+2007/09/16 
+stefan * toolbox/io/load.java bugfix for documentation 
+stefan * toolbox/io/runfile.java bugfix for documentation 
+
+2007/09/10 
 stefan * toolbox/deprecated added some documentation 
 stefan * toolbox/finance added some documentation 
 jmh    * toolbox/string/num2str, core/tokens/CharToken now formats a bit more like matlab. More work to be done.
