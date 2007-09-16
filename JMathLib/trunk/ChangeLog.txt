@@ -22,6 +22,7 @@ stefan +
 2007/09/16 
 stefan * toolbox/io/load.java bugfix for documentation 
 stefan * toolbox/io/runfile.java bugfix for documentation 
+stefan * send emails after comitting to mathlib-commitlog@lists.sourceforge.net
 
 2007/09/10 
 stefan * toolbox/deprecated added some documentation 
