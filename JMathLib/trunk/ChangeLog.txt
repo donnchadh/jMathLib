@@ -13,7 +13,8 @@ cla, clf, gca, gcf, get,
 global, set, isglobal, polar
 
 Updated functions:
-blanks, checkForUpdates, patch, path, substring
+addpath, blanks, checkForUpdates, load, 
+num2str, patch, path, rehash, runfile, substring
 
 ---- HISTORY ------------------------------------------------------------------
 2007/09/xx 
