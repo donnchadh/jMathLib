@@ -48,3 +48,19 @@ function retval = is_leap_year (year)
             | rem (year, 400) == 0);
 
 endfunction
+
+/*
+@GROUP
+time
+@SYNTAX
+is_leap_year()
+@DOC
+Return 1 if the given year is a leap year and 0 otherwise
+@EXAMPLES
+<programlisting>
+is_leap_year()
+</programlisting>
+@NOTES
+@SEE
+tic, toc, pause, time
+*/
