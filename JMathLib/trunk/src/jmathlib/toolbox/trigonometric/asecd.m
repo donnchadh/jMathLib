@@ -37,9 +37,11 @@ trigonometric
 @SYNTAX
 angle = asecd(value)
 @DOC
+Compute inverse secant in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 cos, acosh, sin, asin, asinh
 */

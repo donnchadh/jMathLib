@@ -37,9 +37,11 @@ trigonometric
 @SYNTAX
 angle = atand(value)
 @DOC
+Compute the inverse tangent of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 cos, acosh, sin, asin, asinh
 */

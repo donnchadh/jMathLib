@@ -37,9 +37,11 @@ trigonometric
 @SYNTAX
 angle = asind(value)
 @DOC
+Compute the inverse sine of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 cos, acosh, sin, asin, asinh
 */

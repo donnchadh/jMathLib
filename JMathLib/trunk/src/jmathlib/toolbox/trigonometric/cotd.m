@@ -39,9 +39,11 @@ trigonometric
 @SYNTAX
 angle = cotd(value)
 @DOC
+.
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 cos, acosh, sin, asin, asinh
 */

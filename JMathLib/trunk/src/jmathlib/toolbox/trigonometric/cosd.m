@@ -43,9 +43,11 @@ trigonometric
 @SYNTAX
 angle = cosd(value)
 @DOC
+Compute the cosine of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>
+@NOTES
 @SEE
 cos, acosh, sin, asin, asinh
 */

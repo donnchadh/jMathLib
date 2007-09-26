@@ -37,6 +37,7 @@ trigonometric
 @SYNTAX
 angle = acotd(value)
 @DOC
+.
 @EXAMPLES
 <programlisting>
 </programlisting>
