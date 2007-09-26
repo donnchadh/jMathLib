@@ -36,3 +36,16 @@ endfunction
 %!assert(cosd(0:10:80),cos(pi*[0:10:80]/180),-10*eps)
 %!assert(cosd([0,180,360]) != 0)
 %!assert(cosd([90,270]) == 0)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = cosd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

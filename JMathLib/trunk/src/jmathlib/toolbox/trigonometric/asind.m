@@ -30,3 +30,16 @@ endfunction
 %!error(asind())
 %!error(asind(1,2))
 %!assert(asind(0:0.1:1),180/pi*asin(0:0.1:1),-10*eps)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = asind(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

@@ -33,3 +33,15 @@ endfunction
 %!assert(cscd([0,180,360]) == Inf)
 %!assert(cscd([90,270]) != Inf)
 
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = cscd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

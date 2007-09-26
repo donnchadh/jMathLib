@@ -30,3 +30,16 @@ endfunction
 %!error(acotd())
 %!error(acotd(1,2))
 %!assert(acotd(0:10:90),180./pi.*acot(0:10:90),-10*eps)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = acotd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

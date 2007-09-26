@@ -30,3 +30,16 @@ endfunction
 %!error(acosd())
 %!error(acosd(1,2))
 %!assert(acosd(0:0.1:1),180/pi*acos(0:0.1:1),-10*eps)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = acosd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

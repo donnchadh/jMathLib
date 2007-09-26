@@ -30,3 +30,16 @@ endfunction
 %!error(acscd())
 %!error(acscd(1,2))
 %!assert(acscd(0:10:90),180/pi*acsc(0:10:90),-10*eps)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = acsd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

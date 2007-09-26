@@ -58,12 +58,14 @@ public class acos extends ExternalElementWiseFunction
 @GROUP
 trigonometric
 @SYNTAX
-angle = ACOS(value)
+angle = acos(value)
 @DOC
 Returns the arc cosine of value.
 @EXAMPLES
-ACOS(1) = 0
-ACOS(0) = 1.5707963267948966
+<programlisting>
+acos(1) = 0
+acos(0) = 1.5707963267948966
+</programlisting>
 @SEE
 cos, acosh, sin, asin, asinh
 */

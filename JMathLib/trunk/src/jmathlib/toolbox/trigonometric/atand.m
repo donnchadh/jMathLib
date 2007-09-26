@@ -30,3 +30,16 @@ endfunction
 %!error(atand())
 %!error(atand(1,2))
 %!assert(atand(0:10:90),180./pi.*atan(0:10:90),-10*eps)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = atand(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

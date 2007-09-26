@@ -32,3 +32,16 @@ endfunction
 %!assert(secd(0:10:80),sec(pi*[0:10:80]/180),-10*eps)
 %!assert(secd([0,180,360]) != Inf)
 %!assert(secd([90,270]) == Inf)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = secd(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

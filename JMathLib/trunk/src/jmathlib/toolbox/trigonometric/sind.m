@@ -35,3 +35,16 @@ endfunction
 %!assert(sind(10:10:90),sin(pi*[10:10:90]/180),-10*eps)
 %!assert(sind([0,180,360]) == 0)
 %!assert(sind([90,270]) != 0)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = sind(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/

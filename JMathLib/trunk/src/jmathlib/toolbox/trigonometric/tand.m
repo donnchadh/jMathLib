@@ -38,3 +38,16 @@ endfunction;
 %!assert(tand(10:10:80),tan(pi*[10:10:80]/180),-10*eps)
 %!assert(tand([0,180,360]) == 0)
 %!assert(tand([90,270]) == Inf)
+
+/*
+@GROUP
+trigonometric
+@SYNTAX
+angle = tand(value)
+@DOC
+@EXAMPLES
+<programlisting>
+</programlisting>
+@SEE
+cos, acosh, sin, asin, asinh
+*/
