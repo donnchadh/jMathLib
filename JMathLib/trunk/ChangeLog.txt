@@ -17,8 +17,11 @@ addpath, blanks, checkForUpdates, load,
 num2str, patch, path, rehash, runfile, substring
 
 ---- HISTORY ------------------------------------------------------------------
-2007/09/xx 
+2007/10/xx 
 stefan + 
+
+2007/10/03 
+stefan + added new property Colormap
 
 2007/09/16 
 stefan * toolbox/io/load.java bugfix for documentation 
