@@ -20,6 +20,10 @@ num2str, patch, path, rehash, runfile, substring
 2007/10/xx 
 stefan + 
 
+2007/10/xx 
+stefan + get.java added support for color property
+stefan + figure.java added support for figure() without arguments
+
 2007/10/03 
 stefan + added new property Colormap
 
