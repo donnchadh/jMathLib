@@ -4,6 +4,7 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.graphics.*;
+import java.awt.Color;
 
 public class get extends ExternalFunction
 {
@@ -86,6 +87,22 @@ public class get extends ExternalFunction
             {
                 double[] d = ((double[])obj);
                 
+                return new DoubleNumberToken ( new double[][] {d} ); 
+            }
+            else if (obj instanceof double[][])
+            {
+                double[][] d = ((double[][])obj);
+                
+                return new DoubleNumberToken ( d ); 
+            }
+            else if (obj instanceof Color)
+            {
+                Color c = ((Color)obj);
+                
+                double[] d = new double[3];
+                d[0] = (double)c.getRed()/255.0;
+                d[1] = (double)c.getGreen()/255.0;
+                d[2] = (double)c.getBlue()/255.0;
                 return new DoubleNumberToken ( new double[][] {d} ); 
             }
             else
