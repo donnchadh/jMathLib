@@ -65,7 +65,7 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     // private CloseRequestFcnP
     private ColorProperty colorP = new ColorProperty(this, "Color", Color.lightGray);
 
-    private ColormapProperty colormapP = new ColormapProperty(this, "Colormap");
+    private ColormapProperty ColormapP = new ColormapProperty(this, "Colormap");
     // private CurrentCharacterP
     // private CurrentPointP
     private BooleanProperty DockControlsP = new BooleanProperty(this, "DockControls", true);
