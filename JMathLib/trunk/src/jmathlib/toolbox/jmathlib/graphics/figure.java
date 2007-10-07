@@ -21,8 +21,12 @@ public class figure extends ExternalFunction
 		}
         else
         {
-	        if (getNArgIn(operands) != 1)
-				throwMathLibException("figure: number of arguments != 1");
+            
+            if (getNArgIn(operands) == 0)
+                getGraphicsManager().createNewFigure();
+
+            if (getNArgIn(operands) != 1)
+			throwMathLibException("figure: number of arguments != 1");
             
 	    	if (!(operands[0] instanceof DoubleNumberToken)) 
         		throwMathLibException("print: argument must be a number");
