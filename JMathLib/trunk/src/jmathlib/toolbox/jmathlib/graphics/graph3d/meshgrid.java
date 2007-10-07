@@ -28,7 +28,7 @@ public class meshgrid extends ExternalFunction
 		   throwMathLibException("meshgrid: number of output arguments != 2");
 
 		if ( !(operands[0] instanceof DoubleNumberToken) ||
-             !(operands[0] instanceof DoubleNumberToken)   )
+             !(operands[1] instanceof DoubleNumberToken)   )
 			throwMathLibException("meshgrid: works only on numbers");
 
 		// get data from arguments
