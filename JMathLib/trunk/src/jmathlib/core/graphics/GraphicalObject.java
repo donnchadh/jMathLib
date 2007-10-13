@@ -8,20 +8,26 @@ public abstract class GraphicalObject extends HandleObject
 {  
 
 	/** common properties to all objects*/
-    // private BeingDeletedP
-    // private BusyActionP
-    // private ButtonDownFcnP
-    // private ChildrenP
+    public RadioProperty BusyActionP = new RadioProperty(this, "BusyAction", new String[] {"cancel", "queue"},"cancel");
+
+    public StringProperty ButtonDownFcnP = new StringProperty(this, "ButtonDownFcn", "");
+    // public ChildrenP
     public BooleanProperty ClippingP = new BooleanProperty(this, "Clipping", true);
-    // private CreateFcnP
-    // private DeleteFcnP
+    // public CurrentFigureP
+    public BooleanProperty DiaryP = new BooleanProperty(this, "Diary", true);
+    public StringProperty  DiaryFileP = new StringProperty(this, "DiaryFile", "");
+    public BooleanProperty EchoP = new BooleanProperty(this, "Echo", true);
+    public StringProperty  ErrorMessageP     = new StringProperty(this, "ErrorMessage", "");
+    public RadioProperty   FormatSpacingP    = new RadioProperty(this, "FormatSpacing", new String[] {"compact", "loose"},"compact");
     public BooleanProperty HandleVisibilityP = new BooleanProperty(this, "HandleVisibility", true);
     public BooleanProperty HitTestP          = new BooleanProperty(this, "HitTest", true);
     public BooleanProperty InterruptibleP    = new BooleanProperty(this, "Interruptible", true);
-    // private ParentP
-    // private SelectedP
+    public StringProperty  LanguageP         = new StringProperty(this, "Language", "");
+    // public ParentP
+    public BooleanProperty SelectedP           = new BooleanProperty(this, "Selected", true);
     public BooleanProperty SelectionHighlightP = new BooleanProperty(this, "SelectionHighlight", true);
-    // private TagP
+    public BooleanProperty ShowHiddenHandlesP  = new BooleanProperty(this, "ShowHiddenHandles", false);
+    public StringProperty  TagP                = new StringProperty(this, "Tag", "");
     public TypeProperty TypeP = new TypeProperty(this, "root");
     // private UserDataP
     public BooleanProperty VisibileP = new BooleanProperty(this, "Visible", true);
