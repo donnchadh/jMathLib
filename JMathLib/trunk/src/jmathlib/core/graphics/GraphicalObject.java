@@ -29,32 +29,32 @@ public abstract class GraphicalObject extends HandleObject
 
     /** parent axes */
 	//HandleObjectListProperty Parent = new HandleObjectListProperty(this, "Parent",     1);
-    GraphicalObject parent = null;
+    protected GraphicalObject parent = null;
     
 	/** Origin of curves */
-	int xOrig;
-	int yOrig;
-	int zOrig;
+    public int xOrig;
+    public int yOrig;
+    public int zOrig;
 
 	/* Size of area to plot */
-	int width;
-	int height;
+    public int width;
+    public int height;
 
 	/* boundary values */
-	double xmin;
-	double xmax;
-	double ymin;
-	double ymax;
-	double zmin;
-	double zmax;
+	protected double xmin;
+	protected double xmax;
+	protected double ymin;
+	protected double ymax;
+	protected double zmin;
+	protected double zmax;
 
 	/* axes boundaries */
-	double ax_xmin;
-	double ax_xmax;
-	double ax_ymin;
-	double ax_ymax;
-	double ax_zmin;
-	double ax_zmax;
+	public double ax_xmin;
+	public double ax_xmax;
+	public double ax_ymin;
+	public double ax_ymax;
+	public double ax_zmin;
+	public double ax_zmax;
 
 	public Matrix3D mat  = new Matrix3D();		//?
 

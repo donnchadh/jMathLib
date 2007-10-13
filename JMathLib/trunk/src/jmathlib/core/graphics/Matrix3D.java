@@ -2,7 +2,7 @@ package jmathlib.core.graphics;
 
 /** A fairly conventional 3D matrix object that can transform sets of
     3D points and perform a variety of manipulations on the transform */
-class Matrix3D {
+public class Matrix3D {
     double xx, xy, xz, xo;
     double yx, yy, yz, yo;
     double zx, zy, zz, zo;
@@ -13,7 +13,7 @@ class Matrix3D {
     double[][] unitMatrix =  {{1.0, 0.0, 0.0, 0.0},{0.0, 1.0, 0.0, 0.0},{0.0, 0.0, 1.0, 0.0}};
     
     /** Create a new unit matrix */
-    Matrix3D() 
+    public Matrix3D() 
     {
 		xx = 1.0f;
 		yy = 1.0f;
@@ -56,7 +56,7 @@ class Matrix3D {
     }
     
     /** rotate theta degrees about the y axis */
-    void yrot(double theta) 
+    public void yrot(double theta) 
     {
 		theta *= (pi / 180);
 		double ct = Math.cos(theta);
@@ -83,7 +83,7 @@ class Matrix3D {
     }
     
     /** rotate theta degrees about the x axis */
-    void xrot(double theta) {
+    public void xrot(double theta) {
 	theta *= (pi / 180);
 	double ct = Math.cos(theta);
 	double st = Math.sin(theta);

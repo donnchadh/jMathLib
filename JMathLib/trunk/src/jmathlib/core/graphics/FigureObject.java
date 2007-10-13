@@ -2,6 +2,8 @@ package jmathlib.core.graphics;
 
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.graphics.properties.*;
+import jmathlib.core.graphics.axes.coreObjects.*;
+import jmathlib.core.graphics.axes.*;
 
 import java.awt.*;
 import java.awt.event.*;
