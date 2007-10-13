@@ -12,19 +12,19 @@ public abstract class GraphicalObject extends HandleObject
     // private BusyActionP
     // private ButtonDownFcnP
     // private ChildrenP
-    protected BooleanProperty ClippingP = new BooleanProperty(this, "Clipping", true);
+    public BooleanProperty ClippingP = new BooleanProperty(this, "Clipping", true);
     // private CreateFcnP
     // private DeleteFcnP
-    protected BooleanProperty HandleVisibilityP = new BooleanProperty(this, "HandleVisibility", true);
-    protected BooleanProperty HitTestP          = new BooleanProperty(this, "HitTest", true);
-    protected BooleanProperty InterruptibleP    = new BooleanProperty(this, "Interruptible", true);
+    public BooleanProperty HandleVisibilityP = new BooleanProperty(this, "HandleVisibility", true);
+    public BooleanProperty HitTestP          = new BooleanProperty(this, "HitTest", true);
+    public BooleanProperty InterruptibleP    = new BooleanProperty(this, "Interruptible", true);
     // private ParentP
     // private SelectedP
-    protected BooleanProperty SelectionHighlightP = new BooleanProperty(this, "SelectionHighlight", true);
+    public BooleanProperty SelectionHighlightP = new BooleanProperty(this, "SelectionHighlight", true);
     // private TagP
-    //protected TypeP
+    public TypeProperty TypeP = new TypeProperty(this, "root");
     // private UserDataP
-    protected BooleanProperty VisibileP = new BooleanProperty(this, "Visible", true);
+    public BooleanProperty VisibileP = new BooleanProperty(this, "Visible", true);
 	
 
     /** parent axes */
