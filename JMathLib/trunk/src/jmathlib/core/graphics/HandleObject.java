@@ -2,8 +2,6 @@ package jmathlib.core.graphics;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.TreeMap;
 import java.lang.ref.WeakReference;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.graphics.properties.*;
@@ -59,17 +57,6 @@ public class HandleObject extends PropertySet
 		handleMap.remove(new Integer(handle));
 	}
 
-	public static void listObjects()
-	{
-		Iterator it = handleMap.entrySet().iterator();
-        ErrorLogger.debugLine("HandleObject:");
-		while (it.hasNext())
-		{
-			Map.Entry entry = (Map.Entry)it.next();
-            ErrorLogger.debugLine(entry.getKey() + " = " + entry.getValue());
-		}
-	}
-    
     public void addProperty(Property p)
     {
         put(p.getName().toLowerCase(), p);
@@ -103,13 +90,13 @@ public class HandleObject extends PropertySet
             Errors.throwMathLibException("property not found - " + name);
     }
 
-    public void show()
+    public void show(Interpreter interpreter)
     {
         Iterator it = values().iterator();
         while (it.hasNext())
         {
             Property p = (Property)it.next();
-            System.out.println("show  " + p.getName() + " = " + p);
+            interpreter.displayText(" "+ p.getName() + " = " + p);
         }
     }
 }
