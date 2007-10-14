@@ -1,13 +1,13 @@
 package jmathlib.core.graphics.axes.coreObjects;
 
-import jmathlib.core.graphics.*;
+import jmathlib.core.graphics.axes.*;
 import jmathlib.core.graphics.properties.*;
 import jmathlib.core.interpreter.ErrorLogger;
 
 import java.awt.*;
 
 /** implementation of a line object*/
-public class LineObject extends GraphicalObject implements PropertyListener
+public class LineObject extends AxesObject implements PropertyListener
 {
 	public static final int LINE_MODE  = 0;
 	public static final int STEM_MODE  = 1;
@@ -43,6 +43,7 @@ public class LineObject extends GraphicalObject implements PropertyListener
     
 	public LineObject()
 	{
+
 	    ColorP.addPropertyListener(this);
 		XDataP.addPropertyListener(this);
 		YDataP.addPropertyListener(this);

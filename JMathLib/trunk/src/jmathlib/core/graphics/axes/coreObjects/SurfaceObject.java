@@ -2,7 +2,7 @@ package jmathlib.core.graphics.axes.coreObjects;
 
 import java.awt.*;
 
-import jmathlib.core.graphics.*;
+import jmathlib.core.graphics.axes.*;
 import jmathlib.core.graphics.properties.ColorProperty;
 import jmathlib.core.graphics.properties.DoubleProperty;
 import jmathlib.core.graphics.properties.LineStyleProperty;

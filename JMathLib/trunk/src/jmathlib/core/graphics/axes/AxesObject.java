@@ -8,7 +8,7 @@ import jmathlib.core.graphics.axes.coreObjects.*;
 
 
 /** created and holds the axes of a plot*/
-public class AxesObject extends GraphicalObject implements PropertyListener
+public class AxesObject extends FigureObject implements PropertyListener
 {
 	protected class AxesComponent extends Component
 	{
@@ -47,14 +47,6 @@ public class AxesObject extends GraphicalObject implements PropertyListener
 	/**title of this axis*/
 	protected TextObject title = null;
 
-	/**name of x-axis*/
-	protected TextObject xLabel = null;
-
-	/**name of y-axis*/
-	protected TextObject yLabel = null;
-
-	/**name of z-axis*/
-	protected TextObject zLabel = null;
 
 	/**double-buffering data*/
 	protected Image     backBuffer;
@@ -66,68 +58,116 @@ public class AxesObject extends GraphicalObject implements PropertyListener
 	protected AxesComponent component;
 
 	/**axes properties*/
-    protected DoubleStructProperty ALimP = new DoubleStructProperty(this, "ALim", new String[] {"x","y"}, new double[] {-1 , 1});
-
-    protected BooleanProperty BoxP = new BooleanProperty(this, "Box", true);
-
-    protected ColorProperty ColorP = new ColorProperty(this, "Color", Color.white);
-
-    protected RadioProperty XAxisLocationP = new RadioProperty(this, "XAxisLocation", new String[] {"top", "bottom"}, "bottom");
-    protected RadioProperty YAxisLocationP = new RadioProperty(this, "YAxisLocation", new String[] {"left", "right"}, "left");
-    protected RadioProperty ZAxisLocationP = new RadioProperty(this, "ZAxisLocation", new String[] {"left", "right"}, "left");
-
-    protected DoubleArrayProperty XLimP = new DoubleArrayProperty(this, "XLim", new double[] {0.0, 1.0}, 2);
-    protected DoubleArrayProperty YLimP = new DoubleArrayProperty(this, "YLim", new double[] {0.0, 1.0}, 2);
-    protected DoubleArrayProperty ZLimP = new DoubleArrayProperty(this, "ZLim", new double[] {-0.5, 0.5}, 2);
-
-    protected RadioProperty XLimModeP = new RadioProperty(this, "XLimMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty YLimModeP = new RadioProperty(this, "YLimMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty ZLimModeP = new RadioProperty(this, "ZLimMode", new String[] {"auto", "manual"}, "auto");
-
-    protected BooleanProperty XGridP = new BooleanProperty(this, "XGrid", false);
-    protected BooleanProperty YGridP = new BooleanProperty(this, "YGrid", false);
-    protected BooleanProperty ZGridP = new BooleanProperty(this, "ZGrid", false);
-
-    protected BooleanProperty XMinorGridP = new BooleanProperty(this, "XMinorGrid", false);
-    protected BooleanProperty YMinorGridP = new BooleanProperty(this, "YMinorGrid", false);
-    protected BooleanProperty ZMinorGridP = new BooleanProperty(this, "ZMinorGrid", false);
-
-    protected LineStyleProperty XGridStyleP = new LineStyleProperty(this, "XGridStyle", ":");
-    protected LineStyleProperty YGridStyleP = new LineStyleProperty(this, "YGridStyle", ":");
-    protected LineStyleProperty ZGridStyleP = new LineStyleProperty(this, "ZGridStyle", ":");
-
-    protected ColorProperty XColorP = new ColorProperty(this, "XColor", Color.black);
-    protected ColorProperty YColorP = new ColorProperty(this, "YColor", Color.black);
-    protected ColorProperty ZColorP = new ColorProperty(this, "ZColor", Color.black);
-
-    protected RadioProperty XScaleP = new RadioProperty(this, "XScale", new String[] {"linear", "log"}, "linear");
-    protected RadioProperty YScaleP = new RadioProperty(this, "YScale", new String[] {"linear", "log"}, "linear");
-    protected RadioProperty ZScaleP = new RadioProperty(this, "ZScale", new String[] {"linear", "log"}, "linear");
-
-    protected DoubleArrayProperty XTickP = new DoubleArrayProperty(this, "XTick", new double[0], -1);
-    protected DoubleArrayProperty YTickP = new DoubleArrayProperty(this, "YTick", new double[0], -1);
-    protected DoubleArrayProperty ZTickP = new DoubleArrayProperty(this, "ZTick", new double[0], -1);
-
-    protected RadioProperty XTickModeP = new RadioProperty(this, "XTickMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty YTickModeP = new RadioProperty(this, "YTickMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty ZTickModeP = new RadioProperty(this, "ZTickMode", new String[] {"auto", "manual"}, "auto");
-
-    protected StringArrayProperty XTickLabelP = new StringArrayProperty(this, "XTickLabel", new String[0]);
-    protected StringArrayProperty YTickLabelP = new StringArrayProperty(this, "YTickLabel", new String[0]);
-    protected StringArrayProperty ZTickLabelP = new StringArrayProperty(this, "ZTickLabel", new String[0]);
-
-    protected RadioProperty XTickLabelModeP = new RadioProperty(this, "XTickLabelMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty YTickLabelModeP = new RadioProperty(this, "YTickLabelMode", new String[] {"auto", "manual"}, "auto");
-    protected RadioProperty ZTickLabelModeP = new RadioProperty(this, "ZTickLabelMode", new String[] {"auto", "manual"}, "auto");
-
-    protected RadioProperty NextPlotP = new RadioProperty(this, "NextPlot", new String[] {"replace", "add"}, "replace");
+    public RadioProperty ActivePositionPropertyP = new RadioProperty(this, "ActivePositionProperty", new String[] {"outerposition", "position"}, "outerposition");
+    public DoubleStructProperty ALimP = new DoubleStructProperty(this, "ALim", new String[] {"x","y"}, new double[] {-1 , 1});
+    public RadioProperty ALimModeP = new RadioProperty(this, "ALimMode", new String[] {"auto", "manual"}, "auto");
+    public ColorProperty AmbientLightColorP = new ColorProperty(this, "AmbientLightColor", Color.white);
+    public BooleanProperty BoxP = new BooleanProperty(this, "Box", true);
+    public DoubleArrayProperty CameraPositionP = new DoubleArrayProperty(this, "CameraPosition", new double[3], 3);
+    public RadioProperty CameraPositionModeP = new RadioProperty(this, "CameraPositionMode", new String[] {"auto", "manual"}, "auto");
+    public DoubleArrayProperty CameraTargetP = new DoubleArrayProperty(this, "CameraTarget", new double[3], 3);
+    public RadioProperty CameraTargetModeP = new RadioProperty(this, "CameraTargetMode", new String[] {"auto", "manual"}, "auto");
+    public DoubleArrayProperty CameraUpVectorP = new DoubleArrayProperty(this, "CameraUpVector", new double[3], 3);
+    public RadioProperty CameraUpVectorModeP = new RadioProperty(this, "CameraUpVectorMode", new String[] {"auto", "manual"}, "auto");
+    public DoubleProperty CameraViewAngleP = new DoubleProperty(this, "CameraViewAngle", 1.0);
+    public RadioProperty CameraViewAngleModeP = new RadioProperty(this, "CameraViewAngleMode", new String[] {"auto", "manual"}, "auto");
+    public HandleObjectListProperty ChildrenP = new HandleObjectListProperty(this, "Children", -1);
+    public DoubleArrayProperty CLimP = new DoubleArrayProperty(this, "CLim", new double[] {0.0, 1.0}, 2);
+    public RadioProperty CLimModeP = new RadioProperty(this, "CLimMode", new String[] {"auto", "manual"}, "auto");
+    public ColorProperty ColorP = new ColorProperty(this, "Color", Color.white);
+    public ColormapProperty ColorOrderP = new ColormapProperty(this, "Colormap");
+    public DoubleArrayProperty CurrentPointP = new DoubleArrayProperty(this, "CurrentPoint", new double[2], 2);
+    public DoubleArrayProperty DataAspectRatioP = new DoubleArrayProperty(this, "DataAspectRatio", new double[3], 3);
+    public RadioProperty DataAspectRatioModeP = new RadioProperty(this, "DataAspectRatioMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty DrawModeP = new RadioProperty(this, "DrawMode", new String[] {"normal", "fast"}, "normal");
+    public RadioProperty FontAngleP = new RadioProperty(this, "FontAngle", new String[] {"normal", "italic", "oblique"}, "normal");
+    public StringProperty FontNameP = new StringProperty(this, "FontName", "");
+    // FontSize
+    public RadioProperty FontUnitsP = new RadioProperty(this, "FontUnits", new String[] {"points", "normalized", "inches", "centimeters", "pixels"}, "points");
+    public RadioProperty FontWeightP = new RadioProperty(this, "FontWeight", new String[] {"normal", "bold", "light", "demi"}, "normal");
+    public RadioProperty GridLineStyleP = new RadioProperty(this, "GridLineStyle", new String[] {"-", "- -", ":", "-.", "none"}, "-");
+    public RadioProperty LayerP = new RadioProperty(this, "Layer", new String[] {"bottom", "top"}, "bottom");
+    // LineStyleOrder  needs LineSpec-Property
+    public DoubleProperty LineWidthP = new DoubleProperty(this, "LineWidth", 1.0);
+    public RadioProperty MinorGridLineStyleP = new RadioProperty(this, "MinorGridLineStyle", new String[] {"-", "- -", ":", "-.", "none"}, "-");
+    public DoubleArrayProperty OuterPositionP = new DoubleArrayProperty(this, "OuterPosition", new double[3], 3);
+    public DoubleArrayProperty PlotBoxAspectRatioP = new DoubleArrayProperty(this, "PlotBoxAspectRatio", new double[3], 3);
+    public RadioProperty PlotBoxAspectRatioModeP = new RadioProperty(this, "PlotBoxAspectRatioMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty ProjectionP = new RadioProperty(this, "Projection", new String[] {"orthographic", "perspective"}, "orthographic");
+    public RadioProperty TickDirP = new RadioProperty(this, "TickDir", new String[] {"in", "out"}, "in");
+    public RadioProperty TickDirModeP = new RadioProperty(this, "TickDirMode", new String[] {"auto", "manual"}, "auto");
+    public DoubleArrayProperty TickLengthP = new DoubleArrayProperty(this, "TickLength", new double[2], 2);
+    public DoubleArrayProperty TightInsetP = new DoubleArrayProperty(this, "TightInset", new double[4], 4);
+    public StringProperty TitleP = new StringProperty(this, "Title", "");
+    // UIContextMenuP
+    // UserDataP       
     
-    protected HandleObjectListProperty ChildrenP = new HandleObjectListProperty(this, "Children", -1);
+    public RadioProperty XAxisLocationP = new RadioProperty(this, "XAxisLocation", new String[] {"top", "bottom"}, "bottom");
+    public RadioProperty YAxisLocationP = new RadioProperty(this, "YAxisLocation", new String[] {"left", "right"}, "left");
+    public RadioProperty ZAxisLocationP = new RadioProperty(this, "ZAxisLocation", new String[] {"left", "right"}, "left");
 
+    public ColorProperty XColorP = new ColorProperty(this, "XColor", Color.black);
+    public ColorProperty YColorP = new ColorProperty(this, "YColor", Color.black);
+    public ColorProperty ZColorP = new ColorProperty(this, "ZColor", Color.black);
+
+    public RadioProperty XDirP = new RadioProperty(this, "XDir", new String[] {"normal", "reverse"}, "normal");
+    public RadioProperty YDirP = new RadioProperty(this, "YDir", new String[] {"normal", "reverse"}, "normal");
+    public RadioProperty ZDirP = new RadioProperty(this, "ZDir", new String[] {"normal", "reverse"}, "normal");
+
+    public BooleanProperty XGridP = new BooleanProperty(this, "XGrid", false);
+    public BooleanProperty YGridP = new BooleanProperty(this, "YGrid", false);
+    public BooleanProperty ZGridP = new BooleanProperty(this, "ZGrid", false);
+
+    public TextObject xLabel = null;
+    public TextObject yLabel = null;
+    public TextObject zLabel = null;
+
+    public DoubleArrayProperty XLimP = new DoubleArrayProperty(this, "XLim", new double[] {0.0, 1.0}, 2);
+    public DoubleArrayProperty YLimP = new DoubleArrayProperty(this, "YLim", new double[] {0.0, 1.0}, 2);
+    public DoubleArrayProperty ZLimP = new DoubleArrayProperty(this, "ZLim", new double[] {-0.5, 0.5}, 2);
+
+    public RadioProperty XLimModeP = new RadioProperty(this, "XLimMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty YLimModeP = new RadioProperty(this, "YLimMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty ZLimModeP = new RadioProperty(this, "ZLimMode", new String[] {"auto", "manual"}, "auto");
+
+    public BooleanProperty XMinorGridP = new BooleanProperty(this, "XMinorGrid", false);
+    public BooleanProperty YMinorGridP = new BooleanProperty(this, "YMinorGrid", false);
+    public BooleanProperty ZMinorGridP = new BooleanProperty(this, "ZMinorGrid", false);
+
+    public BooleanProperty XMinorTickP = new BooleanProperty(this, "XMinorTick", false);
+    public BooleanProperty YMinorTickP = new BooleanProperty(this, "YMinorTick", false);
+    public BooleanProperty ZMinorTickP = new BooleanProperty(this, "ZMinorTick", false);
+
+    public RadioProperty XScaleP = new RadioProperty(this, "XScale", new String[] {"linear", "log"}, "linear");
+    public RadioProperty YScaleP = new RadioProperty(this, "YScale", new String[] {"linear", "log"}, "linear");
+    public RadioProperty ZScaleP = new RadioProperty(this, "ZScale", new String[] {"linear", "log"}, "linear");
+
+    public DoubleArrayProperty XTickP = new DoubleArrayProperty(this, "XTick", new double[0], -1);
+    public DoubleArrayProperty YTickP = new DoubleArrayProperty(this, "YTick", new double[0], -1);
+    public DoubleArrayProperty ZTickP = new DoubleArrayProperty(this, "ZTick", new double[0], -1);
+
+    public StringArrayProperty XTickLabelP = new StringArrayProperty(this, "XTickLabel", new String[0]);
+    public StringArrayProperty YTickLabelP = new StringArrayProperty(this, "YTickLabel", new String[0]);
+    public StringArrayProperty ZTickLabelP = new StringArrayProperty(this, "ZTickLabel", new String[0]);
     
-    
+    public RadioProperty XTickModeP = new RadioProperty(this, "XTickMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty YTickModeP = new RadioProperty(this, "YTickMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty ZTickModeP = new RadioProperty(this, "ZTickMode", new String[] {"auto", "manual"}, "auto");
+
+    public RadioProperty XTickLabelModeP = new RadioProperty(this, "XTickLabelMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty YTickLabelModeP = new RadioProperty(this, "YTickLabelMode", new String[] {"auto", "manual"}, "auto");
+    public RadioProperty ZTickLabelModeP = new RadioProperty(this, "ZTickLabelMode", new String[] {"auto", "manual"}, "auto");
+
+    public LineStyleProperty XGridStyleP = new LineStyleProperty(this, "XGridStyle", ":");
+    public LineStyleProperty YGridStyleP = new LineStyleProperty(this, "YGridStyle", ":");
+    public LineStyleProperty ZGridStyleP = new LineStyleProperty(this, "ZGridStyle", ":");
+
+
 	public AxesObject()
    	{
+	    // set type to "axes"
+	    TypeP = new TypeProperty(this, "axes");
+	    
 		component = new AxesComponent(this);
 
 		autoTick();

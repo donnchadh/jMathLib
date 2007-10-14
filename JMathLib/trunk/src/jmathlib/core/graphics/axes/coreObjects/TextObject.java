@@ -1,11 +1,11 @@
 package jmathlib.core.graphics.axes.coreObjects;
 
-import jmathlib.core.graphics.*;
+import jmathlib.core.graphics.axes.*;
 import java.awt.*;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class TextObject extends GraphicalObject 
+public class TextObject extends AxesObject 
 {
 	public static final int H_LEFT   = 0;
 	public static final int H_CENTER = 1;

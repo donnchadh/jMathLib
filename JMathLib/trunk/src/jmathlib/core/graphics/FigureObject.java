@@ -99,7 +99,7 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
                            "custom"}, "arrow");
     public DoubleArrayProperty PointerShapeCDataP  = new DoubleArrayProperty(this, "PointerShapeCData", new double[16], -1);
     public DoubleArrayProperty PointerShapeHotSpotP  = new DoubleArrayProperty(this, "PointerShapeHotSpot", new double[2], -1);
-    public DoubleArrayProperty PositionP  = new DoubleArrayProperty(this, "Position", new double[2], -1);
+    public DoubleArrayProperty PositionP  = new DoubleArrayProperty(this, "Position", new double[4], 4);
     public RadioProperty RendererP = new RadioProperty(this, "Renderer", new String[] {"painters", "zbuffer", "OpenGL"}, "painters");
     public RadioProperty RendererModeP = new RadioProperty(this, "RendererMode", new String[] {"auto", "manual"}, "auto");
 	public BooleanProperty ResizeP = new BooleanProperty(this, "Resize", true);
@@ -120,8 +120,17 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     // XVisual
     public RadioProperty VisualModeP = new RadioProperty(this, "VisualMode", new String[] {"auto", "manual"}, "manual");
     
-	public FigureObject(int _figureNo)
+
+    public FigureObject()
+    {  
+        // set type to "axes"
+        TypeP = new TypeProperty(this, "figure");
+    
+    }
+    
+    public FigureObject(int _figureNo)
 	{  
+        // set type to "axes"
 	    TypeP = new TypeProperty(this, "figure");
 
         figureNo = _figureNo;
