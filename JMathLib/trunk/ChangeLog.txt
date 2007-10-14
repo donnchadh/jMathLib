@@ -20,9 +20,14 @@ num2str, patch, path, rehash, runfile, substring
 2007/10/xx 
 stefan + 
 
-2007/10/xx 
-stefan + get.java added support for color property
-stefan + figure.java added support for figure() without arguments
+2007/10/14 
+stefan + FunctionalHandleProperty.java first version
+stefan * moved core objects to new directories
+stefan * more properties to FigureObject, GraphicalObject
+
+2007/10/06 
+stefan * get.java added support for color property
+stefan * figure.java added support for figure() without arguments
 
 2007/10/03 
 stefan + added new property Colormap
