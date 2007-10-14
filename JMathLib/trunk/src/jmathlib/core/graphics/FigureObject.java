@@ -2,7 +2,6 @@ package jmathlib.core.graphics;
 
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.graphics.properties.*;
-import jmathlib.core.graphics.axes.coreObjects.*;
 import jmathlib.core.graphics.axes.*;
 
 import java.awt.*;
@@ -63,57 +62,74 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
 	private FigurePanel p   = new FigurePanel();
 
     // properties
-    private BooleanProperty BackingStoreP = new BooleanProperty(this, "BackingStore", true);
-    // private CloseRequestFcnP
-    private ColorProperty colorP = new ColorProperty(this, "Color", Color.lightGray);
-
-    private ColormapProperty ColormapP = new ColormapProperty(this, "Colormap");
-    // private CurrentCharacterP
-    // private CurrentPointP
-    private BooleanProperty DockControlsP = new BooleanProperty(this, "DockControls", true);
-    private BooleanProperty DoubleBufferP = new BooleanProperty(this, "DoubleBuffer", true);
-    // private FileNameP
-    // private FixedColorsP
-    private BooleanProperty IntegerHandleP = new BooleanProperty(this, "IntegerHandle", true);
-    private BooleanProperty InvertHardcopyP = new BooleanProperty(this, "InvertHardcopy", true);
-    // private KeyPressFcnP
+	public DoubleArrayProperty AlphamapP  = new DoubleArrayProperty(this, "Alphamap", new double[0], -1);
+    public BooleanProperty BeingDeletedP = new BooleanProperty(this, "BeingDeleted", false);
+    public FunctionalHandleProperty CloseRequestFcnP = new FunctionalHandleProperty(this, "CloseRequestFcn", "");
+	public ColorProperty ColorP = new ColorProperty(this, "Color", Color.lightGray);
+	public ColormapProperty ColormapP = new ColormapProperty(this, "Colormap");
+	public FunctionalHandleProperty CreateFcnP = new FunctionalHandleProperty(this, "CreateFcn", "");
+	// public CurrentAxesP
+	public StringProperty  CurrentCharacterP = new StringProperty(this, "CurrentCharacter", "");
+	// public CurrentObjectP
+	// public CurrentPointP
+    public FunctionalHandleProperty DeleteFcnP = new FunctionalHandleProperty(this, "DeleteFcn", "");
+	public BooleanProperty DockControlsP = new BooleanProperty(this, "DockControls", true);
+	public BooleanProperty DoubleBufferP = new BooleanProperty(this, "DoubleBuffer", true);
+    public StringProperty  FileNameP = new StringProperty(this, "FileName", "");
+    public ColormapProperty FixedColorsP = new ColormapProperty(this, "FixedColors");
+	public BooleanProperty IntegerHandleP = new BooleanProperty(this, "IntegerHandle", true);
+	public BooleanProperty InvertHardcopyP = new BooleanProperty(this, "InvertHardcopy", true);
+    public FunctionalHandleProperty KeyPressFcnP = new FunctionalHandleProperty(this, "KeyPressFcn", "");
+    public FunctionalHandleProperty KeyReleaseFcnP = new FunctionalHandleProperty(this, "KeyReleaseFcn", "");
     // private MenuBarP
-    // private NameP
-    // private NextPlotP
-    private BooleanProperty NumberTitleP = new BooleanProperty(this, "NumberTitle", true);
-    // private PaperOrientationP
-    // private PaperPositionP
-    // private PaperSizeP
-    // private PaperTypeP
-    // private PaterUnitsP
-    // private PointerP
-    // private PointerShapeCDataP
-    // private PositionP
-    // private RendererP
-    // private RendererModeP
-    private BooleanProperty ResizeP = new BooleanProperty(this, "Resize", true);
-    // private ResizeFcnP
-    // private SelectionTypeP
-    private BooleanProperty ShareColorsP = new BooleanProperty(this, "ShareColors", true);
-    // private ToolBarP
-    // private UIContextMenuP
-    private UnitsProperty UnitsP = new UnitsProperty(this, "Units", "pixels");
-    // private WVisualP
-    // private WVisualModeP
-    // private WindowButtonDownFcnP
-    // private WindowButtonMotionFcnP
-    // private WindowButtonUpFcnP
-    // private WindowStyleP
+    public DoubleProperty MinColormapP = new DoubleProperty(this, "MinColormap", 1.0);
+    public StringProperty NameP = new StringProperty(this, "Name", "");
+    public RadioProperty NextPlotP = new RadioProperty(this, "NextPlot", new String[] {"next", "add", "replace", "replacechildren"}, "add");
+	public BooleanProperty NumberTitleP = new BooleanProperty(this, "NumberTitle", true);
+    public RadioProperty PaperOrientationP = new RadioProperty(this, "PaperOrientation", new String[] {"portrait", "landscape"}, "portrait");
+    public DoubleArrayProperty PaperPositionP  = new DoubleArrayProperty(this, "PaperPosition", new double[0], -1);
+    public RadioProperty PaperPositionModeP = new RadioProperty(this, "PaperPositionMode", new String[] {"auto", "manual"}, "manual");
+    public DoubleArrayProperty PaperSizeP  = new DoubleArrayProperty(this, "PaperSize", new double[2], -1);
+    public StringProperty PaperTypeP = new StringProperty(this, "PaperType", "");
+    public RadioProperty PaperUnitsP = new RadioProperty(this, "PaperUnits", new String[] {"normalized", "inches", "centimeters", "points"}, "inches");
+    public RadioProperty PointerP = new RadioProperty(this, "Pointer", 
+             new String[] {"crosshair", "arrow", "watch", "topl", "topr", 
+                           "botl", "botr", "circle", "cross", "fleur", "left", 
+                           "right", "top", "bottom", "fullcrosshair", "ibeam", 
+                           "custom"}, "arrow");
+    public DoubleArrayProperty PointerShapeCDataP  = new DoubleArrayProperty(this, "PointerShapeCData", new double[16], -1);
+    public DoubleArrayProperty PointerShapeHotSpotP  = new DoubleArrayProperty(this, "PointerShapeHotSpot", new double[2], -1);
+    public DoubleArrayProperty PositionP  = new DoubleArrayProperty(this, "Position", new double[2], -1);
+    public RadioProperty RendererP = new RadioProperty(this, "Renderer", new String[] {"painters", "zbuffer", "OpenGL"}, "painters");
+    public RadioProperty RendererModeP = new RadioProperty(this, "RendererMode", new String[] {"auto", "manual"}, "auto");
+	public BooleanProperty ResizeP = new BooleanProperty(this, "Resize", true);
+    public FunctionalHandleProperty ResizeFcnP = new FunctionalHandleProperty(this, "ResizeFcn", "");
+    public RadioProperty SelectionTypeP = new RadioProperty(this, "SelectionType", new String[] {"normal", "extend", "alt", "open"}, "normal");
+	public BooleanProperty ShareColorsP = new BooleanProperty(this, "ShareColors", true);
+    public RadioProperty ToolBarP = new RadioProperty(this, "ToolBar", new String[] {"none", "auto", "figure"}, "auto");
+    // public UIContextMenuP
+	public UnitsProperty UnitsP = new UnitsProperty(this, "Units", "pixels");
+    public FunctionalHandleProperty WindowButtonDownFcnP = new FunctionalHandleProperty(this, "WindowButtonDownFcn", "");
+    public FunctionalHandleProperty WindowButtonMotionFcnP = new FunctionalHandleProperty(this, "WindowButtonMotionFcn", "");
+    public FunctionalHandleProperty WindowButtonUpFcnP = new FunctionalHandleProperty(this, "WindowButtonUpFcn", "");
+    public FunctionalHandleProperty WindowScrollWheelFcnP = new FunctionalHandleProperty(this, "WindowScrollWheelFcn", "");
+    public RadioProperty WindowStyleP = new RadioProperty(this, "WindowStyle", new String[] {"normal", "modal", "docked"}, "normal");
+    // WVisual
+    public RadioProperty WVisualModeP = new RadioProperty(this, "WVisualMode", new String[] {"auto", "manual"}, "manual");
+    // XDisplay
+    // XVisual
+    public RadioProperty VisualModeP = new RadioProperty(this, "VisualMode", new String[] {"auto", "manual"}, "manual");
     
 	public FigureObject(int _figureNo)
 	{  
+	    TypeP = new TypeProperty(this, "figure");
 
         figureNo = _figureNo;
 
 		// setup window frame
 		fig.setSize(dxFrame, dyFrame);
 		fig.setTitle("Figure No."+figureNo);
-		fig.setBackground( colorP.getColor() );
+		fig.setBackground( ColorP.getColor() );
 		fig.addWindowListener(this);
 
 		// create initial axes object
@@ -293,7 +309,6 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
         }
         p.validate();
         p.repaint();
-        p.show();
     }
     
 	/**
