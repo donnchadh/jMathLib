@@ -3,7 +3,6 @@ package jmathlib.core.graphics.axes.coreObjects;
 import jmathlib.core.graphics.axes.*;
 import jmathlib.core.graphics.properties.*;
 import jmathlib.core.interpreter.ErrorLogger;
-
 import java.awt.*;
 
 /** implementation of a line object*/
@@ -33,8 +32,8 @@ public class LineObject extends AxesObject implements PropertyListener
 	// protected YDataSourceP
     // protected ZDataSourceP
 
-    public LineStyleProperty LineStyleP = new LineStyleProperty(this, "Style", "-");
-    public DoubleProperty    LineWidthP = new DoubleProperty(this, "Width", 0.0);
+    public LineStyleProperty LineStyleP = new LineStyleProperty(this, "LineStyle", "-");
+    public DoubleProperty    LineWidthP = new DoubleProperty(this, "LineWidth", 0.0);
 
     public RadioProperty TypeP = new RadioProperty(this, "Type", new String[] {"Line", "Stem","Stair","Area"},"Line");
    
