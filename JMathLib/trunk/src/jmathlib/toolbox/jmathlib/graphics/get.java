@@ -30,24 +30,22 @@ public class get extends ExternalFunction
         HandleObject ho = null;
         
         try {
-        ho = HandleObject.getHandleObject((int)x);
+            ho = HandleObject.getHandleObject((int)x);
         }
         catch (Exception e)
         {
             
         }
         
-        HandleObject.listObjects();
+        //HandleObject.listObjects();
         
-        if (ho!=null)
-        {
-            ho.show();
-        }
         
         if (getNArgIn(operands) == 1)
         {
             // e.g. get(1234)
-            return new DoubleNumberToken(x);
+            getInterpreter().displayText("");
+            ho.show(getInterpreter());
+            return null;
         }
         else if (getNArgIn(operands) == 2)
         {
