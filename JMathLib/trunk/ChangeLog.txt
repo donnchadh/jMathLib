@@ -18,7 +18,10 @@ num2str, patch, path, rehash, runfile, substring
 
 ---- HISTORY ------------------------------------------------------------------
 2007/10/xx 
-stefan + 
+stefan * 
+
+2007/10/16 
+stefan * FigureObject.java added support for "name" and "menubar" properties
 
 2007/10/14 
 stefan + FunctionalHandleProperty.java first version
