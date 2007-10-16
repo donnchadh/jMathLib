@@ -14,7 +14,7 @@ public class StringProperty extends Property
 
 	public Object get()
 	{
-		return getArray();
+		return getString();
 	}
 
 	public void set(Object value) throws PropertyException
@@ -22,7 +22,8 @@ public class StringProperty extends Property
 		try
 		{
 			String v = (value == null ? new String()  : (String)value);
-			setArrayInternal(v);
+			s = v;
+	        valueChanged();
 		}
 		catch (ClassCastException e)
 		{
@@ -30,18 +31,13 @@ public class StringProperty extends Property
 		}
 	}
 
-	private void setArrayInternal(String a)
-	{
-		s = a;
-		valueChanged();
-	}
 
-	public String getArray()
+	public String getString()
 	{
 		return s;
 	}
 
-	public void setArray(String v)
+	public void setString(String v)
 	{
 		try { set(v); }
 		catch (PropertyException e) { }
