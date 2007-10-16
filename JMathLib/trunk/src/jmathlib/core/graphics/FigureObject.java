@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.awt.print.*;
 
 /** created and holds the axes of a plot, there can be multiple axes in one plot*/
-public class FigureObject extends GraphicalObject implements WindowListener, Printable, ActionListener
+public class FigureObject extends GraphicalObject implements WindowListener, Printable, ActionListener, PropertyListener
 {  
 	private class FigurePanel extends Panel
 	{
@@ -61,6 +61,9 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
 	private Frame       fig = new Frame();
 	private FigurePanel p   = new FigurePanel();
 
+	// the menu bar
+	MenuBar mbar = new MenuBar();
+	
     // properties
 	public DoubleArrayProperty AlphamapP  = new DoubleArrayProperty(this, "Alphamap", new double[0], -1);
     public BooleanProperty BeingDeletedP = new BooleanProperty(this, "BeingDeleted", false);
@@ -81,7 +84,7 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
 	public BooleanProperty InvertHardcopyP = new BooleanProperty(this, "InvertHardcopy", true);
     public FunctionalHandleProperty KeyPressFcnP = new FunctionalHandleProperty(this, "KeyPressFcn", "");
     public FunctionalHandleProperty KeyReleaseFcnP = new FunctionalHandleProperty(this, "KeyReleaseFcn", "");
-    // private MenuBarP
+    public RadioProperty MenuBarP = new RadioProperty(this, "MenuBar", new String[] {"none", "figure"}, "figure");
     public DoubleProperty MinColormapP = new DoubleProperty(this, "MinColormap", 1.0);
     public StringProperty NameP = new StringProperty(this, "Name", "");
     public RadioProperty NextPlotP = new RadioProperty(this, "NextPlot", new String[] {"next", "add", "replace", "replacechildren"}, "add");
@@ -121,15 +124,19 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     public RadioProperty VisualModeP = new RadioProperty(this, "VisualMode", new String[] {"auto", "manual"}, "manual");
     
 
-    public FigureObject()
+    public FigureObject() 
     {  
         // set type to "axes"
         TypeP = new TypeProperty(this, "figure");
-    
+
+        MenuBarP.addPropertyListener(this);
+        NameP.addPropertyListener(this);
     }
     
     public FigureObject(int _figureNo)
 	{  
+        this();
+        
         // set type to "axes"
 	    TypeP = new TypeProperty(this, "figure");
 
@@ -161,7 +168,7 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
      */
 	private void initMenuBar()
 	{
-		MenuBar mbar = new MenuBar();
+		
 
 		Menu fileMenu = new Menu("File");
 		fileMenu.add(new MenuItem("New Figure", new MenuShortcut(KeyEvent.VK_N, false)));
@@ -502,6 +509,31 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     public void repaint()
     {
         //super.repaint();
+    }
+    
+    public void propertyChanged(Property p)
+    {
+        ErrorLogger.debugLine("FigureObject property changed: "+ p.getName());
+
+        // display/remove menu bar
+        if (p == MenuBarP)
+        {
+            if (MenuBarP.is("none"))
+                fig.setMenuBar(null);
+            else
+                fig.setMenuBar(mbar);
+        }
+
+        // change name of this figure
+        if (p == NameP)
+        {
+            if (NameP.getString().equals(""))
+                fig.setTitle("Figure No."+figureNo);
+            else
+                fig.setTitle("Figure No."+figureNo+": "+NameP.getString());
+        }
+
+        parent.repaint();
     }
 
 }
