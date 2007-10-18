@@ -515,6 +515,34 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     {
         ErrorLogger.debugLine("FigureObject property changed: "+ p.getName());
 
+        
+        // xxx
+        if (p==DockControlsP)
+        {
+            if (DockControlsP.isSet())
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+        
+
+        // xxx
+        if (p==DoubleBufferP)
+        {
+            if (DoubleBufferP.isSet())
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+
         // display/remove menu bar
         if (p == MenuBarP)
         {
