@@ -610,7 +610,6 @@ public class AxesObject extends FigureObject implements PropertyListener
 		//g2d.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 		//g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_SPEED);
 
-		//setBounds(72,72,451,697);
 		//System.out.println("width = "+this.getSize().width+" height = "+this.getSize().height);
 		dyFrame = this.getSize().height;
 		dxFrame = this.getSize().width;
@@ -618,9 +617,6 @@ public class AxesObject extends FigureObject implements PropertyListener
 		//ErrorLogger.debugLine("AxesObject dxFrame="+dxFrame+" dyFframe="+dyFrame);
 		//ErrorLogger.debugLine("AxesObject getX="+this.getX()+" getY="+this.getY());
 		//ErrorLogger.debugLine("AxesObject getLocation.x="+this.getLocation().x);
-
-		// if these axes hold no data -> do nothing
-		//if (axesElements.size() == 0) return;
 
 		// size of curves
 		int dyCurves = (int)(dyFrame*3/4);
@@ -631,6 +627,7 @@ public class AxesObject extends FigureObject implements PropertyListener
 		int dxOrig = (dxFrame-dxCurves)/2;
 
 
+		// fonts
 		FontMetrics fM  = g.getFontMetrics();
 		int    sAscent  = fM.getAscent();
 		int    sDescent = fM.getDescent();
@@ -647,7 +644,7 @@ public class AxesObject extends FigureObject implements PropertyListener
 		ymax = YLimP.getArray()[1];
 		dy = ymax-ymin;
 
-		// add white rectangle as background
+		// add rectangle as background
 		g.setColor( ((ColorProperty)getProperty("Color")).getColor() );
 		g.fillRect(dxOrig, dyOrig, dxCurves, dyCurves);
 		
@@ -657,7 +654,6 @@ public class AxesObject extends FigureObject implements PropertyListener
 		int xLabMinY = dyOrig+dxCurves;
 
 		// X Grid
-		boolean  doXGrid     = XGridP.isSet() && !XGridStyleP.is("none");
 		double[] xticks      = XTickP.getArray();
 		String[] xticklabels = XTickLabelP.getArray();
 		Stroke   xS          = XGridStyleP.getStroke(1);
@@ -672,7 +668,7 @@ public class AxesObject extends FigureObject implements PropertyListener
 				continue;
 
 			// grid line
-			if (doXGrid)
+			if (XGridP.isSet() && !XGridStyleP.is("none"))
 			{
 				g2d.setStroke(xS);
 				g.drawLine(xt, dyOrig, xt, dyOrig+dyCurves);
@@ -694,10 +690,9 @@ public class AxesObject extends FigureObject implements PropertyListener
 		}
 
 		// Y Grid
-		boolean doYGrid = YGridP.isSet() && !YGridStyleP.is("none");
-		double[] yticks = YTickP.getArray();
+		double[] yticks      = YTickP.getArray();
 		String[] yticklabels = YTickLabelP.getArray();
-		Stroke yS = YGridStyleP.getStroke(1);
+		Stroke   yS          = YGridStyleP.getStroke(1);
 		g2d.setColor(YColorP.getColor());
 		for (int i=0; i<yticks.length; i++)
 		{
@@ -707,7 +702,7 @@ public class AxesObject extends FigureObject implements PropertyListener
 				continue;
 
 			// grid line
-			if (doYGrid)
+			if (YGridP.isSet() && !YGridStyleP.is("none"))
 			{
 				g2d.setStroke(yS);
 				g.drawLine(dxOrig, yt, dxOrig+dxCurves, yt);
