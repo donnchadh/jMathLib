@@ -27,11 +27,11 @@ public class max extends ExternalFunction
 
 		// get data from arguments
 		double[][] a_r     = ((DoubleNumberToken)operands[0]).getValuesRe();
-        double[][] a_i     = ((DoubleNumberToken)operands[0]).getValuesIm();
+        //double[][] a_i     = ((DoubleNumberToken)operands[0]).getValuesIm();
 		int a_dy           = a_r.length;
         int a_dx           = a_r[0].length;	
         double   maxRe     = 0;
-        double   maxIm     = 0;
+        //double   maxIm     = 0;
         double[][] result  = null;
         
         // one argument e.g. max([3,4,5;6,7,7]) or
@@ -82,7 +82,7 @@ public class max extends ExternalFunction
                 throwMathLibException("max: only works on numbers");
 
             double[][] b_r     = ((DoubleNumberToken)operands[1]).getValuesRe();
-            double[][] b_i     = ((DoubleNumberToken)operands[1]).getValuesIm();
+            //double[][] b_i     = ((DoubleNumberToken)operands[1]).getValuesIm();
             int b_dy           = b_r.length;
             int b_dx           = b_r[0].length; 
 
