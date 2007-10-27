@@ -4,6 +4,7 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.graphics.*;
+import jmathlib.core.graphics.axes.*;
 import jmathlib.core.interpreter.ErrorLogger;
 
 /**An external function for 3 dimensional surface plots*/

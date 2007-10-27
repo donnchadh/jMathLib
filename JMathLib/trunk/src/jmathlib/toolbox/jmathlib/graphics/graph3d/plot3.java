@@ -5,6 +5,7 @@ import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.graphics.*;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.graphics.axes.*;
 
 /**An external function for 3 dimensional plots*/
 public class plot3 extends ExternalFunction
