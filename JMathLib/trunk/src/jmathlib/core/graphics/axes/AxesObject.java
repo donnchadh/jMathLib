@@ -47,7 +47,6 @@ public class AxesObject extends FigureObject implements PropertyListener
 	/**title of this axis*/
 	protected TextObject title = null;
 
-
 	/**double-buffering data*/
 	protected Image     backBuffer;
 	protected Graphics  backGC = null;
@@ -63,26 +62,26 @@ public class AxesObject extends FigureObject implements PropertyListener
     public RadioProperty ALimModeP = new RadioProperty(this, "ALimMode", new String[] {"auto", "manual"}, "auto");
     public ColorProperty AmbientLightColorP = new ColorProperty(this, "AmbientLightColor", Color.white);
     public BooleanProperty BoxP = new BooleanProperty(this, "Box", true);
-    public DoubleArrayProperty CameraPositionP = new DoubleArrayProperty(this, "CameraPosition", new double[3], 3);
+    public DoubleVectorProperty CameraPositionP = new DoubleVectorProperty(this, "CameraPosition", new double[3], 3);
     public RadioProperty CameraPositionModeP = new RadioProperty(this, "CameraPositionMode", new String[] {"auto", "manual"}, "auto");
-    public DoubleArrayProperty CameraTargetP = new DoubleArrayProperty(this, "CameraTarget", new double[3], 3);
+    public DoubleVectorProperty CameraTargetP = new DoubleVectorProperty(this, "CameraTarget", new double[3], 3);
     public RadioProperty CameraTargetModeP = new RadioProperty(this, "CameraTargetMode", new String[] {"auto", "manual"}, "auto");
-    public DoubleArrayProperty CameraUpVectorP = new DoubleArrayProperty(this, "CameraUpVector", new double[3], 3);
+    public DoubleVectorProperty CameraUpVectorP = new DoubleVectorProperty(this, "CameraUpVector", new double[3], 3);
     public RadioProperty CameraUpVectorModeP = new RadioProperty(this, "CameraUpVectorMode", new String[] {"auto", "manual"}, "auto");
     public DoubleProperty CameraViewAngleP = new DoubleProperty(this, "CameraViewAngle", 1.0);
     public RadioProperty CameraViewAngleModeP = new RadioProperty(this, "CameraViewAngleMode", new String[] {"auto", "manual"}, "auto");
     public HandleObjectListProperty ChildrenP = new HandleObjectListProperty(this, "Children", -1);
-    public DoubleArrayProperty CLimP = new DoubleArrayProperty(this, "CLim", new double[] {0.0, 1.0}, 2);
+    public DoubleVectorProperty CLimP = new DoubleVectorProperty(this, "CLim", new double[] {0.0, 1.0}, 2);
     public RadioProperty CLimModeP = new RadioProperty(this, "CLimMode", new String[] {"auto", "manual"}, "auto");
     public ColorProperty ColorP = new ColorProperty(this, "Color", Color.white);
     public ColormapProperty ColorOrderP = new ColormapProperty(this, "Colormap");
-    public DoubleArrayProperty CurrentPointP = new DoubleArrayProperty(this, "CurrentPoint", new double[2], 2);
-    public DoubleArrayProperty DataAspectRatioP = new DoubleArrayProperty(this, "DataAspectRatio", new double[3], 3);
+    public DoubleVectorProperty CurrentPointP = new DoubleVectorProperty(this, "CurrentPoint", new double[2], 2);
+    public DoubleVectorProperty DataAspectRatioP = new DoubleVectorProperty(this, "DataAspectRatio", new double[3], 3);
     public RadioProperty DataAspectRatioModeP = new RadioProperty(this, "DataAspectRatioMode", new String[] {"auto", "manual"}, "auto");
     public RadioProperty DrawModeP = new RadioProperty(this, "DrawMode", new String[] {"normal", "fast"}, "normal");
     public RadioProperty FontAngleP = new RadioProperty(this, "FontAngle", new String[] {"normal", "italic", "oblique"}, "normal");
     public StringProperty FontNameP = new StringProperty(this, "FontName", "");
-    // FontSize
+    public DoubleProperty FontSizeP = new DoubleProperty(this, "FontSize", 12.0);
     public RadioProperty FontUnitsP = new RadioProperty(this, "FontUnits", new String[] {"points", "normalized", "inches", "centimeters", "pixels"}, "points");
     public RadioProperty FontWeightP = new RadioProperty(this, "FontWeight", new String[] {"normal", "bold", "light", "demi"}, "normal");
     public RadioProperty GridLineStyleP = new RadioProperty(this, "GridLineStyle", new String[] {"-", "- -", ":", "-.", "none"}, "-");
@@ -90,14 +89,14 @@ public class AxesObject extends FigureObject implements PropertyListener
     // LineStyleOrder  needs LineSpec-Property
     public DoubleProperty LineWidthP = new DoubleProperty(this, "LineWidth", 1.0);
     public RadioProperty MinorGridLineStyleP = new RadioProperty(this, "MinorGridLineStyle", new String[] {"-", "- -", ":", "-.", "none"}, "-");
-    public DoubleArrayProperty OuterPositionP = new DoubleArrayProperty(this, "OuterPosition", new double[3], 3);
-    public DoubleArrayProperty PlotBoxAspectRatioP = new DoubleArrayProperty(this, "PlotBoxAspectRatio", new double[3], 3);
+    public DoubleVectorProperty OuterPositionP = new DoubleVectorProperty(this, "OuterPosition", new double[3], 3);
+    public DoubleVectorProperty PlotBoxAspectRatioP = new DoubleVectorProperty(this, "PlotBoxAspectRatio", new double[3], 3);
     public RadioProperty PlotBoxAspectRatioModeP = new RadioProperty(this, "PlotBoxAspectRatioMode", new String[] {"auto", "manual"}, "auto");
     public RadioProperty ProjectionP = new RadioProperty(this, "Projection", new String[] {"orthographic", "perspective"}, "orthographic");
     public RadioProperty TickDirP = new RadioProperty(this, "TickDir", new String[] {"in", "out"}, "in");
     public RadioProperty TickDirModeP = new RadioProperty(this, "TickDirMode", new String[] {"auto", "manual"}, "auto");
-    public DoubleArrayProperty TickLengthP = new DoubleArrayProperty(this, "TickLength", new double[2], 2);
-    public DoubleArrayProperty TightInsetP = new DoubleArrayProperty(this, "TightInset", new double[4], 4);
+    public DoubleVectorProperty TickLengthP = new DoubleVectorProperty(this, "TickLength", new double[2], 2);
+    public DoubleVectorProperty TightInsetP = new DoubleVectorProperty(this, "TightInset", new double[4], 4);
     public StringProperty TitleP = new StringProperty(this, "Title", "");
     // UIContextMenuP
     // UserDataP       
@@ -122,9 +121,9 @@ public class AxesObject extends FigureObject implements PropertyListener
     public TextObject yLabel = null;
     public TextObject zLabel = null;
 
-    public DoubleArrayProperty XLimP = new DoubleArrayProperty(this, "XLim", new double[] {0.0, 1.0}, 2);
-    public DoubleArrayProperty YLimP = new DoubleArrayProperty(this, "YLim", new double[] {0.0, 1.0}, 2);
-    public DoubleArrayProperty ZLimP = new DoubleArrayProperty(this, "ZLim", new double[] {-0.5, 0.5}, 2);
+    public DoubleVectorProperty XLimP = new DoubleVectorProperty(this, "XLim", new double[] {0.0, 1.0}, 2);
+    public DoubleVectorProperty YLimP = new DoubleVectorProperty(this, "YLim", new double[] {0.0, 1.0}, 2);
+    public DoubleVectorProperty ZLimP = new DoubleVectorProperty(this, "ZLim", new double[] {-0.5, 0.5}, 2);
 
     public RadioProperty XLimModeP = new RadioProperty(this, "XLimMode", new String[] {"auto", "manual"}, "auto");
     public RadioProperty YLimModeP = new RadioProperty(this, "YLimMode", new String[] {"auto", "manual"}, "auto");
@@ -142,9 +141,9 @@ public class AxesObject extends FigureObject implements PropertyListener
     public RadioProperty YScaleP = new RadioProperty(this, "YScale", new String[] {"linear", "log"}, "linear");
     public RadioProperty ZScaleP = new RadioProperty(this, "ZScale", new String[] {"linear", "log"}, "linear");
 
-    public DoubleArrayProperty XTickP = new DoubleArrayProperty(this, "XTick", new double[0], -1);
-    public DoubleArrayProperty YTickP = new DoubleArrayProperty(this, "YTick", new double[0], -1);
-    public DoubleArrayProperty ZTickP = new DoubleArrayProperty(this, "ZTick", new double[0], -1);
+    public DoubleVectorProperty XTickP = new DoubleVectorProperty(this, "XTick", new double[0], -1);
+    public DoubleVectorProperty YTickP = new DoubleVectorProperty(this, "YTick", new double[0], -1);
+    public DoubleVectorProperty ZTickP = new DoubleVectorProperty(this, "ZTick", new double[0], -1);
 
     public StringArrayProperty XTickLabelP = new StringArrayProperty(this, "XTickLabel", new String[0]);
     public StringArrayProperty YTickLabelP = new StringArrayProperty(this, "YTickLabel", new String[0]);
@@ -197,6 +196,7 @@ public class AxesObject extends FigureObject implements PropertyListener
 		FontAngleP.addPropertyListener(this);
 		FontNameP.addPropertyListener(this);
 		FontUnitsP.addPropertyListener(this);
+        FontSizeP.addPropertyListener(this);
 		FontWeightP.addPropertyListener(this);
 		GridLineStyleP.addPropertyListener(this);
 		LayerP.addPropertyListener(this);
@@ -425,18 +425,37 @@ public class AxesObject extends FigureObject implements PropertyListener
 				if (_xmax > xmax) xmax = _xmax;
 			}
 
-			double dx = xmax-xmin;
-			if (dx > 10)
+			if (XScaleP.is("linear"))
 			{
-				xmin = Math.floor(xmin);
-				xmax = Math.ceil(xmax);
+			    // linear axis
+	            double dx = xmax-xmin;
+			    if (dx > 10)
+    			{
+    				xmin = Math.floor(xmin);
+    				xmax = Math.ceil(xmax);
+    			}
+    			else if (dx == 0)
+    			{
+    				xmin--;
+    				xmax++;
+    			}
 			}
-			else if (dx == 0)
+			else
 			{
-				xmin--;
-				xmax++;
+			    // log axis
+                if (xmax/xmin > 10)
+                {
+                    xmin = Math.floor(xmin);
+                    xmax = Math.ceil(xmax);
+                }
+                else 
+                {
+                    // ????
+                    xmin--;
+                    xmax++;
+                }
 			}
-
+			    
 			XLimP.update(new double[] {xmin, xmax});
 			autoTickX();
 		}

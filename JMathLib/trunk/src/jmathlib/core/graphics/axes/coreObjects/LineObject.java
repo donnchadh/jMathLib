@@ -23,9 +23,9 @@ public class LineObject extends AxesObject implements PropertyListener
     // protected MarkerFaceColorP
     public DoubleProperty MarkerSizeP = new DoubleProperty(this, "MarkerSize", 9.0);
     // protected UIContextMenuP
-    public DoubleArrayProperty XDataP = new DoubleArrayProperty(this, "XData", new double[0], -1);
-    public DoubleArrayProperty YDataP = new DoubleArrayProperty(this, "YData", new double[0], -1);
-    public DoubleArrayProperty ZDataP = new DoubleArrayProperty(this, "ZData", new double[0], -1);;
+    public DoubleVectorProperty XDataP = new DoubleVectorProperty(this, "XData", new double[0], -1);
+    public DoubleVectorProperty YDataP = new DoubleVectorProperty(this, "YData", new double[0], -1);
+    public DoubleVectorProperty ZDataP = new DoubleVectorProperty(this, "ZData", new double[0], -1);;
 
     // protected XDataModeP
     // protected XDataSourceP
@@ -114,13 +114,16 @@ public class LineObject extends AxesObject implements PropertyListener
 		for (int i=0; i<x.length; i++)
 		{
             ErrorLogger.debugLine("x="+x[i]+" y="+y[i]);
-			ix[i] = xOrig + (int)((x[i]  - ax_xmin) / dx * width);
-			iy[i] = yOrig - (int)((y[i]  - ax_ymin) / dy * height);
+			//ix[i] = xOrig + (int)((Math.log(x[i])  - Math.log(ax_xmin)) / Math.log(dx) * width);
+            ix[i] = xOrig + (int)((x[i]  - ax_xmin) / dx * width);
+            iy[i] = yOrig - (int)((y[i]  - ax_ymin) / dy * height);
+            //ix[i] = (int)((AxesObject)parent).transX(x[i], y[i]);
+            //iy[i] = (int)((AxesObject)parent).transY(x[i], y[i]);
         }
 
 		Graphics2D g2d = (Graphics2D)g;
-		Stroke normS = g2d.getStroke();
-		Stroke lineS = LineStyleP.getStroke(LineWidthP.floatValue());
+		Stroke normS   = g2d.getStroke();
+		Stroke lineS   = LineStyleP.getStroke(LineWidthP.floatValue());
 		Stroke markerS = new BasicStroke(LineWidthP.floatValue());
 
         // get mode

@@ -65,7 +65,7 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
 	MenuBar mbar = new MenuBar();
 	
     // properties
-	public DoubleArrayProperty AlphamapP  = new DoubleArrayProperty(this, "Alphamap", new double[0], -1);
+	public DoubleVectorProperty AlphamapP  = new DoubleVectorProperty(this, "Alphamap", new double[0], -1);
     public BooleanProperty BeingDeletedP = new BooleanProperty(this, "BeingDeleted", false);
     public FunctionalHandleProperty CloseRequestFcnP = new FunctionalHandleProperty(this, "CloseRequestFcn", "");
 	public ColorProperty ColorP = new ColorProperty(this, "Color", Color.lightGray);
@@ -90,9 +90,9 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
     public RadioProperty NextPlotP = new RadioProperty(this, "NextPlot", new String[] {"next", "add", "replace", "replacechildren"}, "add");
 	public BooleanProperty NumberTitleP = new BooleanProperty(this, "NumberTitle", true);
     public RadioProperty PaperOrientationP = new RadioProperty(this, "PaperOrientation", new String[] {"portrait", "landscape"}, "portrait");
-    public DoubleArrayProperty PaperPositionP  = new DoubleArrayProperty(this, "PaperPosition", new double[0], -1);
+    public DoubleVectorProperty PaperPositionP  = new DoubleVectorProperty(this, "PaperPosition", new double[0], -1);
     public RadioProperty PaperPositionModeP = new RadioProperty(this, "PaperPositionMode", new String[] {"auto", "manual"}, "manual");
-    public DoubleArrayProperty PaperSizeP  = new DoubleArrayProperty(this, "PaperSize", new double[2], -1);
+    public DoubleVectorProperty PaperSizeP  = new DoubleVectorProperty(this, "PaperSize", new double[2], -1);
     public StringProperty PaperTypeP = new StringProperty(this, "PaperType", "");
     public RadioProperty PaperUnitsP = new RadioProperty(this, "PaperUnits", new String[] {"normalized", "inches", "centimeters", "points"}, "inches");
     public RadioProperty PointerP = new RadioProperty(this, "Pointer", 
@@ -100,9 +100,9 @@ public class FigureObject extends GraphicalObject implements WindowListener, Pri
                            "botl", "botr", "circle", "cross", "fleur", "left", 
                            "right", "top", "bottom", "fullcrosshair", "ibeam", 
                            "custom"}, "arrow");
-    public DoubleArrayProperty PointerShapeCDataP  = new DoubleArrayProperty(this, "PointerShapeCData", new double[16], -1);
-    public DoubleArrayProperty PointerShapeHotSpotP  = new DoubleArrayProperty(this, "PointerShapeHotSpot", new double[2], -1);
-    public DoubleArrayProperty PositionP  = new DoubleArrayProperty(this, "Position", new double[4], 4);
+    public DoubleVectorProperty PointerShapeCDataP  = new DoubleVectorProperty(this, "PointerShapeCData", new double[16], -1);
+    public DoubleVectorProperty PointerShapeHotSpotP  = new DoubleVectorProperty(this, "PointerShapeHotSpot", new double[2], -1);
+    public DoubleVectorProperty PositionP  = new DoubleVectorProperty(this, "Position", new double[4], 4);
     public RadioProperty RendererP = new RadioProperty(this, "Renderer", new String[] {"painters", "zbuffer", "OpenGL"}, "painters");
     public RadioProperty RendererModeP = new RadioProperty(this, "RendererMode", new String[] {"auto", "manual"}, "auto");
 	public BooleanProperty ResizeP = new BooleanProperty(this, "Resize", true);
