@@ -11,7 +11,7 @@ public abstract class GraphicalObject extends HandleObject
     public RadioProperty BusyActionP = new RadioProperty(this, "BusyAction", new String[] {"cancel", "queue"},"cancel");
 
     public StringProperty ButtonDownFcnP = new StringProperty(this, "ButtonDownFcn", "");
-    // public ChildrenP
+    public HandleObjectListProperty ChildrenP = new HandleObjectListProperty(this, "Children", -1);
     public BooleanProperty ClippingP = new BooleanProperty(this, "Clipping", true);
     // public CurrentFigureP
     public BooleanProperty DiaryP = new BooleanProperty(this, "Diary", true);
