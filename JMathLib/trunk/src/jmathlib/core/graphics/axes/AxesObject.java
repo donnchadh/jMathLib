@@ -81,7 +81,7 @@ public class AxesObject extends FigureObject implements PropertyListener
     public RadioProperty DrawModeP = new RadioProperty(this, "DrawMode", new String[] {"normal", "fast"}, "normal");
     public RadioProperty FontAngleP = new RadioProperty(this, "FontAngle", new String[] {"normal", "italic", "oblique"}, "normal");
     public StringProperty FontNameP = new StringProperty(this, "FontName", "");
-    public DoubleProperty FontSizeP = new DoubleProperty(this, "FontSize", 12.0);
+    public IntegerProperty FontSizeP = new IntegerProperty(this, "FontSize", 12);
     public RadioProperty FontUnitsP = new RadioProperty(this, "FontUnits", new String[] {"points", "normalized", "inches", "centimeters", "pixels"}, "points");
     public RadioProperty FontWeightP = new RadioProperty(this, "FontWeight", new String[] {"normal", "bold", "light", "demi"}, "normal");
     public RadioProperty GridLineStyleP = new RadioProperty(this, "GridLineStyle", new String[] {"-", "- -", ":", "-.", "none"}, "-");
