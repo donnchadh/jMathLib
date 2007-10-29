@@ -21,9 +21,9 @@ public class setdebug extends ExternalFunction
             int debug = ((DoubleNumberToken)operands[0]).getIntValue(0,0);
             
             if(debug == 0)
-                getFlags().setDebug(false);
+                setDebug(false);
             else
-                getFlags().setDebug(true);                                    
+                setDebug(true);                                    
 
             return new DoubleNumberToken(1);                
         }
