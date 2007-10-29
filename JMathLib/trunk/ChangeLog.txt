@@ -20,6 +20,9 @@ num2str, patch, path, rehash, runfile, substring
 2007/10/xx 
 stefan * 
 
+2007/10/29 
+stefan + dbquit.m immediately stops debugging (calls setdebug(1))
+
 2007/10/16 
 stefan * FigureObject.java added support for "name" and "menubar" properties
 
