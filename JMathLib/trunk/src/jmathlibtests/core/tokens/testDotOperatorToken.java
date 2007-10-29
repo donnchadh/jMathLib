@@ -140,14 +140,14 @@ public class testDotOperatorToken extends TestCase {
         double[][] dr = {{1.0, -4.0}};
         ml.executeExpression("a=struct('b',0,'c',-4);");
         ml.executeExpression("r=[a.b.cos() a.c]");  // bug missing ,
-        assertTrue(Compare.ArrayEquals(dr, ml.getArrayValueRe("r")));
+        assertTrue(Compare.ArrayEquals(dr, ml.getArrayValueRe("r"),0.01));
     }
 
     public void testMatrix06() {
         double[][] dr = {{1.0, -4.0}};
         ml.executeExpression("a=struct('b',0,'c',-4);");
         ml.executeExpression("r=[a.b.cos(), a.c]");
-        assertTrue(Compare.ArrayEquals(dr, ml.getArrayValueRe("r")));
+        assertTrue(Compare.ArrayEquals(dr, ml.getArrayValueRe("r"), 0.01));
     }
 
 }
