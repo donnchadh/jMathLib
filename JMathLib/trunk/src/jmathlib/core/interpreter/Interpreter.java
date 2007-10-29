@@ -165,13 +165,6 @@ public class Interpreter extends RootObject
         return answer;
     }
 
-    /**sets the debug flag
-    @param _debug = should debug information be displayed*/
-    //public void setDebug(boolean _debug)
-    //{
-    //    getFlags().setDebug(_debug);
-    //}
-    
     /**get the real part of a scalar variable 
     @param name = name of the scalar variable
     @return numerical value of the variable */
