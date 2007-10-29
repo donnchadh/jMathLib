@@ -16,11 +16,8 @@ public class ErrorLogger extends RootObject
        @param text = the text to display*/
     public static void debugLine(String text)
     {
-		boolean debug = true;
-		if(getFlags() != null)
-		    debug = getFlags().getDebug();
 
-        if(debug)
+        if(getDebug())
         {
             //if(displayIndent)
             //    text = text + ";" + indentSize;

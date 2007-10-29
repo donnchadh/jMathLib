@@ -170,9 +170,22 @@ abstract public class RootObject implements java.io.Serializable,
     	return copy;
     }
 
-	/**return the system flags*/
-    static public Flags getFlags()
+    /**@return the setting of the debug flag*/
+    static public boolean getDebug()
     {
-        return globals.getFlags();
-    }    
+        return globals.getDebug();
+    }
+    
+    /**sets the debug flag
+    @param _debug = should debug information be displayed*/
+    static public void setDebug(boolean _debug)
+    {
+        globals.setDebug(_debug);
+    }
+
+	/**return the system flags*/
+    //static public Flags getFlags()
+    //{
+    //    return globals.getFlags();
+    //}    
 } 

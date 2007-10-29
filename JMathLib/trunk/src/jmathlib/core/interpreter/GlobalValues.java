@@ -36,11 +36,9 @@ public class GlobalValues
     /**The working directory */
     static transient private File workingDir;
 
-    //static private boolean endFunction = false;
-
-    /**store system flags*/
-    static transient private Flags flags = null;
-
+    /**sets whether to write debug lines to console and log files*/
+    static transient private boolean debug = true;
+    
     /**Initialises the global values
        @param _interpreter = the Interpreter object
        @param _runningStandalone = true if this was run from an application*/
@@ -50,9 +48,7 @@ public class GlobalValues
         //globalVariables = variables;
         contextList = new ContextList();
 
-        flags = new Flags();
-        
-        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone, flags);
+        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone);
         
         graphicsManager = new jmathlib.core.graphics.GraphicsManager();
 
@@ -178,9 +174,17 @@ public class GlobalValues
         functionManager.setWorkingDirectory(_workingDir);
     }
 
-    /**return the system flags*/
-    static public Flags getFlags()
+    /**@return the setting of the debug flag*/
+    public boolean getDebug()
     {
-        return flags;
+        return debug;
     }
+    
+    /**sets the debug flag
+    @param _debug = should debug information be displayed*/
+    public void setDebug(boolean _debug)
+    {
+        debug= _debug;
+    }
+
 }

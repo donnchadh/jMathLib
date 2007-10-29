@@ -34,14 +34,13 @@ public class WebFunctionLoader
     /**Pointer to applet context */
     //private Applet app;
     
-	public WebFunctionLoader(Flags _sysFlags)
+	public WebFunctionLoader()
 	{
         //super(urls);
 		//baseClassDir = _classDir;
 		
 		loadedClasses = new Hashtable();
         
-        //sysFlags = _sysFlags;
 
 // no function yet
 

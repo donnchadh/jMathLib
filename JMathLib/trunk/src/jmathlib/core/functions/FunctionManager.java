@@ -36,7 +36,7 @@ public class FunctionManager {
     /**Creates the function manager and defines any internal functions
     if this is an application then it creates a class loader to load external functions
     @param runningStandalone = true if the program is running as an application*/
-    public FunctionManager(boolean _runningStandalone, Flags sysFlags) {
+    public FunctionManager(boolean _runningStandalone) {
         runningStandalone = _runningStandalone;
 
         if (runningStandalone) {
