@@ -44,8 +44,6 @@ public class GlobalValues
        @param _runningStandalone = true if this was run from an application*/
     public GlobalValues(Interpreter _interpreter, boolean _runningStandalone)
     {
-        //variables = new VariableList();
-        //globalVariables = variables;
         contextList = new ContextList();
 
         functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone);
@@ -70,19 +68,6 @@ public class GlobalValues
          
     }   
 
-    /**Used to modify the variable list to point to the internal list used by a function
-       @param _variables = the variable list to use*/
-    //protected void setVariables(VariableList _variables)
-    //{
-    //    //variables = _variables;
-    //}
-
-    /**Resets the variable list to the global list after finishing processing a function*/
-    //protected void resetVariables()
-    //{
-    //    //variables = globalVariables;
-    //}
-
     /**@return the current variable list*/
     protected VariableList getVariables()
     {
@@ -103,13 +88,6 @@ public class GlobalValues
 
     /**Change the current context to point to the new Variable List
     @param _Variables = the new list of Variables to use*/
-   //   protected void createContext(VariableList _variables, OperandToken _code)
-   // {
-   //     contextList.createContext(_variables, _code);
-   // }
-
-    /**Change the current context to point to the new Variable List
-    @param _Variables = the new list of Variables to use*/
     protected void createContext(VariableList _variables)
     {
         contextList.createContext(_variables);
@@ -121,11 +99,6 @@ public class GlobalValues
         contextList.popContext();
     }
     
-    //protected OperandToken executeCurrentContext()
-    //{
-    //    return contextList.executeCurrentContext();
-    //}
-
     /**Allow access to the context list*/    
     protected ContextList getContextList()
     {
@@ -143,12 +116,6 @@ public class GlobalValues
     {
         return functionManager;
     }
-
-    /**@return the CastClassLoader*/
-    //protected MathLib.Casts.CastClassLoader getCastClassLoader()
-    //{
-    //    return castClassLoader;
-    //}
 
     /**@return handle to graphics manager*/
     protected jmathlib.core.graphics.GraphicsManager getGraphicsManager()
