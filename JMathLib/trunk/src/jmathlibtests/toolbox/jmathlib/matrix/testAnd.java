@@ -50,8 +50,8 @@ public class testAnd extends TestCase {
         ml.setArray("a", a, d);
         ml.setArray("b", b, d);
         ml.executeExpression("z = and(a,b)");
- 		assertTrue(Compare.ArrayEquals(c, ml.getArrayValueRe("z")));
- 		assertTrue(Compare.ArrayEquals(d, ml.getArrayValueIm("z")));
+ 		assertTrue(Compare.ArrayEquals(c, ml.getArrayValueRe("z"),0.01));
+ 		assertTrue(Compare.ArrayEquals(d, ml.getArrayValueIm("z"),0.01));
 	}
  
 }

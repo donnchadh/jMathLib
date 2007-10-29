@@ -23,12 +23,12 @@ public class testNot extends TestCase {
 
     /****** not() ************************************************************/
 	public void testNot01() {
-        ml.executeExpression("a=not(1);");
-		assertTrue(false == ml.getScalarValueBoolean("a"));
+        ml.executeExpression("ab=not(1);");
+		assertTrue(false == ml.getScalarValueBoolean("ab"));
 	}
     public void testNot02() {
-        ml.executeExpression("a=not(0)");
-		assertTrue(true == ml.getScalarValueBoolean("a"));
+        ml.executeExpression("abb=not(0)");
+		assertTrue(true == ml.getScalarValueBoolean("abb"));
 	}
     public void testNot03() {
         double[][] a = {{1.0, 2.0, 3.0},{-1.0, 0.0, 0.0},{11.23, -1.5, 0.0}};
