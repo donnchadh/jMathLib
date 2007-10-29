@@ -183,9 +183,4 @@ abstract public class RootObject implements java.io.Serializable,
         globals.setDebug(_debug);
     }
 
-	/**return the system flags*/
-    //static public Flags getFlags()
-    //{
-    //    return globals.getFlags();
-    //}    
 } 
