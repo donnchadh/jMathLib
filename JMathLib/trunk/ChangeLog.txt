@@ -9,7 +9,7 @@
 
 ---- Functional Changes:  version 0.8.0 -> 0.x.x ------------------------------
 New functions:
-cla, clf, gca, gcf, get,
+cla, clf, dbquit, gca, gcf, get,
 global, set, isglobal, polar
 
 Updated functions:
