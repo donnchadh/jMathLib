@@ -23,7 +23,13 @@ public class testSubAssign extends TestCase {
 	protected void setUp() {
 		ml = new Interpreter(true);
         ml.setArray("a", aRe, aIm);
+        System.out.println("*!*!*!*!*!*!*!*!*!*!*");
 	}
+	
+    protected void tearDown() {
+        ml = null;
+        System.out.println("*!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }
 
 
     /****** subassign() ******************************************************/
@@ -37,9 +43,14 @@ public class testSubAssign extends TestCase {
 		assertTrue(Compare.ArrayEquals(bRe,  ml.getArrayValueRe("b")));
 	}
    	public void testSubAssign04() {
+    	ml.setArray("a", aRe, aIm);
+    	//ml.executeExpression("a=[1,2,3,4;1,2,3,4]");
         ml.executeExpression("b=subassign(a,[5,5,5,5],2,1:4)");
    	    double[][] bRe = {{1.0, 2.0, 3.0, 4.0},{5.0, 5.0, 5.0, 5.0}};
-		assertTrue(Compare.ArrayEquals(bRe,  ml.getArrayValueRe("b")));
+		assertTrue(Compare.ArrayEquals(bRe,  ml.getArrayValueRe("b"), 0.1));
+		int a=0;
+		a=a+2;
+		
 	}
 	public void testSubAssign05() {
         ml.executeExpression("b=subassign([2, 3, 4; 5, 6, 7],[8,8]', 1:2, 3)");
@@ -48,6 +59,7 @@ public class testSubAssign extends TestCase {
 		assertTrue(Compare.ArrayEquals(bRe, ml.getArrayValueRe("b")));
     }
     public void testSubAssign06() {
+        ml.setArray("a", aRe, aIm);
         ml.executeExpression("a=subassign(a,[8,8;9,9],1:2, 1:2)");
         double[][] bRe = {{8.0, 8.0, 3.0, 4.0},
                           {9.0, 9.0, 3.0, 4.0}};
