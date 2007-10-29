@@ -106,10 +106,10 @@ public class Interpreter extends RootObject
         Parser p = new Parser();
 
         // if required rehash m-files
-	if(runningStandalone)
-	{
-	  getFunctionManager().checkAndRehashTimeStamps();
-	}        
+        if(runningStandalone)
+        {
+            getFunctionManager().checkAndRehashTimeStamps();
+        }        
 
         try
         {
