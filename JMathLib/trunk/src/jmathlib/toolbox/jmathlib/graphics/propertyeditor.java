@@ -97,13 +97,14 @@ class PropertyEditorFrame extends JFrame
 @GROUP
 graphics
 @SYNTAX
-gca
+propertyeditor( handle )
 @DOC
-get handle to current axis
+this functions is used to display a table of graphical properties
+of the element described by handle.
 @EXAMPLES
-.
+propertyeditor( gca() )
 @NOTES
 @SEE
-gcf, gco, gcbo, gcbf
+get, set
 */
 
