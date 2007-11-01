@@ -1,6 +1,7 @@
 package jmathlib.core.interpreter;
 
 import java.io.*;
+import java.applet.Applet;
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.FunctionManager;
@@ -32,11 +33,11 @@ abstract public class RootObject implements java.io.Serializable,
        @param _runnginStandalone = true if this is an application
        @param _interpreter = the interpreter object
     */
-    protected final void setConstants(boolean _runningStandalone, Interpreter _interpreter)
+    protected final void setConstants(boolean _runningStandalone, Interpreter _interpreter, Applet applet)
     {
 	    if(globals == null)
 	    {
-	        globals = new GlobalValues(_interpreter, _runningStandalone);	
+	        globals = new GlobalValues(_interpreter, _runningStandalone, applet);	
 	    }
     }
 
@@ -44,13 +45,13 @@ abstract public class RootObject implements java.io.Serializable,
        @param _runnginStandalone = true if this is an application
        @param _interpreter = the interpreter object
        @param _globals = the store of global values*/
-    protected final void setConstants(boolean _runningStandalone, Interpreter _interpreter, GlobalValues _globals)
-    {
-	    if(globals == null)
-	    {
-	        globals = _globals;	
-	    }
-    }
+    //protected final void setConstants(boolean _runningStandalone, Interpreter _interpreter, GlobalValues _globals)
+    //{
+	//    if(globals == null)
+	//    {
+	//        globals = _globals;	
+	//    }
+    //}
 
     /**@return the current variable list*/
     protected final VariableList getVariables()
@@ -171,14 +172,14 @@ abstract public class RootObject implements java.io.Serializable,
     }
 
     /**@return the setting of the debug flag*/
-    static public boolean getDebug()
+    static public final boolean getDebug()
     {
         return globals.getDebug();
     }
     
     /**sets the debug flag
     @param _debug = should debug information be displayed*/
-    static public void setDebug(boolean _debug)
+    static public final void setDebug(boolean _debug)
     {
         globals.setDebug(_debug);
     }

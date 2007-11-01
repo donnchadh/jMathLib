@@ -40,7 +40,7 @@ public class Interpreter extends RootObject
     	runningStandalone = _runningStandalone;
     	applet            = _applet;
         
-        setConstants(runningStandalone, this);
+        setConstants(runningStandalone, this, _applet);
 
 	    outputPanel = null;
 

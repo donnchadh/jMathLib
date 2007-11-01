@@ -1,6 +1,7 @@
 package jmathlib.core.interpreter;
 
 import java.io.*;
+import java.applet.Applet;
 
 //import MathLib.Tokens.*;
 import jmathlib.core.interpreter.Interpreter;
@@ -42,11 +43,11 @@ public class GlobalValues
     /**Initialises the global values
        @param _interpreter = the Interpreter object
        @param _runningStandalone = true if this was run from an application*/
-    public GlobalValues(Interpreter _interpreter, boolean _runningStandalone)
+    public GlobalValues(Interpreter _interpreter, boolean _runningStandalone, Applet applet)
     {
         contextList = new ContextList();
 
-        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone);
+        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone, applet);
         
         graphicsManager = new jmathlib.core.graphics.GraphicsManager();
 
