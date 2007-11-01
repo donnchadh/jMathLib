@@ -53,14 +53,14 @@ public class createFunctionsList extends ExternalFunction
 
         try 
         {
-			// read currenct user directory from system properties
+			// read current user directory from system properties
             String userDir = System.getProperty("user.dir");
             
             // create file for class, m files and images
             File funcFile = new File(userDir,
                                      //getWorkingDirectory(),
-			                         File.separator + "Classes" +
-                                     File.separator + "MathLib" +
+			                         File.separator + "bin" +
+                                     File.separator + "jmathlib" +
                                      File.separator + "webFunctionsList.dat");
 			ErrorLogger.debugLine("working directory: "+userDir);
  
@@ -98,10 +98,11 @@ public class createFunctionsList extends ExternalFunction
                         if (!line.endsWith("/CVS")            &&
                             !line.endsWith("/CVS/Entries")    &&
                             !line.endsWith("/CVS/Root")       &&
-                            !line.endsWith("/CVS/Repository")    )
+                            !line.endsWith("/CVS/Repository") &&
+                            !line.contains(".svn")              )
                         {
                             // remove preceding absolute path
-                            line = line.substring((userDir+"/Classes/").length());
+                            line = line.substring((userDir+"/bin/").length());
 
                             ErrorLogger.debugLine("path = "+ line);
 
