@@ -36,9 +36,11 @@ public class FunctionManager {
     /**Creates the function manager and defines any internal functions
     if this is an application then it creates a class loader to load external functions
     @param runningStandalone = true if the program is running as an application*/
-    public FunctionManager(boolean _runningStandalone) {
+    public FunctionManager(boolean _runningStandalone, Applet _applet) {
+       
         runningStandalone = _runningStandalone;
-
+        applet            = _applet;
+        
         if (runningStandalone) {
             //Add the predefined (system) function loader for the current directory.
             functionLoaders.add(new SystemFileFunctionLoader(new File("." + File.separator), false));
@@ -66,21 +68,23 @@ public class FunctionManager {
                 }
             }
         } else {
-            //ErrorLogger.debugLine("web: new url"+ getDocumentBase().toString());
             try {
-                URL url = new URL(applet.getCodeBase(), "MathLib/webFunctionsList.dat");
+                System.out.println("web:"+applet);
+                System.out.println("web: new url"+ applet.getCodeBase().toString());
+                URL url = new URL(applet.getCodeBase(), "jmathlib/webFunctionsList.dat");
                 InputStream in = url.openStream();
                 BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
                 // read each line of the functions list
                 String line = null;
                 while ((line = br.readLine()) != null) {
-                    ErrorLogger.debugLine("read =" + line);
+                    System.out.println("read =" + line);
                     if (!line.startsWith("#")) {
                         functionLoaders.add(new MFileWebLoader(applet.getCodeBase(), line));
                     }
                 }
             } catch (Exception ex) {
+                //ErrorLogger.debugLine("FunctionManager: applet error");
                 ex.printStackTrace();
             }
         }
@@ -185,6 +189,7 @@ public class FunctionManager {
     /** save reference for applet context
     this function is called from Interpreter.java */
     public void setApplet(Applet _applet) {
+        ErrorLogger.debugLine("FunctionManager: setApplet");
         applet = _applet;
     }
 
