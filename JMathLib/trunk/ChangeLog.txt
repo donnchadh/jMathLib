@@ -9,8 +9,10 @@
 
 ---- Functional Changes:  version 0.8.0 -> 0.x.x ------------------------------
 New functions:
-cla, clf, dbquit, gca, gcf, get,
-global, set, isglobal, polar
+autumn, bone, brighten, cla, clf, colormap, cool, copper, 
+dbquit, gca, gcf, get,
+global, gray, gray2ind, hot, isglobal, jet, ntsc2rgb, pink,
+polar, rainbow, set, spring, summer, white, winter
 
 Updated functions:
 addpath, blanks, checkForUpdates, load, 
