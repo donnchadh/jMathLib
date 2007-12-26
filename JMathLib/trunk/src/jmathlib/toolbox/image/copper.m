@@ -52,3 +52,18 @@ function map = copper (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+copper
+@DOC
+Create color colormap. This colormap is black to a light copper tone.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+autumn, bone, cool, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+*/

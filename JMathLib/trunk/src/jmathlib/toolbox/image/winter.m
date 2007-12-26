@@ -52,3 +52,18 @@ function map = winter (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+winter
+@DOC
+Create color colormap. This colormap is blue to green.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+autumn, hot, jet, bone, cool, copper, gray, white
+*/

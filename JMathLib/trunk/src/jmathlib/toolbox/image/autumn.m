@@ -51,3 +51,18 @@ function map = autumn (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+autumn
+@DOC
+Create color colormap. This colormap is red through orange to yellow.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+bone, brithen, cool, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+*/

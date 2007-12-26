@@ -73,3 +73,18 @@ function Rmap = brighten (m, beta)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+brighten
+@DOC
+Darkens or brightens the given colormap. 
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/

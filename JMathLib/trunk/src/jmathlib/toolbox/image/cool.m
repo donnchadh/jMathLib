@@ -51,3 +51,18 @@ function map = cool (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+cool
+@DOC
+Create color colormap. The colormap is cyan to magenta.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+autumn, bone, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+*/

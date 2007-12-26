@@ -46,3 +46,18 @@ function map = white (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+white
+@DOC
+Create color colormap.  This colormap is completely white.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+winter, autumn, hot, jet, bone, cool, copper, gray, white
+*/

@@ -55,3 +55,19 @@ function map = jet (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+jet
+@DOC
+Create color colormap. This colormap is dark blue through blue, cyan, 
+green, yellow, red to dark red.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/

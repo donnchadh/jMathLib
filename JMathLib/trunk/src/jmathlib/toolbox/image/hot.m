@@ -52,3 +52,19 @@ function map = hot (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+hot
+@DOC
+Create color colormap. This colormap is black through dark red, red, 
+orange, yellow to white.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+jet, pink, rainbow, spring, summer, white, winter
+*/

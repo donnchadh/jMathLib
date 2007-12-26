@@ -54,3 +54,19 @@ function map = bone (number)
     map = [];
   endif
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+bone
+@DOC
+Create color colormap. This colormap is a gray colormap with a light 
+blue tone. 
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+autumn, cool, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+*/

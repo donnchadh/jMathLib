@@ -75,3 +75,18 @@ function cmap = colormap (map)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+colormap
+@DOC
+.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/

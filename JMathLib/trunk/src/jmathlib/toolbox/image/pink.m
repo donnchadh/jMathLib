@@ -55,3 +55,19 @@ function map = pink (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+pink
+@DOC
+Create color colormap. This colormap gives a sephia tone on black 
+and white images.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/

@@ -51,3 +51,18 @@ function map = spring (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+spring
+@DOC
+Create color colormap. This colormap is magenta to yellow.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/

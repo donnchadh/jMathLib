@@ -56,3 +56,19 @@ function map = rainbow (number)
   endif
 
 endfunction
+
+/*
+@GROUP
+image
+@SYNTAX
+rainbow
+@DOC
+Create color colormap. This colormap is red through orange, yellow, green, 
+blue to violet.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+.
+*/
