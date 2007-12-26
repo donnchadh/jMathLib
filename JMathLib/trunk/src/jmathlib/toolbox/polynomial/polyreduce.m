@@ -67,4 +67,5 @@ y = polyreduce (x)
 @NOTES
 @EXAMPLES
 @SEE
+poly, polyinteg, polyval, roots, unmkpp
 */

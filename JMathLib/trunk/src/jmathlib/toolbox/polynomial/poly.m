@@ -71,5 +71,6 @@ y = poly (x)
 @NOTES
 @EXAMPLES
 @SEE
+mkpp, polyreduce, polyval, roots, unmkpp
 */
 

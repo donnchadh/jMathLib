@@ -86,4 +86,5 @@ y = roots (x)
 @NOTES
 @EXAMPLES
 @SEE
+poly, polyreduce, polyval, polyinteg, unmkpp
 */

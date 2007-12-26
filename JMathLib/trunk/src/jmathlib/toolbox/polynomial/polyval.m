@@ -72,4 +72,5 @@ y = polyval (c, x)
 @NOTES
 @EXAMPLES
 @SEE
+poly, polyreduce, polyinteg, roots, unmkpp
 */

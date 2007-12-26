@@ -70,4 +70,5 @@ polynomial
 @NOTES
 @EXAMPLES
 @SEE
+poly, polyreduce, polyval, roots, polyinteg
 */

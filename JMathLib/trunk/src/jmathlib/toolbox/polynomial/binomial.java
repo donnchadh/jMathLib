@@ -59,14 +59,14 @@ public class binomial extends ExternalFunction
 @GROUP
 polynomial
 @SYNTAX
-Answer=BINOMIAL(value)
+Answer=binomial(value)
 @DOC
 Calculates the binomial coefficients of (x+y)^value.
 @NOTES
 @EXAMPLES
 <programlisting>
-BINOMIAL(3) = [1, 3, 3, 1]
-BINOMIAL(4) = [1, 4, 6, 4, 1]
+binomial(3) = [1, 3, 3, 1]
+binomial(4) = [1, 4, 6, 4, 1]
 </programlisting>
 @SEE
 poly, roots

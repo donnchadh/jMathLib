@@ -76,4 +76,5 @@ pp = mkpp (x, P, d)
 @NOTES
 @EXAMPLES
 @SEE
+poly, polyreduce, polyval, roots, unmkpp
 */
