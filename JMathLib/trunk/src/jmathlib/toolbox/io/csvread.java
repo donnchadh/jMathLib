@@ -170,6 +170,6 @@ Reads in a matrix from a comma seperated value file.
 cvsreac("testfile.csv", 0, 0)=[1,2;3,4]
 </programlisting>
 @SEE
-csvwrite, urlread
+csvwrite, urlread, dir, cd
 */
 

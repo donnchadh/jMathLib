@@ -109,6 +109,6 @@ Writes a matrix out to a file in comma seperated value format.
 csvwrite("testfile.csv", [1,2;3,4], 0 ,0)
 </programlisting>
 @SEE
-csvread, urlread
+csvread, urlread, dir, delete
 */
 

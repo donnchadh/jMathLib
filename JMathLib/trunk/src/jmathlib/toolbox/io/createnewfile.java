@@ -42,7 +42,7 @@ IO
 @SYNTAX
 createnewfile(filename)
 @DOC
-.
+use this script to create a new file.
 @EXAMPLES
 <programlisting>
 createnewfile("bar.txt");

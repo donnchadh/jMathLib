@@ -62,12 +62,12 @@ IO
 @SYNTAX
 cd(directory)
 @DOC
-Sets the working directory to directory.
+Sets the working directory to directory. Also switches between directories.
 @EXAMPLES
 <programlisting>
 cd("C:\barfoo");
 </programlisting>
 @SEE
-dir, cd
+dir, cd, isdirectory
 */
 
