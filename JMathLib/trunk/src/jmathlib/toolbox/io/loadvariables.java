@@ -47,6 +47,6 @@ The variables are written as a serialized stream of java objects. Therefor the
 format of the .mlf-file is java-specific. The file is also specific to the
 versions of MathLib token and classes.
 @SEE
-savevariables
+savevariables, load, dir, csvread, csvwrite
 */
 

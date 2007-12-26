@@ -42,7 +42,7 @@ IO
 @SYNTAX
 delete(filename)
 @DOC
-.
+delete a file
 @EXAMPLES
 <programlisting>
 delete("bar.txt");
