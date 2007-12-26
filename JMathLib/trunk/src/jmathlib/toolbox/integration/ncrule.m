@@ -38,3 +38,18 @@ else
 endif
 
 endfunction
+
+/*
+@GROUP
+integration
+@SYNTAX
+ncrule
+@DOC
+.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+crule
+*/

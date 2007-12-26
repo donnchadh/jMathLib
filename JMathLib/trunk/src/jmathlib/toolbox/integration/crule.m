@@ -30,3 +30,18 @@ wf = ones(m,1) * pi / m;
 bp=cos( (2*jj-1)*pi / (2*m) );
 
 endfunction
+
+/*
+@GROUP
+integration
+@SYNTAX
+crule
+@DOC
+.
+@EXAMPLES
+<programlisting>
+.
+</programlisting>
+@SEE
+ncrule
+*/
