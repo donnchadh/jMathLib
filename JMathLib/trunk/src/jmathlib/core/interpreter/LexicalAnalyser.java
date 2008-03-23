@@ -868,6 +868,22 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
                 nextToken = new UnaryOperatorToken('!'); //, bracketLevel);
             }
         }
+        else if(nextChar == '@')
+        {
+            foundToken = true;
+            //token is a function handle
+            //ErrorLogger.debugLine("LexAna: function handle");
+
+            //token is either a command, function or variable
+            StringBuffer sBuffer = new StringBuffer();
+
+            while((textChars.indexOf(inspectNextChar()) != -1) )
+            {
+                sBuffer.append( getNextChar() );
+            }
+            String name = sBuffer.toString();
+            nextToken = new FunctionHandleToken(name);
+        }
 
         return foundToken;
     }
