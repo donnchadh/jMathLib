@@ -10,10 +10,11 @@
 ---- Functional Changes:  version 0.8.0 -> 0.x.x ------------------------------
 New functions:
 autumn, bone, brighten, cla, clf, colormap, cool, copper, 
-dbquit, gca, gcf, get,
-global, gray, gray2ind, hot, isglobal, isstudent, 
+dbquit, func2str, gca, gcf, get,
+global, gray, gray2ind, hot, 
+isfunctionhandle, isglobal, isstudent, 
 jet, ntsc2rgb, pink,
-polar, rainbow, set, spring, summer, white, winter
+polar, rainbow, set, spring, str2func, summer, white, winter
 
 Updated functions:
 addpath, blanks, checkForUpdates, load, 
@@ -27,6 +28,9 @@ stefan *
 stefan * 
 
 2008/03/23
+stefan + toolbox/general/func2str.java
+stefan + toolbox/general/str2func.java
+stefan + toolbox/general/isfunctionhandle.java
 stefan + toolbox/general/isstudent.java
 stefan + core/tokens/FunctionHandleToken for function handles
 stefan * core/interpreter/LexicalAnalyser added function handles
