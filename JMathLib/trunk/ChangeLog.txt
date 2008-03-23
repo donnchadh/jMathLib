@@ -11,7 +11,8 @@
 New functions:
 autumn, bone, brighten, cla, clf, colormap, cool, copper, 
 dbquit, gca, gcf, get,
-global, gray, gray2ind, hot, isglobal, jet, ntsc2rgb, pink,
+global, gray, gray2ind, hot, isglobal, isstudent, 
+jet, ntsc2rgb, pink,
 polar, rainbow, set, spring, summer, white, winter
 
 Updated functions:
@@ -26,6 +27,7 @@ stefan *
 stefan * 
 
 2008/03/23
+stefan + toolbox/general/isstudent.java
 stefan + core/tokens/FunctionHandleToken for function handles
 stefan * core/interpreter/LexicalAnalyser added function handles
 stefan + core/tokens/ClassdefToken  for defining the new Matlab classes
