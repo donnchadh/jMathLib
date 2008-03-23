@@ -10,7 +10,7 @@ public class FunctionHandleToken extends DataToken
 {            
 
     
-    String handleS = "";
+    private String name = "";
     
     public FunctionHandleToken()
     {
@@ -21,10 +21,13 @@ public class FunctionHandleToken extends DataToken
     {
         // empty number token
             super(5, "function_handle");
-            handleS = _handleS;
+            name = _handleS;
     }
 
-    
+    public String getName()
+    {
+        return name;
+    }
     
     
     /**Evaluate the token. This causes it to return itself*/
@@ -36,7 +39,7 @@ public class FunctionHandleToken extends DataToken
 
     public String toString()
     {
-        return "@"+handleS;
+        return "@"+name;
     }
 
 
