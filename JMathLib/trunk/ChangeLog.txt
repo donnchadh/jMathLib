@@ -26,6 +26,7 @@ stefan *
 
 2008/04/30 
 stefan # toolbox/trigonemetric/tanh.java fixed a null-pointer bug
+stefan # core/functions/FunctionManager.java possible error
 
 2008/03/23
 stefan + toolbox/general/func2str.java
