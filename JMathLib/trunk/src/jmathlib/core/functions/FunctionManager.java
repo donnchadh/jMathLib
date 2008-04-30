@@ -138,7 +138,7 @@ public class FunctionManager {
                         String className = "";
                         if (first instanceof VariableToken) {
                             className = ((VariableToken) first).getName();
-                        } else if (first instanceof VariableToken) {
+                        } else if (first instanceof FunctionToken) {
                             className = ((FunctionToken) first).getName();
                         } else {
                             className = first.toString();
@@ -184,13 +184,6 @@ public class FunctionManager {
     public Function findFunctionByName(String funcName) throws java.lang.Exception {
         FunctionToken token = new FunctionToken(funcName);
         return findFunction(token);
-    }
-
-    /** save reference for applet context
-    this function is called from Interpreter.java */
-    public void setApplet(Applet _applet) {
-        ErrorLogger.debugLine("FunctionManager: setApplet");
-        applet = _applet;
     }
 
     public void clear() {
