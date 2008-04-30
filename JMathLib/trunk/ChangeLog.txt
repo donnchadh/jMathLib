@@ -21,11 +21,11 @@ addpath, blanks, checkForUpdates, load,
 num2str, patch, path, rehash, runfile, substring
 
 ---- HISTORY ------------------------------------------------------------------
-2008/03/xx 
+2008/04/xx 
 stefan * 
 
-2008/03/xx 
-stefan * 
+2008/04/30 
+stefan # toolbox/trigonemetric/tanh.java fixed a null-pointer bug
 
 2008/03/23
 stefan + toolbox/general/func2str.java

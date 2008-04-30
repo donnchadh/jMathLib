@@ -23,7 +23,7 @@ public class tanh extends ExternalElementWiseFunction
         double[] temp1 = sinhF.evaluateValue(arg);
         double[] temp2 = coshF.evaluateValue(arg);
         
-        DoubleNumberToken  num= null;
+        DoubleNumberToken  num = new DoubleNumberToken();
         
         return num.divide(temp1, temp2);
     }
