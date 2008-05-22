@@ -14,15 +14,20 @@ dbquit, func2str, gca, gcf, get,
 global, gray, gray2ind, hot, 
 isfunctionhandle, isglobal, isstudent, 
 jet, ntsc2rgb, pink,
-polar, rainbow, set, spring, str2func, summer, white, winter
+polar, rainbow, set, spring, str2func, summer, 
+ver, version, white, winter
 
 Updated functions:
 addpath, blanks, checkForUpdates, load, 
 num2str, patch, path, rehash, runfile, substring
 
 ---- HISTORY ------------------------------------------------------------------
-2008/04/xx 
+2008/05/xx 
 stefan * 
+
+2008/05/22
+stefan + toolbox/jmathlib/system/ver.java
+stefan + toolbox/jmathlib/system/version.java
 
 2008/04/30 
 stefan # toolbox/trigonemetric/tanh.java fixed a null-pointer bug
