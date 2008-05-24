@@ -26,7 +26,7 @@ public class ErrorLogger extends RootObject
     
             try
             {
-                RandomAccessFile output = new RandomAccessFile("MathLib.log", "rw");
+                RandomAccessFile output = new RandomAccessFile("JMathLib.log", "rw");
                 output.seek(output.length());
                 output.writeBytes(text + "\n");
                 output.close();
