@@ -14,40 +14,40 @@
 ;--------------------------------
 ;General
 
-  ;Name 
-  Name     "JMathLib ${VERSION}"
-  Caption  "JMathLib  Installation"
-  !define  MUI_ICON   "jmathlib.ico"
-  ;!define MUI_HEADERIMAGE_BITMAP bmp_file (size150*57)
+;Name 
+Name     "JMathLib ${VERSION}"
+Caption  "JMathLib  Installation"
+!define  MUI_ICON   "jmathlib.ico"
+;!define MUI_HEADERIMAGE_BITMAP bmp_file (size150*57)
   
   
-  ;Name of installer-executable
-  OutFile "../upload/JMathLibInstall_${VERSION}.exe"
+;Name of installer-executable
+OutFile "../upload/JMathLibInstall_${VERSION}.exe"
 
-  ;Default installation folder
-  InstallDir "$PROGRAMFILES\JMathLib"
+;Default installation folder
+InstallDir "$PROGRAMFILES\JMathLib"
   
-  ;Get installation folder from registry if available
-  InstallDirRegKey HKCU "Software\JMathLib" ""
+;Get installation folder from registry if available
+InstallDirRegKey HKCU "Software\JMathLib" ""
 
- ;define MUI_INSTFILESPAGE_PROGRESSBAR
+;define MUI_INSTFILESPAGE_PROGRESSBAR
 
- ;----------------------------------------------------------
- ; Splash Screen at startup
- Function .onInit
+;----------------------------------------------------------
+; Splash Screen at startup
+Function .onInit
 
- # the plugins dir is automatically deleted when the installer exits
- InitPluginsDir
- File /oname=$PLUGINSDIR\splash.bmp "jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
- #optional
- #File /oname=$PLUGINSDIR\splash.wav "C:\myprog\sound.wav"
+# the plugins dir is automatically deleted when the installer exits
+InitPluginsDir
+File /oname=$PLUGINSDIR\splash.bmp "jmathlib04.bmp" #"${NSISDIR}\Contrib\Graphics\Header\nsis.bmp"
+#optional
+#File /oname=$PLUGINSDIR\splash.wav "C:\myprog\sound.wav"
 
- #MessageBox MB_OK "Fading"
+#MessageBox MB_OK "Fading"
 
- advsplash::show 900 300 500 0x000000 $PLUGINSDIR\splash
+advsplash::show 900 300 500 0x000000 $PLUGINSDIR\splash
 
- Pop $0          ; $0 has '1' if the user closed the splash screen early,
-                 ; '0' if everything closed normally, and '-1' if some error occurred.
+Pop $0          ; $0 has '1' if the user closed the splash screen early,
+                ; '0' if everything closed normally, and '-1' if some error occurred.
 
  #MessageBox MB_OK "Transparency"
  #File /oname=$PLUGINSDIR\splash.bmp "${NSISDIR}\Contrib\Graphics\Wizard\orange-uninstall.bmp"
