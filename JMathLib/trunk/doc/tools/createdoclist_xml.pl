@@ -5,6 +5,7 @@ use strict;
 use XMLWriter;
 
 sub processDirectory($);
+sub readIntroductionFile($);
 
 my $destdir = shift;
 my $srcdir  = shift;
@@ -35,6 +36,11 @@ foreach my $file (sort {lc($a) cmp lc($b)} @files)
         
         $data .= '<chapter id="group_' . $file . '">' ."\n";
         $data .= $title ."\n";
+        
+        # create description page
+        my $description = readIntroductionFile($file);
+        $data .= $description ."\n";
+        
         $data .= $filedata ."\n";
         $data .= "</chapter>\n";
         
@@ -56,7 +62,7 @@ sub processDirectory($)
     foreach my $file (sort {lc($a) cmp lc($b)} @files)
     {    
         print "processing $file \n";
-        open $input, "<", $name . "/" .$file;
+        open ($input, "<", $name . "/" .$file);
         
         while(my $line = readline($input))
         {
@@ -67,4 +73,28 @@ sub processDirectory($)
     return $data;
 }
 
+# check and read introduction files for toolboxes
+sub readIntroductionFile($)
+{
+	my $name  = shift;
+	my $file  = "toolbox_introduction_" . $name . ".xml";
+	my $intro = "";
+	
+	print "file $file \n";
+
+	# check if introduction file is available, if not return empty string
+    open(FILE, "<", "../src/".$file) or  return ""; 
+    
+	print "processing introduction $file \n";
+    
+    while(my $line = readline(FILE))
+    {
+        $intro .= $line;
+    }
+
+    close(FILE); 
+    
+	return $intro;
+
+}
 
