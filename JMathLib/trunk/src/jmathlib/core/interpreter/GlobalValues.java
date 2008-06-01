@@ -45,7 +45,7 @@ public class GlobalValues
        @param _runningStandalone = true if this was run from an application*/
     public GlobalValues(Interpreter _interpreter, boolean _runningStandalone, Applet applet)
     {
-        contextList = new ContextList();
+        contextList     = new ContextList();
 
         functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone, applet);
         
