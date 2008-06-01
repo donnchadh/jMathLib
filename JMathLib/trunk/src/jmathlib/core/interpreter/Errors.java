@@ -14,7 +14,7 @@ public class Errors
     {
         String text = "";
         
-        ResourceBundle bundle = ResourceBundle.getBundle("MathLib.ResourceBundles.ErrorBundle");
+        ResourceBundle bundle = ResourceBundle.getBundle("jmathLib.resourcebundles.ErrorBundle");
     
         text = bundle.getString(Integer.toString(errorCode));
 
