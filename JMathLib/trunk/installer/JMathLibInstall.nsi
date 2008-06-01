@@ -5,10 +5,9 @@
 ;--------------------------------
 ;Include Modern UI
 
-  !include "MUI.nsh"
+  !include "MUI2.nsh"
 
 ;--------------------------------
-;!define VERSION "0.6.0"
 ; the VERSION information will be set by ant as an environment variable
 !define VERSION $%JMathLibVersion%
 
@@ -31,7 +30,7 @@
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\JMathLib" ""
 
- !define MUI_INSTFILESPAGE_PROGRESSBAR
+ ;define MUI_INSTFILESPAGE_PROGRESSBAR
 
  ;----------------------------------------------------------
  ; Splash Screen at startup
@@ -104,6 +103,16 @@
   
   !define MUI_FINISHPAGE_RUN  "$INSTDIR\JMathLib.exe"
   !define MUI_FINISHPAGE_RUN_TEXT "Run JMathLib now"
+  
+  ;add a link to the website of JMathLib
+  !define MUI_FINISHPAGE_LINK "check more about JMathLib at its website"
+  !define MUI_FINISHPAGE_LINK_LOCATION http://www.jmathlib.de
+
+  ;changelog to read
+  !define MUI_FINISHPAGE_SHOWREADME "$INSTDIR\ChangeLog.txt"
+  !define MUI_FINISHPAGE_SHOWREADME_TEXT "View changelog for JMathLib ${VERSION}"
+  !define MUI_FINISHPAGE_SHOWREADME_NOTCHECKED
+
   !insertmacro MUI_PAGE_FINISH 
   
   !insertmacro MUI_UNPAGE_CONFIRM
