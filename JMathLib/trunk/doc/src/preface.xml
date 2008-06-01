@@ -46,7 +46,16 @@ Some of my other projects can be found
     </imageobject>
 </mediaobject>
 
+
+Hallo
+<mediaobject>
+    <imageobject>
+	<imagedata fileref="drawingplain.svg" format="svg" />
+    </imageobject>
+</mediaobject>
+you
 </para>
+
 
 <para>
 Stefan M&uuml;ller  (2006/10/23)
