@@ -43,7 +43,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_010.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_010.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -51,7 +51,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_020.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_020.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -59,7 +59,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_030.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_030.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -67,7 +67,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_040.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_040.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -75,7 +75,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_050.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_050.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -83,7 +83,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-       <imagedata fileref="install_win32_060.gif" format="GIF" width="90%" />
+       <imagedata fileref="install/install_win32_060.gif" format="GIF" width="90%" />
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -91,7 +91,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_070.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_070.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
@@ -99,7 +99,7 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 <para>
   <inlinemediaobject>
     <imageobject>
-      <imagedata fileref="install_win32_080.gif" format="GIF" width="90%"/>
+      <imagedata fileref="install/install_win32_080.gif" format="GIF" width="90%"/>
     </imageobject>
   </inlinemediaobject>
 </para>
