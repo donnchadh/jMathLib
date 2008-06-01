@@ -76,6 +76,13 @@ This is the glossary of JMathLib.
     </glossdef>
   </glossentry>
 
+  <glossentry id="glossentry_freemat">
+    <glossterm>FreeMat</glossterm>
+    <glossdef>
+      <para>FreeMat ist another clone of Matlab.</para>
+    </glossdef>
+  </glossentry>
+
 </glossdiv>
 
 
@@ -151,6 +158,13 @@ This is the glossary of JMathLib.
 </glossdiv>
 
 <glossdiv id="glossdiv_M"><title>M</title>
+
+  <glossentry id="glossentry_matlab">
+    <glossterm>Matlab</glossterm>
+    <glossdef>
+      <para>Matlab is the mother of everything.</para>
+    </glossdef>
+  </glossentry>
 
 <glossentry id="glossentry_m-File">
     <glossterm>m-File</glossterm>
@@ -308,7 +322,7 @@ This is the glossary of JMathLib.
 <glossentry>
     <glossterm>WWW</glossterm>
     <glossdef>
-      <para>Some reasonable definition here.</para>
+      <para>WWW is the world wide web.</para>
     </glossdef>
   </glossentry>
 
