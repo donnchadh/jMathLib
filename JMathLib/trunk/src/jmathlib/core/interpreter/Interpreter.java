@@ -12,9 +12,6 @@ public class Interpreter extends RootObject
     /**Is the class being called from an application or an applet*/
     boolean runningStandalone;
 
-    /**pointer to applet structure if class is used within an applet*/
-    private Applet applet;
-
     /**panel used for displaying text*/
     private MathLibOutput outputPanel;
     
@@ -38,7 +35,6 @@ public class Interpreter extends RootObject
     public Interpreter(boolean _runningStandalone, Applet _applet)
     {
     	runningStandalone = _runningStandalone;
-    	applet            = _applet;
         
         setConstants(runningStandalone, this, _applet);
 
@@ -46,21 +42,8 @@ public class Interpreter extends RootObject
 
 	    // read preferences from a file on the disc or on the web
 	    prefs.loadPropertiesFromFile();
-
-        // running as an applet
-		if(!runningStandalone)
-        {
-	        getFunctionManager().setApplet(applet);
-        }
         
     }
-    
-    /** Publiclic expose of the function manager
-     * @return the function manager*/
-    //public  final jmathlib.core.functions.FunctionManager getFunctionManager()
-    //{
-	//    return super.getFunctionManager();
-    //}
     
     /**sets the panel to write any text to
        @param _outputPanel = the panel to write to, must implement the
