@@ -213,6 +213,32 @@ template
 ]]></programlisting>
 </para>    
             
+            
+<para>
+public int getNoOfLeftHandArguments()
+protected int getNArgOut()
+protected int getNArgIn(Token[] operands)
+public void setNoOfLeftHandArguments(int _number)
+
+public void throwMathLibException(String errorMessage)
+public void debugLine(String s)
+ 
+ 
+RootObject.java
+protected final VariableList getVariables()
+protected final VariableList getGlobalVariables()
+protected final Variable getVariable(String name)
+protected final ContextList getContextList()
+protected final Interpreter getInterpreter()
+public final FunctionManager getFunctionManager()
+protected jmathlib.plugins.PluginsManager getPluginsManager()
+protected File getWorkingDirectory()
+protected void setWorkingDirectory(File _workingDir)
+protected jmathlib.core.graphics.GraphicsManager getGraphicsManager()
+  
+
+</para>
+            
         </sect1 >                
     </chapter >
 </part >
