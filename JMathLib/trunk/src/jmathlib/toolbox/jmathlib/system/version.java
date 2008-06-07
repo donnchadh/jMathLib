@@ -36,15 +36,15 @@ public class version extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-update
+version
 @DOC
-updates JMathLib over the web
+displays current version of JMathLib
 @EXAMPLE
 <programlisting>
-update
+version
 </programlisting>
 @NOTES
 .
 @SEE
-checkforupdates
+ver
 */

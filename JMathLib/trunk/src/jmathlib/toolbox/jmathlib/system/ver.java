@@ -36,15 +36,15 @@ public class ver extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-update
+ver
 @DOC
-updates JMathLib over the web
+detailed version information about toolboxes
 @EXAMPLE
 <programlisting>
-update
+ver
 </programlisting>
 @NOTES
 .
 @SEE
-checkforupdates
+version
 */
