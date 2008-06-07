@@ -16,7 +16,7 @@ How to create a distribution:
 
 - change file: JMathLib.properties
   and change to the release date 
-  and change to the new version
+  and change to the new versions
 
 - change file: JMathLib.local.properties
   and change to the release date to be the same as in JMathLib.properties
