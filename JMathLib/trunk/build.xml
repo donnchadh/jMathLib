@@ -377,12 +377,12 @@
             <fileset dir="${dist.dir}/bin">
                 <include name="jmathlib/webFunctionsList.dat"/>
 	            <include name="**/*.class" />
-                <exclude name="MathLib/Functions/*/*.class"/>
-                <include name="MathLib/Functions/General/startup.m"/>
-                <include name="MathLib/Functions/*.class"/>
-                <exclude name="MathLib/Tools/**"/>
-                <exclude name="MathLib/UI/AWT/**"/>
-                <exclude name="MathLib/UI/Swing/**"/>
+                <exclude name="jmathlib/toolbox/*/*.class"/>
+                <include name="jmathlib/toolbox/general/startup.m"/>
+                <include name="jmathlib/toolbox/*.class"/>
+                <exclude name="jmathlib/toolbox/tools/**"/>
+                <exclude name="jmathlib/toolbox/ui/awt/**"/>
+                <exclude name="jmathlib/toolbox/ui/swing/**"/>
             </fileset>
         </jar>
         
@@ -395,8 +395,8 @@
     
         <tar tarfile="${upload.dir}/${final.name}-web.tar">
             <tarfileset dir="${dist.dir}">
-                <include name="Classes/**" />
-                <exclude name="Classes/MathLib/Tools/**"/>
+                <include name="bin/**" />
+                <exclude name="bin/jmathlib/tools/**"/>
                 <include name="JMathLib.html"/>
                 <include name="readme-web.txt"/>
             </tarfileset>
@@ -409,8 +409,8 @@
 
         <zip zipfile="${upload.dir}/${final.name}-web.zip">
             <zipfileset dir="${dist.dir}">
-                <include name="Classes/**" />
-                <exclude name="Classes/MathLib/Tools/**"/>
+                <include name="bin/**" />
+                <exclude name="bin/jmathlib/tools/**"/>
                 <include name="JMathLib.html"/>
                 <include name="readme-web.txt"/>
             </zipfileset>
