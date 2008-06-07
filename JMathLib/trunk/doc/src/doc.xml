@@ -35,7 +35,7 @@
 
 <mediaobject>
   <imageobject>
-    <imagedata fileref="jmathlib04.jpg" format="jpg" width="60%"/>
+    <imagedata fileref="jmathlib04.jpg" format="JPG" width="60%"/>
   </imageobject>
 </mediaobject>
 
@@ -73,10 +73,11 @@ work almost like
 </para>
 </abstract>
 
-<pubdate>June 01, 2008</pubdate>
+<pubdate>June 06, 2008</pubdate>
+
 
 <releaseinfo><para><emphasis>
-This release is connected to JMathLib in Version 1.0.0 and following versions
+This release is connected to JMathLib in Version 0.9.0 and following versions
 </emphasis></para></releaseinfo>
 
 </bookinfo>
