@@ -477,7 +477,8 @@
     <!-- ================================================================= -->
     <!-- Full distribution:                                                -->
     <!-- ================================================================= -->
-    <target name="all" depends="cleanupload, alldocs, allinstallers, 
+    <target name="all" description="create ALL files, docs, installers, ..."
+	     depends="cleanupload, alldocs, allinstallers, 
     	 distro_zips"> 
     </target>
 
