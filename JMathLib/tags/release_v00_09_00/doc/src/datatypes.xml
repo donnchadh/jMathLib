@@ -1,0 +1,135 @@
+<!-- :xml.root=doc.xml: -->
+<part id="datatypes">
+    <title >Datatypes</title>
+    <chapter id="numbers">
+        <title>Numbers</title>
+        <sect1 id="usage1">
+            <title>Usage</title >
+            <simpara >
+                These are used to store all numeric values including real and complex scalar values and
+                real and complex matrices.
+            </simpara >
+            <informalexample >
+                <simpara>1</simpara >
+                <simpara >1 + i</simpara >
+                <simpara>[1, 2; 3, 4]</simpara >
+                <simpara >are all numeric values</simpara >
+            </informalexample >
+        </sect1>
+        <sect1 id="numericToken">
+            <title >Internal - NumericToken.class</title >
+            <simpara >The data within the number token is stored as a 3 dimensional array of double values</simpara >
+            <simpara >double values[y][x][a]</simpara >
+            <simpara >y stores the rows of the matrix</simpara >
+            <simpara >x stored the coloumns of the matrix</simpara >
+            <simpara >a stored the real and imaginary part</simpara >
+        </sect1 >
+    </chapter>
+    
+    <chapter id="matrices">
+        <title>Matrices</title>
+        <sect1 id="usage2">
+            <title >Usage</title >
+            <simpara>
+                Matrix objects are used to store matrices of non numeric values.
+                i.e. variables, symbolic variables, structures and strings.
+            </simpara>
+        </sect1>
+        <sect1 id="matrixToken">
+            <title >Internal - MatrixToken</title >
+            <simpara >The data is stored as a 2d array of OperandTokens</simpara >
+            <simpara >OperandToken values[y][x]</simpara >
+        </sect1>
+    </chapter>
+    
+    <chapter id="strings">
+        <title>Strings</title>
+        <sect1 id="usage3">
+            <title>Usage</title>
+            <simpara >
+                These are used to represent text data.
+                Either "" or '' can be used to mark a string
+            </simpara >
+            <informalexample >
+                <simpara >"Hello World"</simpara >
+                <simpara >'Hello World'</simpara >
+            </informalexample >
+        </sect1 >
+        <sect1 id="stringToken">
+            <title >Internal - StringToken</title >
+            <simpara >
+                String data is stored using a string object.
+            </simpara >
+        </sect1 >
+    </chapter >
+    
+    <chapter id="variables">
+        <title>Variables</title>
+        <sect1 id="usage4">
+            <title >Usage</title >
+            <simpara >Variables are used to store references to other MathLib datatypes.</simpara >
+            <informalexample >
+                <simpara >>x = 5</simpara >
+                <simpara >5</simpara >
+                <simpara >>x</simpara >
+                <simpara >5</simpara >
+            </informalexample >
+        </sect1 >
+        <sect1 id="variableToken">
+            <title >Internal - VariableToken</title >
+            <simpara >The name of the variable is stored as a string.</simpara >
+        </sect1 >
+    </chapter>
+    
+    <chapter id="symbolicvariables">
+        <title>Symbolic Variables</title>
+        <sect1 id="symbolicvariables_usage">
+		<para> Symbolic variables are not supported in the current 
+		versions of JMathLib.
+		</para>
+        </sect1 >
+    </chapter>
+    
+    <chapter id="structures">
+        <title>Structures</title>
+        <sect1 id="usage6">
+            <title >Usage</title >
+            <simpara >
+                Structures are used to store structural data.
+            </simpara >
+            <simpara >
+                e.g. struct(a,1,b,2) will create a structure with two fields called
+                a and b which are assigned the values 2 and 4
+            </simpara >
+            <simpara >
+                If the first element is a variable storing a structure then the new structure
+                will contain it's fields.
+            </simpara >
+            <informalexample >
+                <simpara >x = struct(a, 1, b, 2)</simpara >
+                <simpara >a = 1 : b = 2 :</simpara >
+                <simpara >y = struct(x, c, 3)</simpara >
+                <simpara >a = 1 : b = 2 : c = 3 :</simpara >
+            </informalexample >
+        </sect1 >
+        <sect1 id="mathibObject">
+            <title >Internal - MathLibObject</title >
+            <simpara >
+                The structured data is stored as an array of <classname>Variable</classname> objects
+            </simpara >
+        </sect1 >
+    </chapter>
+    
+    <chapter id="casting">
+        <title>Casting</title>
+        <simpara>
+            When an expression contains two different data types <application class="software">MathLib</application > looks for a special class
+            to cast from one type to the other.
+        </simpara>
+        <simpara >It first looks for a class called</simpara >
+        <simpara >Cast_[from type]_[to type].class</simpara >
+        <simpara >If it doesn't find that it looks for the class</simpara >
+        <simpara >Cast_[to type].class</simpara >
+    </chapter>
+</part>
+
