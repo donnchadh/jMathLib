@@ -1,5 +1,9 @@
 rem
-cd doc\tools\
+cd doc\
+
+mkdir functions
+
+cd tools\
 
 echo "building function docs"
 perl createdocs.pl ../functions/ ../../src/jmathlib/toolbox
