@@ -34,7 +34,7 @@ The basic java applet is called using the class
 The following code is an example for usage in mozilla.
 
 <programlisting>
-&lt;applet               CODE = "MathLib.UI.Applet.MathLibGUI.class"
+&lt;applet               CODE = "jmathlib.ui.applet.JathLibGUI.class"
  CODEBASE = "Classes" ARCHIVE  = "JMathLibSmallApplet.jar"
  WIDTH    = "700"     HEIGHT = "400"
  ALIGN    = "middle"
@@ -74,7 +74,7 @@ is coded as <code>rgb</code>-values, please use hex-notation
 
     
     <chapter id="perl">
-        <title >Access <application class="software">MathLib</application > From Perl</title >
+        <title >Access <application class="software">JMathLib</application > From Perl</title >
         <simpara >
             The tools/perl/MathLib.pm file allows Perl programs to create objects of the <application class="software">MathLib</application >
             program and access it's functions. Though with the following caveats.
@@ -89,8 +89,10 @@ is coded as <code>rgb</code>-values, please use hex-notation
             3) Not all of the functionality of <application class="software">MathLib</application > is available from the module.
         </simpara >
     </chapter>
+    
+    
     <chapter id="extending">
-        <title >Extending <application class="software">MathLib</application ></title >
+        <title >Extending <application class="software">JMathLib</application ></title >
         <simpara >
             There are two ways to add add extra functions to the <application class="software">MathLib</application >. These are:
         </simpara >
@@ -215,6 +217,7 @@ template
             
             
 <para>
+<programlisting><![CDATA[  
 public int getNoOfLeftHandArguments()
 protected int getNArgOut()
 protected int getNArgIn(Token[] operands)
@@ -235,8 +238,7 @@ protected jmathlib.plugins.PluginsManager getPluginsManager()
 protected File getWorkingDirectory()
 protected void setWorkingDirectory(File _workingDir)
 protected jmathlib.core.graphics.GraphicsManager getGraphicsManager()
-  
-
+]]></programlisting>
 </para>
             
         </sect1 >                
