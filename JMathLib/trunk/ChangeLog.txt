@@ -16,8 +16,8 @@ Updated functions:
 2008/06/xx
 stefan * 
 
-2008/06/xx
-stefan * 
+2008/07/03
+stefan # removed ü and ö from source code of TestSuite.java 
 
 2008/06/06
 stefan * generation of release version 0.9.0
