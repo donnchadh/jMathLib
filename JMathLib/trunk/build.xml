@@ -269,6 +269,8 @@
 
         <!-- others -->
         <copy todir="${dist.dir}">
+        	
+	       	 <!-- misc files -->
 	         <fileset dir="${build.dir}">
 	         <include name="JMathLib.html"/>
 	         <include name="JMathLib.properties"/>
@@ -277,8 +279,16 @@
 		     <include name="ChangeLog.txt"/>
 	         <include name="JMathLib.html"/>
              </fileset>
+        	
+	       	 <!-- full doc-->
 	         <fileset dir="${upload.dir}">
 		     <include name="JMathLibManual_${version}.pdf"/>
+			 </fileset>
+        	
+        	 <!-- libraries and external htm pages-->
+	         <fileset dir="${build.src}">
+				<include name="*.jar"/>
+				<include name="*.html"/>
 			 </fileset>
         </copy>
     	
