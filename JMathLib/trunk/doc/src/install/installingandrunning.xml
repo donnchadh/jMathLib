@@ -130,8 +130,21 @@ Checkout the website at <ulink url="http://mathlib.sourceforge.net">JMathLib</ul
 </para>
 
 <para>run <application class="software">JMathLib</application >:</para>
-<para>from the MathLib/classes directory enter
-<code>java MathLib.MathLibGUI.GUI</code></para>
+<para>from the JMathLib main directory enter</para>
+
+<para>
+<code>java -cp bin jmathlib.ui.awt.GUI</code></para>
+<para> for the simple AWT user interface, or enter</para>
+
+<para><code>java -cp bin jmathlib.ui.swing.SwingGUI</code></para>
+<para>for the more sofisticated swing version.</para>
+
+<para>
+Just be sure that you are in the main directory of JMathLib. That is
+the directory with the subdirectories (e.g. bin, doc) in it.
+</para>
+
+
 <para>There are script files to run <application class="software">MathLib</application > from Windows or Linux</para>            
         <para>just enter
         <command>execute.bat</command>            
