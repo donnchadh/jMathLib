@@ -8,7 +8,8 @@
 
 disp("");
 disp("********* Welcome to JMathLib *********");
-disp("Check it out at http://mathlib.sourceforge.net");
+disp("Check it out at http://www.jmathlib.de");
+disp("");
 disp("");
 setdebug(1);
 
