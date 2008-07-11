@@ -320,7 +320,7 @@ body { background-image: url('</xsl:text>
 
 <xsl:template name="user.footer.navigation">
   <xsl:param name="node" select="."/>
-    <xsl:text disable-output-escaping="yes">&lt;?php include("../../footer.php"); ?&gt;</xsl:text>
+    <xsl:text disable-output-escaping="yes">&lt;?php include("footer.php"); ?&gt;</xsl:text>
 </xsl:template>
 
 <xsl:template match="/">
