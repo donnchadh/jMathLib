@@ -107,7 +107,7 @@ public class questdlg extends ExternalFunction
 
 /*
 @GROUP
-general
+ui
 @SYNTAX
 button = questdlg(question, title, button1, button2, options);
 @DOC
