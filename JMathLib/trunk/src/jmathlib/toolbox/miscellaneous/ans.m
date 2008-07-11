@@ -18,7 +18,7 @@
 
 /*
 @GROUP
-miscelleanous
+miscellaneous
 @SYNTAX
 ans
 @DOC

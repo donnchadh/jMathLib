@@ -25,7 +25,7 @@
 
 /*
 @GROUP
-miscelleanous
+miscellaneous
 @SYNTAX
 semicolon
 @DOC

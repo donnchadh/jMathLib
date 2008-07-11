@@ -25,7 +25,7 @@
 
 /*
 @GROUP
-miscelleanous
+miscellaneous
 @SYNTAX
 comma
 @DOC

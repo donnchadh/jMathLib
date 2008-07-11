@@ -38,7 +38,7 @@ endfunction
 
 /*
 @GROUP
-miscelleanous
+miscellaneous
 @SYNTAX
 single(x)
 @DOC

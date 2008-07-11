@@ -28,7 +28,7 @@ endfunction
 
 /*
 @GROUP
-miscelleanous
+miscellaneous
 @SYNTAX
 mexext
 @DOC
