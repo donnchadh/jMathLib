@@ -301,7 +301,7 @@ sub writeStart($$$$)
     {
         $t = "Type: " . " M-File";
     }
-    elsif($t eq "int")
+    elsif($type eq "int")
     {
         $t = "Type: " . " Internal";
     }
