@@ -15,48 +15,16 @@
 
 <!--  Thanks -mhatta  -->
 
-[ 
+<!--[ 
       <ulink url="/licenses/lgpl.html">English</ulink> | 
       <ulink url="/licenses/lgpl.ja.html">Japanese</ulink>
-] 
+] -->
 <!--  It is best to not enumerate the translations here in a menu bar,  -->
 
 <!--  It is best to have the users follow this link, so they have the FSF'  -->
 
 <!--  explanation about translations being unofficial, etc.  -->
     </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <ulink url="/licenses/why-not-lgpl.html">Why you shouldn't use the
- Lesser GPL for your next library</ulink>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <ulink url="/licenses/gpl-violation.html"><emphasis>What to do if you see a possible
- LGPL violation</emphasis></ulink>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <ulink url="/licenses/translations.html"><emphasis>Translations
- of the LGPL</emphasis></ulink>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-The GNU Lesser General Public License as a 
-          <ulink url="/licenses/lgpl.txt">text file</ulink>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-The GNU Lesser General Public License as a 
-          <ulink url="/licenses/lgpl.texi">Texinfo</ulink> file 
-        </para>
-      </listitem>
-    </itemizedlist>
     <para>
     </para>
     <para>
@@ -64,8 +32,8 @@ The GNU Lesser General Public License as a
 This GNU Lesser General Public License counts as the successor
 of the GNU Library General Public License. For an explaination of
 why this change was necessary, read the 
-      <ulink url="/licenses/why-not-lgpl.html">Why you shouldn't use the
-Lesser GPL for your next library</ulink> article. 
+     Why you shouldn't use the
+Lesser GPL for your next library article. 
     </para>
     <para>
     </para>
@@ -795,14 +763,14 @@ Ty Coon, President of Vice
 That's all there is to it! 
 
 Return to 
-        <ulink url="/home.html">GNU's home page</ulink>. 
+        <ulink url="http://www.gnu.org">GNU's home page</ulink>. 
       </para>
       <para>
 
 FSF &amp; GNU inquiries &amp; questions to 
         <ulink url="mailto:gnu@gnu.org"><emphasis>gnu@gnu.org</emphasis></ulink>.
 Other 
-        <ulink url="/home.html#ContactInfo">ways to contact</ulink> the FSF. 
+        <ulink url="http://www.gnu.org">ways to contact</ulink> the FSF. 
       </para>
       <para>
 

@@ -15,7 +15,8 @@
 <para>JMathLib is designed to be a clone of 
 <ulink url="http://www.mathworks.com/">Matlab</ulink> or
 <ulink url="http://www.gnu.org/software/octave/">Octave</ulink> or
-<ulink url="http://www.scilab.org">Scilab</ulink>.
+<ulink url="http://www.scilab.org">Scilab</ulink> or
+<ulink url="http://freemat.sourceforge.net">Freemat</ulink>.
 </para></answer>
 </qandaentry>
 
@@ -23,9 +24,9 @@
 <question><para>Where can I obtain JMathLib?</para></question>
 <answer>
 <para>Look at the 
-<ulink url="http://mathlib.sourceforge.net">website</ulink> or 
+<ulink url="http://www.jmathlib.de">website</ulink> or 
 look at the 
-<ulink url="http://mathlib.sourceforge.net/download.php">download page</ulink>.
+<ulink url="http://www.jmathlib.de/download.php">download page</ulink>.
 </para></answer>
 </qandaentry>
 </qandadiv>
@@ -35,7 +36,7 @@ look at the
 
 <qandaentry>
 <question><para>Installation on Windows?</para></question>
-<answer><para>...</para></answer>
+<answer><para>Just download the installer and double-click on the EXE file.</para></answer>
 </qandaentry>
 
 <qandaentry>
