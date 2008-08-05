@@ -15,3 +15,7 @@ click on "Add JARs" and select "dynamicjava.jar" from the file selection
 
 That should do the job.
  
+
+Generation of javadoc
+C:\workspace\JMathLib>javadoc -sourcepath src -exclude jmathlibtests -d c:\works
+pace\jmathlib\docbook -subpackages jmathlib
