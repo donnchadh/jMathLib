@@ -20,15 +20,30 @@ public class testSign extends TestCase {
 		return new TestSuite(testSign.class);
 	}
 
-	public void testAbs01() {
-        ml.executeExpression("a=abs(1);");
+	public void testSign01() {
+        ml.executeExpression("a=sign(1);");
 		assertTrue(1 == ml.getScalarValueRe("a"));
 	}
-    public void testAbs02() {
-        ml.executeExpression("a=abs(-3);");
-		assertTrue(3 == ml.getScalarValueRe("a"));
-	}
 
+    public void testSign02() {
+        ml.executeExpression("a=sign(3);");
+        assertTrue(1 == ml.getScalarValueRe("a"));
+    }
+
+    public void testSign03() {
+        ml.executeExpression("a=sign(-1);");
+        assertTrue(-1.0 == ml.getScalarValueRe("a"));
+    }
+
+    public void testSign04() {
+        ml.executeExpression("a=sign(-111);");
+        assertTrue(-1.0 == ml.getScalarValueRe("a"));
+    }
+
+    public void testSign05() {
+        ml.executeExpression("a=sign(0);");
+        assertTrue(0.0 == ml.getScalarValueRe("a"));
+    }
 
 
 }
