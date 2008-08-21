@@ -19,8 +19,16 @@ public class sign extends ExternalElementWiseFunction
 
         if (arg[IMAG]==0)
         {
-            result[REAL] = Math.abs(arg[REAL]);
-            result[IMAG] = 0;
+            if (arg[REAL]>0)
+            {
+                result[REAL] = 1.0;
+            }
+            else if (arg[REAL]<0)
+            {
+                result[REAL] = -1.0;
+            }
+            else
+                result[IMAG] = 0;
         }
         else
         {
@@ -51,7 +59,7 @@ sign(10)   = 1
 sign(3+2i) = 0.832 + 0.555i 
 </programlisting>
 @NOTES
-The sign of a complex number is calculated as sign(X) = X./abs(X)
+The sign of a complex number is calculated as sign(x) = x./abs(x)
 @SEE
 abs
 */
