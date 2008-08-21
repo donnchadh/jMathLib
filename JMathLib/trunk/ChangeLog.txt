@@ -13,8 +13,11 @@ New functions:
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
-2008/06/xx
+2008/08/xx
 stefan * 
+
+2008/08/16
+stefan # toolbox/general/sign.java didn't work for real numbers 
 
 2008/07/03
 stefan # removed ü and ö from source code of TestSuite.java 
