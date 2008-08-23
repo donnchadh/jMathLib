@@ -16,6 +16,9 @@ Updated functions:
 2008/08/xx
 stefan * 
 
+2008/08/23
+stefan # toolbox/jmathlib/matrix/round.java didn't work for odd numbers 
+
 2008/08/16
 stefan # toolbox/general/sign.java didn't work for real numbers 
 
