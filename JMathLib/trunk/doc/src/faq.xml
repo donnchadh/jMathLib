@@ -29,6 +29,15 @@ look at the
 <ulink url="http://www.jmathlib.de/download.php">download page</ulink>.
 </para></answer>
 </qandaentry>
+
+<qandaentry>
+<question><para>How do I exit JMathLib?</para></question>
+<answer>
+<para>
+Just type <code>exity</code> in the command window.
+</para></answer>
+</qandaentry>
+
 </qandadiv>
 
 
@@ -50,7 +59,7 @@ look at the
 
 <qandaentry>
 <question><para>How to start JMathLib?</para></question>
-<answer><para>...</para></answer>
+<answer><para>On windows: just double click the program icon</para></answer>
 </qandaentry>
 
 </qandadiv>
@@ -66,5 +75,24 @@ of JMathLib.</para>
 <answer><para><code>plot(name_of_vector)</code></para></answer>
 </qandaentry>
 
+
+<qandadiv><title>Toolboxes</title>
+<para>These are some answers regarding toolboxes</para>
+
+<qandaentry>
+<question><para>What is a toolbox?</para></question>
+<answer><para>
+A toolbox is a collection of .m and .class files that work
+on some specialized area. For example: plot functions are in the graphics toolbox.
+Functions for reading and writing of data from an the you harddisc are located
+the io-toolbox.
+</para></answer>
+</qandaentry>
+
 </qandadiv>
+
+</qandadiv>
+
+
+
 </qandaset>
