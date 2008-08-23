@@ -16,8 +16,16 @@ public class round extends ExternalElementWiseFunction
     {
         double[] result = new double[2];
 
-        result[REAL] = Math.rint(arg[REAL]);
-        result[IMAG] = Math.rint(arg[IMAG]);
+        if (arg[REAL]>=0)
+            result[REAL] = Math.floor(arg[REAL] + 0.5);
+        else
+            result[REAL] = Math.ceil(arg[REAL] - 0.5);
+            
+        if (arg[IMAG]>=0)
+            result[IMAG] = Math.floor(arg[IMAG] + 0.5);
+        else
+            result[IMAG] = Math.ceil(arg[IMAG] - 0.5);
+
         return  result;                      
     }
 
