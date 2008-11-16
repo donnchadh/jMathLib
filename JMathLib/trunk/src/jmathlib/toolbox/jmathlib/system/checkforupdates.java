@@ -16,7 +16,7 @@ public class checkforupdates extends ExternalFunction
 
 		String s           = "";
         String lineFile    = "";
-        String updateSiteS = "http://mathlib.sourceforge.net/checkForUpdates/";
+        String updateSiteS = "http://www.jmathlib.de/checkForUpdates/";
  		boolean silentB    = false;
         
         s = getInterpreter().prefs.getLocalProperty("update.site.primary");
