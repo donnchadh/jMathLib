@@ -705,7 +705,11 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
                         negative = !negative;
 
                     advance();
+                    
+                    if (EOChars())
+                        Errors.throwMathLibException("end of chars");
                 }
+                
                 
                 // e.g. if other than number return sign (plus/minus)
                 // e.g. -*  -hello +foo +(3+4) 
