@@ -31,9 +31,11 @@ public class any extends ExternalFunction
         	for (int i=0; i<num.getNumberOfElements(); i++)
         	{
     			if (num.getValueRe(i) != 0.0) 
-                    return new LogicalToken(true);
+                    return new DoubleNumberToken(1.0);
+                if (num.getValueIm(i) != 0.0) 
+                    return new DoubleNumberToken(1.0);
         	}	
-        	return new LogicalToken(false);		
+        	return new DoubleNumberToken(0.0);	
         }
 
         throwMathLibException("any: works on numbers and booleans only");
