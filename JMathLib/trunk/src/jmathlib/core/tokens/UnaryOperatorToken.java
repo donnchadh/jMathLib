@@ -48,19 +48,26 @@ public class UnaryOperatorToken extends OperatorToken
                 // -- operator
 
                 // check if operand is a variable (e.g. a--, bar--)
-                if(!(operand instanceof VariableToken))
+                if(operand instanceof VariableToken)
+                {
+                    // first: evaluate and return original value variable
+                    result = operand.evaluate(null);
+                    
+                    // second: decrease variable
+                    OperandToken op = result.subtract(new DoubleNumberToken(1));
+    
+                    // save new variable value
+                    String variable = ((VariableToken)operand).getName();
+                    //getVariables().getVariable(variable).assign(op);
+                    getVariable(variable).assign(op);
+                }
+                else if(operand instanceof NumberToken)
+                {
+                    // 4--
+                    result = operand.subtract(new DoubleNumberToken(1));
+                }
+                else
                     Errors.throwMathLibException("UnaryOperatorToken --");
-                
-                // first: evaluate and return original value variable
-                result = operand.evaluate(null);
-                
-                // second: decrease variable
-                OperandToken op = result.subtract(new DoubleNumberToken(1));
-
-                // save new variable value
-                String variable = ((VariableToken)operand).getName();
-                //getVariables().getVariable(variable).assign(op);
-                getVariable(variable).assign(op);
 
         		break;
         	}
@@ -69,19 +76,26 @@ public class UnaryOperatorToken extends OperatorToken
                 // ++ operator
 
                 // check if operand is a variable (e.g. a++, bar++)
-                if(!(operand instanceof VariableToken))
+                if(operand instanceof VariableToken)
+                {    
+                    // first: evaluate and return original value variable
+            		result = operand.evaluate(null);
+            		
+            		// second: increase variable
+                    OperandToken op = result.add(new DoubleNumberToken(1));
+    
+                    // save new variable value
+                    String variable = ((VariableToken)operand).getName();
+            		//getVariables().getVariable(variable).assign(op);
+                    getVariable(variable).assign(op);
+                }
+                else if(operand instanceof NumberToken)
+                {
+                    // 5++
+                    result = operand.add(new DoubleNumberToken(1));
+                }
+                else
                     Errors.throwMathLibException("UnaryOperatorToken ++");
-                
-                // first: evaluate and return original value variable
-        		result = operand.evaluate(null);
-        		
-        		// second: increase variable
-                OperandToken op = result.add(new DoubleNumberToken(1));
-
-                // save new variable value
-                String variable = ((VariableToken)operand).getName();
-        		//getVariables().getVariable(variable).assign(op);
-                getVariable(variable).assign(op);
 
                 break;
         	}
