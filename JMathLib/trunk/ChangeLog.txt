@@ -13,8 +13,14 @@ New functions:
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
-2008/08/xx
-stefan * 
+2008/11/xx
+stefan *
+
+2008/11/17
+stefan * UnaryOperatorToken added support for 5++ and 3--
+
+2008/11/16
+stefan * update.java update now loads new files directly from a website
 
 2008/08/23
 stefan # toolbox/jmathlib/matrix/round.java didn't work for odd numbers 
