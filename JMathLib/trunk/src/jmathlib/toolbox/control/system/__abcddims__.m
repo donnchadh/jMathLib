@@ -50,5 +50,5 @@ __abcddims(A,B,C,D)__
 </programlisting>
 @NOTES
 @SEE
-abcddims(A,B,C,D)
+abcddims
 */
