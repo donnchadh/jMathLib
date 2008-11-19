@@ -142,4 +142,5 @@ abcddim(A,B,C,D);
 </programlisting>
 @NOTES
 @SEE
+is_abcd, is_sample, ss2sys
 */
