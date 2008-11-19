@@ -157,9 +157,9 @@ update
 </programlisting>
 @NOTES
 The script first checks the webserver in order to determine, if 
-it is possible to update the current version and if this which 
-version is next.<br>
-It also updates local properties of JMathlib
+it is possible to update the current version and if yes which 
+version is next.
+It also updates local properties of JMathlib.
 @SEE
 checkforupdates
 */
