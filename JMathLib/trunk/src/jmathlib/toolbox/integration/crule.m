@@ -37,7 +37,12 @@ integration
 @SYNTAX
 crule
 @DOC
-.
+This function computes Gauss-Chebyshev base points and weight factors
+using the algorithm given by somebody in 'SomeBook',
+page 365, Academic Press, 1975, but modified by a change
+in index variables:  j=i+1 and m=n+1.
+The weights are all wf_j=pi/m
+and the base points are bp_j=cos((2j-1)*pi/2/m).
 @EXAMPLES
 <programlisting>
 .

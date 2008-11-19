@@ -45,7 +45,8 @@ integration
 @SYNTAX
 ncrule
 @DOC
-.
+This function returns the Newton-Coates base points and weight factors
+up to an 8 point Newton-Coates formula.
 @EXAMPLES
 <programlisting>
 .
