@@ -42,7 +42,7 @@ control
 @SYNTAX
 swap(a,b)
 @DOC
-
+Swap inputs 
 @EXAMPLES
 <programlisting>
 swap(a,b) -> [b,a]
