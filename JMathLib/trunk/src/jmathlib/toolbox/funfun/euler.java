@@ -136,5 +136,5 @@ Integration of a given function using Euler's method.
 [t,y]=euler('vdp1',[0,10],[2,0],0.1)
 @NOTES
 @SEE
-rk23, rk45, ode23, ode45
+
 */
