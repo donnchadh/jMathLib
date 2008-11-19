@@ -88,5 +88,4 @@ colormap
 .
 </programlisting>
 @SEE
-.
 */

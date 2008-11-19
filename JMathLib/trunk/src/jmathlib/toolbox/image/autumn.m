@@ -64,5 +64,5 @@ Create color colormap. This colormap is red through orange to yellow.
 .
 </programlisting>
 @SEE
-bone, brithen, cool, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+bone, cool, copper, gray, hot, jet, pink, rainbow, spring, summer, white, winter
 */

@@ -66,5 +66,5 @@ orange, yellow to white.
 .
 </programlisting>
 @SEE
-jet, pink, rainbow, spring, summer, white, winter
+autumn, bone, cool, copper, gray, jet, pink, rainbow, spring, summer, white, winter
 */

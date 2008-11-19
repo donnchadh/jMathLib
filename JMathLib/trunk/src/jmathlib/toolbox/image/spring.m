@@ -64,5 +64,5 @@ Create color colormap. This colormap is magenta to yellow.
 .
 </programlisting>
 @SEE
-.
+bone, cool, copper, gray, hot, jet, pink, rainbow, summer, white, winter
 */

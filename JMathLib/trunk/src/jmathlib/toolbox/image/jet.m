@@ -69,5 +69,5 @@ green, yellow, red to dark red.
 .
 </programlisting>
 @SEE
-.
+bone, cool, copper, gray, hot, pink, rainbow, spring, summer, white, winter
 */

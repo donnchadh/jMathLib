@@ -69,5 +69,5 @@ and white images.
 .
 </programlisting>
 @SEE
-.
+bone, cool, copper, gray, hot, jet, rainbow, spring, summer, white, winter
 */

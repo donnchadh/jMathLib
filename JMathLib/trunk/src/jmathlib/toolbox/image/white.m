@@ -59,5 +59,5 @@ Create color colormap.  This colormap is completely white.
 .
 </programlisting>
 @SEE
-winter, autumn, hot, jet, bone, cool, copper, gray, white
+bone, cool, copper, gray, hot, jet, pink, rainbow, spring, summer, winter
 */

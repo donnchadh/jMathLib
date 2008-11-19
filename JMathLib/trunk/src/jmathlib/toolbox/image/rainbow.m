@@ -70,5 +70,5 @@ blue to violet.
 .
 </programlisting>
 @SEE
-.
+autumn, bone, cool, copper, gray, hot, jet, pink, spring, summer, white, winter
 */

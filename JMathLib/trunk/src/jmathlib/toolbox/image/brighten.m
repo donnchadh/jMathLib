@@ -86,5 +86,4 @@ Darkens or brightens the given colormap.
 .
 </programlisting>
 @SEE
-.
 */

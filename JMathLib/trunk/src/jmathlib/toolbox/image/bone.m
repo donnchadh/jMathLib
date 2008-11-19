@@ -68,5 +68,5 @@ blue tone.
 .
 </programlisting>
 @SEE
-autumn, cool, copper, hot, jet, pink, rainbow, spring, summer, white, winter
+autumn, cool, copper, gray, hot, jet, pink, rainbow, spring, summer, white, winter
 */

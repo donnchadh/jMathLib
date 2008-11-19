@@ -65,5 +65,5 @@ Create color colormap. This colormap is green to yellow.
 .
 </programlisting>
 @SEE
-winter, autumn, hot, jet, bone, cool, copper, gray, white
+bone, cool, copper, gray, hot, jet, pink, rainbow, spring, white, winter
 */
