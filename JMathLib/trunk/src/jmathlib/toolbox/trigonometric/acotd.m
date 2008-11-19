@@ -37,7 +37,7 @@ trigonometric
 @SYNTAX
 angle = acotd(value)
 @DOC
-.
+Compute the inverse cotangent of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>

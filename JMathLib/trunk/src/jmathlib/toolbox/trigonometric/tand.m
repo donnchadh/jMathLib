@@ -45,7 +45,7 @@ trigonometric
 @SYNTAX
 angle = tand(value)
 @DOC
-.
+Compute the tangent of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>

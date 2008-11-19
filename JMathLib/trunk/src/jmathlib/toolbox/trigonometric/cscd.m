@@ -39,7 +39,7 @@ trigonometric
 @SYNTAX
 angle = cscd(value)
 @DOC
-.
+Compute the cosecant of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>

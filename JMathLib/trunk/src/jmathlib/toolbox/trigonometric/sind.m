@@ -40,9 +40,9 @@ endfunction
 @GROUP
 trigonometric
 @SYNTAX
-angle = sind(value)
+angle = sind(x)
 @DOC
-.
+Compute the sine of each element of x.
 @EXAMPLES
 <programlisting>
 </programlisting>

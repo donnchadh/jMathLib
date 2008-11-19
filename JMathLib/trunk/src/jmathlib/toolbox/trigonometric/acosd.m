@@ -37,6 +37,7 @@ trigonometric
 @SYNTAX
 angle = acosd(value)
 @DOC
+Compute the inverse cosine of an angle in degrees.
 @EXAMPLES
 <programlisting>
 .

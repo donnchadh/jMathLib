@@ -39,7 +39,7 @@ trigonometric
 @SYNTAX
 angle = secd(value)
 @DOC
-.
+Compute the secant of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>

@@ -39,7 +39,7 @@ trigonometric
 @SYNTAX
 angle = cotd(value)
 @DOC
-.
+Compute the cotangent of an angle in degrees.
 @EXAMPLES
 <programlisting>
 </programlisting>
