@@ -39,6 +39,14 @@ public class update extends ExternalFunction
                 {
                     // read a file from the server and place it on the local disc
                     updateVersionS = s.substring(17).trim();
+
+                    // maybe no update is available
+                    if (updateVersionS.equals("no_update_available"))
+                    {
+                        getInterpreter().displayText("No update available available");
+                        return null;
+                    }
+                    
                     getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
                 }
             }
@@ -47,7 +55,6 @@ public class update extends ExternalFunction
             throwMathLibException("update: could not receive version for update");
         }          
                
-        
         
         
         // download new files from server 
@@ -151,7 +158,7 @@ system
 update
 @DOC
 updates JMathLib over the web
-@EXAMPLE
+@EXAMPLES
 <programlisting>
 update
 </programlisting>
