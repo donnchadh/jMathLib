@@ -17,6 +17,10 @@ Updated functions:
 stefan *
 
 2008/11/23
+stefan * update.java added more exception handling
+stefan * checkforupdates.java added more exception handling
+
+2008/11/23
 stefan + added four files to each toolbox directory to prepare toolboxes
          for automated information handling  
 stefan * JMathLib.properties changed versioning from 0/x/0 to 0.x.0
