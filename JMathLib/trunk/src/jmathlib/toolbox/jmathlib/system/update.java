@@ -2,6 +2,7 @@ package jmathlib.toolbox.jmathlib.system;
 
 import java.io.*;
 import java.net.*;
+import java.util.Properties;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
@@ -13,54 +14,60 @@ public class update extends ExternalFunction
 	{
 
         String lineFile = "";
-        URL url = null;
  		    
         getInterpreter().displayText("UPDATING JMathLib\n");
 
-        // get update site and local version of jmathlib
+        // get update site of jmathlib
         String updateSiteS   = getInterpreter().prefs.getLocalProperty("update.site.primary");
+        getInterpreter().displayText("update site: "+updateSiteS);
+
+        // get local version of jmathlib
         String localVersionS = getInterpreter().prefs.getLocalProperty("jmathlib.version");
         localVersionS = localVersionS.replaceAll("/", ".");
-        String updateVersionS = localVersionS;
-        getInterpreter().displayText("update site: "+updateSiteS);
         getInterpreter().displayText("current version: "+localVersionS);
 
         
         // first check to which version an update is possible
         getInterpreter().displayText("Checking to which version an update is possible");
-        try {
-            url = new URL(updateSiteS+"updates/?jmathlib_version="+localVersionS);
-            BufferedReader inR = new BufferedReader(new InputStreamReader(url.openStream()));
-            String s = "";
-            while ((s = inR.readLine()) != null  )
-            {
-                //getInterpreter().displayText("version"+s);
-                if (s.startsWith("update.toversion="))
-                {
-                    // read a file from the server and place it on the local disc
-                    updateVersionS = s.substring(17).trim();
-
-                    // maybe no update is available
-                    if (updateVersionS.equals("no_update_available"))
-                    {
-                        getInterpreter().displayText("No update available available");
-                        return null;
-                    }
-                    
-                    getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
-                }
-            }
-        }
-        catch (Exception e) {
-            throwMathLibException("update: could not receive version for update");
-        }          
-               
         
+        
+        // url of the update site including the request for the version
+        //   to update to
+        URL  url = null;
+        try
+        {
+            url = new URL(updateSiteS+"updates/?jmathlib_version="+localVersionS);
+        }
+        catch (Exception e)
+        {
+            throwMathLibException("update: malformed url for getting update version");
+        }          
+        
+        // load information from the update server
+        Properties props = new Properties();
+        try 
+        {
+             props.load(url.openStream() );
+        }
+        catch (Exception e)
+        {
+            System.out.println("updates: Properties error");    
+        }
+
+        
+        // Check return properties for "update-to-version"
+        // Update site could send a lot of properties
+        String updateVersionS = props.getProperty("update.toversion");
+        if (updateVersionS.equals("no_update_available"))
+        {
+            getInterpreter().displayText("No update available available");
+            return null;
+        }
+        getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
+
         
         // download new files from server 
         updateSiteS += "updates/jmathlib_" + updateVersionS + "/";
-        
-        //getInterpreter().displayText("updating path: "+updateSiteS);
         try
         {
             url = new URL(updateSiteS);
@@ -70,12 +77,14 @@ public class update extends ExternalFunction
             throwMathLibException("update: malformed url");
         }          
        
-        BufferedReader inR=null;
+        BufferedReader inR = null;
         try
         {
             inR = new BufferedReader(new InputStreamReader(url.openStream()));
-            String s = inR.readLine();
-            while (s != null  )
+            String s = null; 
+            
+            // read next line from server
+            while ((s = inR.readLine()) != null  )
             {
                 //getInterpreter().displayText("update "+s);
                 
@@ -119,7 +128,7 @@ public class update extends ExternalFunction
                     // delete a file/directory on the local disc
                     String delS = s.substring(4).trim();
                     getInterpreter().displayText("delete file/dir: >"+delS+"<");
-                    File file = new File(getWorkingDirectory(),delS);
+                    File   file = new File(getWorkingDirectory(),delS);
                     file.delete();
                 }
                 else if (s.startsWith("prop"))
@@ -127,7 +136,7 @@ public class update extends ExternalFunction
                     // delete a file/directory on the local disc
                     String propS = s.substring(5).trim();
                     getInterpreter().displayText("new property: >"+propS+"<");
-                    String[] p = propS.split("=");
+                    String[]   p = propS.split("=");
                     getInterpreter().prefs.setLocalProperty(p[0],p[1]);
                 }
                 else
@@ -136,8 +145,6 @@ public class update extends ExternalFunction
                 }
                 
                 
-                // read next line from server
-                s = inR.readLine();
             }
 
         }
