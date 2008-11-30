@@ -60,7 +60,7 @@ public class update extends ExternalFunction
         String updateVersionS = props.getProperty("update.toversion");
         if (updateVersionS.equals("no_update_available"))
         {
-            getInterpreter().displayText("No update available available");
+            getInterpreter().displayText("No update available right now.");
             return null;
         }
 
