@@ -165,7 +165,7 @@
 
     <!-- xml to  html  -->
     <target name="xmltohtml" depends="">
-	<java jar="./libs/saxon.jar" fork="true">
+	<java jar="libs/saxon.jar" fork="true">
 		<arg value='doc/src/doc.xml' />
 		<arg value='doc/DocBook/xsl/html/chunk2.xsl' />
 		<arg value="base.dir=${dist.dir}/handbook/" />
@@ -185,7 +185,7 @@
  
     <!-- xml to  fo -->
     <target name="xmltofo" depends="">
-	<java jar="./libs/saxon.jar" fork="true">
+	<java jar="libs/saxon.jar" fork="true">
 		<arg line="-o doc/src/doc.fo doc/src/doc.xml
 		doc/DocBook/xsl/fo/docbook2.xsl" />
         <arg value='paper.type="A4"' />
@@ -197,19 +197,19 @@
 		<arg value='generate.index="1"' />
 	</java>
     </target>
-	
+
     <!-- fo to  pdf   -->
      <target name="fotopdf" depends="">   
-        <java classpath="avalon-framework.jar:batik" jar="libs/fop.jar" fork="true">
+        <java jar="libs/fop.jar" fork="true">
     		<arg value="doc/src/doc.fo" />
     		<arg value='-d' />
     		<arg value="upload/JMathLibManual_${version}.pdf" />
     	</java>
      </target>
- 
+
     <!-- xml to help  -->
     <target name="xmltohelp" depends="">
-	<java jar="./libs/saxon.jar" fork="true">
+	<java jar="libs/saxon.jar" fork="true">
 		<arg value='doc/src/doc.xml' />
 		<arg value='doc/DocBook/xsl/html/chunk.xsl' />
 		<arg value="base.dir=${upload.dir}/help/" />
