@@ -112,6 +112,8 @@ public class checkforupdates extends ExternalFunction
         public synchronized void run()
         { 
             
+            String s;
+            
             // open URL
             URL url = null;
             try
@@ -134,26 +136,54 @@ public class checkforupdates extends ExternalFunction
                 System.out.println("checkForUpdates: Properties error");    
             }
 
-            
-            String[] localVersionS  = getInterpreter().prefs.getLocalProperty("jmathlib.version").split("/");
-            String[] webVersionS    = props.getProperty("jmathlib.version").split("/");
+            String[] localVersionS  = getInterpreter().prefs.getLocalProperty("jmathlib.version").replace("/",".").split("\\.");
+            String[] webVersionS    = props.getProperty("jmathlib.version").replace("/",".").split("\\.");
 
             // build version number of local version
             // e.g. 2.6.7 -> 20607
-            int localVersion = Integer.parseInt(localVersionS[0]) * 100 * 100;
-            localVersion    += Integer.parseInt(localVersionS[1]) * 100;
-            localVersion    += Integer.parseInt(localVersionS[2]);
-
+            int localVersion =0;
+            
+            if (localVersionS.length==3)
+            {   
+                localVersion    += Integer.parseInt(localVersionS[0]) * 100 * 100;
+                localVersion    += Integer.parseInt(localVersionS[1]) * 100;
+                localVersion    += Integer.parseInt(localVersionS[2]);
+            }
+                
             // build version number of web version
             // e.g. 2.6.7 -> 20607
-            int webVersion   = Integer.parseInt(webVersionS[0])  * 100 * 100;
-            webVersion      += Integer.parseInt(webVersionS[1])  * 100;
-            webVersion      += Integer.parseInt(webVersionS[2]);
+            int webVersion=0;
+            
+            if (webVersionS.length==3)
+            {
+                webVersion      += Integer.parseInt(webVersionS[0])  * 100 * 100;
+                webVersion      += Integer.parseInt(webVersionS[1])  * 100;
+                webVersion      += Integer.parseInt(webVersionS[2]);
+            }
             
             // check version number of web version against local version
             if (webVersion > localVersion)
             {
-                getInterpreter().displayText("There is a new version of JMathLib available");
+
+                // set marker for next startup
+                getInterpreter().prefs.setLocalProperty("update.newversionavailable","yes");
+                
+                s = props.getProperty("update.newversionavailable.message01");
+                if (s!=null)
+                {
+                    getInterpreter().prefs.setLocalProperty("update.newversionavailable.message01", s);
+                    getInterpreter().displayText(s);
+                }
+                else
+                    getInterpreter().displayText("There is a new version of JMathLib available");
+
+                
+                s = props.getProperty("update.newversionavailable.message02");
+                if (s!=null)
+                {
+                    getInterpreter().prefs.setLocalProperty("update.newversionavailable.message02", s);
+                    getInterpreter().displayText(s);
+                }
             }
             else if (webVersion < localVersion)
             {
@@ -162,7 +192,17 @@ public class checkforupdates extends ExternalFunction
             else
             {
                 if (!silentB)
+                {
                     getInterpreter().displayText("The local version of JMathLib is up to date");
+
+                    s=props.getProperty("update.uptodate.message01");
+                    if (s!=null) 
+                        getInterpreter().displayText(s);
+
+                    s=props.getProperty("update.uptodate.message02");
+                    if (s!=null) 
+                        getInterpreter().displayText(s);
+                }
             }
             
 
@@ -174,6 +214,23 @@ public class checkforupdates extends ExternalFunction
                                 + Integer.toString(cal.get(Calendar.MONTH)+1)  + "/"
                                 + Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
             getInterpreter().prefs.setLocalProperty("update.date.last", checkedDate);
+
+        
+            // update link to primary update-site
+            s= props.getProperty("update.site.primary");
+            if (s!=null)
+                getInterpreter().prefs.setLocalProperty("update.site.primary",s);
+
+            // update link to backup update-site
+            s= props.getProperty("update.site.backup");
+            if (s!=null)
+                getInterpreter().prefs.setLocalProperty("update.site.backup",s);
+
+            // update message of the day
+            s= props.getProperty("message.of.the.day");
+            if (s!=null)
+                getInterpreter().prefs.setLocalProperty("message.of.the.day",s);
+
         }
         
     }
