@@ -16,6 +16,10 @@ Updated functions:
 2008/11/xx
 stefan *
 
+2008/11/30 
+stefan + jmathlib/system/getproperty.m is a wrapper for getenv which 
+         returns a system property
+
 2008/11/23
 stefan * update.java added more exception handling
 stefan * checkforupdates.java added more exception handling
