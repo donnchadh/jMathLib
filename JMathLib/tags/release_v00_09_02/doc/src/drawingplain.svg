@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.0"
+   width="295.19415"
+   height="179.1503"
+   id="svg2">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient3220">
+      <stop
+         style="stop-color:#0000ff;stop-opacity:1"
+         offset="0"
+         id="stop3222" />
+      <stop
+         style="stop-color:#0000ff;stop-opacity:0"
+         offset="1"
+         id="stop3224" />
+    </linearGradient>
+    <linearGradient
+       x1="359.5921"
+       y1="685.2915"
+       x2="625.77618"
+       y2="685.2915"
+       id="linearGradient3226"
+       xlink:href="#linearGradient3220"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-359.5921,-572.23938)" />
+  </defs>
+  <rect
+     width="136.29451"
+     height="72.91153"
+     x="31.522751"
+     y="0.31723744"
+     style="fill:#00ff00;fill-rule:evenodd;stroke:#000000;stroke-width:0.63447487px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect2234" />
+  <rect
+     width="182.85715"
+     height="85.714287"
+     x="111.83699"
+     y="30.648994"
+     style="fill:#ffff00;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect2236" />
+  <rect
+     width="265.18411"
+     height="131.19635"
+     x="0.5"
+     y="47.453957"
+     style="fill:url(#linearGradient3226);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     id="rect2230" />
+</svg>

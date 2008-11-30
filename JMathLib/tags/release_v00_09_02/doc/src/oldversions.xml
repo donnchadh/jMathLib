@@ -1,0 +1,92 @@
+<!-- :xml.root=doc.xml: -->
+<sect1 id="oldversions">
+<title>Old versions</title>
+<itemizedlist mark='opencircle'>
+<listitem>
+<para>0.6.0: Windows Installer, support for cell arrays and many many bugfixes.</para>
+</listitem>
+<listitem>
+<para>0.x.x: lots of changes in between</para>
+</listitem>
+<listitem>
+<para>0.3.4: Seperated GUI class</para>
+</listitem>
+<listitem>
+<para>0.3.3.5: Control structures and Matrix functions added</para>
+</listitem>
+<listitem>
+<para>0.3.3.2: Improved support for Numeric matrices</para>
+<para>  Some complex number functions</para>
+</listitem>
+<listitem>
+<para>0.3.3.1: Support for matrices added</para>
+</listitem>
+<listitem>
+<para>0.3.3: Added support for complex numbers</para>
+</listitem>
+<listitem>
+<para>0.3.2.2: Improved factorisation so (x+1)*(x+1) returns x^2 + 2x + 1</para>
+</listitem>
+<listitem>
+<para>0.3.2.1: Modified ErrorLogger class so that log lines get written to a
+file as well as the console</para>
+</listitem>
+<listitem>
+<para>0.3.2: Improved factorisation of expressions so 2*x + x returns 3*x</para>
+</listitem>
+<listitem>
+<para>0.3.1.5: Split binary operators into seperate classes</para>
+</listitem>
+<listitem>
+<para>0.3.1: Added support for strings</para>
+</listitem>
+<listitem>
+<para>0.3.0.2: Changed way standard and trigonometric functions</para>
+</listitem>
+<listitem>
+<para>0.3.0.1: Corrected bug when displaying expressions, caused y - 1 to appear as 1 - y</para>
+</listitem>
+<listitem>
+<para>0.3.0: Modified GUI</para>
+</listitem>
+<listitem>
+<para>0.2.4.1: corrected a bug which prevented the letter z being used in variable names.</para>
+</listitem>
+<listitem>
+<para>0.2.4: Seperated the lexical analysis code into a seperate object</para>
+</listitem>
+<listitem>
+<para>0.2.3: Added support for user functions</para>
+</listitem>
+<listitem>
+<para>0.2.2: Standard Mathematical functions</para>
+<para>Program closes when you click on the x</para>
+<para>use up &amp; down arrows to access previous commands</para>
+</listitem>
+<listitem>
+<para>0.2.1: Added trigonometric functions</para>
+</listitem>
+<listitem>
+<para>0.2.0: Rudimentary error checking + new GUI;</para>
+</listitem>
+<listitem>
+<para>0.1.4: Add variables support</para>
+</listitem>
+<listitem>
+<para>0.1.3: Factorial operator, !, added</para>
+</listitem>
+<listitem>
+<para>0.1.2: New operator ^ for calculating x to the yth power</para>
+</listitem>
+<listitem>
+<para>0.1.1: Replaced the Binary tree with a tree where each node has a
+viriable number of children. It doesn't have much effect on the program
+at the moment but it should make implementing functions easier.</para>
+</listitem>
+<listitem>
+<para>0.1: It handles simple operations involving the four main operators
+and any real numbers. It understands precedence and brackets.</para>
+</listitem>
+</itemizedlist>
+
+</sect1>

@@ -1,0 +1,10 @@
+@GROUP
+general
+@SYNTAX
+exit
+@DOC
+Exits JMathLib
+@EXAMPLES
+exit
+@SEE
+error, warning

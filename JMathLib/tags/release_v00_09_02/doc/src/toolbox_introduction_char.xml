@@ -1,0 +1,9 @@
+<sect1 id="toolbox_introduction_char">
+<title>Introduction to the toolbox char</title>
+<indexterm><primary>toolbox char</primary></indexterm>
+<simpara>
+This toolbox is intended to provide functions in order to manipulate char arrays
+and strings.
+
+</simpara>
+</sect1>

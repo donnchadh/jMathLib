@@ -1,0 +1,25 @@
+<!-- :xml.root=doc.xml: -->
+<chapter  id="internals">
+    <title>Internals</title >
+    <sect1 id="parser">
+        <title>Parser</title >
+        <simpara >
+            The parser scans the expression string and builds up an expression tree.
+            It calls the getNextToken function in the LexicalAnalyser class to
+            grab each token in turn.
+        </simpara >
+    </sect1 >
+    <sect1 id="lexicalanalyser">
+        <title >Lexical Analyser</title >
+        <simpara >
+            The lexical analyser scans the expression string to get the next token
+            and passed it back to the parser.
+        </simpara >
+        <simpara >
+            It takes the next character in the string and passes it to a series of functions.
+            Each function checks to see if it knows how to deal with the character. If it does
+            then it builds up a token and returns true. Otherwise it returns false.
+        </simpara >
+    </sect1>
+</chapter >
+

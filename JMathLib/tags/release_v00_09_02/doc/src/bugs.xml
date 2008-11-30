@@ -1,0 +1,13 @@
+<!-- :xml.root=doc.xml: -->
+<sect1 id="bugs_open"><title>Open</title>
+<sect2 id="bugs_open_details">
+There are some bugs. Please see the sourceforge.net site with details.
+</sect2>
+
+</sect1>
+
+<sect1 id="bugs_closed"><title>Closed</title>
+<sect2 id="bugs_close_details">
+There are some closed bugs. Please see the sourceforge.net site with details.
+</sect2>
+</sect1>

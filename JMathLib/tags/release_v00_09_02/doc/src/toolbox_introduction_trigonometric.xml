@@ -1,0 +1,9 @@
+<sect1 id="toolbox_introduction_trigonometric">
+<title>Introduction to the toolbox trigonometric</title>
+<indexterm><primary>toolbox trigonometric</primary></indexterm>
+<simpara>
+This toolbox is intended to provide functions in order to 
+compute trigonometric functions.
+
+</simpara>
+</sect1>

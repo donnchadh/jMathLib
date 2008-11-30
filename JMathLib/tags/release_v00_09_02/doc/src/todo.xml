@@ -1,0 +1,13 @@
+<!-- :xml.root=doc.xml: -->
+<sect1 id="todo_open"><title>Open</title>
+<para>
+JMathLib is available for a couple of years already, but still .....
+a lot needs to be done.
+</para></sect1>
+
+<sect1 id="todo_closed"><title>Closed</title>
+<para>
+Some simple graphics stuff is already available.
+</para>
+</sect1>
+
