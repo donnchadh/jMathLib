@@ -24,7 +24,7 @@ How to create a distribution:
 
 - change file: ChangeLog.txt
 
-- run the ant tasks: fulldist  (this creates all doc-files and the installer)
+- run the ant tasks: all  (this creates all doc-files and the installer)
 
 - go to to ../upload and find all required files
   upload JMathLibInstall_x.x.x.exe to sourceforge.net
