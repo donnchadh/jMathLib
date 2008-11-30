@@ -7,7 +7,6 @@
     <!ENTITY history SYSTEM "history.xml">
     <!ENTITY oldversions SYSTEM "oldversions.xml">
     <!ENTITY todo SYSTEM "todo.xml">
-    <!ENTITY bugs SYSTEM "bugs.xml">
     <!ENTITY installingandrunning SYSTEM "install/installingandrunning.xml">
     <!ENTITY usage SYSTEM "usage.xml">
     <!ENTITY datatypes SYSTEM "datatypes.xml">
@@ -116,11 +115,6 @@ This release is connected to JMathLib in Version 0.9.2 and following versions
     <title >To Do</title >
 	&todo;
 </appendix>
-
-<appendix id="bugs">
-    <title >Bugs</title >
-	&bugs;
-</appendix >
 
 <index id="book_index">
     <title>Index</title>
