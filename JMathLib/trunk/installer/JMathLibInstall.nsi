@@ -30,6 +30,9 @@ InstallDir "$PROGRAMFILES\JMathLib"
 ;Get installation folder from registry if available
 InstallDirRegKey HKCU "Software\JMathLib" ""
 
+;Request application privileges for Windows Vista
+RequestExecutionLevel user
+
 ;define MUI_INSTFILESPAGE_PROGRESSBAR
 
 ;----------------------------------------------------------
