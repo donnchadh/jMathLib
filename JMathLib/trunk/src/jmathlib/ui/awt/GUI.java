@@ -226,16 +226,31 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             interpreter = new Interpreter(runningStandalone);
             interpreter.setOutputPanel(answer);
             
+           
+            this.setTitle(TITLE + " - [4/4] running startup script");
+            interpreter.executeExpression("startup;");
+            //interpreter.executeExpression("messageoftheday");
+            answer.displayPrompt();
+
             // silent check for updates
             interpreter.executeExpression("checkForUpdates('-silent')");
 
-            
-            this.setTitle(TITLE + " - [4/4] running startup script");
-            interpreter.executeExpression("startup;");
-            answer.displayPrompt();
-            
             this.setTitle(TITLE + " - Console Window");
-          
+
+            // in case an update is available inform the user
+            if (interpreter.prefs.getLocalProperty("update.newversionavailable").equals("yes"))
+            {
+                this.setTitle(TITLE + " - (NEW version available: type update at prompt)");
+                String s = interpreter.prefs.getLocalProperty("update.newversionavailable.message01");
+                if (s==null)
+                    answer.displayText("A NEW version of JMathLib is available\n     type update   or  visit www.jmathlib.de");
+                else
+                    answer.displayText(s);
+                
+                answer.displayPrompt();
+            }
+            
+
     }
 
     /**The main console initializer.*/
