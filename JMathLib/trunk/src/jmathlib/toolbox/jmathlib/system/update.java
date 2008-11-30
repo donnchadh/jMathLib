@@ -63,6 +63,16 @@ public class update extends ExternalFunction
             getInterpreter().displayText("No update available available");
             return null;
         }
+
+        if (updateVersionS.equals("full_download_required"))
+        {
+            getInterpreter().displayText("\n");
+            getInterpreter().displayText("Full download required in order to update!");
+            getInterpreter().displayText("Please visit www.jmathlib.de for details.");
+            getInterpreter().displayText("\n");
+            return null;
+        }
+
         getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
 
         
