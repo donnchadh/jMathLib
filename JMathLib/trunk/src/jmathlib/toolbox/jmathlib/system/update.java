@@ -14,7 +14,8 @@ public class update extends ExternalFunction
 	{
 
         String lineFile = "";
- 		    
+ 		boolean successB = true;    
+        
         getInterpreter().displayText("UPDATING JMathLib\n");
 
         // get update site of jmathlib
@@ -41,6 +42,7 @@ public class update extends ExternalFunction
         catch (Exception e)
         {
             throwMathLibException("update: malformed url for getting update version");
+            successB = false;
         }          
         
         // load information from the update server
@@ -52,6 +54,7 @@ public class update extends ExternalFunction
         catch (Exception e)
         {
             System.out.println("updates: Properties error");    
+            successB = false;
         }
 
         
@@ -85,6 +88,7 @@ public class update extends ExternalFunction
         catch (Exception e)
         {
             throwMathLibException("update: malformed url");
+            successB = false;
         }          
        
         BufferedReader inR = null;
@@ -105,23 +109,30 @@ public class update extends ExternalFunction
                     getInterpreter().displayText("new file: >"+fileS+"<");
                     
                     // open URL to file on update server
-                    URL fileURL = new URL(updateSiteS+fileS);
-                    InputStream in = fileURL.openStream();
-
-                    // open file on local disc
-                    File file = new File(getWorkingDirectory(),fileS);
-                    OutputStream out = new FileOutputStream(file);
-
-                    byte[] cbuf = new byte[4096]; 
-                    int len;
-                    while ((len = in.read(cbuf)) != -1)
+                    try 
                     {
-                        out.write(cbuf,0,len);
+                        URL fileURL = new URL(updateSiteS+fileS);
+                        InputStream in = fileURL.openStream();
+    
+                        // open file on local disc
+                        File file = new File(getWorkingDirectory(),fileS);
+                        OutputStream out = new FileOutputStream(file);
+    
+                        byte[] cbuf = new byte[4096]; 
+                        int len;
+                        while ((len = in.read(cbuf)) != -1)
+                        {
+                            out.write(cbuf,0,len);
+                        }
+                        
+                        in.close();
+                        out.close();
                     }
-                    
-                    in.close();
-                    out.close();
-               
+                    catch (Exception e)
+                    {
+                        successB = false;
+                        getInterpreter().displayText("update: problem downloading "+fileS);    
+                    }
                     
                 }
                 else if (s.startsWith("dir"))
@@ -129,17 +140,33 @@ public class update extends ExternalFunction
                     // create a directory on the local disc
                     String dirS = s.substring(4).trim();
                     getInterpreter().displayText("new directory: >"+dirS+"<");
-                    File file = new File(getWorkingDirectory(),dirS);
-                    file.mkdir();
-                    
+                    try
+                    {
+                        File file = new File(getWorkingDirectory(),dirS);
+                        file.mkdir();
+                    }
+                    catch (Exception e)
+                    {
+                        successB = false;
+                        getInterpreter().displayText("update: problem creating directory "+dirS);    
+                    }
+                      
                 }
                 else if (s.startsWith("del"))
                 {
                     // delete a file/directory on the local disc
                     String delS = s.substring(4).trim();
                     getInterpreter().displayText("delete file/dir: >"+delS+"<");
-                    File   file = new File(getWorkingDirectory(),delS);
-                    file.delete();
+                    try
+                    {
+                        File   file = new File(getWorkingDirectory(),delS);
+                        file.delete();
+                    }
+                    catch (Exception e)
+                    {
+                        successB = false;
+                        getInterpreter().displayText("update: problem deleting "+delS);    
+                    }
                 }
                 else if (s.startsWith("prop"))
                 {
@@ -154,6 +181,9 @@ public class update extends ExternalFunction
                     // empty line or unknown command or comment
                 }
                 
+                // in case something went wrong terminate
+                if (!successB)
+                    break;
                 
             }
 
@@ -164,6 +194,10 @@ public class update extends ExternalFunction
         }          
         
         
+        // notifiy user
+        if (!successB)
+            getInterpreter().displayText("\n Update was not successful. Repeat again later on or inform the admin.");
+                    
 		return null;		
 	}
 }
