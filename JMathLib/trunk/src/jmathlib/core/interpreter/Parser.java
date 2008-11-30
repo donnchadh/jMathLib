@@ -334,9 +334,8 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
                 (pToken     instanceof PowerOperatorToken)                )
                 Errors.throwParserException("multiple operators ^");
 
-            
-            ErrorLogger.debugLine("PARSER  op+op: "+pToken);
             ErrorLogger.debugLine("PARSER  op+op: "+nextToken);
+            ErrorLogger.debugLine("PARSER  op+op: "+pToken);
             
         	if(nextToken instanceof AssignmentOperatorToken)
             {
@@ -352,6 +351,15 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
             {                    
                 ErrorLogger.debugLine("Parser: dot-operator");
                 retToken  = parseDotOperator(operandStack, deliTyp);
+            }
+            else if((nextToken instanceof AddSubOperatorToken) &&
+                    (pToken instanceof AssignmentOperatorToken))
+            {
+                // += or -=
+                ErrorLogger.debugLine("Parser: += or -=");
+                nextToken = getNextToken(deliTyp);
+                retToken = parseAssignmentOperator(nextToken, operandStack);
+                
             }
             else if(    (nextToken instanceof AddSubOperatorToken)
                      || (nextToken instanceof MulDivOperatorToken)
@@ -591,7 +599,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     /* @return expression of assignment (e.g. a=3)                                     */
     private OperandToken parseAssignmentOperator(Token currentToken, Stack operandStack)
     {
-        // operator    (this should be a "=")
+        // operator    (this should be a "=" or ("+" for +=) or ("-" for -=))
         OperatorToken operator = (OperatorToken)currentToken; 
         
         //parse right parameter                    
@@ -601,7 +609,19 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         OperandToken leftSide = (OperandToken)operandStack.pop(); 
 
         /* create new expression */
-        Expression tree = new Expression(operator, leftSide, rightSide);
+        Expression tree = null;
+        if (currentToken instanceof AssignmentOperatorToken)
+        {
+            // e.g. a=8
+            tree = new Expression(operator, leftSide, rightSide);
+        }
+        else if (currentToken instanceof AddSubOperatorToken)
+        {
+            // e.g. a+=8
+            tree = new Expression(operator, rightSide, new DoubleNumberToken(1.0));
+            tree = new Expression(new AssignmentOperatorToken(), leftSide, tree);
+    // ???????
+        }
 
         return tree;
     } // end parseAssignmentOperator
@@ -1445,14 +1465,15 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         boolean numberIndicatorB = false;         //
         boolean singleIndicatorB = false;         //
         boolean imagIndicatorB   = false;         //
-
+        System.out.println("*+*");
         // remove spaces between "[" and first element (e.g. [  2,3] -> [2,3]
         while (isExpectedDelimiter(peekNextToken(MATRIX), ' '))
         		getNextToken();
-        
+        System.out.println("*++*");
         // parse code of matrices (e.g. [1,2,3;4,5,6] or [1 sin(2) 3; 4 5+1 a]
         while(!endMatrix) 
         {
+            System.out.println("**");
             // get next parameter (whitespaces are treated as delimiter, too)
             OperandToken nextParameter = parseArithExpression(MATRIX);    
 
