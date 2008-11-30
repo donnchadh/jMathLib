@@ -238,7 +238,8 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             this.setTitle(TITLE + " - Console Window");
 
             // in case an update is available inform the user
-            if (interpreter.prefs.getLocalProperty("update.newversionavailable").equals("yes"))
+            String u = interpreter.prefs.getLocalProperty("update.newversionavailable");
+            if ((u!=null) && u.equals("yes"))
             {
                 this.setTitle(TITLE + " - (NEW version available: type update at prompt)");
                 String s = interpreter.prefs.getLocalProperty("update.newversionavailable.message01");
