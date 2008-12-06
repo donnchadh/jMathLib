@@ -13,19 +13,19 @@ public class version extends ExternalFunction
  		    
         getInterpreter().displayText("Version information for JMathLib");
 
-        s = getInterpreter().prefs.getGlobalProperty("jmathlib.version");
+        s = getInterpreter().prefs.getLocalProperty("jmathlib.version");
         getInterpreter().displayText("version: "+s);
 
-        s = getInterpreter().prefs.getGlobalProperty("jmathlib.release.date");
+        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.date");
         getInterpreter().displayText("release date: "+s);
 
-        s = getInterpreter().prefs.getGlobalProperty("jmathlib.release.name");
+        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.name");
         getInterpreter().displayText("release name: "+s);
 
-        s = getInterpreter().prefs.getGlobalProperty("jmathlib.release.description");
+        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.description");
         getInterpreter().displayText("release description: "+s);
 
-        s = getInterpreter().prefs.getGlobalProperty("jmathlib.copyright");
+        s = getInterpreter().prefs.getLocalProperty("jmathlib.copyright");
         getInterpreter().displayText(s);
 
 		return null;		
