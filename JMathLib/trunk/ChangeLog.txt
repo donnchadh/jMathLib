@@ -13,10 +13,16 @@ New functions:
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
-2008/11/xx
+2008/12/xx
 stefan *
 
-2008/11/xx
+2008/12/06
+stefan + jmathlib/system/setlocalproperty.java for setting local properties
+stefan + jmathlib/system/getlocalproperty.java for getting local properties
+stefan + jmathlib/system/setglobalproperty.java for setting global properties
+stefan + jmathlib/system/getglobalproperty.java for getting global properties
+
+2008/11/30
 stefan # update.java wrong comment
 
 ---- Functional Changes:  version 0.9.0 -> 0.9.2 ------------------------------
