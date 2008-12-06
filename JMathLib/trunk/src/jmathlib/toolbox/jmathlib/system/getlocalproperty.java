@@ -44,7 +44,8 @@ GETENV(variablename)
 Returns the value of the enviromental variable variablename.
 @NOTES
 @EXAMPLES
-GETENV("HOME")= "/home/user"
+getlocal("HOME")= "/home/user"
 @SEE
+getenv, getglobalproperty, setlocalproperty, setglobalproperty
 */
 
