@@ -15,6 +15,9 @@ public class testDate extends TestCase {
 	protected void setUp() {
 		ml = new Interpreter(true);
 	}
+    protected void tearDown() {
+        ml = null;
+    }
 
 	public static Test suite() {
 		return new TestSuite(testDate.class);
