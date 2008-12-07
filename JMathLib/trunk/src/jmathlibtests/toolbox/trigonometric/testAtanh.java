@@ -17,6 +17,10 @@ public class testAtanh extends TestCase {
 		ml = new Interpreter(true);
 	}
 
+    protected void tearDown() {
+        ml = null;
+    }
+
 	public static Test suite() {
 		return new TestSuite(testAtanh.class);
 	}
