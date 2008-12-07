@@ -36,6 +36,10 @@ public class testUnaryOperatorToken extends TestCase {
         ml.executeExpression("a=4!");
         assertTrue(24.0 == ml.getScalarValueRe("a"));
     }
+    public void test001c() {
+        ml.executeExpression("a=(8-5)!");
+        assertTrue(6.0 == ml.getScalarValueRe("a"));
+    }
 
     
     /************* ' transpose ************/
