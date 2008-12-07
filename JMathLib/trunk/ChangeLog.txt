@@ -16,6 +16,10 @@ Updated functions:
 2008/12/xx
 stefan *
 
+2008/12/xx
+stefan * tearDown() added this method to all test cases in order to save
+         resources and memory during test case evaluation
+
 2008/12/06
 stefan + jmathlib/system/setlocalproperty.java for setting local properties
 stefan + jmathlib/system/getlocalproperty.java for getting local properties
