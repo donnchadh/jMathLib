@@ -16,6 +16,10 @@ public class testMinMax extends TestCase {
 		ml = new Interpreter(true);
 	}
 
+    protected void tearDown() {
+        ml = null;
+    }
+
 	public static Test suite() {
 		return new TestSuite(testMinMax.class);
 	}

@@ -16,6 +16,10 @@ public class testImag extends TestCase {
 		ml = new Interpreter(true);
 	}
 
+    protected void tearDown() {
+        ml = null;
+    }
+
 	public static Test suite() {
 		return new TestSuite(testImag.class);
 	}
