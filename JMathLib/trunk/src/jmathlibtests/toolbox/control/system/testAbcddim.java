@@ -9,12 +9,18 @@ public class testAbcddim extends TestCase {
     public testAbcddim(String name) {
 		super(name);
 	}
-	public static void main (String[] args) {
+
+    public static void main (String[] args) {
 	    jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
+
 	protected void setUp() {
 		ml = new Interpreter(true);
 	}
+
+	protected void tearDown() {
+        ml = null;
+    }
 
 	public static Test suite() {
 		return new TestSuite(testAbcddim.class);
