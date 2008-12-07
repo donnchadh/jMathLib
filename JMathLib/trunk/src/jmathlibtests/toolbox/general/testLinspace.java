@@ -19,6 +19,9 @@ public class testLinspace extends TestCase {
 	protected void setUp() {
 		ml = new Interpreter(true);
 	}
+    protected void tearDown() {
+        ml = null;
+    }
 
     /****** linspace() **************************************************/
 	public void testLinspace01() {
