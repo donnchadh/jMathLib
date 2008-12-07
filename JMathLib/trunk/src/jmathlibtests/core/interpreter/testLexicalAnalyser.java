@@ -32,6 +32,11 @@ public class testLexicalAnalyser extends TestCase
         expectedResult = new Vector();
     }    
         
+    protected void tearDown() {
+        analyser = null;
+        expectedResult = null;
+    }
+
     public void testNumber()
     {
         String expression = "3";

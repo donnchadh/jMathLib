@@ -29,7 +29,10 @@ public class testUInt8NumberToken extends TestCase
     {
 		ml   = new Interpreter(true);
 	}
-      
+    protected void tearDown() {
+        ml = null;
+    }
+     
     
     public void testUInt8_01() {
         ml.executeExpression("a=uint8(200)");

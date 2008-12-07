@@ -43,7 +43,10 @@ public class testInt8NumberToken extends TestCase
         val7 = new DoubleNumberToken(-3.5);        
 		ml   = new Interpreter(true);
 	}
-      
+    protected void tearDown() {
+        ml = null;
+    }
+     
     
     public void testInt8_01() {
         ml.executeExpression("a=int8(88)");

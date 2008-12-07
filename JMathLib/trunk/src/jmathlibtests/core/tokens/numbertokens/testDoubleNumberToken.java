@@ -44,6 +44,10 @@ public class testDoubleNumberToken extends TestCase
 		ml   = new Interpreter(true);
 	}
       
+    protected void tearDown() {
+        ml = null;
+    }
+
     
     public void testEquals()
     {
