@@ -26,6 +26,9 @@ public class testUserFunctions extends TestCase
     {
         ml = new Interpreter(true);
     }    
+    protected void tearDown() {
+        ml = null;
+    }
     
     public void testUserFunction001()
     {
