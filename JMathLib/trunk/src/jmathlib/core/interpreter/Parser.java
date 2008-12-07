@@ -827,14 +827,14 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     
         Expression tree = null;
         
-        if ((leftSide instanceof DoubleNumberToken)   ||
+       /* if ((leftSide instanceof DoubleNumberToken)   ||
             (leftSide instanceof MatrixToken)   ||
             (leftSide instanceof VariableToken) ||
             (leftSide instanceof FunctionToken)    )
-        {
+        {*/
             // (e.g. 3! a! a++ a--)
             tree = new Expression((UnaryOperatorToken)nextToken, leftSide);
-        }
+        /*}
         else if (leftSide instanceof Expression)
         {
             Expression leftExpr = (Expression)leftSide;
@@ -848,7 +848,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         }
         else
             Errors.throwParserException(" Unary operator");
-                    
+         */           
         return tree;
     } // end parseBinaryOperator
 
