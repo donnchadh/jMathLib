@@ -19,6 +19,9 @@ public class testDerivative extends TestCase {
         ml.executeExpression("x=sym('x')");
         ml.executeExpression("y=sym('y')");        
 	}
+    protected void tearDown() {
+        ml = null;
+    }
 
 	public static Test suite() {
 		return new TestSuite(testDerivative.class);

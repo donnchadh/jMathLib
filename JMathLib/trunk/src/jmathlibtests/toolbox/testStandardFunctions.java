@@ -16,6 +16,9 @@ public class testStandardFunctions extends TestCase {
 	protected void setUp() {
 		ml = new Interpreter(true);
 	}
+    protected void tearDown() {
+        ml = null;
+    }
 
 	public static Test suite() {
 		return new TestSuite(testStandardFunctions.class);
