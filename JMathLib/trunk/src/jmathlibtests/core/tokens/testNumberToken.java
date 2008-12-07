@@ -39,7 +39,10 @@ public class testNumberToken extends TestCase
         val5 = new DoubleNumberToken(-6);
  		ml   = new Interpreter(true);
 	}
-      
+    protected void tearDown() {
+        ml = null;
+    }
+    
     
     public void testEquals()
     {

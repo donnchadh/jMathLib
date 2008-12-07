@@ -31,6 +31,9 @@ public class testVariableToken extends TestCase
         variable2 = new VariableToken("x");
         ml        = new Interpreter(true);
     }
+    protected void tearDown() {
+        ml = null;
+    }
     
     public void testEquals()
     {

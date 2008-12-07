@@ -27,6 +27,10 @@ public class testWhileOperatorToken extends TestCase
         ml = new Interpreter(true);
     }    
     
+    protected void tearDown() {
+        ml = null;
+    }
+
     public void testWhile01()
     {
         ml.executeExpression(" x=0;while(x<5){x=x+1;disp('x= ' + x);}end");

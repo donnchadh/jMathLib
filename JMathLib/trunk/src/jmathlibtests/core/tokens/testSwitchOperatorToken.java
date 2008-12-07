@@ -26,7 +26,10 @@ public class testSwitchOperatorToken extends TestCase
     {
         ml = new Interpreter(true);
     }    
-    
+    protected void tearDown() {
+        ml = null;
+    }
+   
     public void testSwitch01()
     {
         String code = ""

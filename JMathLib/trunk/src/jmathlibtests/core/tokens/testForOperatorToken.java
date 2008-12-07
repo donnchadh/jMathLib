@@ -30,6 +30,10 @@ public class testForOperatorToken extends TestCase
         ml = new Interpreter(true);
     }    
     
+    protected void tearDown() {
+        ml = null;
+    }
+
     public void testFor01()
     {
         ml.executeExpression(" x=1;y=0;for(z=0;z<5;z=z+1) { x=x+1; y=z; } end");

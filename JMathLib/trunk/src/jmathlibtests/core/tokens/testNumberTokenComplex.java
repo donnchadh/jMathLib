@@ -36,7 +36,10 @@ public class testNumberTokenComplex extends TestCase
         val4 = new DoubleNumberToken(3, 4);
         ml   = new Interpreter(true);
     }
-    
+    protected void tearDown() {
+        ml = null;
+    }
+   
     public void testAdd1()
     {
         DoubleNumberToken expectedResult = new DoubleNumberToken(5, 7);

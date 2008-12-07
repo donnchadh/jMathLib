@@ -34,7 +34,10 @@ public class testCharToken extends TestCase
         number  = new DoubleNumberToken(1);
         ml      = new Interpreter(true);
     }
-    
+    protected void tearDown() {
+        ml = null;
+    }
+   
     public void testAdd1()
     {
         CharToken expectedResult = new CharToken("A StringAnother String");
