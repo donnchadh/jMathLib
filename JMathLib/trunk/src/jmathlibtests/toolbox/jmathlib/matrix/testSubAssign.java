@@ -19,16 +19,12 @@ public class testSubAssign extends TestCase {
 	public static Test suite() {
 		return new TestSuite(testSubAssign.class);
 	}
-
 	protected void setUp() {
 		ml = new Interpreter(true);
         ml.setArray("a", aRe, aIm);
-        System.out.println("*!*!*!*!*!*!*!*!*!*!*");
 	}
-	
     protected void tearDown() {
         ml = null;
-        System.out.println("*!!!!!!!!!!!!!!!!!!!!!!!!!!!");
     }
 
 

@@ -17,6 +17,10 @@ public class testSubMatrix extends TestCase {
 		return new TestSuite(testSubMatrix.class);
 	}
 
+    protected void tearDown() {
+        ml = null;
+    }
+
 	protected void setUp() {
 		ml = new Interpreter(true);
         double[][] aRe = {{1.0, 2.0, 3.0, 4.0},{5.0, 6.0, 7.0, 8.0}};
