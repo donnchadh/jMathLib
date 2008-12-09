@@ -15,6 +15,8 @@ public class Compare
 	public static boolean ArrayEquals(double[][] a, double[][] b, double tol)
 	{
 	    // number of rows must be greater 0 and equal 
+	    if (a == null)            return false;
+        if (b == null)            return false;
         if (a.length < 1)         return false;
         if (b.length < 1)         return false;
         if (a.length != b.length) return false;
