@@ -26,7 +26,7 @@ public class testAny extends TestCase {
     /****** any() **********************************************************/
 	public void testAny01() {
         ml.executeExpression("a=any(1.123);");
-		assertTrue(true == ml.getScalarValueBoolean("a"));
+		assertTrue(1.0 == ml.getScalarValueRe("a"));
 	}
     public void testAny02() {
         ml.executeExpression("b=any(0.0)");
@@ -37,7 +37,7 @@ public class testAny extends TestCase {
         double[][] b = {{0.0, 0.0, 0.0},{0.0, 0.0, 0.0},{0.0, 0.0, 0.0}};
         ml.setArray("a", a, b);
         ml.executeExpression("z = any(a)");
-		assertTrue(true == ml.getScalarValueBoolean("z"));
+		assertTrue(1.0 == ml.getScalarValueRe("z"));
 	}
     public void testAny04() {
         double[][] a = {{0.0, 0.0, 0.0},{0.0, 0.0, 0.0},{0.0, 0.0, 0.0}};
