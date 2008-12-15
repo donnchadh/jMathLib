@@ -115,4 +115,60 @@ public class testUnaryOperatorToken extends TestCase {
         assertTrue(33.0 == ml.getScalarValueRe("c"));
     }
     
+    public void test460() {
+        ml.executeExpression("4++");
+        assertTrue(5.0 == ml.getScalarValueRe("ans"));
+    }
+
+    public void test470() {
+        ml.executeExpression("45++");
+        assertTrue(46.0 == ml.getScalarValueRe("ans"));
+    }
+    
+    public void test480() {
+        ml.executeExpression("4--");
+        assertTrue(3.0 == ml.getScalarValueRe("ans"));
+    }
+    
+    public void test490() {
+        ml.executeExpression("45++");
+        assertTrue(46.0 == ml.getScalarValueRe("ans"));
+    }
+
+    public void test500() {
+        ml.executeExpression("aa=78");
+        ml.executeExpression("aa++");
+        assertTrue(79.0 == ml.getScalarValueRe("aa"));
+    }
+
+    public void test510() {
+        ml.executeExpression("aa=73");
+        ml.executeExpression("aa--");
+        assertTrue(72.0 == ml.getScalarValueRe("aa"));
+    }
+
+    
+    public void test600() {
+        ml.executeExpression("aa=3");
+        ml.executeExpression("aa!");
+        assertTrue(6.0 == ml.getScalarValueRe("ans"));
+    }
+
+    public void test610() {
+        ml.executeExpression("aa=4");
+        ml.executeExpression("aa!");
+        assertTrue(24.0 == ml.getScalarValueRe("ans"));
+    }
+
+    public void test620() {
+        ml.executeExpression("(5-2)!");
+        assertTrue(6.0 == ml.getScalarValueRe("ans"));
+    }
+
+    public void test630() {
+        ml.executeExpression("(6-2)!");
+        assertTrue(24.0 == ml.getScalarValueRe("ans"));
+    }
+
+
 }
