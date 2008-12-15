@@ -48,5 +48,23 @@ public class testSign extends TestCase {
         assertTrue(0.0 == ml.getScalarValueRe("a"));
     }
 
+    public void testSign06() {
+        ml.executeExpression("a=sign(5i);");
+        assertTrue(0.0 == ml.getScalarValueRe("a"));
+        assertTrue(1.0 == ml.getScalarValueIm("a"));
+    }
+
+    public void testSign07() {
+        ml.executeExpression("a=sign(-55i);");
+        assertTrue(0.0  == ml.getScalarValueRe("a"));
+        assertTrue(-1.0 == ml.getScalarValueIm("a"));
+    }
+
+    public void testSign08() {
+        ml.executeExpression("a=sign(3+4i);");
+        assertEquals(0.6, ml.getScalarValueRe("a"), 0.01);
+        assertEquals(0.8, ml.getScalarValueIm("a"), 0.01);
+    }
+
 
 }
