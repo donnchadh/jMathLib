@@ -48,10 +48,10 @@ function retval = betaln (a, b)
   retval = gammaln (a) + gammaln (b) - gammaln (a + b);
 endfunction
 
-%!assert (betaln(3,4),log(beta(3,4)),eps)
+//%!assert (betaln(3,4),log(beta(3,4)),eps)
 
-%!error (betaln(1.))
-%!error (betaln(1.,1.,1.))
+//%!error (betaln(1.))
+//%!error (betaln(1.,1.,1.))
 
 /*
 @GROUP
