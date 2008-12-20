@@ -27,9 +27,6 @@ function y = atand (x)
   y = 180 ./ pi .* atan (x);
 endfunction
 
-%!error(atand())
-%!error(atand(1,2))
-%!assert(atand(0:10:90),180./pi.*atan(0:10:90),-10*eps)
 
 /*
 @GROUP

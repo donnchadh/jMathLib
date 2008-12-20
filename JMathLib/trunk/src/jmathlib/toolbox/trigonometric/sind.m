@@ -30,11 +30,11 @@ function y = sind (x)
   y((II == round (II)) && finite (II)) = 0;
 endfunction
 
-%!error(sind())
-%!error(sind(1,2))
-%!assert(sind(10:10:90),sin(pi*[10:10:90]/180),-10*eps)
-%!assert(sind([0,180,360]) == 0)
-%!assert(sind([90,270]) != 0)
+//%!error(sind())
+//%!error(sind(1,2))
+//%!assert(sind(10:10:90),sin(pi*[10:10:90]/180),-10*eps)
+//%!assert(sind([0,180,360]) == 0)
+//%!assert(sind([90,270]) != 0)
 
 /*
 @GROUP

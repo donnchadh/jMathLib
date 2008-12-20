@@ -27,9 +27,6 @@ function y = acosd (x)
   y = acos(x) .* 180 ./ pi;
 endfunction
 
-%!error(acosd())
-%!error(acosd(1,2))
-%!assert(acosd(0:0.1:1),180/pi*acos(0:0.1:1),-10*eps)
 
 /*
 @GROUP

@@ -27,9 +27,6 @@ function y = acotd (x)
   y = atand (1 ./ x);
 endfunction
 
-%!error(acotd())
-%!error(acotd(1,2))
-%!assert(acotd(0:10:90),180./pi.*acot(0:10:90),-10*eps)
 
 /*
 @GROUP

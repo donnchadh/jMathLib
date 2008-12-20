@@ -31,11 +31,7 @@ function y = cosd (x)
   y(I == round (I) & finite (I)) = 0;
 endfunction
 
-%!error(cosd())
-%!error(cosd(1,2))
-%!assert(cosd(0:10:80),cos(pi*[0:10:80]/180),-10*eps)
-%!assert(cosd([0,180,360]) != 0)
-%!assert(cosd([90,270]) == 0)
+
 
 /*
 @GROUP

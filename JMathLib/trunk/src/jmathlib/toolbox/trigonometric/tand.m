@@ -33,11 +33,11 @@ function y = tand (x)
   y(I90 == round (I90) & finite (I90)) = Inf;
 endfunction;
 
-%!error(tand())
-%!error(tand(1,2))
-%!assert(tand(10:10:80),tan(pi*[10:10:80]/180),-10*eps)
-%!assert(tand([0,180,360]) == 0)
-%!assert(tand([90,270]) == Inf)
+//%!error(tand())
+//%!error(tand(1,2))
+//%!assert(tand(10:10:80),tan(pi*[10:10:80]/180),-10*eps)
+//%!assert(tand([0,180,360]) == 0)
+//%!assert(tand([90,270]) == Inf)
 
 /*
 @GROUP
