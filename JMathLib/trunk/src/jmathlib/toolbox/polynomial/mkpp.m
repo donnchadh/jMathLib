@@ -57,14 +57,14 @@ function pp = mkpp (x, P, d)
   endif
 endfunction
 
-%!demo # linear interpolation
-%! x=linspace(0,pi,5)'; 
-%! t=[sin(x),cos(x)];
-%! m=diff(t)./(x(2)-x(1)); 
-%! b=t(1:4,:);
-%! pp = mkpp(x, [m(:),b(:)]);
-%! xi=linspace(0,pi,50);
-%! plot(x,t,"x;control;",xi,ppval(pp,xi),";interp;");
+//%!demo # linear interpolation
+//%! x=linspace(0,pi,5)'; 
+//%! t=[sin(x),cos(x)];
+//%! m=diff(t)./(x(2)-x(1)); 
+//%! b=t(1:4,:);
+//%! pp = mkpp(x, [m(:),b(:)]);
+//%! xi=linspace(0,pi,50);
+//%! plot(x,t,"x;control;",xi,ppval(pp,xi),";interp;");
 
 /*
 @GROUP

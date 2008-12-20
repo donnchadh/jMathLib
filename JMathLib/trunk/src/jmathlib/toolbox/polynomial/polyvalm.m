@@ -63,7 +63,7 @@ function y = polyvalm (c, x)
 
 endfunction
 
-%!assert(isempty (polyvalm ([], [1, 2; 3, 4])));
+//%!assert(isempty (polyvalm ([], [1, 2; 3, 4])));
 
-%!error polyvalm ([1, 1, 1], [1, 2; 3, 4; 5, 6]);
+//%!error polyvalm ([1, 1, 1], [1, 2; 3, 4; 5, 6]);
 
