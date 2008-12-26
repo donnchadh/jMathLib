@@ -86,16 +86,16 @@ function idx = lookup (table, xi)
   endif
 endfunction
   
-%!assert (lookup(1:3, 0.5), 0)     # value before table
-%!assert (lookup(1:3, 3.5), 3)     # value after table error
-%!assert (lookup(1:3, 1.5), 1)     # value within table error
-%!assert (lookup(1:3, [3,2,1]), [3,2,1])
-%!assert (lookup([1:4]', [1.2, 3.5]'), [1, 3]');
-%!assert (lookup([1:4], [1.2, 3.5]'), [1, 3]');
-%!assert (lookup([1:4]', [1.2, 3.5]), [1, 3]);
-%!assert (lookup([1:4], [1.2, 3.5]), [1, 3]);
-%!assert (lookup(1:3, [3, 2, 1]), [3, 2, 1]);
-%!assert (lookup([3:-1:1], [3.5, 3, 1.2, 2.5, 2.5]), [0, 1, 2, 1, 1])
-%!assert (isempty(lookup([1:3], [])))
-%!assert (isempty(lookup([1:3]', [])))
-%!assert (lookup(1:3, [1, 2; 3, 0.5]), [1, 2; 3, 0]);
+//%!assert (lookup(1:3, 0.5), 0)     # value before table
+//%!assert (lookup(1:3, 3.5), 3)     # value after table error
+//%!assert (lookup(1:3, 1.5), 1)     # value within table error
+//%!assert (lookup(1:3, [3,2,1]), [3,2,1])
+//%!assert (lookup([1:4]', [1.2, 3.5]'), [1, 3]');
+//%!assert (lookup([1:4], [1.2, 3.5]'), [1, 3]');
+//%!assert (lookup([1:4]', [1.2, 3.5]), [1, 3]);
+//%!assert (lookup([1:4], [1.2, 3.5]), [1, 3]);
+//%!assert (lookup(1:3, [3, 2, 1]), [3, 2, 1]);
+//%!assert (lookup([3:-1:1], [3.5, 3, 1.2, 2.5, 2.5]), [0, 1, 2, 1, 1])
+//%!assert (isempty(lookup([1:3], [])))
+//%!assert (isempty(lookup([1:3]', [])))
+//%!assert (lookup(1:3, [1, 2; 3, 0.5]), [1, 2; 3, 0]);
