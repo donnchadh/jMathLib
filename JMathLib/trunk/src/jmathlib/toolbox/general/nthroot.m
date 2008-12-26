@@ -66,6 +66,6 @@ function y = nthroot (x, m)
 
 endfunction
 
-%!assert(nthroot(-1,[3,-3]), [-1,-1],eps);
-%!assert(nthroot([-1,1],[3.1,-3]), [-1,1].^(1./[3.1,-3]));
-%!assert(nthroot([-1+1i,-1-1i],3), [-1+1i,-1-1i].^(1/3));
+//%!assert(nthroot(-1,[3,-3]), [-1,-1],eps);
+//%!assert(nthroot([-1,1],[3.1,-3]), [-1,1].^(1./[3.1,-3]));
+//%!assert(nthroot([-1+1i,-1-1i],3), [-1+1i,-1-1i].^(1/3));
