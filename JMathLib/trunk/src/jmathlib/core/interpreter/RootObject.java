@@ -1,10 +1,12 @@
 package jmathlib.core.interpreter;
 
 import java.io.*;
+import java.text.NumberFormat;
 import java.applet.Applet;
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.FunctionManager;
+
 
 /**This universal the base class for all class define by MathLib. 
 It defines Global values as class variables and also defines functions for creating and accessing the working environment.*/
@@ -182,6 +184,24 @@ abstract public class RootObject implements java.io.Serializable,
     static public final void setDebug(boolean _debug)
     {
         globals.setDebug(_debug);
+    }
+
+    /**
+     * returns the number format for displaying numbers
+     * @return format type
+     */
+    public NumberFormat getNumberFormat()
+    {
+        return globals.getNumberFormat();
+    }
+
+    /**
+     * sets the number format for displaying numbers
+     * @param _numFormat format type
+     */
+    public void setNumberFormat(NumberFormat numFormat)
+    {
+        globals.setNumberFormat(numFormat);
     }
 
 } 

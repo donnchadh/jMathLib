@@ -1,9 +1,12 @@
 package jmathlib.core.interpreter;
 
 import java.io.*;
+import java.util.Locale;
 import java.applet.Applet;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 
-//import MathLib.Tokens.*;
 import jmathlib.core.interpreter.Interpreter;
 
 /**This class contains the global variables, which are accessible throughout the program.
@@ -40,6 +43,9 @@ public class GlobalValues
     /**sets whether to write debug lines to console and log files*/
     static transient private boolean debug = true;
     
+    /**stores the number format for displaying the number*/
+    public transient static NumberFormat numFormat = new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH));
+
     /**Initialises the global values
        @param _interpreter = the Interpreter object
        @param _runningStandalone = true if this was run from an application*/
@@ -153,6 +159,24 @@ public class GlobalValues
     public void setDebug(boolean _debug)
     {
         debug= _debug;
+    }
+    
+    /**
+     * returns the number format for displaying numbers
+     * @return format type
+     */
+    public NumberFormat getNumberFormat()
+    {
+        return numFormat;
+    }
+
+    /**
+     * sets the number format for displaying numbers
+     * @param _numFormat format type
+     */
+    public void setNumberFormat(NumberFormat _numFormat)
+    {
+        numFormat = _numFormat;
     }
 
 }
