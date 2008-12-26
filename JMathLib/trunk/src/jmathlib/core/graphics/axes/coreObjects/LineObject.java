@@ -70,33 +70,41 @@ public class LineObject extends AxesObject implements PropertyListener
 		double[] y = _y;
 
 		// Find range of x-axis and y-axis
-		findMinMax();
+		findMinMaxX();
+        findMinMaxY();
 
 		ColorP.update(color);
 		LineStyleP.update(lineStyle);
 		MarkerP.update(marker);
    	}
 
-	private void findMinMax()
+	private void findMinMaxX()
 	{
 		double[] x = XDataP.getArray();
-		double[] y = YDataP.getArray();
 
 		// Find range of x-axis and y-axis
 		xmin = x[0];
 		xmax = x[0];
-		ymin = y[0];
-		ymax = y[0];
-		zmin = -0.5;
-		zmax = 0.5;
 		for (int i=1; i<x.length; i++)
 		{
 			if (x[i] < xmin) 	xmin = x[i];
 			if (x[i] > xmax) 	xmax = x[i];
-			if (y[i] < ymin) 	ymin = y[i];
-			if (y[i] > ymax) 	ymax = y[i];
 		}		
 	}
+
+	   private void findMinMaxY()
+	    {
+	        double[] y = YDataP.getArray();
+
+	        // Find range of x-axis and y-axis
+	        ymin = y[0];
+	        ymax = y[0];
+	        for (int i=1; i<y.length; i++)
+	        {
+	            if (y[i] < ymin)    ymin = y[i];
+	            if (y[i] > ymax)    ymax = y[i];
+	        }       
+	    }
 
 	public void paint(Graphics g) 
 	{
@@ -220,10 +228,14 @@ public class LineObject extends AxesObject implements PropertyListener
 	{
         ErrorLogger.debugLine("LineObject property changed: "+ p.getName());
 
-        if (p == XDataP || p == YDataP)
-			findMinMax();
-        
-        parent.repaint();
+        if (p == XDataP)
+			findMinMaxX();
+
+        if (p == YDataP)
+            findMinMaxY();
+
+        if (parent != null)
+           parent.repaint();
 	}
     
 }
