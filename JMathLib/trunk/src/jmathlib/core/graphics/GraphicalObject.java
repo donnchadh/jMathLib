@@ -47,12 +47,12 @@ public abstract class GraphicalObject extends HandleObject
     public int height;
 
 	/* boundary values */
-	protected double xmin;
-	protected double xmax;
-	protected double ymin;
-	protected double ymax;
-	protected double zmin;
-	protected double zmax;
+	protected double xmin = -0.5;
+	protected double xmax = +0.5;
+	protected double ymin = -0.5;
+	protected double ymax = +0.5;
+	protected double zmin = -0.5;
+	protected double zmax = +0.5;
 
 	/* axes boundaries */
 	public double ax_xmin;
