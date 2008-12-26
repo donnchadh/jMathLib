@@ -16,6 +16,13 @@ Updated functions:
 2008/12/xx
 stefan *
 
+2008/12/26
+stefan + toolbox/jmathlib/system/format.java for formatting numbers
+stefan * GlobalValues.java RootObject.java for formatting numbers
+
+2008/12/15
+stefan + jmathlib.sh
+
 2008/12/xx
 stefan * tearDown() added this method to all test cases in order to save
          resources and memory during test case evaluation
