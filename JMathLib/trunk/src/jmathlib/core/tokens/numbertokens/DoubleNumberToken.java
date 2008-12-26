@@ -1,7 +1,5 @@
 package jmathlib.core.tokens.numbertokens;
 
-import java.text.NumberFormat;
-
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Errors;
 import jmathlib.core.tokens.DataToken;
@@ -30,9 +28,6 @@ public class DoubleNumberToken extends NumberToken
 
     /**Constant value set to j*/
     public static final DoubleNumberToken j    = new DoubleNumberToken(0,1);
-
-    /**stores the number format for displaying the number*/
-    private static NumberFormat numFormat = NumberFormat.getInstance();
 
 
     /** Constructor creating empty number token 
@@ -638,6 +633,7 @@ public class DoubleNumberToken extends NumberToken
     @param _values[]={REAL,IMAG} real and imaginary part of number*/
     public String toString(double _values[])
     {
+        
         if (_values==null)
             return "XXXXXX";
         
@@ -658,7 +654,7 @@ public class DoubleNumberToken extends NumberToken
         else if (Double.isNaN(re))    
             result.append("NaN");
         else
-            result.append(numFormat.format(re));
+            result.append(getNumberFormat().format(re));
 
         // imaginary part of number
         if((im != 0.0) || Double.isNaN(im))
@@ -674,7 +670,7 @@ public class DoubleNumberToken extends NumberToken
             else if (Double.isNaN(im))    
                 result.append("NaN");
             else
-                result.append(numFormat.format(im));
+                result.append(getNumberFormat().format(im));
         
             result.append("i)");
         }
