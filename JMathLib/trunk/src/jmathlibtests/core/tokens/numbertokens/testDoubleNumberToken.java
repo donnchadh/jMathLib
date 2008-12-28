@@ -291,13 +291,48 @@ public class testDoubleNumberToken extends TestCase
         assertEquals(expectedResult, actualResult);
     }
 
-    public void testPower()
+    public void testPower01()
     {
         DoubleNumberToken expectedResult = new DoubleNumberToken(27);
         
         OperandToken actualResult = val1.power(val3);
         
         assertEquals(expectedResult.toString(), actualResult.toString());
+    }
+
+    public void testPower02()
+    {
+        ml.executeExpression("b=0.^0");
+        double[][] r =  {{1.0}};
+        assertTrue(Compare.ArrayEquals(r, ml.getArrayValueRe("b"), 0.001));
+    }
+
+    public void testPower03()
+    {
+        ml.executeExpression("b=0.^2");
+        double[][] r =  {{0.0}};
+        assertTrue(Compare.ArrayEquals(r, ml.getArrayValueRe("b"), 0.001));
+    }
+
+    public void testPower04()
+    {
+        ml.executeExpression("b=[1,0,2].^0");
+        double[][] r =  {{1.0, 1.0, 1.0}};
+        assertTrue(Compare.ArrayEquals(r, ml.getArrayValueRe("b"), 0.001));
+    }
+
+    public void testPower05()
+    {
+        ml.executeExpression("b=[1,0,2].^2");
+        double[][] r =  {{1.0, 0.0, 4.0}};
+        assertTrue(Compare.ArrayEquals(r, ml.getArrayValueRe("b"), 0.001));
+    }
+
+    public void testPower06()
+    {
+        ml.executeExpression("b=0.^[1,0,2]");
+        double[][] r =  {{0.0, 1.0, 0.0}};
+        assertTrue(Compare.ArrayEquals(r, ml.getArrayValueRe("b"), 0.001));
     }
 
     public void testMPower()
