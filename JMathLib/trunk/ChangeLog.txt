@@ -16,6 +16,10 @@ Updated functions:
 2008/12/xx
 stefan *
 
+2008/12/27
+stefan + plusplus.int describing the ++ command
+stefan + minusminus.int describing the -- command
+
 2008/12/26
 stefan + toolbox/jmathlib/system/format.java for formatting numbers
 stefan * GlobalValues.java RootObject.java for formatting numbers
