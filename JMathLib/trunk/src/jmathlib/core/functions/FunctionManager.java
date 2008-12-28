@@ -31,7 +31,7 @@ public class FunctionManager {
     Applet applet = null;
 
     // loader for m files via the web
-    MFileWebLoader mWebLoader;
+    WebFunctionLoader webFunctionLoader;
 
     /**Creates the function manager and defines any internal functions
     if this is an application then it creates a class loader to load external functions
@@ -68,25 +68,8 @@ public class FunctionManager {
                 }
             }
         } else {
-            try {
                 System.out.println("web:"+applet);
-                System.out.println("web: new url"+ applet.getCodeBase().toString());
-                URL url = new URL(applet.getCodeBase(), "jmathlib/webFunctionsList.dat");
-                InputStream in = url.openStream();
-                BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-                // read each line of the functions list
-                String line = null;
-                while ((line = br.readLine()) != null) {
-                    System.out.println("read =" + line);
-                    if (!line.startsWith("#")) {
-                        functionLoaders.add(new MFileWebLoader(applet.getCodeBase(), line));
-                    }
-                }
-            } catch (Exception ex) {
-                //ErrorLogger.debugLine("FunctionManager: applet error");
-                ex.printStackTrace();
-            }
+                functionLoaders.add(new WebFunctionLoader(applet.getCodeBase(), ""));
         }
     }
 
@@ -164,7 +147,7 @@ public class FunctionManager {
                 // use webloader
                 //Search for class, m or p file
                 for (int i = 0; i < functionLoaders.size(); i++) {
-                    FunctionLoader l = (FileFunctionLoader) functionLoaders.elementAt(i);
+                    FunctionLoader l = (WebFunctionLoader) functionLoaders.elementAt(i);
 
                     func = l.findFunction(funcName);
                     if (func != null) {
