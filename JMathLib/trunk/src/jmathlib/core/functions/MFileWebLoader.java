@@ -3,6 +3,7 @@ package jmathlib.core.functions;
 import jmathlib.core.interpreter.*;
 import java.io.*;
 import java.net.*;
+import java.util.*;
 
 
 /**Class for storing and managing the m- and p-functions
@@ -15,12 +16,35 @@ public class MFileWebLoader extends FunctionLoader
     boolean pFileCachingEnabledB = false;
     private URL codeBase;
     private String directory; 
+    private Vector pathV = new Vector(30); // paths to external function for applet usage 
+
     
     /**Default constructor*/
     public MFileWebLoader(URL _codeBase, String _directory) 
     {
         codeBase = _codeBase;
         directory = _directory;
+        
+        try {
+            System.out.println("web: new url"+ codeBase.toString());
+            URL url = new URL(codeBase, "jmathlib/webFunctionsList.dat");
+            InputStream in = url.openStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+
+            // read each line of the functions list
+            String line = null;
+            while ((line = br.readLine()) != null) {
+                System.out.println("read =" + line);
+                if (!line.startsWith("#")) {
+                    pathV.addElement(line);
+                    //functionLoaders.add(new MFileWebLoader(applet.getCodeBase(), line));
+                }
+            }
+        } catch (Exception ex) {
+            //ErrorLogger.debugLine("FunctionManager: applet error");
+            ex.printStackTrace();
+        }
+
     }
     
     public URL getCodeBase() {
@@ -48,40 +72,111 @@ public class MFileWebLoader extends FunctionLoader
      
         ErrorLogger.debugLine("MFileWebLoader: loading >"+functionName+".m<");
         
-        // open file and read m-file line by line
-        try 
-        {          
-            URL            url      = new URL(codeBase, directory+"/"+functionName+".m");
-            InputStream    in       = url.openStream();
-            BufferedReader inReader = new BufferedReader(new InputStreamReader(in));
-            String line;
-            while ((line = inReader.readLine()) != null)
-            {               
-                code += line + "\n";
-            }
-            inReader.close();
-        }
-        catch (Exception e)
+        boolean foundClassFileB = false;
+        boolean foundMFileB     = false;
+        String  functionPath    = null;
+        
+        // Search filelist for wanted function 
+        for (int i=0; i<pathV.size(); i++)
         {
-            Errors.throwMathLibException("MFileWebLoader: m-file exception via web");
-        }          
- 
-        ErrorLogger.debugLine("MFileWebLoader: code: begin \n"+code+"\ncode end");
-        
-        // send code to function parser and return function
-        FunctionParser funcParser = new FunctionParser();
-        function = funcParser.parseFunction(code);
+            // The searchstring is set to "/foo.class" to avoid matches
+            //  of substring of some other function like "barfoo.class"
+            functionPath = ((String)pathV.elementAt(i));
+            
+            // !! Remark: the command toLowerCase() is necessary, because some filenames have upper case letters (e.g. Disp.class)
+            if ( functionPath.toLowerCase().endsWith("/"+functionName+".class") )
+            {
+                foundClassFileB = true; // indicate that class file was found
+                functionPath = functionPath.substring(0,functionPath.length()-6);
+                functionPath = functionPath.replace('/',  '.');
+                functionPath = functionPath.replace('\\', '.');
+                ErrorLogger.debugLine("MFileWebLoader found "+functionPath);
+                break;
+            }
 
-        // set name of user function
-        // remember: the name of the called function could be different compared
-        // to the function's name inside the m-file
-        function.setName(functionName);
+            if ( functionPath.toLowerCase().endsWith("/"+functionName+".m") )
+            {
+                // functionsPath contains the path AND the m-filename
+                foundMFileB = true;  // indicate that m-file was found
+                ErrorLogger.debugLine("MFileWebLoader found "+functionPath);
+                break;
+            }
+        } // end for
         
-        cacheFunction(function);
- 
-        ErrorLogger.debugLine("MFileWebLoader: finished webloading >" + functionName + ".m<");
+        Function func;
+        
+         // check if class was found and load it
+         try
+         {
+            if (foundClassFileB)
+            {
+                Class extFunctionClass = Class.forName(functionPath);
+                //Class extFunctionClass = Class.forName("MathLib.Functions.Matrix.ones");
+                Object funcObj = extFunctionClass.newInstance();
+                
+                func = ((Function)funcObj);     
+                return func;        
+            }
+        }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+        }
+    
+    
+        ErrorLogger.debugLine("FunctionManager: webloader");
+        // check if m-file was found and load it
+        if (foundMFileB)
+        {   
+            // load .m-file. could be script- or function-file
+            //UserFunction userFunc = mLoader.loadMFileViaWeb(applet.getCodeBase(), 
+            //                                                functionPath, 
+            //                                                funcName);
 
-        return function;
+            // open file and read m-file line by line
+            try 
+            {          
+                ErrorLogger.debugLine("MFileWebLoader: "+codeBase+" "+directory+"/"+functionName+".m");
+                //URL            url      = new URL(codeBase, directory+"/"+functionName+".m");
+                URL            url      = new URL(codeBase, functionPath);
+                
+                InputStream    in       = url.openStream();
+                BufferedReader inReader = new BufferedReader(new InputStreamReader(in));
+                String line;
+                while ((line = inReader.readLine()) != null)
+                {               
+                    ErrorLogger.debugLine("MFileWebLoader: "+line);
+                    code += line + "\n";
+                }
+                inReader.close();
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+                Errors.throwMathLibException("MFileWebLoader: m-file exception via web");
+                
+            }          
+     
+            ErrorLogger.debugLine("MFileWebLoader: code: begin \n"+code+"\ncode end");
+            
+            // send code to function parser and return function
+            FunctionParser funcParser = new FunctionParser();
+            function = funcParser.parseFunction(code);
+    
+            // set name of user function
+            // remember: the name of the called function could be different compared
+            // to the function's name inside the m-file
+            function.setName(functionName);
+            
+            //addUserFunction(userFunc);
+            cacheFunction(function);
+     
+            ErrorLogger.debugLine("MFileWebLoader: finished webloading >" + functionName + ".m<");
+    
+            return function;
+        }
+        
+        return null;
      }
     
     
