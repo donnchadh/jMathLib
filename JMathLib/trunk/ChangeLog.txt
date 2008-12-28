@@ -19,6 +19,8 @@ stefan *
 2008/12/27
 stefan + plusplus.int describing the ++ command
 stefan + minusminus.int describing the -- command
+stefan # DoubleNumberToken.java support for [1,0,3].^0 = [1,1,1] 
+         and 0.^[1,0,2] = [0,1,0]
 
 2008/12/26
 stefan + toolbox/jmathlib/system/format.java for formatting numbers
