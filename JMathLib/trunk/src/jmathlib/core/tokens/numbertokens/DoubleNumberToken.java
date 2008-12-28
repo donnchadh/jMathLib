@@ -902,17 +902,33 @@ public class DoubleNumberToken extends NumberToken
             {
                 for (int x=0; x<argSizeX; x++)
                 {
-                    
-                    double re =  Math.log(getValueAbs(0, 0));
-                    double im =  getValueArg(0, 0);
-            
-                    double re2 =  (re*argValuesRe[y][x]) - (im*argValuesIm[y][x]);
-                    double im2 =  (re*argValuesIm[y][x]) + (im*argValuesRe[y][x]);
-            
-                    double scalar =  Math.exp(re2);
-            
-                    results[y][x][REAL] = scalar * Math.cos(im2);
-                    results[y][x][IMAG] = scalar * Math.sin(im2);
+                    if ((values[0][REAL]==0)   && (values[0][IMAG]==0)  &&
+                        (argValuesRe[y][x]==0) && (argValuesIm[y][x]==0)  )
+                    {
+                        // 0^[1,0,3]  -> [0,1,0]
+                        results[y][x][REAL] = 1.0;
+                        results[y][x][IMAG] = 0.0;
+                    }
+                    else if ((values[0][REAL]==0)   && (values[0][IMAG]==0)  &&
+                             (argValuesRe[y][x]!=0) && (argValuesIm[y][x]==0)  )
+                    {
+                        // 0^[1,0,3]  -> [0,1,0]
+                        results[y][x][REAL] = 0.0;
+                        results[y][x][IMAG] = 0.0;
+                    }
+                    else
+                    {
+                        double re =  Math.log(getValueAbs(0, 0));
+                        double im =  getValueArg(0, 0);
+                
+                        double re2 =  (re*argValuesRe[y][x]) - (im*argValuesIm[y][x]);
+                        double im2 =  (re*argValuesIm[y][x]) + (im*argValuesRe[y][x]);
+                
+                        double scalar =  Math.exp(re2);
+                
+                        results[y][x][REAL] = scalar * Math.cos(im2);
+                        results[y][x][IMAG] = scalar * Math.sin(im2);
+                    }
                 }
             }
             
@@ -929,16 +945,33 @@ public class DoubleNumberToken extends NumberToken
             {
                 for (int x=0; x<sizeX; x++)
                 {
-                    double re =  Math.log(getValueAbs(y, x));
-                    double im =  getValueArg(y, x);
-            
-                    double re2 =  (re*argValuesRe[0][0]) - (im*argValuesIm[0][0]);
-                    double im2 =  (re*argValuesIm[0][0]) + (im*argValuesRe[0][0]);
-            
-                    double scalar =  Math.exp(re2);
-            
-                    results[y][x][REAL] = scalar * Math.cos(im2);
-                    results[y][x][IMAG] = scalar * Math.sin(im2);
+                    if ((getValueRe(y,x)==0)    && (getValueIm(y,x)==0)   &&
+                        ((argValuesRe[0][0]==0) && (argValuesIm[0][0]==0))   )
+                    {
+                        // [1,0,3].^0  -> [1,0,1]
+                        results[y][x][REAL] = 1.0;
+                        results[y][x][IMAG] = 0.0;
+                    }
+                    else if ((getValueRe(y,x)==0)    && (getValueIm(y,x)==0)   &&
+                            ((argValuesRe[0][0]!=0) && (argValuesIm[0][0]==0))   )
+                    {
+                        // [2,0,3].^2  -> [4,1,9]
+                        results[y][x][REAL] = 0.0;
+                        results[y][x][IMAG] = 0.0;
+                    }
+                    else
+                    {
+                        double re =  Math.log(getValueAbs(y, x));
+                        double im =  getValueArg(y, x);
+                
+                        double re2 =  (re*argValuesRe[0][0]) - (im*argValuesIm[0][0]);
+                        double im2 =  (re*argValuesIm[0][0]) + (im*argValuesRe[0][0]);
+                
+                        double scalar =  Math.exp(re2);
+                
+                        results[y][x][REAL] = scalar * Math.cos(im2);
+                        results[y][x][IMAG] = scalar * Math.sin(im2);
+                    }
                 }
             }
             
