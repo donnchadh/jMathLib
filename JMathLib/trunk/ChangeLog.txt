@@ -17,6 +17,8 @@ Updated functions:
 stefan *
 
 2008/12/27
+stefan + moved code from MFileWebLoader.java to WebFunctionLoader.java
+stefan - removed MFileWebLoader.java
 stefan + plusplus.int describing the ++ command
 stefan + minusminus.int describing the -- command
 stefan # DoubleNumberToken.java support for [1,0,3].^0 = [1,1,1] 
