@@ -377,7 +377,7 @@
     <!-- ================================================================= -->
     <target name="webdist" description="prepare web distribution" depends="">
 
-        <delete file="${dist.dir}/Classes/JMathLibSmallApplet.jar"/>
+        <delete file="${dist.dir}/bin/JMathLibSmallApplet.jar"/>
         <delete file="${upload.dir}/JMathLib-web.tar.gz"/>
         <delete file="${upload.dir}/JMathLib-web.zip"/>
         
@@ -385,15 +385,24 @@
         <!-- User functions and m-files are only loaded on demand       -->
         <jar jarfile="${dist.dir}/bin/JMathLibSmallApplet.jar" compress="true">
             <fileset dir="${dist.dir}/bin">
-                <include name="jmathlib/webFunctionsList.dat"/>
-	            <include name="**/*.class" />
-                <exclude name="jmathlib/toolbox/*/*.class"/>
-                <include name="jmathlib/toolbox/general/startup.m"/>
-                <include name="jmathlib/toolbox/*.class"/>
-                <exclude name="jmathlib/toolbox/tools/**"/>
-                <exclude name="jmathlib/toolbox/ui/awt/**"/>
-                <exclude name="jmathlib/toolbox/ui/swing/**"/>
+	            <include name="**" />
+            	<exclude name="jmathlib/webFunctionsList.dat"/>
+            	<exclude name="jmathlib/core/tokens/SparseNumberToken.class"/>
+            	<exclude name="jmathlib/plugins/**"/>
+            	<exclude name="jmathlib/toolbox/**"/>
+                <exclude name="jmathlib/tools/**"/>
+                <exclude name="jmathlib/ui/awt/**"/>
+                <exclude name="jmathlib/ui/swing/**"/>
+                <exclude name="jmathlibtests/**"/>
             </fileset>
+            <fileset dir="${dist.dir}/bin">
+                 <include name="jmathlib/plugins/PluginsManager.class"/>
+                 <include name="jmathlib/toolbox/general/rand.class"/>
+                 <include name="jmathlib/toolbox/general/startup.m"/>
+                 <include name="jmathlib/toolbox/jmathlib/system/disp.class"/>
+                 <include name="jmathlib/toolbox/jmathlib/system/setdebug.class"/>
+                 <include name="jmathlib/toolbox/jmathlib/graphics/graph2d/plot.class"/>
+             </fileset>
         </jar>
         
         <!-- copy jar-file to classes directory -->
