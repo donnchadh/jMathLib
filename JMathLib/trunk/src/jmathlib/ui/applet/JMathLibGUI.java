@@ -37,17 +37,17 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
 
     /**Temporary store for function code*/
     String functionCode;
-
+    
     /**Construct the applet*/
     public JMathLibGUI()
     {
-    	container = this;
-        runningStandalone = false;
+    	container         = this;
     }
 
     /**Initialize the applet*/
     public void init()
     {
+
         container.setSize(700,400);
 
         layout = new BorderLayout();
@@ -58,26 +58,25 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
 
         container.add("Center", answer);
 
-        interpreter = new Interpreter(runningStandalone, this);       
+        interpreter = new Interpreter(false, this);       
         
         interpreter.setOutputPanel(answer);
         interpreter.executeExpression("startup");
         
-        // check if there is an initial command to send to the interpreter
-        String startWithS = getParameter("startup");
-        if (startWithS!=null)
-            interpreter.executeExpression(startWithS);
-        
         // get parameter for background color (e.g. ff00cc)
         try { 
             Color color = new Color(Integer.parseInt(this.getParameter("bgcolor"),16));
-            if (color!=null) answer.setBackground(color);}
+            if (color!=null) 
+                answer.setBackground(color);
+        }
         catch (NumberFormatException e){ }
 
         // get parameter for foreground color (e.g. ffddff)
         try { 
             Color color = new Color(Integer.parseInt(this.getParameter("fgcolor"),16));
-            if (color!=null) answer.setForeground(color);}
+            if (color!=null) 
+                answer.setForeground(color);
+        }
         catch (NumberFormatException e){ }  
         
     }
@@ -88,48 +87,17 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
     	answer.displayPrompt();
         answer.requestFocus();
 
+        // check if there is an initial command to send to the interpreter
+        String startWithS = getParameter("startup");
+        if (startWithS!=null)
+            interpreter.executeExpression(startWithS);
+
+        answer.displayPrompt();
+        answer.requestFocus();
+
     }
 
-    /**Main method - allow the class to be used as an applicatoin*/
-    public static void main(String[] args)
-    {
-        final JMathLibGUI applet = new JMathLibGUI();
-
-		Frame frame = new Frame();
-        frame.setTitle("JMathLib");
-
-   		// add image to window
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Image icon = tk.getImage("MathLib/GUI/smalllogo.gif");
-       	if (icon != null)
-			frame.setIconImage(icon); 
-        
-
-        //create an anomynous inner class to handle window closing
-        frame.addWindowListener(new WindowAdapter()
-        				{
-        					public void windowClosing(WindowEvent e)
-        					{
-        						applet.close();
-        					}
-        				});
-
-        applet.runningStandalone = true;
-        applet.container = frame;
-        applet.init();
-
-		//Get the size of the screen
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-
-		//position the frame in the centre of the screen
-        frame.setLocation((d.width - frame.getSize().width) / 2, (d.height - frame.getSize().height) / 2);
-
-        frame.setVisible(true);
-                
-        //start the applet
-        applet.start();
-    }    
-    
+   
     /**Interpret the last command line entered*/
     public void interpretLine(String line)
     {
@@ -141,8 +109,8 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
     /**Function called when the gui is being close*/
     public void close()
     {
-    	interpreter.save();
+    	//interpreter.save();
     	
-    	System.exit(0);
+    	//System.exit(0);
     }
 }
