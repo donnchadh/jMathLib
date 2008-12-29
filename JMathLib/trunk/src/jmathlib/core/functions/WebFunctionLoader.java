@@ -16,7 +16,7 @@ public class WebFunctionLoader extends FunctionLoader
     boolean pFileCachingEnabledB = false;
     private URL codeBase;
     private String directory; 
-    private Vector pathV = new Vector(30); // paths to external function for applet usage 
+    private Vector functionListV = new Vector(30); // paths to external function for applet usage 
 
     
     /**Default constructor*/
@@ -36,7 +36,7 @@ public class WebFunctionLoader extends FunctionLoader
             while ((line = br.readLine()) != null) {
                 System.out.println("read =" + line);
                 if (!line.startsWith("#")) {
-                    pathV.addElement(line);
+                    functionListV.addElement(line);
                     //functionLoaders.add(new MFileWebLoader(applet.getCodeBase(), line));
                 }
             }
@@ -77,11 +77,11 @@ public class WebFunctionLoader extends FunctionLoader
         String  functionPath    = null;
         
         // Search filelist for wanted function 
-        for (int i=0; i<pathV.size(); i++)
+        for (int i=0; i<functionListV.size(); i++)
         {
             // The searchstring is set to "/foo.class" to avoid matches
             //  of substring of some other function like "barfoo.class"
-            functionPath = ((String)pathV.elementAt(i));
+            functionPath = ((String)functionListV.elementAt(i));
             
             // !! Remark: the command toLowerCase() is necessary, because some filenames have upper case letters (e.g. Disp.class)
             if ( functionPath.toLowerCase().endsWith("/"+functionName+".class") )
