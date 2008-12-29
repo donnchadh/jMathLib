@@ -323,56 +323,6 @@
     </target>
 
     <!-- ================================================================= -->
-    <!-- W E B  S I T E                                                    -->
-    <!-- ================================================================= -->
-    <target name="website" 
-    	    description="prepare website update" 
-    	    depends="alldocs, allinstallers">
-
-    	<delete includeEmptyDirs="true" dir="${website.dir}"/>
-
-		<copy todir="${website.dir}">
-			<fileset dir="${dist.dir}">
-				<include name="bin/**"/>
-			</fileset>
-		</copy>
-
-		<delete file="${website.dir}/Documentation.tar.gz"/>
-		<delete file="${website.dir}/Documentation.zip"/>
-	
-
-		<delete file="${jar.dest}/${final.name}.jar"/>
-	        <jar jarfile="${jar.dest}/${final.name}.jar"
-	             compress="true">
-		     <fileset dir="${dist.dir}/Classes">
-		                <include name="**" />
-				<exclude name="MathLib/Functions/*/*.class"/>
-				<exclude name="MathLib/Functions/*/*.m"/>
-				<include name="MathLib/Functions/*.class"/>
-				<exclude name="MathLib/Tools/**"/>
-				<exclude name="spoke/**"/>
-				<include name="*.*"/>
-				<exclude name="*.zip"/>
-				<exclude name="*.jar"/>
-		      </fileset>
-	        </jar>
-	
-		<delete file="${zip.dir}/website.tar"/>
-		<delete file="${zip.dir}/website.tar.gz"/>
-	
-		<tar tarfile="${zip.dir}/website.tar">
-		        <tarfileset dir="${dist.dir}/WebSite">
-			        <include name="**" />
-			</tarfileset>
-		</tar>
-	
-		<gzip zipfile="${zip.dir}/website.tar.gz"
-			src="${zip.dir}/website.tar" />
-	
-		<delete file="${zip.dir}/website.tar"/>
-    </target>
-
-    <!-- ================================================================= -->
     <!-- W E B  D I S T                                                    -->
     <!-- ================================================================= -->
     <target name="webdist" description="prepare web distribution" depends="">
