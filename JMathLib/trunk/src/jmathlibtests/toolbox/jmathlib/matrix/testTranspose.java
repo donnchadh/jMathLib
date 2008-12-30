@@ -56,5 +56,35 @@ public class testTranspose extends TestCase {
         assertTrue(Compare.ArrayEquals(im, ml.getArrayValueIm("a")));
     }
 
+    public void testTranspose06() {
+        ml.executeExpression("a=2:5");
+        double[][] b = {{2.0, 3.0, 4.0, 5.0}};
+        assertTrue(Compare.ArrayEquals(b, ml.getArrayValueRe("a")));
+    }
 
+    public void testTranspose07() {
+        ml.executeExpression("a=(2:6)");
+        double[][] b = {{2.0, 3.0, 4.0, 5.0, 6.0}};
+        assertTrue(Compare.ArrayEquals(b, ml.getArrayValueRe("a")));
+    }
+
+    public void testTranspose08() {
+        ml.executeExpression("a=(2:4)'");
+        double[][] b = {{2.0}, {3.0}, {4.0}};
+        assertTrue(Compare.ArrayEquals(b, ml.getArrayValueRe("a")));
+    }
+
+    public void testTranspose09() {
+        ml.executeExpression("a=([1:4])'");
+        double[][] b = {{1.0}, {2.0}, {3.0}, {4.0}};
+        assertTrue(Compare.ArrayEquals(b, ml.getArrayValueRe("a")));
+    }
+
+    public void testTranspose10() {
+        ml.executeExpression("a=[1:5]'");
+        double[][] b = {{1.0}, {2.0}, {3.0}, {4.0}, {5.0}};
+        assertTrue(Compare.ArrayEquals(b, ml.getArrayValueRe("a")));
+    }
+
+    
 }
