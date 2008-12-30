@@ -16,6 +16,9 @@ Updated functions:
 2008/12/xx
 stefan *
 
+2008/12/30
+stefan + jmathlib/ui/text/TextUI.java first version of textual user interface.
+
 2008/12/28
 stefan * jmathlib/ui/applet/JMathLibGUI.java code cleanup and bugfixing
 
