@@ -1,16 +1,12 @@
 package jmathlib.ui.text;
 
 import jmathlib.core.interpreter.*;
-import jmathlib.core.interfaces.RemoteAccesible;
+import jmathlib.core.interfaces.*;
 import jmathlib.ui.common.Console;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.applet.*;
 import java.io.*;
-import java.util.Vector;
 
-public class textUI implements RemoteAccesible, MathLibOutput
+public class TextUI implements RemoteAccesible, MathLibOutput
 {
     /**store whether executing lines or entering a function def*/
     private boolean interactiveMode;
@@ -27,14 +23,13 @@ public class textUI implements RemoteAccesible, MathLibOutput
     /**stores the input stream*/
     private DataInputStream input;
     
-    public textUI()
+    public TextUI()
     {
         interactiveMode = true;
         functionCode = "";
         exiting = false;
         interpreter = new Interpreter(true, null);
-        interpreter.setOutputPanel((MathLibOutput)this);
-        interpreter.setDebug(false);
+        interpreter.setOutputPanel(this);
         input = new DataInputStream(System.in);
     }
 
@@ -50,7 +45,7 @@ public class textUI implements RemoteAccesible, MathLibOutput
 
     public static void main(String[] args)
     {
-        MathLibTUI tui = new MathLibTUI();
+        TextUI tui = new TextUI();
         if(args.length == 0)
         {            
             tui.run();
@@ -101,7 +96,7 @@ public class textUI implements RemoteAccesible, MathLibOutput
 		   		String answerString = "";
 
 	   			//process the function
-	   			answerString = interpreter.readFunction(functionCode, true, false);
+	   	//answerString = interpreter.readFunction(functionCode, true, false);
 	   			
 	   			interactiveMode = true;
 
@@ -114,6 +109,9 @@ public class textUI implements RemoteAccesible, MathLibOutput
 	   	}
     }
     
+    /**
+     * method for the interpreter to display its outpout
+     */
     public void displayText(String text)
     {
         System.out.println(text);
