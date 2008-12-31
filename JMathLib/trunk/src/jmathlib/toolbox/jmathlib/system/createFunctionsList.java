@@ -1,12 +1,12 @@
 package jmathlib.toolbox.jmathlib.system;
 
-/* This file is part or MATHLIB 
+/* This file is part or JMathLib 
 
 
    Author: Stefan Mueller 2002/03/31
 */
 
-// ToDO: do not include empty directories in the list
+//ToDo: do not include empty directories in the list
 //       relative path names
 
 import jmathlib.core.tokens.*;
@@ -28,6 +28,7 @@ public class createFunctionsList extends ExternalFunction
 
         Vector pathVector = new Vector();
         
+        // get all search paths from all file loaders
         for (int i=0;i<getFunctionManager().getFunctionLoaderCount();i++) 
         {
 
@@ -39,7 +40,7 @@ public class createFunctionsList extends ExternalFunction
                 
                 for (int pathIdx=0;pathIdx<ffl.getPathCount();pathIdx++) 
                 {
-                    File path = ffl.getPath(pathIdx);
+                    File path = ffl.getPath(pathIdx).getAbsoluteFile();
                         
                     pathVector.add(path.toString());                    
                 }                                        
@@ -51,21 +52,20 @@ public class createFunctionsList extends ExternalFunction
         String path       = "";
         String line       = "";
 
+        ErrorLogger.debugLine("working directory: "+getWorkingDirectory().getAbsolutePath());
+
         try 
         {
-			// read current user directory from system properties
-            String userDir = System.getProperty("user.dir");
             
-            // create file for class, m files and images
-            File funcFile = new File(userDir,
-                                     //getWorkingDirectory(),
+            // create file to store all class-, m-files and images
+            File funcFile = new File(getWorkingDirectory().getAbsoluteFile() +
 			                         File.separator + "bin" +
                                      File.separator + "jmathlib" +
                                      File.separator + "webFunctionsList.dat");
-			ErrorLogger.debugLine("working directory: "+userDir);
- 
 			BufferedWriter outWriter = new BufferedWriter( new FileWriter(funcFile));
-	        
+            ErrorLogger.debugLine("funcFile ="+funcFile.toString());
+
+
             /* The first line of the file is a comment */
             line = "# created with createFunctionsList.java";
             outWriter.write(line, 0, line.length());
@@ -74,12 +74,11 @@ public class createFunctionsList extends ExternalFunction
             outWriter.write(line, 0, line.length());
 			outWriter.newLine();
             
-	        ErrorLogger.debugLine("funcFile ="+funcFile.toString());
-	        
+	        // search through all serach directories
 	        for(int n = 0; n < size; n++)
 	        {
 	            path = (String)pathVector.elementAt(n);
-	            ErrorLogger.debugLine("path = "+path);
+	            ErrorLogger.debugLine("path func manager = "+path);
 	            
 	           	File dir       = new File(path);
 				String[] files = dir.list();
@@ -102,18 +101,24 @@ public class createFunctionsList extends ExternalFunction
                             !line.contains(".svn")              )
                         {
                             // remove preceding absolute path
-                            line = line.substring((userDir+"/bin/").length());
+                            line = line.substring((getWorkingDirectory().getAbsolutePath()+"/bin/").length());
 
                             ErrorLogger.debugLine("path = "+ line);
 
-                            // write relative path and filename to dat-file
-                            outWriter.write(line, 0, line.length());
-                            outWriter.newLine();
-
+                            // also remove unwanted directories
+                            if (!line.startsWith("jmathlibtests") && 
+                                !line.startsWith("jmathlib/tools")   )
+                            {
+                                // write relative path and filename to dat-file
+                                outWriter.write(line, 0, line.length());
+                                outWriter.newLine();
+                            }
                         }
 
                     }
                 }
+                else
+                    ErrorLogger.debugLine("directory is empty");
 	        }
 			outWriter.close();
 
