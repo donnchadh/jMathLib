@@ -16,6 +16,10 @@ Updated functions:
 2008/12/xx
 stefan *
 
+2008/12/31
+stefan + toolbox/jmathlib/system/quit.java
+stefan + toolbox/jmathlib/system/exit.m
+
 2008/12/30
 stefan + jmathlib/ui/text/TextUI.java first version of textual user interface.
 
