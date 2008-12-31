@@ -251,6 +251,16 @@
     <!-- create installer                                                  -->
     <!-- ================================================================= -->
 	
+	<!-- create functions list-->
+	    <target name="createfunctionslist" description="create list of all functions,m-file,.... for the applet version">
+	    	<java classpath="${junitpath}:${build.dest}:.:${java.class.path}"
+	    	          classname="jmathlib.ui.text.TextUI"
+	    		  fork="true">
+	    		  <arg value='createfunctionslist;quit(\"force\")' /> 
+	    		  <classpath refid="classpath" />
+	    	   </java>
+	    </target>
+	
     <!-- copy classes and sources -->
     <target name = "copy_to_upload" description="copy distribution files to upload directory">
         <!-- classes directory -->
@@ -318,7 +328,7 @@
 	
 
     <!-- AllInstall: create full installer -->
-    <target name="allinstallers" depends="copy_to_upload,
+    <target name="allinstallers" depends="createfunctionslist, copy_to_upload,
     	javalauncher, javalauncherswing, installer"> 
     </target>
 
