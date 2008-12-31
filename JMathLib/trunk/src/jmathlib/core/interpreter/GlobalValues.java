@@ -37,9 +37,6 @@ public class GlobalValues
     /**Object to control plugins */
     static transient private jmathlib.plugins.PluginsManager pluginsManager;     
 
-    /**The working directory */
-    static transient private File workingDir;
-
     /**sets whether to write debug lines to console and log files*/
     static transient private boolean debug = true;
     
@@ -64,9 +61,6 @@ public class GlobalValues
             
         //set up a pointer to the interpreter object
         interpreter = _interpreter;
-
-        // set working directory to actual directory
-        workingDir = new File(".");     
 
         // set up plugins manager
         pluginsManager = new jmathlib.plugins.PluginsManager();
