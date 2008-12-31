@@ -125,11 +125,11 @@ public class Console extends TextArea implements MathLibOutput
         String inputString = text.substring(text.lastIndexOf("> ") + 2, text.length());
 
 		/* exit application */
-        if(inputString.equals("quit") || 
+      /*  if(inputString.equals("quit") || 
            inputString.equals("exit")    )
 		{
 			callerClass.close();
-		}
+		}*/
 
 
         append("\n");
