@@ -28,8 +28,11 @@ public class TextUI implements RemoteAccesible, MathLibOutput
         interactiveMode = true;
         functionCode = "";
         exiting = false;
+
         interpreter = new Interpreter(true, null);
         interpreter.setOutputPanel(this);
+        interpreter.executeExpression("startup");
+
         input = new DataInputStream(System.in);
     }
 
@@ -46,15 +49,13 @@ public class TextUI implements RemoteAccesible, MathLibOutput
     public static void main(String[] args)
     {
         TextUI tui = new TextUI();
-        if(args.length == 0)
-        {            
-            tui.run();
-        }
-        else
+        if(args.length != 0)
         {
             String filename = args[0];
             tui.interpretLine(filename);
         }
+
+        tui.run();
     }
     
     public void close()
@@ -76,17 +77,10 @@ public class TextUI implements RemoteAccesible, MathLibOutput
         	}
         	else
         	{
-                if(line.equalsIgnoreCase("exit") || line.equalsIgnoreCase("quit"))
-                {
-                    close();
-                }
-                else
-                {
                     String answerString = interpreter.executeExpression(line);
             
                     displayText(answerString);
                     displayPrompt();		        
-                }
 	        }
 	   	}
 	   	else
