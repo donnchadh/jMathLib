@@ -58,22 +58,22 @@ of this documentation for any purpose. It is provided <quote>as is</quote>.
 
 <abstract>
 <para>
-<ulink url="http://mathlib.sourceforge.net">JMathLib</ulink>
-or
-<ulink url="http://www.jmathlib.de">JMathLib New Homepage</ulink>
+<ulink url="http://www.jmathlib.de">JMathLib</ulink>
 is a program to evaluate of mathematical functions 
 designed to be used in evaluating complex expressions and 
 display the results graphically. It can be used either 
-interactively or to interpret script files. It's designed to 
+interactively or to interpret script files. It is designed to 
 work almost like 
 <ulink url="http://www.mathworks.com">Matlab</ulink>, 
 <ulink url="http://www.gnu.org/software/octave/">Octave</ulink>,
 <ulink url="http://freemat.sourceforge.net">FreeMat</ulink> or
 <ulink url="http://www.scilab.org">Scilab</ulink>.
+The link to the sourcecode repository can be found at
+<ulink url="http://sourceforge.net/projects/mathlib/">Sourceforge</ulink>.
 </para>
 </abstract>
 
-<pubdate>November 30, 2008</pubdate>
+<pubdate>January 1, 2009</pubdate>
 
 
 <releaseinfo><para><emphasis>

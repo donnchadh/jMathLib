@@ -67,7 +67,7 @@
         <title>Variables</title>
         <sect1 id="usage4">
             <title >Usage</title >
-            <simpara >Variables are used to store references to other MathLib datatypes.</simpara >
+            <simpara >Variables are used to store references to other JMathLib datatypes.</simpara >
             <informalexample >
                 <simpara >>x = 5</simpara >
                 <simpara >5</simpara >
@@ -112,7 +112,7 @@
                 <simpara >a = 1 : b = 2 : c = 3 :</simpara >
             </informalexample >
         </sect1 >
-        <sect1 id="mathibObject">
+        <sect1 id="jmathibObject">
             <title >Internal - MathLibObject</title >
             <simpara >
                 The structured data is stored as an array of <classname>Variable</classname> objects
@@ -123,7 +123,7 @@
     <chapter id="casting">
         <title>Casting</title>
         <simpara>
-            When an expression contains two different data types <application class="software">MathLib</application > looks for a special class
+            When an expression contains two different data types <application class="software">JMathLib</application > looks for a special class
             to cast from one type to the other.
         </simpara>
         <simpara >It first looks for a class called</simpara >

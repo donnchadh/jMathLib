@@ -27,14 +27,14 @@
 <para>
 The following is an example on how to use JMathLib as a java applet. 
 The basic java applet is called using the class
-<code>MathLib.UI.Applet.MathLibGUI.class</code>.
+<code>jmathlib.ui.applet.JMathLibGUI.class</code>.
 </para>
 
 <para>
 The following code is an example for usage in mozilla.
 
 <programlisting>
-&lt;applet               CODE = "jmathlib.ui.applet.JathLibGUI.class"
+&lt;applet               CODE = "jmathlib.ui.applet.JMathLibGUI.class"
  CODEBASE = "Classes" ARCHIVE  = "JMathLibSmallApplet.jar"
  WIDTH    = "700"     HEIGHT = "400"
  ALIGN    = "middle"
@@ -76,17 +76,17 @@ is coded as <code>rgb</code>-values, please use hex-notation
     <chapter id="perl">
         <title >Access <application class="software">JMathLib</application > From Perl</title >
         <simpara >
-            The tools/perl/MathLib.pm file allows Perl programs to create objects of the <application class="software">MathLib</application >
+            The tools/perl/MathLib.pm file allows Perl programs to create objects of the <application class="software">JMathLib</application >
             program and access it's functions. Though with the following caveats.
         </simpara >
         <simpara >
-            1) The <application class="software">MathLib</application > modules requires the JVM.pm module (available from CPAN).
+            1) The <application class="software">JMathLib</application > modules requires the JVM.pm module (available from CPAN).
         </simpara >
         <simpara >
             2) This module has so far only been successfully installed under Linux
         </simpara >
         <simpara >
-            3) Not all of the functionality of <application class="software">MathLib</application > is available from the module.
+            3) Not all of the functionality of <application class="software">JMathLib</application > is available from the module.
         </simpara >
     </chapter>
     
@@ -94,7 +94,7 @@ is coded as <code>rgb</code>-values, please use hex-notation
     <chapter id="extending">
         <title >Extending <application class="software">JMathLib</application ></title >
         <simpara >
-            There are two ways to add add extra functions to the <application class="software">MathLib</application >. These are:
+            There are two ways to add add extra functions to the <application class="software">JMathLib</application >. These are:
         </simpara >
         <simpara >1) m files</simpara >
         <simpara >2) External Functions</simpara >
@@ -102,7 +102,7 @@ is coded as <code>rgb</code>-values, please use hex-notation
 <sect1 id="mFiles">
             <title >m Files</title >
             <simpara >
-                M files are script files written in the <application class="software">MathLib</application > language.
+                M files are script files written in the <application class="software">JMathLib</application > language.
             </simpara >
             
 <para>
