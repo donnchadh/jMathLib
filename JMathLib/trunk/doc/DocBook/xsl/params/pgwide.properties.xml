@@ -1,4 +1,13 @@
-<refentry id="pgwide.properties">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="pgwide.properties">
+<refmeta>
+<refentrytitle>pgwide.properties</refentrytitle>
+<refmiscinfo class="other" otherclass="datatype">attribute set</refmiscinfo>
+</refmeta>
 <refnamediv>
 <refname>pgwide.properties</refname>
 <refpurpose>Properties to make a figure or table page wide.
@@ -6,14 +15,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='pgwide.properties.frag'>
+<src:fragment xml:id="pgwide.properties.frag">
 <xsl:attribute-set name="pgwide.properties">
   <xsl:attribute name="start-indent">0pt</xsl:attribute>
 </xsl:attribute-set>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>This attribute set is used to set the properties
 that make a figure or table "page wide" in fo output.
@@ -39,5 +48,5 @@ fo:block that is a direct child of fo:flow.  It may work in
 some processors anyway.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

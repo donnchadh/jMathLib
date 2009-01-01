@@ -3,26 +3,27 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: block.xsl,v 1.2 2006/11/12 17:24:58 st_mueller Exp $
+     $Id: block.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
 <!-- What should we do about styling blockinfo? -->
 
-<xsl:template match="blockinfo">
+<xsl:template match="blockinfo|info">
   <!-- suppress -->
 </xsl:template>
 
 <!-- ==================================================================== -->
 
 <xsl:template name="block.object">
-  <div class="{name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:apply-templates/>
   </div>
@@ -58,9 +59,9 @@
     <p>
       <xsl:call-template name="dir"/>
       <xsl:if test="$class != ''">
-        <xsl:attribute name="class">
-          <xsl:value-of select="$class"/>
-        </xsl:attribute>
+        <xsl:apply-templates select="." mode="class.attribute">
+          <xsl:with-param name="class" select="$class"/>
+        </xsl:apply-templates>
       </xsl:if>
       <xsl:copy-of select="$content"/>
     </p>
@@ -82,9 +83,9 @@
   <!-- see also listitem/simpara in lists.xsl -->
   <p>
     <xsl:if test="@role and $para.propagates.style != 0">
-      <xsl:attribute name="class">
-        <xsl:value-of select="@role"/>
-      </xsl:attribute>
+      <xsl:apply-templates select="." mode="class.attribute">
+        <xsl:with-param name="class" select="@role"/>
+      </xsl:apply-templates>
     </xsl:if>
 
     <xsl:call-template name="anchor"/>
@@ -106,7 +107,12 @@
   </xsl:call-template>
 </xsl:template>
 
-<xsl:template match="formalpara/title">
+<!-- Only use title from info -->
+<xsl:template match="formalpara/info">
+  <xsl:apply-templates select="title"/>
+</xsl:template>
+
+<xsl:template match="formalpara/title|formalpara/info/title">
   <xsl:variable name="titleStr">
       <xsl:apply-templates/>
   </xsl:variable>
@@ -133,7 +139,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="blockquote">
-  <div class="{local-name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="@lang or @xml:lang">
       <xsl:call-template name="language.attribute"/>
     </xsl:if>
@@ -161,7 +168,8 @@
         </table>
       </xsl:when>
       <xsl:otherwise>
-        <blockquote class="{local-name(.)}">
+        <blockquote>
+          <xsl:apply-templates select="." mode="class.attribute"/>
           <xsl:apply-templates/>
         </blockquote>
       </xsl:otherwise>
@@ -169,7 +177,7 @@
   </div>
 </xsl:template>
 
-<xsl:template match="blockquote/title">
+<xsl:template match="blockquote/title|blockquote/info/title">
   <div class="blockquote-title">
     <p>
       <b>
@@ -180,7 +188,8 @@
 </xsl:template>
 
 <xsl:template match="epigraph">
-  <div class="{name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:apply-templates select="para|simpara|formalpara|literallayout"/>
       <xsl:if test="attribution">
         <div class="attribution">
@@ -191,28 +200,17 @@
 </xsl:template>
 
 <xsl:template match="attribution">
-  <span class="{name(.)}"><xsl:apply-templates/></span>
-</xsl:template>
-
-<!-- ==================================================================== -->
-
-<xsl:template match="sidebar">
-  <div class="{name(.)}">
-    <xsl:call-template name="anchor"/>
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
-  </div>
-</xsl:template>
-
-<xsl:template match="sidebar/title">
-  <p class="title">
-    <b><xsl:apply-templates/></b>
-  </p>
+  </span>
 </xsl:template>
 
 <!-- ==================================================================== -->
 
-<xsl:template match="abstract">
-  <div class="{name(.)}">
+<xsl:template match="abstract|sidebar">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:call-template name="anchor"/>
     <xsl:call-template name="formal.object.heading">
       <xsl:with-param name="title">
@@ -225,8 +223,10 @@
   </div>
 </xsl:template>
 
-<xsl:template match="abstract/title">
+<xsl:template match="abstract/title|sidebar/title">
 </xsl:template>
+
+<xsl:template match="sidebar/sidebarinfo|sidebar/info"/>
 
 <!-- ==================================================================== -->
 
@@ -325,7 +325,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="revhistory">
-  <div class="{name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <table border="0" width="100%" summary="Revision history">
       <tr>
         <th align="left" valign="top" colspan="3">
@@ -372,9 +373,9 @@
           <xsl:for-each select="$revauthor">
             <xsl:apply-templates select="."/>
             <xsl:if test="position() != last()">
-	      <xsl:text>, </xsl:text>
-	    </xsl:if>
-	  </xsl:for-each>
+              <xsl:text>, </xsl:text>
+            </xsl:if>
+          </xsl:for-each>
         </td>
       </xsl:otherwise>
     </xsl:choose>
@@ -416,7 +417,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="ackno">
-  <p class="{name(.)}">
+  <p>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </p>
 </xsl:template>

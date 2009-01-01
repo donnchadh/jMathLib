@@ -4,12 +4,12 @@
                 exclude-result-prefixes="doc">
 
 <!-- ********************************************************************
-     $Id: chunktoc.xsl,v 1.2 2006/11/12 17:24:58 st_mueller Exp $
+     $Id: chunktoc.xsl 6942 2007-07-04 04:42:17Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -49,8 +49,8 @@
 
   <xsl:variable name="chunk" select="$chunks//tocentry[@linkend=$id]"/>
   <xsl:variable name="filename">
-    <xsl:call-template name="dbhtml-filename">
-      <xsl:with-param name="pis" select="$chunk/processing-instruction('dbhtml')"/>
+    <xsl:call-template name="pi.dbhtml_filename">
+      <xsl:with-param name="node" select="$chunk"/>
     </xsl:call-template>
   </xsl:variable>
 

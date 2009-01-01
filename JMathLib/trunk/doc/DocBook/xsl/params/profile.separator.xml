@@ -1,7 +1,12 @@
-<refentry id="profile.separator">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="profile.separator">
 <refmeta>
 <refentrytitle>profile.separator</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>profile.separator</refname>
@@ -9,14 +14,14 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='profile.separator.frag'>
-<xsl:param name="profile.separator" select="';'"/>
+<src:fragment xml:id="profile.separator.frag">
+<xsl:param name="profile.separator">;</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>Separator character for compound profile values.</para>
+<para>Separator character used for compound profile values. See <parameter>profile.arch</parameter></para>
 
-</refsect1>
+</refsection>
 </refentry>

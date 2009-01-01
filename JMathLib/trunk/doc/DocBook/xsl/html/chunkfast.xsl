@@ -5,12 +5,12 @@
                 exclude-result-prefixes="cf exsl">
 
 <!-- ********************************************************************
-     $Id: chunkfast.xsl,v 1.1 2006/11/12 17:24:57 st_mueller Exp $
+     $Id: chunkfast.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -28,15 +28,15 @@
     <xsl:when test="$chunk.fast != 0 and function-available('exsl:node-set')">
       <xsl:variable name="genid" select="generate-id()"/>
 
-      <xsl:variable name="div" select="$chunks[@id=$genid]"/>
+      <xsl:variable name="div" select="$chunks[@id=$genid or @xml:id=$genid]"/>
 
       <xsl:variable name="prevdiv"
                     select="($div/preceding-sibling::cf:div|$div/preceding::cf:div|$div/parent::cf:div)[last()]"/>
-      <xsl:variable name="prev" select="key('genid', $prevdiv/@id)"/>
+      <xsl:variable name="prev" select="key('genid', ($prevdiv/@id|$prevdiv/@xml:id)[1])"/>
 
       <xsl:variable name="nextdiv"
                     select="($div/following-sibling::cf:div|$div/following::cf:div|$div/cf:div)[1]"/>
-      <xsl:variable name="next" select="key('genid', $nextdiv/@id)"/>
+      <xsl:variable name="next" select="key('genid', ($nextdiv/@id|$nextdiv/@xml:id)[1])"/>
 
       <xsl:choose>
         <xsl:when test="$onechunk != 0 and parent::*">

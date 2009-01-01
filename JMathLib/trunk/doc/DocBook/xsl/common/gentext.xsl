@@ -5,12 +5,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: gentext.xsl,v 1.2 2006/11/12 17:11:21 st_mueller Exp $
+     $Id: gentext.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -284,7 +284,7 @@
   <xsl:variable name="title">
     <xsl:apply-templates select="." mode="object.title.markup"/>
   </xsl:variable>
-  <xsl:value-of select="$title"/>
+  <xsl:value-of select="normalize-space($title)"/>
 </xsl:template>
 
 <!-- ============================================================ -->
@@ -360,7 +360,7 @@
     <xsl:message>
       <xsl:text>object.xref.markup: empty xref template</xsl:text>
       <xsl:text> for linkend="</xsl:text>
-      <xsl:value-of select="@id"/>
+      <xsl:value-of select="@id|@xml:id"/>
       <xsl:text>" and @xrefstyle="</xsl:text>
       <xsl:value-of select="$xrefstyle"/>
       <xsl:text>"</xsl:text>
@@ -392,7 +392,7 @@
       <xsl:message>
         <xsl:text>Xref is only supported to listitems in an</xsl:text>
         <xsl:text> orderedlist: </xsl:text>
-        <xsl:value-of select="@id"/>
+        <xsl:value-of select="@id|@xml:id"/>
       </xsl:message>
       <xsl:text>???</xsl:text>
     </xsl:when>

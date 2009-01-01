@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" version="1.0" exclude-result-prefixes="exsl">
+<?xml version="1.0"?>
 
-<!-- This stylesheet was created by template/titlepage.xsl; do not edit it by hand. -->
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common" version="1.0" exclude-result-prefixes="exsl">
+
+<!-- This stylesheet was created by template/titlepage.xsl-->
 
 <xsl:template name="article.titlepage.recto">
   <xsl:choose>
@@ -422,12 +424,20 @@
     </xsl:when>
   </xsl:choose>
 
+<!-- JMathLib start -->
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/pubdate"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/pubdate"/>
+<!-- JMathLib end -->
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/corpauthor"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/corpauthor"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/authorgroup"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/authorgroup"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/author"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/author"/>
+<!-- JMathLib start -->
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/mediaobject"/>
+  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/mediaobject"/>
+<!-- JMathLib end -->
 </xsl:template>
 
 <xsl:template name="book.titlepage.verso">
@@ -463,8 +473,7 @@
   <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="info/legalnotice"/>
 </xsl:template>
 
-<xsl:template name="book.titlepage.separator">
-<!--fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" break-after="page"/-->
+<xsl:template name="book.titlepage.separator"><fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" break-after="page"/>
 </xsl:template>
 
 <xsl:template name="book.titlepage.before.recto">
@@ -535,6 +544,14 @@
 </fo:block>
 </xsl:template>
 
+<!-- JMathLib start -->
+<xsl:template match="pubdate" mode="book.titlepage.recto.auto.mode">
+<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" xsl:use-attribute-sets="book.titlepage.recto.style" text-align="center" font-size="14.4pt" space-before="12.96pt" font-family="{$title.fontset}">
+<xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
+</fo:block>
+</xsl:template>
+<!-- JMathLib end -->
+
 <xsl:template match="corpauthor" mode="book.titlepage.recto.auto.mode">
 <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" xsl:use-attribute-sets="book.titlepage.recto.style" font-size="17.28pt" keep-with-next.within-column="always" space-before="2in">
 <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
@@ -552,6 +569,15 @@
 <xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
 </fo:block>
 </xsl:template>
+
+<!-- JMathLib start -->
+<xsl:template match="mediaobject" mode="book.titlepage.recto.auto.mode">
+<fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" xsl:use-attribute-sets="book.titlepage.recto.style" space-before="1in" keep-with-next.within-column="always">
+<!--  fo:block xsl:use-attribute-sets="book.titlepage.recto.style" space-before="1in" -->
+<xsl:apply-templates select="." mode="book.titlepage.recto.mode"/>
+</fo:block>
+</xsl:template>
+<!-- JMathLib end -->
 
 <xsl:template match="title" mode="book.titlepage.verso.auto.mode">
 <fo:block xmlns:fo="http://www.w3.org/1999/XSL/Format" xsl:use-attribute-sets="book.titlepage.verso.style" font-size="14.4pt" font-weight="bold" font-family="{$title.fontset}">
@@ -5090,3 +5116,4 @@
 </xsl:template>
 
 </xsl:stylesheet>
+

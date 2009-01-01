@@ -3,12 +3,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: info.xsl,v 1.2 2006/11/12 17:25:59 st_mueller Exp $
+     $Id: info.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -23,7 +23,8 @@
 <!-- called from named templates in a given mode -->
 
 <xsl:template match="corpauthor">
-  <span class="{name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>
@@ -31,19 +32,8 @@
 <!-- ==================================================================== -->
 
 <xsl:template match="jobtitle">
-  <span class="{name(.)}">
-    <xsl:apply-templates/>
-  </span>
-</xsl:template>
-
-<xsl:template match="orgname">
-  <span class="{name(.)}">
-    <xsl:apply-templates/>
-  </span>
-</xsl:template>
-
-<xsl:template match="orgdiv">
-  <span class="{name(.)}">
+  <span>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </span>
 </xsl:template>

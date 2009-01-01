@@ -5,61 +5,25 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: qandaset.xsl,v 1.2 2006/11/12 17:28:24 st_mueller Exp $
+     $Id: qandaset.xsl 6944 2007-07-04 08:41:53Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
 <!-- ==================================================================== -->
 
 <xsl:template match="qandaset">
-  <xsl:variable name="title" select="(blockinfo/title|title)[1]"/>
-  <xsl:variable name="preamble" select="*[name(.) != 'title'
-                                          and name(.) != 'titleabbrev'
-                                          and name(.) != 'qandadiv'
-                                          and name(.) != 'qandaentry']"/>
-  <xsl:variable name="label-width">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="table-summary">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'table-summary'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="cellpadding">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellpadding'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="cellspacing">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'cellspacing'"/>
-    </xsl:call-template>
-  </xsl:variable>
-
+  <xsl:variable name="title" select="(blockinfo/title|info/title|title)[1]"/>
+  <xsl:variable name="preamble" select="*[local-name(.) != 'title'
+                                          and local-name(.) != 'titleabbrev'
+                                          and local-name(.) != 'qandadiv'
+                                          and local-name(.) != 'qandaentry']"/>
   <xsl:variable name="toc">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'toc'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_toc"/>
   </xsl:variable>
 
   <xsl:variable name="toc.params">
@@ -68,85 +32,57 @@
     </xsl:call-template>
   </xsl:variable>
 
-  <div class="{name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates select="$title"/>
-    <xsl:if test="(contains($toc.params, 'toc') and $toc != '0') or $toc = '1'">
+    <xsl:if test="((contains($toc.params, 'toc') and $toc != '0') or $toc = '1')
+                  and not(ancestor::answer and not($qanda.nested.in.toc=0))">
       <xsl:call-template name="process.qanda.toc"/>
     </xsl:if>
     <xsl:apply-templates select="$preamble"/>
-    <table border="0" summary="Q and A Set">
-      <xsl:if test="$table-summary != ''">
-        <xsl:attribute name="summary">
-          <xsl:value-of select="$table-summary"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <xsl:if test="$cellpadding != ''">
-        <xsl:attribute name="cellpadding">
-          <xsl:value-of select="$cellpadding"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <xsl:if test="$cellspacing != ''">
-        <xsl:attribute name="cellspacing">
-          <xsl:value-of select="$cellspacing"/>
-        </xsl:attribute>
-      </xsl:if>
-
-      <col align="left">
-        <xsl:attribute name="width">
-          <xsl:choose>
-            <xsl:when test="$label-width != ''">
-              <xsl:value-of select="$label-width"/>
-            </xsl:when>
-            <xsl:otherwise>1%</xsl:otherwise>
-          </xsl:choose>
-        </xsl:attribute>
-      </col>
-      <tbody>
-        <xsl:apply-templates select="qandaentry|qandadiv"/>
-      </tbody>
-    </table>
+    <xsl:call-template name="process.qandaset"/>
   </div>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo/title|qandaset/title">
+<xsl:template match="qandaset/blockinfo/title|
+                     qandaset/info/title|
+                     qandaset/title">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qanda.section.level"/>
   </xsl:variable>
   <xsl:element name="h{string(number($qalevel)+1)}">
     <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
+    <xsl:call-template name="anchor">
+      <xsl:with-param name="node" select=".."/>
+      <xsl:with-param name="conditional" select="0"/>
+    </xsl:call-template>
     <xsl:apply-templates/>
   </xsl:element>
 </xsl:template>
 
-<xsl:template match="qandaset/blockinfo">
+<xsl:template match="qandaset/blockinfo|qandaset/info">
   <!-- what should this template really do? -->
   <xsl:apply-templates select="legalnotice" mode="titlepage.mode"/>
 </xsl:template>
 
 <xsl:template match="qandadiv">
-  <xsl:variable name="preamble" select="*[name(.) != 'title'
-                                          and name(.) != 'titleabbrev'
-                                          and name(.) != 'qandadiv'
-                                          and name(.) != 'qandaentry']"/>
+  <xsl:variable name="preamble" select="*[local-name(.) != 'title'
+                                          and local-name(.) != 'titleabbrev'
+                                          and local-name(.) != 'qandadiv'
+                                          and local-name(.) != 'qandaentry']"/>
 
-  <xsl:if test="blockinfo/title|title">
+  <xsl:if test="blockinfo/title|info/title|title">
     <tr class="qandadiv">
       <td align="left" valign="top" colspan="2">
-        <xsl:apply-templates select="(blockinfo/title|title)[1]"/>
+        <xsl:apply-templates select="(blockinfo/title|info/title|title)[1]"/>
       </td>
     </tr>
   </xsl:if>
 
   <xsl:variable name="toc">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'toc'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbhtml_toc"/>
   </xsl:variable>
 
   <xsl:variable name="toc.params">
@@ -172,14 +108,16 @@
   <xsl:apply-templates select="qandadiv|qandaentry"/>
 </xsl:template>
 
-<xsl:template match="qandadiv/blockinfo/title|qandadiv/title">
+<xsl:template match="qandadiv/blockinfo/title|
+                     qandadiv/info/title|
+                     qandadiv/title">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qandadiv.section.level"/>
   </xsl:variable>
 
   <xsl:element name="h{string(number($qalevel)+1)}">
     <xsl:attribute name="class">
-      <xsl:value-of select="name(.)"/>
+      <xsl:value-of select="local-name(.)"/>
     </xsl:attribute>
     <xsl:call-template name="anchor">
       <xsl:with-param name="node" select=".."/>
@@ -211,7 +149,8 @@
     </xsl:choose>
   </xsl:variable>
 
-  <tr class="{name(.)}">
+  <tr>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <td align="left" valign="top">
       <xsl:call-template name="anchor">
         <xsl:with-param name="node" select=".."/>
@@ -229,18 +168,18 @@
       </xsl:variable>
 
       <xsl:if test="string-length($label.content) &gt; 0">
-        <b>
+        <p><b>
           <xsl:copy-of select="$label.content"/>
-        </b>
+        </b></p>
       </xsl:if>
     </td>
     <td align="left" valign="top">
       <xsl:choose>
         <xsl:when test="$deflabel = 'none' and not(label)">
-          <b><xsl:apply-templates select="*[name(.) != 'label']"/></b>
+          <b><xsl:apply-templates select="*[local-name(.) != 'label']"/></b>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:apply-templates select="*[name(.) != 'label']"/>
+          <xsl:apply-templates select="*[local-name(.) != 'label']"/>
         </xsl:otherwise>
       </xsl:choose>
     </td>
@@ -260,20 +199,26 @@
     </xsl:choose>
   </xsl:variable>
 
-  <tr class="{name(.)}">
+  <tr class="{local-name(.)}">
     <td align="left" valign="top">
       <xsl:call-template name="anchor"/>
       <xsl:variable name="answer.label">
         <xsl:apply-templates select="." mode="label.markup"/>
       </xsl:variable>
       <xsl:if test="string-length($answer.label) &gt; 0">
-        <b>
+        <p><b>
           <xsl:copy-of select="$answer.label"/>
-        </b>
+        </b></p>
       </xsl:if>
     </td>
     <td align="left" valign="top">
-      <xsl:apply-templates select="*[name(.) != 'label']"/>
+      <xsl:apply-templates select="*[local-name(.) != 'label'
+        and local-name(.) != 'qandaentry']"/>
+      <!-- * handle nested answer/qandaentry instances -->
+      <!-- * (bug 1509043 from Daniel Leidert) -->
+      <xsl:if test="descendant::question">
+        <xsl:call-template name="process.qandaset"/>
+      </xsl:if>
     </td>
   </tr>
 </xsl:template>
@@ -285,9 +230,11 @@
 <!-- ==================================================================== -->
 
 <xsl:template name="process.qanda.toc">
+  <!-- * if user wants nested qandaset and qandaentry in main Qandaset TOC, -->
+  <!-- * then don't also include the nested stuff in the sub TOCs -->
   <dl>
     <xsl:apply-templates select="qandadiv" mode="qandatoc.mode"/>
-    <xsl:apply-templates select="qandaentry" mode="qandatoc.mode"/>
+    <xsl:apply-templates select="qandaset|qandaentry" mode="qandatoc.mode"/>
   </dl>
 </xsl:template>
 
@@ -296,7 +243,9 @@
   <dd><xsl:call-template name="process.qanda.toc"/></dd>
 </xsl:template>
 
-<xsl:template match="qandadiv/blockinfo/title|qandadiv/title" mode="qandatoc.mode">
+<xsl:template match="qandadiv/blockinfo/title|
+                     qandadiv/info/title|
+                     qandadiv/title" mode="qandatoc.mode">
   <xsl:variable name="qalevel">
     <xsl:call-template name="qandadiv.section.level"/>
   </xsl:variable>
@@ -319,13 +268,19 @@
   </a>
 </xsl:template>
 
+<xsl:template match="qandaset" mode="qandatoc.mode">
+  <xsl:for-each select="qandaentry">
+    <xsl:apply-templates select="." mode="qandatoc.mode"/>
+  </xsl:for-each>
+</xsl:template>
+
 <xsl:template match="qandaentry" mode="qandatoc.mode">
   <xsl:apply-templates select="question" mode="qandatoc.mode"/>
 </xsl:template>
 
 <xsl:template match="question" mode="qandatoc.mode">
   <xsl:variable name="firstch">
-    <xsl:apply-templates select="(*[name(.)!='label'])[1]"/>
+    <xsl:apply-templates select="(*[local-name(.)!='label'])[1]"/>
   </xsl:variable>
   <xsl:variable name="deflabel">
     <xsl:choose>
@@ -354,6 +309,73 @@
       <xsl:value-of select="$firstch"/>
     </a>
   </dt>
+  <!-- * include nested qandaset/qandaentry in TOC if user wants it -->
+  <xsl:if test="not($qanda.nested.in.toc = 0)">
+    <xsl:apply-templates select="following-sibling::answer" mode="qandatoc.mode"/>
+  </xsl:if>
+</xsl:template>
+
+<xsl:template match="answer" mode="qandatoc.mode">
+  <xsl:if test="descendant::question">
+    <dd>
+      <xsl:call-template name="process.qanda.toc"/>
+    </dd>
+  </xsl:if>
+</xsl:template>
+
+<!-- ==================================================================== -->
+
+<xsl:template name="process.qandaset">
+
+  <xsl:variable name="label-width">
+    <xsl:call-template name="pi.dbhtml_label-width"/>
+  </xsl:variable>
+
+  <xsl:variable name="table-summary">
+    <xsl:call-template name="pi.dbhtml_table-summary"/>
+  </xsl:variable>
+
+  <xsl:variable name="cellpadding">
+    <xsl:call-template name="pi.dbhtml_cellpadding"/>
+  </xsl:variable>
+
+  <xsl:variable name="cellspacing">
+    <xsl:call-template name="pi.dbhtml_cellspacing"/>
+  </xsl:variable>
+
+  <table border="0" summary="Q and A Set">
+    <xsl:if test="$table-summary != ''">
+      <xsl:attribute name="summary">
+        <xsl:value-of select="$table-summary"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$cellpadding != ''">
+      <xsl:attribute name="cellpadding">
+        <xsl:value-of select="$cellpadding"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <xsl:if test="$cellspacing != ''">
+      <xsl:attribute name="cellspacing">
+        <xsl:value-of select="$cellspacing"/>
+      </xsl:attribute>
+    </xsl:if>
+
+    <col align="left">
+      <xsl:attribute name="width">
+        <xsl:choose>
+          <xsl:when test="$label-width != ''">
+            <xsl:value-of select="$label-width"/>
+          </xsl:when>
+          <xsl:otherwise>1%</xsl:otherwise>
+        </xsl:choose>
+      </xsl:attribute>
+    </col>
+    <tbody>
+      <xsl:apply-templates select="qandaentry|qandadiv"/>
+    </tbody>
+  </table>
 </xsl:template>
 
 <!-- ==================================================================== -->

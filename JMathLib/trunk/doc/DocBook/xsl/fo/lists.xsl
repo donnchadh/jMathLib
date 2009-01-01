@@ -4,12 +4,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: lists.xsl,v 1.2 2006/11/12 17:34:43 st_mueller Exp $
+     $Id: lists.xsl 8002 2008-04-21 16:03:57Z kosek $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -21,11 +21,7 @@
   </xsl:variable>
 
   <xsl:variable name="pi-label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-width">
@@ -188,11 +184,7 @@
   </xsl:variable>
 
   <xsl:variable name="pi-label-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'label-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_label-width"/>
   </xsl:variable>
 
   <xsl:variable name="label-width">
@@ -246,44 +238,6 @@
   </xsl:choose>
 </xsl:template>
 
-<xsl:template match="orderedlist/listitem" mode="item-number">
-  <xsl:variable name="numeration">
-    <xsl:call-template name="list.numeration">
-      <xsl:with-param name="node" select="parent::orderedlist"/>
-    </xsl:call-template>
-  </xsl:variable>
-
-  <xsl:variable name="type">
-    <xsl:choose>
-      <xsl:when test="$numeration='arabic'">1.</xsl:when>
-      <xsl:when test="$numeration='loweralpha'">a.</xsl:when>
-      <xsl:when test="$numeration='lowerroman'">i.</xsl:when>
-      <xsl:when test="$numeration='upperalpha'">A.</xsl:when>
-      <xsl:when test="$numeration='upperroman'">I.</xsl:when>
-      <!-- What!? This should never happen -->
-      <xsl:otherwise>
-        <xsl:message>
-          <xsl:text>Unexpected numeration: </xsl:text>
-          <xsl:value-of select="$numeration"/>
-        </xsl:message>
-        <xsl:value-of select="1."/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
-
-  <xsl:variable name="item-number">
-    <xsl:call-template name="orderedlist-item-number"/>
-  </xsl:variable>
-
-  <xsl:if test="parent::orderedlist/@inheritnum='inherit'
-                and ancestor::listitem[parent::orderedlist]">
-    <xsl:apply-templates select="ancestor::listitem[parent::orderedlist][1]"
-                         mode="item-number"/>
-  </xsl:if>
-
-  <xsl:number value="$item-number" format="{$type}"/>
-</xsl:template>
-
 <xsl:template match="orderedlist/listitem">
   <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
 
@@ -335,11 +289,7 @@
 
 <xsl:template match="variablelist">
   <xsl:variable name="presentation">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-presentation"/>
   </xsl:variable>
 
   <xsl:choose>
@@ -364,11 +314,7 @@
   </xsl:variable>
 
   <xsl:variable name="term-width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'term-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_term-width"/>
   </xsl:variable>
 
   <xsl:variable name="termlength">
@@ -381,7 +327,7 @@
           <xsl:value-of select="@termlength + 0"/>
         </xsl:variable>
         <xsl:choose>
-          <xsl:when test="$termlength.is.number = 'NaN'">
+          <xsl:when test="string($termlength.is.number) = 'NaN'">
             <!-- if the term length isn't just a number, assume it's a measurement -->
             <xsl:value-of select="@termlength"/>
           </xsl:when>
@@ -516,8 +462,10 @@
 </xsl:template>
 
 <xsl:template match="varlistentry" mode="vl.as.list">
-  <xsl:variable name="id"><xsl:call-template name="object.id"/></xsl:variable>
-  <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
+  <xsl:variable name="id">
+    <xsl:call-template name="object.id"/>
+  </xsl:variable>
+  <xsl:variable name="item.contents">
     <fo:list-item-label end-indent="label-end()" text-align="start">
       <fo:block>
         <xsl:apply-templates select="term"/>
@@ -528,8 +476,23 @@
         <xsl:apply-templates select="listitem"/>
       </fo:block>
     </fo:list-item-body>
-  </fo:list-item>
+  </xsl:variable>
+
+  <xsl:choose>
+    <xsl:when test="parent::*/@spacing = 'compact'">
+      <fo:list-item id="{$id}"
+          xsl:use-attribute-sets="compact.list.item.spacing">
+        <xsl:copy-of select="$item.contents"/>
+      </fo:list-item>
+    </xsl:when>
+    <xsl:otherwise>
+      <fo:list-item id="{$id}" xsl:use-attribute-sets="list.item.spacing">
+        <xsl:copy-of select="$item.contents"/>
+      </fo:list-item>
+    </xsl:otherwise>
+  </xsl:choose>
 </xsl:template>
+
 
 <xsl:template match="variablelist" mode="vl.as.blocks">
   <xsl:variable name="id">
@@ -587,7 +550,13 @@
 </xsl:template>
 
 <xsl:template match="varlistentry/term">
-  <fo:inline><xsl:apply-templates/></fo:inline>
+  <fo:inline>
+    <xsl:call-template name="simple.xlink">
+      <xsl:with-param name="content">
+        <xsl:apply-templates/>
+      </xsl:with-param>
+    </xsl:call-template>
+  </fo:inline>
   <xsl:choose>
     <xsl:when test="not(following-sibling::term)"/> <!-- do nothing -->
     <xsl:otherwise>
@@ -616,9 +585,48 @@
 
 <!-- ==================================================================== -->
 
-<xsl:template match="simplelist">
+<xsl:template match="simplelist|simplelist[@type='vert']">
   <!-- with no type specified, the default is 'vert' -->
+
+  <xsl:variable name="explicit.table.width">
+    <xsl:call-template name="dbfo-attribute">
+      <xsl:with-param name="pis"
+		      select="processing-instruction('dbfo')"/>
+      <xsl:with-param name="attribute" select="'list-width'"/>
+    </xsl:call-template>
+  </xsl:variable>
+
+  <xsl:variable name="table.width">
+    <xsl:choose>
+      <xsl:when test="$explicit.table.width != ''">
+        <xsl:value-of select="$explicit.table.width"/>
+      </xsl:when>
+      <xsl:when test="$default.table.width = ''">
+        <xsl:text>100%</xsl:text>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$default.table.width"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <fo:table xsl:use-attribute-sets="normal.para.spacing">
+
+    <xsl:choose>
+      <xsl:when test="$axf.extensions != 0 or $xep.extensions != 0">
+	<xsl:attribute name="table-layout">auto</xsl:attribute>
+        <xsl:if test="$explicit.table.width != ''">
+          <xsl:attribute name="width"><xsl:value-of 
+	  select="$explicit.table.width"/></xsl:attribute>
+        </xsl:if>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:attribute name="table-layout">fixed</xsl:attribute>
+        <xsl:attribute name="width"><xsl:value-of 
+                                      select="$table.width"/></xsl:attribute>
+      </xsl:otherwise>
+    </xsl:choose>
+
     <xsl:call-template name="simplelist.table.columns">
       <xsl:with-param name="cols">
         <xsl:choose>
@@ -651,10 +659,10 @@
   <fo:inline><xsl:variable name="localized-choice-separator">
     <xsl:choose>
       <xsl:when test="processing-instruction('dbchoice')">
-	<xsl:call-template name="select.choice.separator"/>
+        <xsl:call-template name="select.choice.separator"/>
       </xsl:when>
       <xsl:otherwise>
-	<!-- empty -->
+        <!-- empty -->
       </xsl:otherwise>
     </xsl:choose>
   </xsl:variable>
@@ -679,11 +687,7 @@
 <xsl:template match="simplelist[@type='horiz']">
 
   <xsl:variable name="explicit.table.width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-width"/>
   </xsl:variable>
 
   <xsl:variable name="table.width">
@@ -727,33 +731,6 @@
     </xsl:call-template>
     <fo:table-body start-indent="0pt" end-indent="0pt">
       <xsl:call-template name="simplelist.horiz">
-        <xsl:with-param name="cols">
-          <xsl:choose>
-            <xsl:when test="@columns">
-              <xsl:value-of select="@columns"/>
-            </xsl:when>
-            <xsl:otherwise>1</xsl:otherwise>
-          </xsl:choose>
-        </xsl:with-param>
-      </xsl:call-template>
-    </fo:table-body>
-  </fo:table>
-</xsl:template>
-
-<xsl:template match="simplelist[@type='vert']">
-  <fo:table xsl:use-attribute-sets="normal.para.spacing">
-    <xsl:call-template name="simplelist.table.columns">
-      <xsl:with-param name="cols">
-        <xsl:choose>
-          <xsl:when test="@columns">
-            <xsl:value-of select="@columns"/>
-          </xsl:when>
-          <xsl:otherwise>1</xsl:otherwise>
-        </xsl:choose>
-      </xsl:with-param>
-    </xsl:call-template>
-    <fo:table-body start-indent="0pt" end-indent="0pt">
-      <xsl:call-template name="simplelist.vert">
         <xsl:with-param name="cols">
           <xsl:choose>
             <xsl:when test="@columns">
@@ -875,7 +852,11 @@
 </xsl:template>
 
 <xsl:template match="member">
-  <xsl:apply-templates/>
+  <xsl:call-template name="simple.xlink">
+    <xsl:with-param name="content">
+      <xsl:apply-templates/>
+    </xsl:with-param>
+  </xsl:call-template>
 </xsl:template>
 
 <!-- ==================================================================== -->
@@ -914,7 +895,7 @@
                         |comment()[preceding-sibling::step]
                         |processing-instruction()[preceding-sibling::step]"/>
 
-  <fo:block id="{$id}" xsl:use-attribute-sets="list.block.spacing">
+  <fo:block id="{$id}" xsl:use-attribute-sets="procedure.properties list.block.spacing">
     <xsl:if test="./title and $placement = 'before'">
       <!-- n.b. gentext code tests for $formal.procedures and may make an "informal" -->
       <!-- heading even though we called formal.object.heading. odd but true. -->
@@ -1015,11 +996,7 @@
 
 <xsl:template match="segmentedlist">
   <xsl:variable name="presentation">
-    <xsl:call-template name="pi-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'list-presentation'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_list-presentation"/>
   </xsl:variable>
 
   <xsl:variable name="id">
@@ -1139,11 +1116,16 @@
   <xsl:call-template name="object.id"/>
   </xsl:variable>
 
+  <xsl:variable name="pi-label-width">
+    <xsl:call-template name="pi.dbfo_label-width"/>
+  </xsl:variable>
+
   <fo:block id="{$id}"
             text-align="{$alignment}">
     <!-- The above restores alignment altered by image align attribute -->
-    <xsl:if test="title">
-      <xsl:apply-templates select="title" mode="list.title.mode"/>
+    <xsl:if test="title|info/title">
+      <xsl:apply-templates select="(title|info/title)[1]" 
+                           mode="list.title.mode"/>
     </xsl:if>
 
     <!-- Preserve order of PIs and comments -->
@@ -1157,8 +1139,15 @@
                    space-before.maximum="1.2em"
                    provisional-distance-between-starts="2.2em"
                    provisional-label-separation="0.2em">
+
+      <xsl:if test="$pi-label-width != ''">
+      	<xsl:attribute name="provisional-distance-between-starts">
+	  <xsl:value-of select="$pi-label-width"/>
+	</xsl:attribute>
+      </xsl:if>
+      
       <xsl:apply-templates select="callout
-                                |comment()[preceding-sibling::calllout]
+                                |comment()[preceding-sibling::callout]
                                 |processing-instruction()[preceding-sibling::callout]"/>
     </fo:list-block>
   </fo:block>
@@ -1255,5 +1244,17 @@
 
 <!-- ==================================================================== -->
 
-</xsl:stylesheet>
+<xsl:template name="orderedlist-starting-number">
+  <xsl:param name="list" select="."/>
+  <xsl:variable name="pi-start">
+    <xsl:call-template name="pi.dbfo_start">
+      <xsl:with-param name="node" select="$list"/>
+    </xsl:call-template>
+  </xsl:variable>
+  <xsl:call-template name="output-orderedlist-starting-number">
+    <xsl:with-param name="list" select="$list"/>
+    <xsl:with-param name="pi-start" select="$pi-start"/>
+  </xsl:call-template>
+</xsl:template>
 
+</xsl:stylesheet>

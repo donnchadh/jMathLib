@@ -1,21 +1,24 @@
 <?xml version='1.0'?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
-                xmlns:xverb="com.nwalsh.xalan.Verbatim"
+                xmlns:xverb="xalan://com.nwalsh.xalan.Verbatim"
                 xmlns:lxslt="http://xml.apache.org/xslt"
                 xmlns:exsl="http://exslt.org/common"
                 exclude-result-prefixes="sverb xverb lxslt exsl"
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: verbatim.xsl,v 1.2 2006/11/12 17:28:24 st_mueller Exp $
+     $Id: verbatim.xsl 6946 2007-07-04 10:21:57Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
+
+<xsl:include href="../highlighting/common.xsl"/>
+<xsl:include href="highlight.xsl"/>
 
 <lxslt:component prefix="xverb"
                  functions="numberLines"/>
@@ -46,17 +49,19 @@
 		    and $use.extensions != '0'
 		    and $linenumbering.extension != '0'">
       <xsl:variable name="rtf">
-	<xsl:apply-templates/>
+	<xsl:call-template name="apply-highlighting"/>
       </xsl:variable>
-      <pre class="{name(.)}">
+      <pre>
+        <xsl:apply-templates select="." mode="class.attribute"/>
 	<xsl:call-template name="number.rtf.lines">
 	  <xsl:with-param name="rtf" select="$rtf"/>
 	</xsl:call-template>
       </pre>
     </xsl:when>
     <xsl:otherwise>
-      <pre class="{name(.)}">
-	<xsl:apply-templates/>
+      <pre>
+        <xsl:apply-templates select="." mode="class.attribute"/>
+	<xsl:call-template name="apply-highlighting"/>
       </pre>
     </xsl:otherwise>
   </xsl:choose>
@@ -88,14 +93,16 @@
 		    and $linenumbering.extension != '0'">
       <xsl:choose>
 	<xsl:when test="@class='monospaced'">
-	  <pre class="{name(.)}">
+          <pre>
+            <xsl:apply-templates select="." mode="class.attribute"/>
 	    <xsl:call-template name="number.rtf.lines">
 	      <xsl:with-param name="rtf" select="$rtf"/>
 	    </xsl:call-template>
 	  </pre>
 	</xsl:when>
 	<xsl:otherwise>
-	  <div class="{name(.)}">
+          <div>
+            <xsl:apply-templates select="." mode="class.attribute"/>
 	    <p>
 	      <xsl:call-template name="number.rtf.lines">
 		<xsl:with-param name="rtf" select="$rtf"/>
@@ -108,12 +115,14 @@
     <xsl:otherwise>
       <xsl:choose>
 	<xsl:when test="@class='monospaced'">
-	  <pre class="{name(.)}">
+          <pre>
+            <xsl:apply-templates select="." mode="class.attribute"/>
 	    <xsl:copy-of select="$rtf"/>
 	  </pre>
 	</xsl:when>
 	<xsl:otherwise>
-	  <div class="{name(.)}">
+          <div>
+            <xsl:apply-templates select="." mode="class.attribute"/>
 	    <p>
 	      <xsl:call-template name="make-verbatim">
 		<xsl:with-param name="rtf" select="$rtf"/>
@@ -138,7 +147,8 @@
                     and @linenumbering = 'numbered'
                     and $use.extensions != '0'
                     and $linenumbering.extension != '0'">
-      <div class="{name(.)}">
+      <div>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <p>
           <xsl:call-template name="number.rtf.lines">
             <xsl:with-param name="rtf" select="$rtf"/>
@@ -148,7 +158,8 @@
     </xsl:when>
 
     <xsl:otherwise>
-      <div class="{name(.)}">
+      <div>
+        <xsl:apply-templates select="." mode="class.attribute"/>
         <p>
           <xsl:call-template name="make-verbatim">
             <xsl:with-param name="rtf" select="$rtf"/>
@@ -175,26 +186,20 @@
 
   <!-- Extract the <?dbhtml linenumbering.*?> PI values -->
   <xsl:variable name="pi.linenumbering.everyNth">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="$pi.context/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'linenumbering.everyNth'"/>
+    <xsl:call-template name="pi.dbhtml_linenumbering.everyNth">
+      <xsl:with-param name="node" select="$pi.context"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="pi.linenumbering.separator">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="$pi.context/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'linenumbering.separator'"/>
+    <xsl:call-template name="pi.dbhtml_linenumbering.separator">
+      <xsl:with-param name="node" select="$pi.context"/>
     </xsl:call-template>
   </xsl:variable>
 
   <xsl:variable name="pi.linenumbering.width">
-    <xsl:call-template name="dbhtml-attribute">
-      <xsl:with-param name="pis"
-                      select="$pi.context/processing-instruction('dbhtml')"/>
-      <xsl:with-param name="attribute" select="'linenumbering.width'"/>
+    <xsl:call-template name="pi.dbhtml_linenumbering.width">
+      <xsl:with-param name="node" select="$pi.context"/>
     </xsl:call-template>
   </xsl:variable>
 

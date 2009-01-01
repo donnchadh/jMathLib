@@ -1,7 +1,12 @@
-<refentry id="tex.math.file">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="tex.math.file">
 <refmeta>
 <refentrytitle>tex.math.file</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>tex.math.file</refname>
@@ -9,16 +14,29 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='tex.math.file.frag'>
-<xsl:param name="tex.math.file" select="'tex-math-equations.tex'"/>
+<src:fragment xml:id="tex.math.file.frag">
+<xsl:param name="tex.math.file">tex-math-equations.tex</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>Name of auxiliary file for TeX equations. This file can be
 processed by dvi2bitmap to get bitmap versions of equations for HTML
 output.</para>
 
-</refsect1>
+</refsection>
+<refsection><info><title>Related Parameters</title></info>
+  <para><parameter>tex.math.in.alt</parameter>,
+    <parameter>tex.math.delims</parameter>,
+  </para>
+</refsection>
+<refsection><info><title>More information</title></info>
+  <para>For how-to documentation on embedding TeX equations and
+    generating output from them, see
+    <link
+      role="tcg"
+      xlink:href="TexMath.html"
+      >DBTeXMath</link>.</para>
+</refsection>
 </refentry>

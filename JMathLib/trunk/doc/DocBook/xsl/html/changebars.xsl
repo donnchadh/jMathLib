@@ -3,12 +3,12 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: changebars.xsl,v 1.2 2006/11/12 17:24:58 st_mueller Exp $
+     $Id: changebars.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -22,13 +22,15 @@
 
 <style type="text/css">
 <xsl:text>
-div.added    { background-color: #ffff99; }
+div.added    { background-color: #ffff99; 
+               text-decoration: underline; }
 div.deleted  { text-decoration: line-through;
                background-color: #FF7F7F; }
 div.changed  { background-color: #99ff99; }
 div.off      {  }
 
-span.added   { background-color: #ffff99; }
+span.added   { background-color: #ffff99; 
+               text-decoration: underline; }
 span.deleted { text-decoration: line-through;
                background-color: #FF7F7F; }
 span.changed { background-color: #99ff99; }

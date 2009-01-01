@@ -3,12 +3,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: index.xsl,v 1.2 2006/11/12 17:25:57 st_mueller Exp $
+     $Id: index.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -24,7 +24,8 @@
   <xsl:call-template name="id.warning"/>
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
-    <div class="{name(.)}">
+    <div>
+      <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -78,7 +79,8 @@
   <xsl:call-template name="id.warning"/>
 
   <xsl:if test="count(*)>0 or $generate.index != '0'">
-    <div class="{name(.)}">
+    <div>
+      <xsl:apply-templates select="." mode="class.attribute"/>
       <xsl:if test="$generate.id.attributes != 0">
         <xsl:attribute name="id">
           <xsl:call-template name="object.id"/>
@@ -101,6 +103,8 @@
   </xsl:if>
 </xsl:template>
 
+<xsl:template match="index/indexinfo"></xsl:template>
+<xsl:template match="index/info"></xsl:template>
 <xsl:template match="index/title"></xsl:template>
 <xsl:template match="index/subtitle"></xsl:template>
 <xsl:template match="index/titleabbrev"></xsl:template>
@@ -110,7 +114,8 @@
 <xsl:template match="indexdiv">
   <xsl:call-template name="id.warning"/>
 
-  <div class="{name(.)}">
+  <div>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:if test="$generate.id.attributes != 0">
       <xsl:attribute name="id">
         <xsl:call-template name="object.id"/>
@@ -126,7 +131,8 @@
 </xsl:template>
 
 <xsl:template match="indexdiv/title">
-  <h3 class="{name(.)}">
+  <h3>
+    <xsl:apply-templates select="." mode="class.attribute"/>
     <xsl:apply-templates/>
   </h3>
 </xsl:template>

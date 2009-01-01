@@ -1,7 +1,12 @@
-<refentry id="man.output.quietly">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="man.output.quietly">
 <refmeta>
 <refentrytitle>man.output.quietly</refentrytitle>
-
+<refmiscinfo class="other" otherclass="datatype">boolean</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>man.output.quietly</refname>
@@ -9,12 +14,12 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='man.output.quietly.frag'>
+<src:fragment xml:id="man.output.quietly.frag">
 <xsl:param name="man.output.quietly" select="0"/>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>If zero (the default), for each man-page file created, a message
 with the name of the file is emitted. If non-zero, the files are
@@ -28,5 +33,5 @@ suppressed.</para>
   <parameter>man.output.quietly</parameter>.</para>
 </tip>
 
-</refsect1>
+</refsection>
 </refentry>

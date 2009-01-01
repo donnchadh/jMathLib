@@ -1,7 +1,12 @@
-<refentry id="htmlhelp.encoding">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="htmlhelp.encoding">
 <refmeta>
 <refentrytitle>htmlhelp.encoding</refentrytitle>
-<refmiscinfo role="type">string</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">string</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>htmlhelp.encoding</refname>
@@ -9,15 +14,15 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='htmlhelp.encoding.frag'>
-<xsl:param name="htmlhelp.encoding" select="'iso-8859-1'"/>
+<src:fragment xml:id="htmlhelp.encoding.frag">
+<xsl:param name="htmlhelp.encoding">iso-8859-1</xsl:param>
 </src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
-<para>HTML Help Compiler is not UTF-8 aware, so you should always use
-apropriate single-byte encoding here.</para>
+<para>HTML Help Compiler is not UTF-8 aware, so you should always use an
+appropriate single-byte encoding here. Use one from <link xlink:href="ftp://ftp.isi.edu/in-notes/iana/assignments/character-sets">iana</link>, the  registered charset values.</para>
 
-</refsect1>
+</refsection>
 </refentry>

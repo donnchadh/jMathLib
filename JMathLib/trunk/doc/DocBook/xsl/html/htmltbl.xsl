@@ -3,12 +3,12 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: htmltbl.xsl,v 1.1 2006/11/12 17:25:58 st_mueller Exp $
+     $Id: htmltbl.xsl 8000 2008-04-15 01:06:41Z abdelazer $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -28,28 +28,29 @@
 </xsl:template>
 
 <xsl:template match="caption" mode="htmlTable">
-  <xsl:copy>
+  <!-- do not use xsl:copy because of XHTML's needs -->
+  <caption>  
     <xsl:copy-of select="@*"/>
 
     <xsl:apply-templates select=".." mode="object.title.markup">
       <xsl:with-param name="allow-anchors" select="1"/>
     </xsl:apply-templates>
 
-  </xsl:copy>
+  </caption>
 </xsl:template>
 
 <xsl:template match="thead|tbody|tgroup|tr" mode="htmlTable">
-  <xsl:copy>
+  <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates mode="htmlTable"/>
-  </xsl:copy>
+  </xsl:element>
 </xsl:template>
 
 <xsl:template match="th|td" mode="htmlTable">
-  <xsl:copy>
+  <xsl:element name="{name(.)}">
     <xsl:copy-of select="@*"/>
     <xsl:apply-templates/> <!-- *not* mode=htmlTable -->
-  </xsl:copy>
+  </xsl:element>
 </xsl:template>
 
 </xsl:stylesheet>

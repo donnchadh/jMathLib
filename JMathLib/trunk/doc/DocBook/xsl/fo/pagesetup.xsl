@@ -4,12 +4,12 @@
                 version="1.0">
 
 <!-- ********************************************************************
-     $Id: pagesetup.xsl,v 1.2 2006/11/12 17:34:42 st_mueller Exp $
+     $Id: pagesetup.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the DocBook XSL Stylesheet distribution.
      See ../README or http://docbook.sf.net/ for copyright
-     and other information.
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -69,10 +69,15 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">blank</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body display-align="center"
                       margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}">
-        <xsl:if test="$fop.extensions = 0">
+        <xsl:if test="$fop.extensions = 0 and $fop1.extensions = 0">
           <xsl:attribute name="region-name">blank-body</xsl:attribute>
         </xsl:if>
       </fo:region-body>
@@ -92,6 +97,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">titlepage-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.titlepage}"
@@ -112,6 +122,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">titlepage-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.titlepage}"
@@ -132,6 +147,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">titlepage-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.titlepage}"
@@ -153,6 +173,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">lot-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.lot}"
@@ -173,6 +198,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">lot-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.lot}"
@@ -193,6 +223,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">lot-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.lot}"
@@ -214,6 +249,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">front-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.front}"
@@ -234,6 +274,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">front-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.front}"
@@ -254,6 +299,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">front-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.front}"
@@ -275,6 +325,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">body-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.body}"
@@ -295,6 +350,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">body-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.body}"
@@ -315,6 +375,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">body-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.body}"
@@ -336,6 +401,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">back-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.back}"
@@ -356,6 +426,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">back-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.back}"
@@ -376,6 +451,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$margin.left.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">back-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.back}"
@@ -397,6 +477,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">index-first</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.index}"
@@ -417,6 +502,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.inner}"
                            margin-right="{$page.margin.outer}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">index-odd</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.index}"
@@ -437,6 +527,11 @@
                            margin-bottom="{$page.margin.bottom}"
                            margin-left="{$page.margin.outer}"
                            margin-right="{$page.margin.inner}">
+      <xsl:if test="$axf.extensions != 0">
+        <xsl:call-template name="axf-page-master-properties">
+          <xsl:with-param name="page.master">index-even</xsl:with-param>
+        </xsl:call-template>
+      </xsl:if>
       <fo:region-body margin-bottom="{$body.margin.bottom}"
                       margin-top="{$body.margin.top}"
                       column-gap="{$column.gap.index}"
@@ -459,6 +554,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">blank-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}">
           <xsl:if test="$draft.watermark.image != ''">
@@ -489,6 +589,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">titlepage-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
@@ -520,6 +625,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">titlepage-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
@@ -551,6 +661,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">titlepage-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.titlepage}"
@@ -583,6 +698,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">lot-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
@@ -614,6 +734,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">lot-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
@@ -645,6 +770,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">lot-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.lot}"
@@ -677,6 +807,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">front-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
@@ -708,6 +843,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">front-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
@@ -739,6 +879,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">front-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.front}"
@@ -771,6 +916,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">body-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
@@ -802,6 +952,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">body-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
@@ -833,6 +988,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">body-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.body}"
@@ -865,6 +1025,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">back-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
@@ -896,6 +1061,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">back-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
@@ -927,6 +1097,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$margin.left.outer}"
                              margin-right="{$page.margin.inner}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">back-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.back}"
@@ -959,6 +1134,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$page.margin.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">index-first-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
@@ -990,6 +1170,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-left="{$page.margin.inner}"
                              margin-right="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">index-odd-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
@@ -1021,6 +1206,11 @@
                              margin-bottom="{$page.margin.bottom}"
                              margin-right="{$page.margin.inner}"
                              margin-left="{$page.margin.outer}">
+        <xsl:if test="$axf.extensions != 0">
+          <xsl:call-template name="axf-page-master-properties">
+            <xsl:with-param name="page.master">index-even-draft</xsl:with-param>
+          </xsl:call-template>
+        </xsl:if>
         <fo:region-body margin-bottom="{$body.margin.bottom}"
                         margin-top="{$body.margin.top}"
                         column-gap="{$column.gap.index}"
@@ -1394,7 +1584,7 @@
 
 <xsl:template match="*" mode="running.head.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="name(.)"/>
+  <xsl:param name="gentext-key" select="local-name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
@@ -1450,7 +1640,7 @@
 
   <xsl:call-template name="footnote-separator"/>
 
-  <xsl:if test="$fop.extensions = 0">
+  <xsl:if test="$fop.extensions = 0 and $fop1.extensions = 0">
     <xsl:call-template name="blank.page.content"/>
   </xsl:if>
 </xsl:template>
@@ -1500,7 +1690,7 @@
   </xsl:variable>
 
   <xsl:variable name="candidate">
-    <fo:table table-layout="fixed" width="100%">
+    <fo:table xsl:use-attribute-sets="header.table.properties">
       <xsl:call-template name="head.sep.rule">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="$sequence"/>
@@ -1739,7 +1929,7 @@
 
 <xsl:template match="*" mode="running.foot.mode">
   <xsl:param name="master-reference" select="'unknown'"/>
-  <xsl:param name="gentext-key" select="name(.)"/>
+  <xsl:param name="gentext-key" select="local-name(.)"/>
 
   <!-- remove -draft from reference -->
   <xsl:variable name="pageclass">
@@ -1825,7 +2015,7 @@
   </xsl:variable>
 
   <xsl:variable name="candidate">
-    <fo:table table-layout="fixed" width="100%">
+    <fo:table xsl:use-attribute-sets="footer.table.properties">
       <xsl:call-template name="foot.sep.rule">
         <xsl:with-param name="pageclass" select="$pageclass"/>
         <xsl:with-param name="sequence" select="$sequence"/>
@@ -2020,6 +2210,7 @@
                               self::bookinfo or
                               self::info or
                               self::dedication or
+                              self::preface or
                               self::toc or
                               self::lot)][1]"/>
   <xsl:choose>
@@ -2086,15 +2277,27 @@
   <!-- This template is called after each <fo:flow> starts. -->
   <!-- Customize this template to set attributes on fo:flow -->
 
+  <!-- remove -draft from reference -->
+  <xsl:variable name="pageclass">
+    <xsl:choose>
+      <xsl:when test="contains($master-reference, '-draft')">
+        <xsl:value-of select="substring-before($master-reference, '-draft')"/>
+      </xsl:when>
+      <xsl:otherwise>
+        <xsl:value-of select="$master-reference"/>
+      </xsl:otherwise>
+    </xsl:choose>
+  </xsl:variable>
+
   <xsl:choose>
     <xsl:when test="$fop.extensions != 0 or $passivetex.extensions != 0">
       <!-- body.start.indent does not work well with these processors -->
     </xsl:when>
-    <xsl:when test="starts-with($master-reference, 'body') or
-                    starts-with($master-reference, 'lot') or
-                    starts-with($master-reference, 'front') or
+    <xsl:when test="starts-with($pageclass, 'body') or
+                    starts-with($pageclass, 'lot') or
+                    starts-with($pageclass, 'front') or
                     $element = 'preface' or
-                    (starts-with($master-reference, 'back') and
+                    (starts-with($pageclass, 'back') and
                     $element = 'appendix')">
       <xsl:attribute name="start-indent">
         <xsl:value-of select="$body.start.indent"/>

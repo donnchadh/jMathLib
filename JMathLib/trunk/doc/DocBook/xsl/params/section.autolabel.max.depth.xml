@@ -1,7 +1,12 @@
-<refentry id="section.autolabel.max.depth">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="section.autolabel.max.depth">
 <refmeta>
 <refentrytitle>section.autolabel.max.depth</refentrytitle>
-<refmiscinfo role="type">integer</refmiscinfo>
+<refmiscinfo class="other" otherclass="datatype">integer</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>section.autolabel.max.depth</refname>
@@ -9,18 +14,19 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='section.autolabel.max.depth.frag'><xsl:param name="section.autolabel.max.depth" select="8"/></src:fragment>
+<src:fragment xml:id="section.autolabel.max.depth.frag">
+<xsl:param name="section.autolabel.max.depth">8</xsl:param>
+</src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>When section numbering is turned on by the
-<literal>section.autolabel</literal> parameter,
-then this parameter controls the depth of section nesting
-that is numbered.
-Sections nested to a level deeper than this value will
-not be numbered.
+<parameter>section.autolabel</parameter> parameter, then this
+parameter controls the depth of <tag>section</tag> nesting that is
+numbered.  Sections nested to a level deeper than this value will not
+be numbered.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

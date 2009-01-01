@@ -5,12 +5,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: targets.xsl,v 1.1 2006/11/12 17:16:04 st_mueller Exp $
+     $Id: targets.xsl 6910 2007-06-28 23:23:30Z xmldoc $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -20,7 +20,7 @@
 
 <doc:mode mode="collect.targets" xmlns="">
 <refpurpose>Collects information for potential cross reference targets</refpurpose>
-<refdescription>
+<refdescription id="collect.targets-desc">
 <para>Processing the root element in the
 <literal role="mode">collect.targets</literal> mode produces 
 a set of target database elements that can be used by
@@ -64,7 +64,7 @@ document output.
             <xsl:with-param name="omit-xml-declaration" select="'yes'"/>
             <xsl:with-param name="doctype-public" select="''"/>
             <xsl:with-param name="doctype-system" select="''"/>
-            <xsl:with-param name="indent" select="'yes'"/>
+            <xsl:with-param name="indent" select="'no'"/>
             <xsl:with-param name="quiet" select="0"/>
             <xsl:with-param name="content">
               <xsl:apply-templates select="." mode="olink.mode"/>
@@ -86,6 +86,7 @@ document output.
   <xsl:value-of select="$olink.base.uri"/>
   <xsl:call-template name="href.target">
     <xsl:with-param name="object" select="$nd"/>
+    <xsl:with-param name="context" select="NOTANODE"/>
   </xsl:call-template>
 </xsl:template>
 
@@ -253,7 +254,7 @@ document output.
   <xsl:apply-templates mode="olink.mode"/>
 </xsl:template>
 
-<xsl:template match="equation[title]" mode="olink.mode">
+<xsl:template match="equation[title or info/title]" mode="olink.mode">
   <xsl:call-template name="obj"/>
 </xsl:template>
 

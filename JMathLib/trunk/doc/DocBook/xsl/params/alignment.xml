@@ -1,7 +1,17 @@
-<refentry id="alignment">
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:src="http://nwalsh.com/xmlns/litprog/fragment"
+          xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+          version="5.0" xml:id="alignment">
 <refmeta>
 <refentrytitle>alignment</refentrytitle>
-
+  <refmiscinfo class="other" otherclass="datatype">list</refmiscinfo>
+  <refmiscinfo class="other" otherclass="list-type">open</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">left</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">right</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">center</refmiscinfo>
+  <refmiscinfo class="other" otherclass="value">justify</refmiscinfo>
 </refmeta>
 <refnamediv>
 <refname>alignment</refname>
@@ -9,13 +19,13 @@
 </refnamediv>
 
 <refsynopsisdiv>
-<src:fragment id='alignment.frag'><xsl:param name="alignment">justify</xsl:param></src:fragment>
+<src:fragment xml:id="alignment.frag"><xsl:param name="alignment">justify</xsl:param></src:fragment>
 </refsynopsisdiv>
 
-<refsect1><title>Description</title>
+<refsection><info><title>Description</title></info>
 
 <para>The default text alignment is used for most body text.
 </para>
 
-</refsect1>
+</refsection>
 </refentry>

@@ -4,12 +4,12 @@
                 version='1.0'>
 
 <!-- ********************************************************************
-     $Id: titlepage.xsl,v 1.2 2006/11/12 17:32:40 st_mueller Exp $
+     $Id: titlepage.xsl 7677 2008-02-15 19:31:59Z mzjn $
      ********************************************************************
 
      This file is part of the XSL DocBook Stylesheet distribution.
-     See ../README or http://nwalsh.com/docbook/xsl/ for copyright
-     and other information.
+     See ../README or http://docbook.sf.net/release/xsl/current/ for
+     copyright and other information.
 
      ******************************************************************** -->
 
@@ -242,9 +242,7 @@
 
 <xsl:template match="authorgroup" mode="titlepage.mode">
   <fo:wrapper>
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="titlepage.mode"/>
   </fo:wrapper>
 </xsl:template>
@@ -324,6 +322,9 @@
 
 <xsl:template match="holder" mode="titlepage.mode">
   <xsl:apply-templates/>
+  <xsl:if test="position() &lt; last()">
+    <xsl:text>, </xsl:text>
+  </xsl:if>
 </xsl:template>
 
 <xsl:template match="corpauthor" mode="titlepage.mode">
@@ -435,6 +436,9 @@
 </xsl:template>
 
 <xsl:template match="orgdiv" mode="titlepage.mode">
+  <xsl:if test="preceding-sibling::*[1][self::orgname]">
+    <xsl:text> </xsl:text>
+  </xsl:if>
   <xsl:apply-templates mode="titlepage.mode"/>
 </xsl:template>
 
@@ -513,11 +517,7 @@
 <xsl:template match="revhistory" mode="titlepage.mode">
 
   <xsl:variable name="explicit.table.width">
-    <xsl:call-template name="dbfo-attribute">
-      <xsl:with-param name="pis"
-                      select="processing-instruction('dbfo')"/>
-      <xsl:with-param name="attribute" select="'table-width'"/>
-    </xsl:call-template>
+    <xsl:call-template name="pi.dbfo_table-width"/>
   </xsl:variable>
 
   <xsl:variable name="table.width">
@@ -534,7 +534,7 @@
     </xsl:choose>
   </xsl:variable>
 
-  <fo:table table-layout="fixed" width="{$table.width}" xsl:use-attribute-sets="revhistory.table.properties">
+ <fo:table table-layout="fixed" width="{$table.width}" xsl:use-attribute-sets="revhistory.table.properties">
     <fo:table-column column-number="1" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="2" column-width="proportional-column-width(1)"/>
     <fo:table-column column-number="3" column-width="proportional-column-width(1)"/>
@@ -542,16 +542,25 @@
       <fo:table-row>
         <fo:table-cell number-columns-spanned="3" xsl:use-attribute-sets="revhistory.table.cell.properties">
           <fo:block xsl:use-attribute-sets="revhistory.title.properties">
-            <xsl:call-template name="gentext">
-              <xsl:with-param name="key" select="'RevHistory'"/>
-            </xsl:call-template>
-          </fo:block>
+	    <xsl:choose>
+	      <xsl:when test="title|info/title">
+		<xsl:apply-templates select="title|info/title" mode="titlepage.mode"/>
+	      </xsl:when>
+	      <xsl:otherwise>
+		<xsl:call-template name="gentext">
+		  <xsl:with-param name="key" select="'RevHistory'"/>
+		</xsl:call-template>
+	      </xsl:otherwise>
+	    </xsl:choose>
+	  </fo:block>
         </fo:table-cell>
       </fo:table-row>
-      <xsl:apply-templates mode="titlepage.mode"/>
+      <xsl:apply-templates select="*[not(self::title)]" mode="titlepage.mode"/>
     </fo:table-body>
   </fo:table>
+
 </xsl:template>
+
 
 <xsl:template match="revhistory/revision" mode="titlepage.mode">
   <xsl:variable name="revnumber" select="revnumber"/>
@@ -665,9 +674,7 @@
 <xsl:template match="bookinfo/authorgroup|info/authorgroup"
               mode="titlepage.mode" priority="2">
   <fo:block>
-    <xsl:if test="@id">
-      <xsl:attribute name="id"><xsl:value-of select="@id"/></xsl:attribute>
-    </xsl:if>
+    <xsl:call-template name="anchor"/>
     <xsl:apply-templates mode="titlepage.mode"/>
   </fo:block>
 </xsl:template>
