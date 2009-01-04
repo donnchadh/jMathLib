@@ -162,7 +162,10 @@ public class VariableToken extends DataToken implements ErrorCodes
 
             if (name.equals("eps"))
                 return new DoubleNumberToken(2.2204e-016);
-            
+
+            if (name.equals("e"))
+                return new DoubleNumberToken(2.718281828459046);
+
             
     	    ErrorLogger.debugLine("VariableToken: var " + name + " not found: check functions");
     
