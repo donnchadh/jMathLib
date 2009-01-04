@@ -1,0 +1,14 @@
+@GROUP
+general
+@SYNTAX
+e
+@DOC
+euler number
+@EXAMPLES
+<programlisting>
+e
+ans = 2.718281828459046
+</programlisting>
+@NOTES
+@SEE
+pi, eps, i, j
