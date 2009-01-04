@@ -113,4 +113,36 @@ public class testVariableToken extends TestCase
         assertTrue(ml.getScalarValueRe("aba") == 6);
     }
 
+    
+    public void testVariablePI01() {
+        ml.executeExpression("a=pi");
+        assertEquals(ml.getScalarValueRe("a"), 3.1415926, 0.00001);
+    }
+
+    public void testVariablePI02() {
+        ml.executeExpression("pi");
+        assertEquals(ml.getScalarValueRe("ans"), 3.1415926, 0.00001);
+    }
+
+    public void testVariablePI03() {
+        ml.executeExpression("b=pi+2");
+        assertEquals(ml.getScalarValueRe("b"), 5.1415926, 0.00001);
+    }
+
+    public void testVariableE01() {
+        ml.executeExpression("a=e");
+        assertEquals(ml.getScalarValueRe("a"), 2.718281828459046, 0.00001);
+    }
+
+    public void testVariableE02() {
+        ml.executeExpression("e");
+        assertEquals(ml.getScalarValueRe("ans"), 2.718281828459046, 0.00001);
+    }
+
+    public void testVariableE03() {
+        ml.executeExpression("b=e+2");
+        assertEquals(ml.getScalarValueRe("b"), 4.718281828459046, 0.00001);
+    }
+
+    
 }
