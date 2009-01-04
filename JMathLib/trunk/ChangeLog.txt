@@ -13,8 +13,13 @@ New functions:
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
-2008/12/xx
+2009/01/xx
 stefan *
+
+2009/01/04
+stefan + added the euler number to VariableToken.java as predefined variable
+stefan + pi.int documentation for pi
+stefan + e.int documentation for euler number
 
 2008/12/31
 stefan + toolbox/jmathlib/system/quit.java
