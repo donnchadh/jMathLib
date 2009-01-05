@@ -23,19 +23,53 @@ public class global extends ExternalFunction
         
         debugLine("global "+operands[0].toString());
         
-        debugLine("global: local  variable:"+getVariables().isVariable(var.getName()));
+        debugLine("global: local  variable:"+getLocalVariables().isVariable(var.getName()));
         debugLine("global: global variable:"+getGlobalVariables().isVariable(var.getName()));
 
+        // this is the procedure for global variables:
+        // - normally all variables a local to each workspace
+        // - the "global" workspace is a totally separate workspace
+        // - each workspace which defines a variable as global will
+        //   use the "global" workspace instead of its own local workspace
+        // - in case a variable is defined as "global" in one workspace and
+        //   "local" in another workspace, the local workspace will work
+        //   with the "local" variable whereas the "global-one" will work
+        //   with the "global" variable
+        //   -> ALL indidivual workspaces which like to use the "global"
+        //      version of a variable need to call "global variable-name"
+        
+        
         // check if variable is already created in global context
         if (getGlobalVariables().isVariable(name))
         {
             // variable is already created in global context
 
-            // check if current context already contains variable
-            if (getVariables().isVariable(name))
+            // check if local context already contains variable
+            if (getLocalVariables().isVariable(name))
             {
-                // remove variable from current workspace
-                getVariables().remove(name);
+                // variable is already created in local context
+                
+                // remove variable from current workspace (may delete current value)
+                // create empty variable and set pointer to "global" property
+                getLocalVariables().remove(name);
+                getLocalVariables().createVariable(name);
+                getLocalVariables().getVariable(name).setGlobal(true);
+
+                getInterpreter().displayText("WARNING global: variable "+name+
+                  " already existed in the local workspace. \n"+
+                  " It has been overwritten with the value from"+
+                  " the global workspace.\n" +
+                  " please type: global variable\n"+
+                  " before using a variable as global.");
+            }
+            else
+            {
+                // variable is not yet created in local context
+                
+                // create empty variable and set "global" property
+                getLocalVariables().createVariable(name);
+                getLocalVariables().getVariable(name).setGlobal(true);
+                
             }
          }
         else
@@ -47,28 +81,25 @@ public class global extends ExternalFunction
             getGlobalVariables().getVariable(name).setGlobal(true);                
 
             // check if current context already contains variable
-            if (getVariables().isVariable(name))
+            if (getLocalVariables().isVariable(name))
             {
                 // current context already contains variable
-                Variable varCurrent = getVariables().getVariable(name);
+                Variable varCurrent = getLocalVariables().getVariable(name);
                 getGlobalVariables().getVariable(name).assign(varCurrent.getData());
                 
                 // remove variable, create new one and set variable to global
-                getVariables().remove(name);
+                getLocalVariables().remove(name);
             }
 
         }
 
         // create new variable in current context and set variable to global
-        getVariables().createVariable(name);
-        getVariables().getVariable(name).setGlobal(true);
+        getLocalVariables().createVariable(name);
+        getLocalVariables().getVariable(name).setGlobal(true);
 
         debugLine("global:global var:"+name+" global="+getGlobalVariables().getVariable(name).isGlobal());
-
-
-        debugLine("global:local  var:"+name+" global="+getVariables().getVariable(name).isGlobal());
-
-        
+        debugLine("global:local  var:"+name+" global="+getLocalVariables().getVariable(name).isGlobal());
+       
         
         return null;
 	}
