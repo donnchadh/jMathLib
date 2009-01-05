@@ -22,7 +22,7 @@ public class warning extends ExternalFunction
 			getInterpreter().displayText(message);
 		}
 		
-		Variable var = getVariables().createVariable("lastwarning");
+		Variable var = createVariable("lastwarning");
 		var.assign(new CharToken(message));	
 
 		return new DoubleNumberToken(1);
@@ -39,7 +39,7 @@ Displays a warning message
 @NOTES
 This function sets the lastwarning variable
 @EXAMPLES
-WARNING("Danger, danger")
+warning("Danger, danger")
 Danger, danger
 @SEE
 error, exit
