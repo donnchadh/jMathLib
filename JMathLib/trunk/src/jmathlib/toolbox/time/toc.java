@@ -25,10 +25,10 @@ public class toc extends ExternalFunction
         
         double stop = (double)d.getTime();
         
-        if (!getVariables().isVariable("_tic"))
+        if (!getGlobalVariables().isVariable("_tic"))
         	throwMathLibException("toc: you must call tic before toc");
             
-   	 	OperandToken ticTok = getVariable("_tic").getData();
+   	 	OperandToken ticTok = getGlobalVariables().getVariable("_tic").getData();
 		
         if (ticTok instanceof DoubleNumberToken)
         {

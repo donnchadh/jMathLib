@@ -6,6 +6,7 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interpreter.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.toolbox.general.global;
 import java.util.*;
 
 /*
@@ -23,7 +24,7 @@ public class tic extends ExternalFunction
         
         double start = (double)d.getTime();
         
-   	 	Variable ticVar = getVariables().createVariable("_tic");
+   	 	Variable ticVar = getGlobalVariables().createVariable("_tic");
 		ticVar.assign(new DoubleNumberToken(start));
         
 		return null; //DoubleNumberToken.one;
