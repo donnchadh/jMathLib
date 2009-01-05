@@ -13,7 +13,7 @@ public class UserFunction extends Function
     /** The code of the current m-function */
     private OperandToken code;
     
-    /**The names of the paramater values*/
+    /**The names of the parameter values*/
     private ArrayList parameterVariables;
 
     /**The names of the return values*/
@@ -25,9 +25,6 @@ public class UserFunction extends Function
     /**Creates a user function */	
     public UserFunction() 
     {
-        //VariableList localVariables = new VariableList();
-        //functionContext = getContextList().createContext(localVariables);
-
         parameterVariables = new ArrayList();
         returnVariables    = new ArrayList();
     }
@@ -97,10 +94,10 @@ public class UserFunction extends Function
 	            Errors.throwMathLibException("UserFunction: "+name+" number of parameters to large"); 
 	        
 	        // set the variable NARGIN to the number of parameters of the calling function
-	        getVariables().createVariable("nargin").assign(new DoubleNumberToken(opLength));
+	        createVariable("nargin").assign(new DoubleNumberToken(opLength));
 
 	        // set the variable NARGOUT to the number of return values
-	        getVariables().createVariable("nargout").assign(new DoubleNumberToken(returnVariables.size()));
+	        createVariable("nargout").assign(new DoubleNumberToken(returnVariables.size()));
 	
 	
             //set the input parameters for the function
@@ -113,7 +110,7 @@ public class UserFunction extends Function
     	        {
     	            String parameterName = (String)parameterVariables.get(paramNo);
     		        //System.out.println("UserFunction: "+parameterName);
-    	            getVariables().createVariable(parameterName).assign((OperandToken)operands[paramNo]);
+    	            createVariable(parameterName).assign((OperandToken)operands[paramNo]);
     	        }
             }
             else
@@ -127,7 +124,7 @@ public class UserFunction extends Function
                 {
                     String parameterName = (String)parameterVariables.get(paramNo);
                     ErrorLogger.debugLine("UserF: params: "+parameterName);
-                    getVariables().createVariable(parameterName).assign((OperandToken)operands[paramNo]);
+                    createVariable(parameterName).assign((OperandToken)operands[paramNo]);
                 }
                 
                 ErrorLogger.debugLine("UserF: remainingOps: "+ remainingOps);
@@ -144,13 +141,13 @@ public class UserFunction extends Function
                         values[i][0] = (OperandToken)operands[parameterVariables.size()-1+i];
                     }
                     CellArrayToken cell = new CellArrayToken(values);
-                    getVariables().createVariable("varargin").assign(cell);
+                    createVariable("varargin").assign(cell);
                 }
                 else
                 {
                     // varargin is empty
                     CellArrayToken cell = new CellArrayToken();
-                    getVariables().createVariable("varargin").assign(cell);
+                    createVariable("varargin").assign(cell);
                 }
             }
             
