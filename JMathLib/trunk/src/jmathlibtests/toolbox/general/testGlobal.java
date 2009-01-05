@@ -60,11 +60,12 @@ public class testGlobal extends TestCase {
             Function doit = null;
             //Expected an exception here
             try {
-            doit = funcParser.parseFunction(b.toString());
-            } catch (MathLibException ex) {
+                doit = funcParser.parseFunction(b.toString());
+                doit.evaluate(null);
+            } 
+            catch (MathLibException ex) {
                 exCaught = true;
             }
-            assertNull(doit);
             assertTrue(exCaught);
         }        
 
@@ -89,7 +90,43 @@ public class testGlobal extends TestCase {
             b.append("doit;\n");
             ml.executeExpression(b.toString());                        
             double val = ml.getScalarValueRe("a");
-		assertTrue(4 == val);
+            assertTrue(4 == val);
         }
+
+	   public void testGlobal10() {
+	        ml.executeExpression("clear('all');");
+            ml.executeExpression("global asdf");
+            ml.executeExpression("asdf = 5");
+	        assertTrue(5.0 == ml.getScalarValueRe("asdf"));
+	    }
+
+       public void testGlobal11() {
+           ml.executeExpression("clear('all');");
+           ml.executeExpression("asdf = 55");
+           ml.executeExpression("global asdf");
+           assertTrue(55.0 == ml.getScalarValueRe("asdf"));
+       }
+
+       public void testGlobal100() {
+           ml.executeExpression("clear('all');");
+           ml.executeExpression("helloGlobal = 11.0");
+           ml.executeExpression("testGlobal001(8)");
+           assertTrue(11.0 == ml.getScalarValueRe("helloGlobal"));
+           ml.executeExpression("testGlobal001(77)");
+           assertTrue(11.0 == ml.getScalarValueRe("helloGlobal"));
+       }
+
+       public void testGlobal101() {
+           ml.executeExpression("clear('all');");
+           ml.executeExpression("global helloGlobal;");
+           ml.executeExpression("helloGlobal = 11.0");
+           assertTrue(11.0 == ml.getScalarValueRe("helloGlobal"));
+           ml.executeExpression("testGlobal001(88)");
+           assertTrue(88.0 == ml.getScalarValueRe("helloGlobal"));
+           ml.executeExpression("helloGlobal = 99.0");
+           assertTrue(99.0 == ml.getScalarValueRe("helloGlobal"));
+           ml.executeExpression("testGlobal001(88)");
+           assertTrue(88.0 == ml.getScalarValueRe("helloGlobal"));
+       }
 
 }
