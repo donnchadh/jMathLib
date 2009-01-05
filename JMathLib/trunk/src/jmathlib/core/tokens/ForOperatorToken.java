@@ -172,7 +172,7 @@ public class ForOperatorToken extends CommandToken
 				{
 					ErrorLogger.debugLine("vector for evaluating 1");
 					VariableToken variableToken = ((VariableToken)forExpression.getChild(0));
-					Variable variable = getVariables().createVariable(variableToken.getName());
+					Variable variable = createVariable(variableToken.getName());
 
 					DoubleNumberToken   vector = null;
 					Token child = forExpression.getChild(1);
