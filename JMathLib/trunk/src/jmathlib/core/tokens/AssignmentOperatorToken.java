@@ -10,6 +10,9 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 public class AssignmentOperatorToken extends BinaryOperatorToken
 {	
 
+    /**
+     * 
+     */
     public AssignmentOperatorToken()
     {
         /**call the super constructor, type defaults to ttoperator and operands to 2*/
@@ -50,13 +53,13 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
                 {
                     // e.g. a{8}=...
                     ErrorLogger.debugLine("AssignmentOpTok: new cell");
-                    left = getVariables().createVariable(name);
+                    left = createVariable(name);
                     left.assign(new CellArrayToken());
                 }
                 else if (!leftVarTok.isStruct())
 				{
 					// auto create a new variable
-	               	left = getVariables().createVariable(name);
+	               	left = createVariable(name);
 				}
 				else if (leftVarTok.isStruct() && 
 						 getVariable(name) ==  null)
@@ -65,7 +68,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 					ErrorLogger.debugLine("AssignmentOpTok: new struct: "+name+"."+fieldName);
 					MathLibObject obj = new MathLibObject();
 					obj.setField(fieldName, DoubleNumberToken.zero);
-					Variable var = getVariables().createVariable(name );
+					Variable var = createVariable(name );
 					var.assign(obj);
 					left = ((MathLibObject)getVariable(name).getData()).getFieldVariable(fieldName);
 				}
@@ -181,7 +184,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 			    ErrorLogger.debugLine("AssignmentOpTok: variable is null");
 			    
 			    // create variable
-			    leftVar = getVariables().createVariable(varToken.getName() );
+			    leftVar = createVariable(varToken.getName() );
 			}
 
 			// assign right side matrix to left side variable
@@ -222,7 +225,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 		                ErrorLogger.debugLine("AssignmentOpTok: variable is null");
 			
 			            // create variable
-			            leftVar = getVariables().createVariable(varToken.getName() );
+			            leftVar = createVariable(varToken.getName() );
 		            }
 					
 		            // get number-matrix of an element on the right side
