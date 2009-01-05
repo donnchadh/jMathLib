@@ -11,7 +11,7 @@ public class whos extends ExternalFunction
 	public OperandToken evaluate(Token[] operands)
 	{
         
-        Iterator iter = getVariables().getIterator();
+        Iterator iter = getLocalVariables().getIterator();
 
         // display header information
         getInterpreter().displayText("\nYour variables are:\n");
@@ -22,20 +22,27 @@ public class whos extends ExternalFunction
         {
             if ((operands[0] instanceof CharToken))
             {
-                String data = ((CharToken)operands[0]).getValue().toLowerCase();
+                String data = ((CharToken)operands[0]).getValue();
                 if (data.equals("global"))
                     iter = getGlobalVariables().getIterator();
             }
         }
 
+        // iterate through the complete local variable list
 		while(iter.hasNext())
 		{
-		    Map.Entry    next = ((Map.Entry)iter.next());
-		    Variable     var  = (Variable)next.getValue();
-		    OperandToken op   = (OperandToken)var.getData();
-            String       line = "";
+		    Map.Entry    next   = ((Map.Entry)iter.next());
+		    Variable     var    = (Variable)next.getValue();
+		    OperandToken op     = (OperandToken)var.getData();
+		    Boolean      global = var.isGlobal();
+		    String       name   = var.getName();
+		    String       line   = "";
             
-            line = var.getName()+"      \t";
+            line = name + "      \t";
+            
+            // if variable is global get data from global context
+            if (global)
+                op = (OperandToken)getGlobalVariables().getVariable(name).getData();
             
             // check which type of variable
             if (op instanceof DataToken)
@@ -48,8 +55,9 @@ public class whos extends ExternalFunction
                 line += "  \t unknown";
             }
             
-            if (getGlobalVariables().isVariable(var.getName()))
-                line += "(global)";
+            //if (getLocalVariables().isVariable(var.getName()))
+            if (global)
+                   line += "(global)";
             
 		    getInterpreter().displayText(line);
 		}
@@ -85,11 +93,12 @@ public class whos extends ExternalFunction
 general
 @SYNTAX
 whos
+whos("global")
 @DOC
 Returns a list of all the variables in the system.
 @EXAMPLES
 @NOTES
 @SEE
-who
+who, clear, global
 */
 
