@@ -43,59 +43,72 @@ abstract public class RootObject implements java.io.Serializable,
 	    }
     }
 
-    /**Set the constant values to a sub class of the GlobalValues class
-       @param _runnginStandalone = true if this is an application
-       @param _interpreter = the interpreter object
-       @param _globals = the store of global values*/
-    //protected final void setConstants(boolean _runningStandalone, Interpreter _interpreter, GlobalValues _globals)
-    //{
-	//    if(globals == null)
-	//    {
-	//        globals = _globals;	
-	//    }
-    //}
-
-    /**@return the current variable list*/
-    protected final VariableList getVariables()
+    /**
+     * @return the current variable list
+     */
+    protected final VariableList getLocalVariables()
     {	
-	    return globals.getVariables();
+	    return globals.getLocalVariables();
     }
 
-    /**@return the global variable list*/
+    /** 
+     * @return the global variable list
+     */
     protected final VariableList getGlobalVariables()
     {	
 	    return globals.getGlobalVariables();
     }
 
-    /**@return the global variable list*/
+    /**
+     * @param
+     * @return the variable from local or global workspace
+     */
     protected final Variable getVariable(String name)
     {   
         return globals.getVariable(name);
     }
 
-    /**Allow access to the context list*/    
+    /** create a variable in the local or global workspace
+     * @param
+     * @return
+     */
+    protected final Variable createVariable(String name)
+    {
+        return globals.createVariable(name);
+    }
+
+    /** set a variable in the local workspace
+     * @param
+     * @param
+     */
+    protected final void setVariable(String name, OperandToken value)
+    {
+        globals.setVariable(name, value);
+    }
+
+    /** Allow access to the context list
+     * @return
+     */    
     protected final ContextList getContextList()
     {
         return globals.getContextList();
     }
 
-    /**@return the interpreter object*/
+    /**
+     * @return the interpreter object
+     */
     protected final Interpreter getInterpreter()
     {
 	    return globals.getInterpreter();
     }
 
-    /**@return the function manager*/
+    /**
+     * @return the function manager
+     */
     public final FunctionManager getFunctionManager()
     {
 	    return globals.getFunctionManager();
     }
-
-    /**@return the CastClassLoader*/
-    //protected final MathLib.Casts.CastClassLoader getCastClassLoader()
-    //{
-	//    return globals.getCastClassLoader();
-    //}
 
     /**@return handle to plugins manager*/
     protected jmathlib.plugins.PluginsManager getPluginsManager()
