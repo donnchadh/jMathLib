@@ -59,7 +59,7 @@ public class Expression extends OperandToken
         children    = new OperandToken[2]; 
         children[0] = left;
         children[1] = right;
-          noChildren  = 2;
+        noChildren  = 2;
     }
 
     /**Creates an expression with three operands
@@ -314,7 +314,7 @@ public class Expression extends OperandToken
                 if (children[i]!=null)
                 {
                     ErrorLogger.debugLine("Expression: store ans "+children[i].toString());
-                    Variable answervar = getVariables().createVariable("ans");
+                    Variable answervar = createVariable("ans");
                     answervar.assign(children[i]);
                 }
                 
