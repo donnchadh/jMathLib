@@ -121,7 +121,7 @@ public class Interpreter extends RootObject
             ErrorLogger.debugLine(answer);
         	
             // save last error to special variable
-            Variable var = getVariables().createVariable("lasterror");
+            Variable var = createVariable("lasterror");
 	        var.assign(new CharToken(answer));
             
 	        // rethrow erros if enabled
@@ -140,7 +140,7 @@ public class Interpreter extends RootObject
             }
 
             // save last error to special variable
-            Variable var = getVariables().createVariable("lasterror");
+            Variable var = createVariable("lasterror");
             var.assign(new CharToken(answer));	
         }
 
@@ -287,32 +287,39 @@ public class Interpreter extends RootObject
         return l.getValues();
     }
 
-    /** store a scalar variable in mathlib's workspace
+    /** store a scalar variable in jmathlib's workspace
      * @param name    = name of the scalar
      * @param valueRe = real value of the scalar
      * @param valueIM = imaginary value of the scalar
      */
     public void setScalar(String name, double valueRe, double valueIm)
     {
-        Variable answervar = getVariables().createVariable(name);
+        // Create variable. In case variable is already created it will
+        // return the current variable
+        Variable answervar =  createVariable(name);
 
+        // assign value to variable
         answervar.assign(new DoubleNumberToken(valueRe, valueIm));
     }
     
-    /** store an array variable in mathlib's workspace
-    @param name    = name of the array
-    @param valueRe = real values of the array
-    @param valueIM = imaginary values of the array
+    /** Store an array variable in jmathlib's workspace
+    * @param name    = name of the array
+    * @param valueRe = real values of the array
+    * @param valueIM = imaginary values of the array
     */
     public void setArray(String name, double[][] valueRe, double[][] valueIm)
     {
-        Variable answervar = getVariables().createVariable(name);
+        // Create variable. In case variable is already created it will
+        // return the current variable
+        Variable answervar = createVariable(name);
 
+        // assign value to variable
         answervar.assign(new DoubleNumberToken(valueRe, valueIm));
     }
 
-    /**return the result of the last calculation
-    @return a string containing the last result*/
+    /** Return the result of the last calculation
+    * @return a string containing the last result
+    */
     public String getResult()
     {
         // get variable from variable list		 
@@ -325,8 +332,9 @@ public class Interpreter extends RootObject
         return variableData.toString();               
     }
 
-    /**return the result of the last calculation
-    @return a string containing the last result*/
+    /** Return the result of the last calculation
+    * @return a string containing the last result
+    */
     public String getString(String name)
     {
         //      get variable from variable list      
