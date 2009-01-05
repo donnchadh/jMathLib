@@ -151,7 +151,7 @@ public class VariableToken extends DataToken implements ErrorCodes
                 return ((MathLibObject)getVariable(name).getData()).getFieldData(fieldName);
             //}            
         }
-        else if( !getVariables().isVariable(name) )
+        else if( getVariable(name) == null )
         {
             // variable is not yet defined (e.g. user typed sin(a) and "a" is unknown)
             //  or it is a function
@@ -248,7 +248,7 @@ public class VariableToken extends DataToken implements ErrorCodes
 		{
             ErrorLogger.debugLine("Variable data = NULL");
             
-            /* display the result of this variable in the user console*/
+            // display the result of this variable in the user console
             if (isDisplayResult())
                 getInterpreter().displayText(name +" = []");
 
