@@ -24,10 +24,10 @@ public class foreach extends ExternalFunction
 			int matSizeX = matrix.getSizeX();
 			int matSizeY = matrix.getSizeY();
 
-			if(operands[1] instanceof CharToken && operands[2] instanceof CharToken)
+			if((operands[1] instanceof CharToken) && (operands[2] instanceof CharToken))
 			{
 				//create a variable with the correct name
-				Variable var = getVariables().createVariable(((CharToken)operands[1]).toString());
+				Variable var = createVariable(((CharToken)operands[1]).toString());
 				String expression = ((CharToken)operands[2]).toString();
 
 				//parse the expression
