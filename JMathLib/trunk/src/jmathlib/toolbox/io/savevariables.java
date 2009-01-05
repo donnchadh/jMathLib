@@ -23,7 +23,7 @@ public class savevariables extends ExternalFunction
             file = ((CharToken)operands[0]).toString();
         }
 
-        getVariables().saveVariables(file);
+        getLocalVariables().saveVariables(file);
         
 		return null;		
 

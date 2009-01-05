@@ -23,7 +23,7 @@ public class loadvariables extends ExternalFunction
             file = ((CharToken)operands[0]).toString();
         }
 
-        getVariables().loadVariables(file);
+        getLocalVariables().loadVariables(file);
         
 		return null;		
 
