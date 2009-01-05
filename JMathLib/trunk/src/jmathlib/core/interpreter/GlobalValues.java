@@ -8,6 +8,7 @@ import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 
 import jmathlib.core.interpreter.Interpreter;
+import jmathlib.core.tokens.OperandToken;
 
 /**This class contains the global variables, which are accessible throughout the program.
 These include
@@ -70,9 +71,9 @@ public class GlobalValues
     }   
 
     /**@return the current variable list*/
-    protected VariableList getVariables()
+    protected VariableList getLocalVariables()
     {
-        return contextList.getVariables();
+        return contextList.getLocalVariables();
     }
 
     /**@return the global variable list*/
@@ -81,10 +82,22 @@ public class GlobalValues
         return contextList.getGlobalVariables();
     }
 
-    /**@return the global variable list*/
+    /**@return the a variable from local or global workspace*/
     protected Variable getVariable(String name)
     {
         return contextList.getVariable(name);
+    }
+
+    /** create a variable in the local or global workspace*/
+    protected Variable createVariable(String name)
+    {
+        return contextList.createVariable(name);
+    }
+
+    /** create a variable in the local or global workspace*/
+    protected void setVariable(String name, OperandToken value)
+    {
+        contextList.setVariable(name, value);
     }
 
     /**Change the current context to point to the new Variable List
