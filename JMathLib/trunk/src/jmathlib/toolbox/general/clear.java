@@ -19,6 +19,7 @@ public class clear extends ExternalFunction
         if (getNArgIn(operands) != 1)
 			throwMathLibException("clear: number of arguments < 1");
             
+        // get subcommand or variable name
 		if (operands[0] instanceof VariableToken)
 		{
 			s = ((VariableToken)operands[0]).getName();
@@ -29,16 +30,42 @@ public class clear extends ExternalFunction
 			s = ((CharToken)operands[0]).getValue();
 		}
 
-		if (!s.equals(" "))
+		// check what the user wans to clear
+		if (s.equals("variables"))
 		{
-			// remove one variable
-			getVariables().remove(s);
+		    // only clear local variables
+            getLocalVariables().clear();
+		}
+		else if (s.equals("globals"))
+		{
+		    // clear global variables
+            getGlobalVariables().clear();
+            getLocalVariables().clear();
+            //TODO: when removing global variables also remove 
+            //     pointers from local to global varaibles in "getLocalVariables"
+		}
+		else if (s.equals("functions"))
+		{
+		    // clear cache for m-files, class-files, script-files
+            getFunctionManager().clear();
+		}
+		else if (s.equals("all"))
+		{
+		    // clear everything
+		    getLocalVariables().clear();
+		    getGlobalVariables().clear();
+		    getFunctionManager().clear();
+
+		}
+		else if (!s.equals(" "))
+		{
+			// remove one variable from local workspace
+			getLocalVariables().remove(s);
 		}
 		else
 		{
-		    getVariables().clear();
-            getGlobalVariables().clear();
-            getFunctionManager().clear();
+		    // clear without any arguments only clears the local workspace
+		    getLocalVariables().clear();
 		}
 
 		return null;		
@@ -52,6 +79,11 @@ general
 clear(variable)
 @DOC
 Clears the specified variable or, if blank, clears all variables.
+clear()clears local variables
+clear("variables") clears local variables
+clear("globals") clears global variables
+clear("functions"" clear function cache
+clear("all") clear local variables, global variables and function cache
 @EXAMPLE
 <programlisting>
 clear('x'); 
