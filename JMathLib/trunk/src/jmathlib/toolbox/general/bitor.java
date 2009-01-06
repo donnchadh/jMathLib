@@ -53,3 +53,14 @@ bitor(5, 7) = 7
 @SEE
 bitand, bitshift, bitxor
 */
+
+/*
+%!@testcase
+%!         ml.executeExpression("a=abs(1);");
+%!        assertTrue(1 == ml.getScalarValueRe("a"));
+%!
+%!@testcase
+%!        ml.executeExpression("a=abs(-3);");
+%!        assertTrue(3 == ml.getScalarValueRe("a"));
+%!
+ */
