@@ -64,3 +64,36 @@ The sign of a complex number is calculated as sign(x) = x./abs(x)
 abs
 */
 
+/*
+%!@testcase
+%!  ml.executeExpression("a=sign(11);");
+%!  assertTrue(1 == ml.getScalarValueRe("a"));
+%!  assertTrue(0 == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=sign(-12);");
+%!  assertTrue(-1 == ml.getScalarValueRe("a"));
+%!  assertTrue(0  == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=sign(0);");
+%!  assertTrue(0 == ml.getScalarValueRe("a"));
+%!  assertTrue(0 == ml.getScalarValueIm("a"));
+%!
+%!
+%!@testcase
+%!  ml.executeExpression("a=sign(8i);");
+%!  assertTrue(0 == ml.getScalarValueRe("a"));
+%!  assertTrue(1 == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=sign(-5i);");
+%!  assertTrue(0  == ml.getScalarValueRe("a"));
+%!  assertTrue(-1 == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=sign(0i);");
+%!  assertTrue(0 == ml.getScalarValueRe("a"));
+%!  assertTrue(0 == ml.getScalarValueIm("a"));
+%!
+*/
