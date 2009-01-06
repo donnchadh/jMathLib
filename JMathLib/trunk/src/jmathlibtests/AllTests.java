@@ -15,6 +15,7 @@ public class AllTests {
 		TestSuite suite= new TestSuite("JMathLib Tests");
 
 		/* include subdirectories here */
+        suite.addTest(jmathlibtests.scripts.AllTests.suite());
         suite.addTest(jmathlibtests.core.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.AllTests.suite());
         
