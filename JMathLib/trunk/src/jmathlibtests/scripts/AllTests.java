@@ -15,14 +15,14 @@
                                                         
             /* include tests in this directory here */  
             suite.addTest(jmathlibtests.toolbox.net.testUrlread.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign6.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign5.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign4.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign3.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign2.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_sign1.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_bitor2.suite());
-            suite.addTest(jmathlibtests.scripts.test_src_jmathlib_toolbox_general_bitor1.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_plusplus.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_pi.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_minusminus.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_j.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_i.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_e.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_sign.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_bitor.suite());
                                                         
             return suite;                               
         }                                               
