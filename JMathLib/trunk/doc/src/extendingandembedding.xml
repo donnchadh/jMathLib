@@ -34,14 +34,14 @@ The basic java applet is called using the class
 The following code is an example for usage in mozilla.
 
 <programlisting>
-&lt;applet               CODE = "jmathlib.ui.applet.JMathLibGUI.class"
- CODEBASE = "Classes" ARCHIVE  = "JMathLibSmallApplet.jar"
- WIDTH    = "700"     HEIGHT = "400"
+&lt;applet               CODE     = "jmathlib.ui.applet.JMathLibGUI.class"
+ CODEBASE = "bin"        ARCHIVE  = "JMathLibSmallApplet.jar"
+ WIDTH    = "700"        HEIGHT   = "400"
  ALIGN    = "middle"
- VSPACE   = "0"         HSPACE = "0"     &gt;
-&lt;PARAM NAME="startup"   VALUE = "plot(rand(2,30))"&gt;
-&lt;PARAM NAME="fgcolor"   VALUE = "ff00ff"&gt;
-&lt;PARAM NAME="bgcolor"   VALUE = "f64033"&gt;
+ VSPACE   = "0"            HSPACE = "0"     &gt;
+&lt;PARAM NAME="startup"   VALUE  = "plot(rand(2,30))"&gt;
+&lt;PARAM NAME="fgcolor"   VALUE  = "ff00ff"&gt;
+&lt;PARAM NAME="bgcolor"   VALUE  = "f64033"&gt;
 &lt;/applet&gt;
 </programlisting>
 </para>
