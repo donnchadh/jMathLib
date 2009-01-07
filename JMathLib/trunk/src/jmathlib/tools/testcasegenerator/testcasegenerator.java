@@ -9,9 +9,9 @@ import jmathlib.core.interpreter.ErrorLogger;
 public class testcasegenerator 
 {
     
-    static String  testCaseDirS   = "src/jmathlibtests/scripts";
-    static Stack   testStack = new Stack();
-    
+    String  testCaseDirS   = "src/jmathlibtests/scripts";
+    Stack   testStack = new Stack();
+
     /**
      * 
      * @param args
@@ -21,9 +21,11 @@ public class testcasegenerator
         
         String baseS = "src/jmathlib";
 
-        processDir(baseS);
+        testcasegenerator testgen = new testcasegenerator();
         
-        createAllTestsFile();
+        testgen.processDir(baseS);
+        
+        testgen.createAllTestsFile();
         
     }
     
@@ -31,7 +33,7 @@ public class testcasegenerator
      * 
      * @param baseS
      */
-    public static void processDir(String baseS)
+    public void processDir(String baseS)
     {
         System.out.println("directory "+baseS);
         File dir = new File(baseS, "."); 
@@ -52,7 +54,8 @@ public class testcasegenerator
             else
             {
                 //System.out.println(baseS+"/"+files[i]);
-
+                if ( !files[i].endsWith(".gif") &&
+                     !files[i].endsWith(".properties")   )
                 processFile(baseS+"/"+files[i]);
             }
             
@@ -64,16 +67,16 @@ public class testcasegenerator
      * 
      * @param fileS file to process and check for testcases
      */
-    public static void processFile(String fileS)
+    public void processFile(String fileS)
     {
         boolean testCaseFoundB = false;
         int     testCaseNumber = 0; 
+        Stack   testCasesStack = new Stack();
+
 
         
         //System.out.println("anaylzing "+ fileS);
         
-        if (fileS.endsWith("bitor.java"))
-            System.out.println("*!*!*!*!*!*!*!*!*!*!*\n!*!*!*!*!*!*!**");
         
         // open file and read m-file line by line
         String bufferS="";
@@ -92,9 +95,14 @@ public class testcasegenerator
                 {
                     // reading in a testcase finished be reaching the
                     //   end of file or finding a new keyword %!testcase
-                    createTestCase(fileS, testCaseNumber, bufferS);
                     testCaseFoundB = false;
+                    testCasesStack.push(bufferS);
                 }
+
+                // end of file reached
+                if(line==null)
+                    break;
+                
                 
                 if (line.startsWith("%!@testcase"))
                 {
@@ -110,11 +118,6 @@ public class testcasegenerator
                     System.out.println("******* "+line);
                     bufferS += "         "+ line.substring(2) + "\n";
                 }
-                else if(line==null)
-                {
-                    // reached end of file
-                    break;
-                }
                 
                 
             }
@@ -123,7 +126,12 @@ public class testcasegenerator
         catch (Exception e)
         {
             System.out.println(" exception "+fileS);
+            e.printStackTrace();
         }          
+
+        // in case at least one test case was found -> create test-suite
+        if (!testCasesStack.empty())
+            createTestCase(fileS, testCasesStack);
 
         
     } // end process File
@@ -134,15 +142,16 @@ public class testcasegenerator
      * @param caseNumber
      * @param testcaseS
      */
-    public static void createTestCase (String fileS, int testCaseNumber, String testcaseS)
+    public void createTestCase (String fileS, Stack testCaseStack)
     {
         
+        fileS = fileS.replaceFirst("src/", "");
         fileS = fileS.replace(".java", "");
         fileS = fileS.replace(".m", "");
         fileS = fileS.replace(".int", "");
         fileS = fileS.replace('/', '_');
         fileS = fileS.replace('.', '_');
-        fileS = "test_"+fileS+testCaseNumber;
+        fileS = "test_"+fileS; 
         
         // put filename on tests-stack
         testStack.push(fileS);
@@ -175,14 +184,25 @@ public class testcasegenerator
         s+="        return new TestSuite("+ fileS +".class); \n";
         s+="    } \n";
     
-        s+="    public void test_"+ fileS +"001()           \n";
+        
+        int n = 0;
+        while (!testCaseStack.empty())
+        {
+
+        s+="\n";
+        s+="    public void "+ fileS + n + "()           \n";
         s+="    { \n";
         //s+="        ml.executeExpression(\"a=testFunction001(134);\"); ";
         //s+="        assertTrue(136.0 == ml.getScalarValueRe(\"a\")); ";
         
-        s+= testcaseS;
+        s+= (String)testCaseStack.pop();
 
         s+="    }\n";
+
+        n++;
+        }
+        
+        
         s+="}\n";
         
         
@@ -203,7 +223,7 @@ public class testcasegenerator
         
     }   
     
-    public static void createAllTestsFile()
+    public void createAllTestsFile()
     {
         String s="";
         
