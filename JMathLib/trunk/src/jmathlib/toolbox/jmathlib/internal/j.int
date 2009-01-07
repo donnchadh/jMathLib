@@ -1,3 +1,4 @@
+/*
 @GROUP
 general
 @SYNTAX
@@ -12,3 +13,22 @@ imaginary unit
 </programlisting>
 @SEE
 i
+*/
+
+/*
+%!@testcase
+%!  ml.executeExpression("a=i;");
+%!  assertTrue(0 == ml.getScalarValueRe("a"));
+%!  assertTrue(1 == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=2+3i;");
+%!  assertTrue(2 == ml.getScalarValueRe("a"));
+%!  assertTrue(3 == ml.getScalarValueIm("a"));
+%!
+%!@testcase
+%!  ml.executeExpression("a=3;");
+%!  assertTrue(3 == ml.getScalarValueRe("a"));
+%!  assertTrue(0 == ml.getScalarValueIm("a"));
+%!
+*/

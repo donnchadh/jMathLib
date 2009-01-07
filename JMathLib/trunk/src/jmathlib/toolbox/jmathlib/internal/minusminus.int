@@ -1,3 +1,4 @@
+/*
 @GROUP
 internal
 @SYNTAX
@@ -14,3 +15,13 @@ ans=[0,1,2]
 </programlisting>
 @SEE
 plusplus, plus, minus
+*/
+
+/*
+%!@testcase
+%!  ml.executeExpression("a=2;");
+%!  ml.executeExpression("a--;");
+%!  assertTrue(1 == ml.getScalarValueRe("a"));
+%!  assertTrue(0 == ml.getScalarValueIm("a"));
+%!
+*/
