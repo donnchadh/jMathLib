@@ -12,6 +12,7 @@
     <!ENTITY datatypes SYSTEM "datatypes.xml">
     <!ENTITY graphics SYSTEM "graphics/graphics.xml">
     <!ENTITY extendingandembedding SYSTEM "extendingandembedding.xml">
+    <!ENTITY testing SYSTEM "testing.xml">
     <!ENTITY glossary SYSTEM "glossary.xml">
     ]>
 <book>
@@ -93,6 +94,8 @@ This release is connected to JMathLib in Version 0.9.2 and following versions
 &graphics;
 
 &extendingandembedding;
+
+&testing;
 
 <part id="functions">
     <title>Functions Reference</title >
