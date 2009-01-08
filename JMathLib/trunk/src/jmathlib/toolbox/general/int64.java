@@ -71,3 +71,10 @@ converts a double array into an array of int16 (range -32768=-2^25 up to +32767=
 double, int8, uint8, uint16
 */
 
+/*
+%!@testcase
+%!  ml.executeExpression("a=int64(8);");
+%!  ml.executeExpression("b=class(a);");
+%!  assertEquals( "int64", ml.getString("b"));
+%!
+*/

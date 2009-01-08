@@ -68,6 +68,13 @@ converts a double array into an array of int16 (range -32768=-2^25 up to +32767=
 
 </programlisting>
 @SEE
-double, int8, uint8, uint16
+double, int8, uint8, uint16, uint32
 */
 
+/*
+%!@testcase
+%!  ml.executeExpression("a=int16(8);");
+%!  ml.executeExpression("b=class(a);");
+%!  assertEquals( "int16", ml.getString("b"));
+%!
+*/
