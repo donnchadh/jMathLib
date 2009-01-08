@@ -17,6 +17,6 @@ issingle(x)
 @NOTES
 .
 @SEE
-ischar, iscell, isnumeric, ismatrix, isprime
+ischar, iscell, isnumeric, ismatrix, isprime, double, int8, isint8, isuint16, isint16, isint32, isint64
 */
 

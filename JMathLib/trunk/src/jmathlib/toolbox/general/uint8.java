@@ -68,6 +68,14 @@ converts a double array into an array of uint8 (range 0 up to +255)
 
 </programlisting>
 @SEE
-double, int16, int8, uint16
+double, int16, int8, uint16, uint32, uint64
+*/
+
+/*
+%!@testcase
+%!  ml.executeExpression("a=uint16(88);");
+%!  ml.executeExpression("b=class(a);");
+%!  assertEquals( "uint16", ml.getString("b"));
+%!
 */
 
