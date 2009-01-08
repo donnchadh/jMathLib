@@ -55,6 +55,8 @@ public class AllTests {
         suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testSort.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testSubAssign.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testSubMatrix.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testSum.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testSumsq.suite());
         suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testTimes.suite());
         suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testTranspose.suite());
         suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testUminus.suite());
