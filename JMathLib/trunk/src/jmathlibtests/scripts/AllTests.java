@@ -21,7 +21,14 @@
             suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_j.suite());
             suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_i.suite());
             suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_jmathlib_internal_e.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_uint8.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_uint32.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_uint16.suite());
             suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_sign.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_int8.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_int64.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_int32.suite());
+            suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_int16.suite());
             suite.addTest(jmathlibtests.scripts.test_jmathlib_toolbox_general_bitor.suite());
                                                         
             return suite;                               
