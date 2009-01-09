@@ -16,6 +16,10 @@ Updated functions:
 2009/01/xx
 stefan *
 
+2009/01/09
+stefan * changed the parser, now parsing of     cd somedirectory     is possible. 
+         Also cd("somedirectory") still works.
+         
 2009/01/04
 stefan + added the euler number to VariableToken.java as predefined variable
 stefan + pi.int documentation for pi
