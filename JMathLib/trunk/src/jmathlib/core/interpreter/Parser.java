@@ -177,7 +177,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         
         OperandToken retToken  = null;                    // holds token to be returned
         Token        peekToken = peekNextToken(deliTyp); // holds next (actual) token
-        
+
         if (peekToken == null)
         {
             // No more tokens available
@@ -241,6 +241,9 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         {
             // variables (e.g. aaa or b)
             retToken = (OperandToken)getNextToken(deliTyp);
+            
+            ErrorLogger.debugLine("Parser parseSingle ppp "+retToken.toString()); 
+
        
             // check if the variable is followed by a dot operator
             if (peekNextToken(deliTyp) instanceof DotOperatorToken)
@@ -266,6 +269,44 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
                     String name = ((VariableToken)peekToken).getName();
                     retToken = parseFunctionAndParameters( new FunctionToken(name), null );    
                 }
+            }
+            else if ( (peekNextToken(deliTyp) instanceof VariableToken) ||
+                      (peekNextToken(deliTyp) instanceof CharToken)        )
+            {
+                // parse something like  disp hello    instead of disp("hello")
+                // parse something like  disp "hello"  instead of disp("hello")
+                // convert arguments into char arrays
+                
+                String name = ((VariableToken)retToken).getName();
+                FunctionToken func = new FunctionToken(name);
+                
+                Token next = null ;
+                while(true)
+                {
+                    next  = peekNextToken();
+                    if (next==null)
+                        break;
+                        
+                    //ErrorLogger.debugLine("Parser: var var "+next.toString());
+                    
+                    if (next instanceof DelimiterToken)
+                    {
+                        break;
+                    }
+                    else if ( (next instanceof VariableToken) ||
+                              (next instanceof CharToken)        ) 
+                    {
+                        String s = next.toString();
+                        ErrorLogger.debugLine("Parser: var var variable "+next.toString());
+                        getNextToken();
+                        func.setOperands(new OperandToken[] {(OperandToken)new CharToken(s)});
+                    }
+                    else
+                        Errors.throwMathLibException("Parser: var var");
+                }
+                
+                return func;
+
             }
             else
                 ErrorLogger.debugLine("Parser: VariableToken: " + retToken.toString());
@@ -931,7 +972,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         FunctionToken func = (FunctionToken)nextToken;
 
         // check if it is a special function e.g. "global a b c"
-        if (func.getName().equals("global") || func.getName().equals("isglobal"))
+        if ( func.getName().equals("global") || func.getName().equals("isglobal"))
         {
             ErrorLogger.debugLine("Parser: found global");
          

@@ -64,12 +64,10 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
     /**default constructor - creates the lexical analyser object with an empty string*/
     public LexicalAnalyser()
     {
-        reservedWords      = " break do exit try catch continue ";
-        reservedWords     += " for help history hold if load more return ";
-        reservedWords     += " load dir ls save set show who whos ";
-        reservedWords     += " cd chdir clear diary echo format ";
-        reservedWords     += " type global isglobal ";
-	    reservedWords     += " save switch while ";     // trailing " " is very important !!
+        reservedWords      = " break catch continue  ";
+        reservedWords     += " for foreach global if ";
+        reservedWords     += " persistent return switch try while ";
+        reservedWords     += " global isglobal ";  // trailing " " is very important !!
         delimiterWords	   = " end endif else elseif endfunction endwhile endfor ";
         delimiterWords    += " case default otherwise endswitch ";
         delimiterChars     = ",()[];{}\n"; 
