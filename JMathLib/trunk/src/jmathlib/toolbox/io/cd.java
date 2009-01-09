@@ -18,17 +18,20 @@ public class cd extends ExternalFunction
 		String path=".";
 
 		// at least one operand
-        if (getNArgIn(operands) != 1)
-			throwMathLibException("cd: number of arguments != 1");
+        if (getNArgIn(operands) > 1)
+			throwMathLibException("cd: number of arguments > 1");
 
-		// check if a directory is specified
-		if ((operands[0] instanceof CharToken)) 
-		{
-			path = ((CharToken)operands[0]).toString();
-		}
-		else
-        	throwMathLibException("cd: argument must be a string");
-
+        if (getNArgIn(operands) == 1)
+        {
+    		// check if a directory is specified
+    		if ((operands[0] instanceof CharToken)) 
+    		{
+    			path = ((CharToken)operands[0]).toString();
+    		}
+    		else
+            	throwMathLibException("cd: argument must be a string");
+        }
+        
 		try
 		{
 			File dir = new File(getWorkingDirectory(), path);
@@ -41,8 +44,8 @@ public class cd extends ExternalFunction
 
 				if (getNoOfLeftHandArguments()==1)
 					return new CharToken(dir.getCanonicalPath());
-				else if (operands[0] == null || operands[0].toString().equals(""))
-					getInterpreter().displayText(getWorkingDirectory().getCanonicalPath());
+				else 
+					getInterpreter().displayText(dir.getCanonicalPath());
 
 			}
 		}
