@@ -19,7 +19,8 @@ public class AllTests {
 		//suite.addTest(MathLib.Tools.TestSuite.Functions.Control.system.AllTests.suite());
         
 	    /* include tests in this directory here */
-		//suite.addTest(MathLib.Tools.TestSuite.Functions.Control.testXXX.suite());
+		suite.addTest(jmathlibtests.toolbox.control.util.testSwap.suite());
+
 
 	    return suite;
 	}
