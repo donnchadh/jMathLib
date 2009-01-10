@@ -184,17 +184,24 @@ public class testLexicalAnalyser extends TestCase
     
     public void testReservedWord()
     {
-        String expression = " break exit for help if load save while";
+        String expression = " break catch continue for foreach global if persistent return switch try while global isglobal ";
          
+
        analyser.analyseExpression(expression);
        assertEquals(analyser.getNextToken(0), new FunctionToken("break"));
-       assertEquals(analyser.getNextToken(0), new FunctionToken("exit"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("catch"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("continue"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("for"));
-       assertEquals(analyser.getNextToken(0), new FunctionToken("help"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("foreach"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("global"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("if"));
-       assertEquals(analyser.getNextToken(0), new FunctionToken("load"));
-       assertEquals(analyser.getNextToken(0), new FunctionToken("save"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("persistent"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("return"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("switch"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("try"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("while"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("global"));
+       assertEquals(analyser.getNextToken(0), new FunctionToken("isglobal"));
     }
 
     public void testDelimiterWords()
