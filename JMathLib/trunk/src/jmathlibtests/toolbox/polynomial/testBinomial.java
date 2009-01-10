@@ -1,6 +1,5 @@
 package jmathlibtests.toolbox.polynomial;
 
-import jmathlib.core.interpreter.Interpreter;
 import jmathlib.tools.junit.framework.*;
 
 public class testBinomial extends JMathLibTestCase {
