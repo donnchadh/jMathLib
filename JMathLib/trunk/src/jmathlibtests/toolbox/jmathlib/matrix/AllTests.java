@@ -18,9 +18,12 @@ public class AllTests {
 		// none
         
 	    /* include tests in this directory here */
+        suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testAbs.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testAdjoint.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testAll.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testAnd.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testAny.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testCeil.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testChol.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testColumns.suite());
 		suite.addTest(jmathlibtests.toolbox.jmathlib.matrix.testCtranspose.suite());
