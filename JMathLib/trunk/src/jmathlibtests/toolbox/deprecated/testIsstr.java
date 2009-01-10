@@ -1,10 +1,8 @@
 package jmathlibtests.toolbox.deprecated;
 
-import jmathlib.core.interpreter.Interpreter;
 import jmathlib.tools.junit.framework.*;
 
-public class testIsstr extends TestCase {
-	protected Interpreter ml;
+public class testIsstr extends JMathLibTestCase {
 	
     public testIsstr(String name) {
 		super(name);
@@ -12,12 +10,6 @@ public class testIsstr extends TestCase {
 	public static void main (String[] args) {
 		jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
-	protected void setUp() {
-		ml = new Interpreter(true);
-	}
-    protected void tearDown() {
-        ml = null;
-    }
 
 	public static Test suite() {
 		return new TestSuite(testIsstr.class);

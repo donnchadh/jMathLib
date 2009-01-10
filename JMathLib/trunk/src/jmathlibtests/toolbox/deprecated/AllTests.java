@@ -18,6 +18,7 @@ public class AllTests {
 		// none
         
 	    /* include tests in this directory here */
+        suite.addTest(jmathlibtests.toolbox.deprecated.testFinite.suite());
         suite.addTest(jmathlibtests.toolbox.deprecated.testIsstr.suite());
 
 	    return suite;
