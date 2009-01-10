@@ -1,6 +1,6 @@
 function y = finite(x)
 
-y = isfinite(x)
+y = isfinite(x);
 disp('isfinite: is deprecated')
 endfunction
 
