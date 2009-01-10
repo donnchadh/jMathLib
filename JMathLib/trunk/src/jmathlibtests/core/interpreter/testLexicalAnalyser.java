@@ -184,11 +184,10 @@ public class testLexicalAnalyser extends TestCase
     
     public void testReservedWord()
     {
-        String expression = " break do exit for help if load save while";
+        String expression = " break exit for help if load save while";
          
        analyser.analyseExpression(expression);
        assertEquals(analyser.getNextToken(0), new FunctionToken("break"));
-       assertEquals(analyser.getNextToken(0), new FunctionToken("do"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("exit"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("for"));
        assertEquals(analyser.getNextToken(0), new FunctionToken("help"));
