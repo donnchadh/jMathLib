@@ -9,7 +9,7 @@ import jmathlib.core.functions.ExternalFunction;
 /**An external function that return 1.0 is all elements of the argument are nonzero  */
 public class all extends ExternalFunction
 {
-	/**return a  matrix 
+	/** 
 	* @param operands[0] = matrix 
 	* @return 1.0 if all elements of the argument are nonzero  */
 	public OperandToken evaluate(Token[] operands)
@@ -59,12 +59,12 @@ matrix
 @SYNTAX
 answer = all(matrix)
 @DOC
-Returns 1 if any of the elements of the supplied matrix are not zero.
+Returns 1 if all of the elements of the supplied matrix are not zero.
 @NOTES
 @EXAMPLES
-any([0,0;0,0]) = 0
-any([1,0;0,0]) = 1
+all([0,0;0,0]) = 0
+all([1,2;2i,-6]) = 1
 @SEE
-any
+any, and, not, abs
 */
 
