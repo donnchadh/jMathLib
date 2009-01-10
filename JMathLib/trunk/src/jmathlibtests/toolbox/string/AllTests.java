@@ -24,6 +24,10 @@ public class AllTests {
         suite.addTest(jmathlibtests.toolbox.string.testLower.suite());
 		suite.addTest(jmathlibtests.toolbox.string.testNum2str.suite());
         suite.addTest(jmathlibtests.toolbox.string.testStr2num.suite());
+        suite.addTest(jmathlibtests.toolbox.string.testStrcmp.suite());
+        suite.addTest(jmathlibtests.toolbox.string.testStrcmpi.suite());
+        suite.addTest(jmathlibtests.toolbox.string.testStrncmp.suite());
+        suite.addTest(jmathlibtests.toolbox.string.testStrncmpi.suite());
         suite.addTest(jmathlibtests.toolbox.string.testUpper.suite());
 
 	    return suite;
