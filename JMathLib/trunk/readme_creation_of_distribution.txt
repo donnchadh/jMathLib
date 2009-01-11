@@ -13,6 +13,7 @@ How to create a distribution:
   to the new version
 
 - run JMathLib and call createFunctionsList()
+  (this is done by the ant process)
 
 - change file: JMathLib.properties
   and change to the release date 
