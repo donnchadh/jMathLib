@@ -145,13 +145,13 @@ public class testcasegenerator
     public void createTestCase (String fileS, Stack testCaseStack)
     {
         
-        fileS = fileS.replaceFirst("src/", "");
-        fileS = fileS.replace(".java", "");
-        fileS = fileS.replace(".m", "");
-        fileS = fileS.replace(".int", "");
-        fileS = fileS.replace('/', '_');
-        fileS = fileS.replace('.', '_');
-        fileS = "test_"+fileS; 
+        fileS = fileS.replaceFirst("src/", "");  // remove src/ at beginning
+        fileS = fileS.replace(".java", "");      // remove .java suffix
+        fileS = fileS.replace(".m", "");         // remove .m suffix
+        fileS = fileS.replace(".int", "");       // remove .int suffix
+        fileS = fileS.replace('/', '_');         // change directory-sign into underline
+        fileS = fileS.replace('.', '_');         // change directory-sign into underline
+        fileS = "test_"+fileS;                   // add "test_" to make JUnit aware of this class
         
         // put filename on tests-stack
         testStack.push(fileS);
