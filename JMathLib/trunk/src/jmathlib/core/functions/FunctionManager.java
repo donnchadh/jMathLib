@@ -90,7 +90,7 @@ public class FunctionManager {
     @return the Function found*/
     public Function findFunction(FunctionToken token) throws java.lang.Exception {
         Function func = null;
-        String funcName = token.getName().toLowerCase();
+        String funcName = token.getName();
         int index = -1;
 
         //then check the external functions

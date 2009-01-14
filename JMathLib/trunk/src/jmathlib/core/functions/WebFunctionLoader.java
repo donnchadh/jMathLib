@@ -7,8 +7,6 @@ import java.util.*;
 
 
 /**Class for storing and managing the m- and p-functions
- *
- * JMH Should be more aptly named  "WebFunctionLoader"
  */
 public class WebFunctionLoader extends FunctionLoader
 {
@@ -84,7 +82,7 @@ public class WebFunctionLoader extends FunctionLoader
             functionPath = ((String)functionListV.elementAt(i));
             
             // !! Remark: the command toLowerCase() is necessary, because some filenames have upper case letters (e.g. Disp.class)
-            if ( functionPath.toLowerCase().endsWith("/"+functionName+".class") )
+            if ( functionPath.endsWith("/"+functionName+".class") )
             {
                 foundClassFileB = true; // indicate that class file was found
                 functionPath = functionPath.substring(0,functionPath.length()-6);
@@ -94,7 +92,7 @@ public class WebFunctionLoader extends FunctionLoader
                 break;
             }
 
-            if ( functionPath.toLowerCase().endsWith("/"+functionName+".m") )
+            if ( functionPath.endsWith("/"+functionName+".m") )
             {
                 // functionsPath contains the path AND the m-filename
                 foundMFileB = true;  // indicate that m-file was found
