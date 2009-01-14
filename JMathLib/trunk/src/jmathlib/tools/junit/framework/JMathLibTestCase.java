@@ -26,7 +26,7 @@ public class JMathLibTestCase extends TestCase
         ml.executeExpression(s);
     }
     
-    public void assertEquals(String a, String b)
+    public void assertStringEquals(String a, String b)
     {
         ml.executeExpression(a);
         double[][]ans1D = ml.getArrayValueRe("ans");
