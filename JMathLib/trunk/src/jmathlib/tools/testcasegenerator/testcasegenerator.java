@@ -5,7 +5,7 @@ import java.util.Stack;
 
 import jmathlib.core.interpreter.ErrorLogger;
 
-/**An external function for getting a directory listing         */
+/**An external function for getting a directory listing  */
 public class testcasegenerator 
 {
     
@@ -13,7 +13,7 @@ public class testcasegenerator
     Stack   testStack = new Stack();
 
     /**
-     * 
+     * Main method of the test case generator
      * @param args
      */
     public static void main(String[] args) {
@@ -54,14 +54,18 @@ public class testcasegenerator
             else
             {
                 //System.out.println(baseS+"/"+files[i]);
-                if ( !files[i].endsWith(".gif") &&
+                if ( !files[i].endsWith(".gif")       &&
+                     !files[i].endsWith(".p")         &&
+                     !files[i].endsWith(".html")      &&
+                     !files[i].endsWith(".txt")      &&
+                     !files[i].endsWith(".jpg")      &&
                      !files[i].endsWith(".properties")   )
                 processFile(baseS+"/"+files[i]);
             }
             
-        }
+        } // end for
 
-    }
+    } // end processDir
 
     /**
      * 
@@ -120,7 +124,7 @@ public class testcasegenerator
                 }
                 
                 
-            }
+            } // end while
             inReader.close();
         }
         catch (Exception e)
@@ -164,8 +168,7 @@ public class testcasegenerator
         s+="import jmathlib.tools.junit.framework.*;        \n";
         s+="import jmathlibtests.Compare;                   \n";
         s+="\n";
-        s+="public class "+ fileS +" extends TestCase {     \n";
-        s+="    protected Interpreter ml;                   \n";
+        s+="public class "+ fileS +" extends JMathLibTestCase {     \n";
         s+="     \n";
         s+="    public "+ fileS +"(String name) {           \n";
         s+="        super(name);                            \n";
@@ -173,12 +176,6 @@ public class testcasegenerator
         s+="    public static void main (String[] args) {   \n";
         s+="        jmathlib.tools.junit.textui.TestRunner.run (suite()); \n";
         s+="    }                                           \n";
-        s+="    protected void setUp() {                    \n";
-        s+="        ml = new Interpreter(true);             \n";
-        s+="    }                                           \n";
-        s+="    protected void tearDown() {                 \n";
-        s+="        ml = null;                              \n";
-        s+="    } \n";
         s+=" \n";
         s+="    public static Test suite() {                \n";
         s+="        return new TestSuite("+ fileS +".class); \n";
@@ -221,28 +218,31 @@ public class testcasegenerator
         }
 
         
-    }   
+    }   // end createTestCase
     
+    /**
+     * 
+     */
     public void createAllTestsFile()
     {
         String s="";
         
-        s+="    package jmathlibtests.scripts;                      \n";
-        s+="                                                        \n";
-        s+="    import jmathlib.tools.junit.framework.*;            \n";
-        s+="                                                        \n";
-        s+="    public class AllTests {                             \n";
-        s+="                                                        \n";
-        s+="        public static void main (String[] args) {       \n";
+        s+="    package jmathlibtests.scripts;                          \n";
+        s+="                                                            \n";
+        s+="    import jmathlib.tools.junit.framework.*;                \n";
+        s+="                                                            \n";
+        s+="    public class AllTests {                                 \n";
+        s+="                                                            \n";
+        s+="        public static void main (String[] args) {           \n";
         s+="           jmathlib.tools.junit.textui.TestRunner.run (suite()); \n";
-        s+="        }                                               \n";
-        s+="       public static Test suite ( ) {                   \n";
+        s+="        }                                                   \n";
+        s+="       public static Test suite ( ) {                       \n";
         s+="            TestSuite suite= new TestSuite(\"script functions\"); \n";
-        s+="                                                        \n";
-        s+="            /* include subdirectories here */           \n";
-        s+="            // none                                     \n";
-        s+="                                                        \n";
-        s+="            /* include tests in this directory here */  \n";
+        s+="                                                            \n";
+        s+="            /* include subdirectories here */               \n";
+        s+="            // none                                         \n";
+        s+="                                                            \n";
+        s+="            /* include tests in this directory here */      \n";
         
         s+="            suite.addTest(jmathlibtests.toolbox.net.testUrlread.suite());\n";
 
@@ -253,10 +253,10 @@ public class testcasegenerator
             s+="            suite.addTest(jmathlibtests.scripts."+ fileS +".suite());\n";
         }
         
-        s+="                                                        \n";
-        s+="            return suite;                               \n";
-        s+="        }                                               \n";
-        s+="    }                                                   \n";
+        s+="                                                            \n";
+        s+="            return suite;                                   \n";
+        s+="        }                                                   \n";
+        s+="    }                                                       \n";
 
     
         try 
@@ -273,7 +273,7 @@ public class testcasegenerator
         }
 
     
-    }
+    } // createAllTestsFile
     
 }
 
