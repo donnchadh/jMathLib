@@ -1,4 +1,4 @@
-package jmathlibtests.core;
+package jmathlibtests.core.functions;
 
 import jmathlib.tools.junit.framework.*;
 
@@ -12,15 +12,11 @@ public class AllTests {
 	    jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
 	public static Test suite ( ) {
-		TestSuite suite= new TestSuite("core");
+		TestSuite suite= new TestSuite("functions");
 
 		/* include subdirectories here */
-        suite.addTest(jmathlibtests.core.functions.AllTests.suite());
-        suite.addTest(jmathlibtests.core.graphics.AllTests.suite());
-		suite.addTest(jmathlibtests.core.interfaces.AllTests.suite());
-        suite.addTest(jmathlibtests.core.interpreter.AllTests.suite());
-        suite.addTest(jmathlibtests.core.tokens.AllTests.suite());
-        
+        //suite.addTest(jmathlibtests.core.graphics.AllTests.suite());
+
 
 		/* include tests in this directory here */
 		//suite.addTest(MathLib.Tools.TestSuite.Interpreter.testParser.suite());
