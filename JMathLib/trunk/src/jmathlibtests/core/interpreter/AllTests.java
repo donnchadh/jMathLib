@@ -18,6 +18,7 @@ public class AllTests {
 		/* none */
         
 	    /* include tests in this directory here */
+        suite.addTest(jmathlibtests.core.interpreter.testContext.suite());
 		suite.addTest(jmathlibtests.core.interpreter.testInterpreter.suite());
 		suite.addTest(jmathlibtests.core.interpreter.testLexicalAnalyser.suite());
 		suite.addTest(jmathlibtests.core.interpreter.testParser.suite());
