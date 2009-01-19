@@ -3,10 +3,11 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 public class uint8 extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1 )
