@@ -10,7 +10,7 @@ public class example04 extends ExternalFunction
 {
 	/**Execute the function returning the first parameter
 	operands - array of parameters*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		ErrorLogger.debugLine("example04 right-hand arguments= "+operands.length);
