@@ -4,13 +4,15 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.*;
 import java.awt.event.*;
 
 
 public class questdlg extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		
         // exactly one operand
