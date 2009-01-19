@@ -3,13 +3,15 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.Toolkit;
 
 /**An external function for emitting a beep sound*/
 public class beep extends ExternalFunction
 {
 	/**Emits a beeping sound*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		Toolkit.getDefaultToolkit().beep();
 		
