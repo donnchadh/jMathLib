@@ -1,23 +1,21 @@
 package jmathlib.toolbox.time;
 
-/* This file is part or MATHLIB */
+/* This file is part or JMathLib 
+
+author: Stefan Mueller (stefan@held-mueller.de) 2002
+*/
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.util.*;
-
-
-/*
-
-Author: Stefan Mueller (stefan@held-mueller.de) 2002
-*/
-
 
 /**An external function for computing a mesh of a matrix  */
 public class time extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         Date d = new Date();

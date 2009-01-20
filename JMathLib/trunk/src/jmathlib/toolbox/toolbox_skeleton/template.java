@@ -1,12 +1,13 @@
 package jmathlib.toolbox.toolbox_skeleton;
 
 /* This file is part or JMathLib 
- * author:  stefan 2009   
+ * author:  stefan (stefan@held-mueller.de) 2009   
  * */
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 /**An external function for computing a mesh of a matrix  */
@@ -16,7 +17,7 @@ public class template extends ExternalFunction
 	* @param operands[0] = x values (e.g. [-2:0.2:2]) 
 	* @param operands[1] = y values (e.g. [-2:0.2:2])
 	* @return [X,Y] as matrices                                 */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operand (e.g. [x,y]=template([-2:0.2:2],[-2:0.2:2]) )
@@ -72,10 +73,11 @@ answer = template (value)
 Returns the sign of value.
 @EXAMPLES
 <programlisting>
-SIGN(-10)=-1
-SIGN(10)=1
+sign(-10)=-1
+sign(10)=1
 </programlisting>
 @NOTES
+This functions is used as a template for developing toolbox functions.
 @SEE
 template
 */

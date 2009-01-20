@@ -1,14 +1,14 @@
 package jmathlib.toolbox.time;
 
-/* This file is part or MATHLIB */
+/* This file is part or JMATHLIB */
 
 import jmathlib.core.tokens.*;
 import java.util.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /*
-
-Author: Stefan Mueller (stefan@held-mueller.de) 2002
+author: Stefan Mueller (stefan@held-mueller.de) 2002
 */
 
 
@@ -17,7 +17,7 @@ public class date extends ExternalFunction
 {
 	/**returns a string 
 	* @return the current date as a string */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		Calendar date = Calendar.getInstance();

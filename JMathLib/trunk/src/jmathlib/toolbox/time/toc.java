@@ -1,15 +1,15 @@
 package jmathlib.toolbox.time;
 
-/* This file is part or MATHLIB */
+/* This file is part or JMathLib 
+author: Stefan Mueller (stefan@held-mueller.de) 2002
+*/
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
-import java.util.*;
+import jmathlib.core.interpreter.GlobalValues;
 
-/*
-Author: Stefan Mueller (stefan@held-mueller.de) 2002
-*/
+import java.util.*;
 
 
 /**An external function for computing the time difference between a 
@@ -18,17 +18,17 @@ public class toc extends ExternalFunction
 {
 	/**returns a time difference 
 	* @return the time difference in seconds as a double number */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		Date d = new Date();
         
         double stop = (double)d.getTime();
         
-        if (!getGlobalVariables().isVariable("_tic"))
+        if (!globals.getGlobalVariables().isVariable("_tic"))
         	throwMathLibException("toc: you must call tic before toc");
             
-   	 	OperandToken ticTok = getGlobalVariables().getVariable("_tic").getData();
+   	 	OperandToken ticTok = globals.getGlobalVariables().getVariable("_tic").getData();
 		
         if (ticTok instanceof DoubleNumberToken)
         {

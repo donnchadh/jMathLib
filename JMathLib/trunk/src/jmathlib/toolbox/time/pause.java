@@ -5,16 +5,17 @@ package jmathlib.toolbox.time;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /*
-Author: Stefan Mueller (stefan@held-mueller.de) 2003
+author: Stefan Mueller (stefan@held-mueller.de) 2003
 */
 
 /**wait for a specified period of time*/
 public class pause extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
