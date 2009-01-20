@@ -4,13 +4,14 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for flipping matrices from up to down */
 public class flipud extends ExternalFunction
 {
 	/**return a  matrix 
 	@param operands[0] = matrix to flip from up to down */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operands (e.g. flipud(A) )

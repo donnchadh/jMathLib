@@ -4,13 +4,14 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for flipping matrices from left to right */
 public class fliplr extends ExternalFunction
 {
 	/**return a  matrix 
 	@param operands[0] = matrix to flip from left to right */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operands (e.g. fliplr(A) )

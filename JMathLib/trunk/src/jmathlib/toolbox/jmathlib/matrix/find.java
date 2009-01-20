@@ -5,6 +5,7 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.LogicalToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for finding nonzero elements of a matrix    */
 public class find extends ExternalFunction
@@ -14,7 +15,7 @@ public class find extends ExternalFunction
        (e.g. find([1,2,3;0,0,4]) returns [1,3,5,6]')
 	* @param  operands[0] = matrix 
 	* @return position of nonzero elements  */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// Check number of arguments

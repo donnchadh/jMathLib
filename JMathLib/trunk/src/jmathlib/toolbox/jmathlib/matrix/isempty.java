@@ -1,9 +1,9 @@
 package jmathlib.toolbox.jmathlib.matrix;
 
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for checking if a matrix is empty (no number or string)  */
 public class isempty extends ExternalFunction
@@ -11,7 +11,7 @@ public class isempty extends ExternalFunction
 	/**return a  matrix 
 	* @param  operands[0] = matrix 
 	* @return position of nonzero elements  */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		if (getNArgIn(operands) != 1)

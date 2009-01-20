@@ -3,13 +3,14 @@ package jmathlib.toolbox.jmathlib.matrix;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for determining the determinant of a matrix*/
 public class determinant extends ExternalFunction
 {
 	/**Check that the parameter is a square matrix then claculate
 	it's determinant*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
         

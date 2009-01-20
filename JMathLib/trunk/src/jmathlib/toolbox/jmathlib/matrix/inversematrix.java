@@ -6,6 +6,7 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.MatrixToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.FunctionToken;
 import jmathlib.core.functions.Function;
 
@@ -16,7 +17,7 @@ public class inversematrix extends ExternalFunction
 	it's inverse
 	It uses the Determinant and Adjoint classes to calculate the 
 	determinant and the adjoint*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 	    if (getNArgIn(operands) != 1)
 			throwMathLibException("InverseMatrix: number of arguments != 1");
@@ -39,7 +40,7 @@ public class inversematrix extends ExternalFunction
 				try
 				{
 					token = new FunctionToken("Determinant");
-					determinant = getFunctionManager().findFunction(token);
+					determinant = globals.getFunctionManager().findFunction(token);
 				}
 				catch(java.lang.Exception e)
 				{}
@@ -47,16 +48,16 @@ public class inversematrix extends ExternalFunction
 				try
 				{
 					token = new FunctionToken("Adjoint");
-					adjoint = getFunctionManager().findFunction(token);
+					adjoint = globals.getFunctionManager().findFunction(token);
 				}
 				catch(java.lang.Exception e)
 				{}
 			
-				double matrixDeterminant = ((DoubleNumberToken)determinant.evaluate(operands)).getValueRe();
+				double matrixDeterminant = ((DoubleNumberToken)determinant.evaluate(operands, globals)).getValueRe();
 				
 				if(matrixDeterminant != 0)
 				{
-					DoubleNumberToken matrixAdjoint = ((DoubleNumberToken)adjoint.evaluate(operands));
+					DoubleNumberToken matrixAdjoint = ((DoubleNumberToken)adjoint.evaluate(operands, globals));
 					
 					double[][] values = matrixAdjoint.getReValues();
 					
