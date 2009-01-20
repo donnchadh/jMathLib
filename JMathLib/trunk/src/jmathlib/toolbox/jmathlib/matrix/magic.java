@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for calculating a magic matrix */
 /* The function has been taken from the JAMA-examples */
@@ -11,7 +12,7 @@ public class magic extends ExternalFunction
 {
 	/**return a  matrix 
 	@param operands[0] = dimension of magic matrix */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operands (e.g. magic(n) )

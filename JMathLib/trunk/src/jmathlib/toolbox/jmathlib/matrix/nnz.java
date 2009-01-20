@@ -5,6 +5,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for determining number of non zero elements in a matrix*/
 public class nnz extends ExternalFunction
@@ -12,7 +13,7 @@ public class nnz extends ExternalFunction
 	/**Calculate number of non zero elements
 	@param operands[0] = the matrix
 	@return the number of non zero elements*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		int count = 0;
         

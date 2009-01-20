@@ -5,12 +5,13 @@ import jmathlib.core.tokens.MatrixToken;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for sorting arrays    */
 public class sort extends ExternalFunction
 {
 	/** sorting vectors and arrays */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// Check number of arguments

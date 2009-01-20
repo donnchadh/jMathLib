@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for computing 2 raised to the power of each *
 *  element of an array         */
@@ -12,7 +13,7 @@ public class pow2 extends ExternalFunction
 	/**return a  matrix 
 	* @param operands[0] = matrix 
 	* @return matrix                                 */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operand (e.g. pow2(A) )

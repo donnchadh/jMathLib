@@ -2,6 +2,7 @@ package jmathlib.toolbox.jmathlib.matrix;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for determining the determinant of a matrix*/
 public class simultaneouseq extends ExternalFunction
@@ -11,15 +12,15 @@ public class simultaneouseq extends ExternalFunction
 	operands[0] = m*m matrix of co-efficients
 	operands[1] = m*1 matrix of sums
 	result      = m*1 matrix of solutions*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		inversematrix inverse = new inversematrix();
 		
-		OperandToken inv = inverse.evaluate(new Token[] {operands[0]});
+		OperandToken inv = inverse.evaluate(new Token[] {operands[0]}, globals);
 		
 		Expression exp = new Expression(new MulDivOperatorToken('*'), ((OperandToken)operands[1]), inv);
 		
-		return exp.evaluate(null);
+		return exp.evaluate(null, globals);
 	}
 }
 

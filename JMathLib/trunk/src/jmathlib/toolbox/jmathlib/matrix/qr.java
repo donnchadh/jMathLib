@@ -5,6 +5,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.MatrixToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.toolbox.jmathlib.matrix._private.Jama.QRDecomposition;
 
 /** QR Decomposition.
@@ -26,7 +27,7 @@ public class qr extends ExternalFunction
 	/**return a  matrix 
 	* @param operands[0] = matrix 
 	* @return matrix                                 */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operand (e.g. qr(A) )

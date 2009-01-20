@@ -5,6 +5,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.LogicalToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for computing Or of two matrices        */
 public class or extends ExternalFunction
@@ -13,7 +14,7 @@ public class or extends ExternalFunction
 	* @param operands[0] = matrix 
 	* @param operands[1] = matrix 
 	* @return matrix function OR of each element of the first and second argument  */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// two operands (e.g. or(A,B) )

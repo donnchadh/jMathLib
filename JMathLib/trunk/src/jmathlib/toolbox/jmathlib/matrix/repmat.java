@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for replicating and tiling matrices                  *
 *  (e.g. remat(a, m, n) creates a large matrix that consists of              *
@@ -15,7 +16,7 @@ public class repmat extends ExternalFunction
 	* @param operands[1] = number of rows
 	* @param operands[2] = number of columns 
 	* @return big matrix                             */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         // two operands (e.g. reshape(A,[n,m]) ) or

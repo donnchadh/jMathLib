@@ -2,8 +2,8 @@ package jmathlib.toolbox.jmathlib.matrix;
 
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function that return 1.0 is all elements of the argument are nonzero  */
 public class min extends ExternalFunction
@@ -11,7 +11,7 @@ public class min extends ExternalFunction
 	/**return a  matrix 
 	* @param operands[0] = matrix 
 	* @return minimum of all elements   */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if ((getNArgIn(operands) < 1 ) ||

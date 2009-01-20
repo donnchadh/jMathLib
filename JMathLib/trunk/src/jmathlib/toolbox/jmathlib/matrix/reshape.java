@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for reshaping matrices                   *
 *  (e.g. reshape([1,2;3,4;5,6],2,3) return [1,5,4;3,2,6])        *
@@ -15,7 +16,7 @@ public class reshape extends ExternalFunction
 	@param operands[0] = matrix to reshape
 	@param operands[1] = number of rows
 	@param operands[2] = number of columns */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// three operands (e.g. reshape(A,n,m) )

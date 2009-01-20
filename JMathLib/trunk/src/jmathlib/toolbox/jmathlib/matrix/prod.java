@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for computing the product of array ellements         */
 public class prod extends ExternalFunction
@@ -11,7 +12,7 @@ public class prod extends ExternalFunction
 	/**return a  matrix 
 	* @param operands[0] = matrix 
 	* @return scalar or vector                             */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operand (e.g. prod(A) )
