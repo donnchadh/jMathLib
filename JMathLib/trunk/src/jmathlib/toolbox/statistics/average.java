@@ -1,6 +1,7 @@
 package jmathlib.toolbox.statistics;
 
 import jmathlib.core.functions.*;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
@@ -12,7 +13,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 public class average extends ExternalFunction
 {
 
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         int i;
         OperandToken ot = (OperandToken) operands[0];

@@ -1,6 +1,7 @@
 package jmathlib.toolbox.statistics;
 
 import jmathlib.core.functions.*;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
@@ -12,7 +13,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 public class variation extends ExternalFunction
 {
 
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         // Check if there's only one or zero parameters
         if (operands.length < 2)
