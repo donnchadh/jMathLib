@@ -2,13 +2,15 @@ package jmathlib.toolbox.net;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.net.*;
 import java.io.*;
 
 /**An external function for reading files over the network*/
 public class urlread extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		String s        = "";
