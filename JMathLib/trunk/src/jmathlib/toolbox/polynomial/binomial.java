@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to calculate the set of binomial
    coefficents for the equation (x+y)^r*/
@@ -13,7 +14,7 @@ public class binomial extends ExternalFunction
 	@param operand[0] = the order of the equation
 	@return the coefficients as a vector
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = new DoubleNumberToken(0);
 		if(operands.length >= 1 && operands[0] instanceof DoubleNumberToken)
@@ -59,7 +60,7 @@ public class binomial extends ExternalFunction
 @GROUP
 polynomial
 @SYNTAX
-Answer=binomial(value)
+answer = binomial(value)
 @DOC
 Calculates the binomial coefficients of (x+y)^value.
 @NOTES
