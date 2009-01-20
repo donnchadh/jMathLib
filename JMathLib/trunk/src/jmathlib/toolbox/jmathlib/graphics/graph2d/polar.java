@@ -4,12 +4,13 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for 2 dimensional plots*/
 public class polar extends ExternalFunction
 {
 
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
         ErrorLogger.debugLine("polar evaluate");
@@ -120,11 +121,11 @@ public class polar extends ExternalFunction
 
             ErrorLogger.debugLine("polar: types: "+colorC+" "+markerC+" "+lineStyleC);
 
-            getGraphicsManager().getCurrentFigure().getCurrentPolarAxes().addLines(x[0],y,
+            globals.getGraphicsManager().getCurrentFigure().getCurrentPolarAxes().addLines(x[0],y,
                                                                               new Character(colorC).toString(),
                                                                               new Character(markerC).toString(),
                                                                               new Character(lineStyleC).toString());
-            getGraphicsManager().getCurrentFigure().repaint();
+            globals.getGraphicsManager().getCurrentFigure().repaint();
         }
         else
         {
@@ -133,11 +134,11 @@ public class polar extends ExternalFunction
             for(int i=0; i<x[0].length; i++) xx[0][i]=(double)(i+1);
 
             // changed order
-            getGraphicsManager().getCurrentFigure().getCurrentPolarAxes().addLines(xx[0],x,
+            globals.getGraphicsManager().getCurrentFigure().getCurrentPolarAxes().addLines(xx[0],x,
                                                                              new Character(colorC).toString(),
                                                                              new Character(markerC).toString(),
                                                                              new Character(lineStyleC).toString());
-            getGraphicsManager().getCurrentFigure().repaint();
+            globals.getGraphicsManager().getCurrentFigure().repaint();
         }
 
 

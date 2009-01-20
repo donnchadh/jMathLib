@@ -4,13 +4,14 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.functions.Function;
 
 /**An external function for 2 dimensional plots of a function
 uses the classes linspace, PerformFunction and plot*/
 public class plotfunction extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		FunctionToken token = null;
 		Function function = null;
@@ -44,13 +45,13 @@ public class plotfunction extends ExternalFunction
 		try
 		{
 			token = new FunctionToken("linspace");
-			function = getFunctionManager().findFunction(token);
+			function = globals.getFunctionManager().findFunction(token);
 		}
 		catch(java.lang.Exception e)
 		{}
 
 		//then create the list of y values				
-		OperandToken vector = function.evaluate(parameters);
+		OperandToken vector = function.evaluate(parameters, globals);
 		
 		OperandToken modVector = ((OperandToken)vector.clone());
 		parameters[0] = operands[0];
@@ -59,12 +60,12 @@ public class plotfunction extends ExternalFunction
 		try
 		{
 			token = new FunctionToken("PerformFunction");
-			function = getFunctionManager().findFunction(token);
+			function = globals.getFunctionManager().findFunction(token);
 		}
 		catch(java.lang.Exception e)
 		{}
 
-		modVector = function.evaluate(parameters);
+		modVector = function.evaluate(parameters, globals);
 
 		//then draw the graph
 		parameters[0] = vector;
@@ -78,12 +79,12 @@ public class plotfunction extends ExternalFunction
 		try
 		{
 			token = new FunctionToken("plot");
-			function = getFunctionManager().findFunction(token);
+			function = globals.getFunctionManager().findFunction(token);
 		}
 		catch(java.lang.Exception e)
 		{}
 	
-        function.evaluate(parameters);
+        function.evaluate(parameters, globals);
 		return null; //function.evaluate(parameters);
 	}
 }
