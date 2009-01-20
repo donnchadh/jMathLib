@@ -1,32 +1,32 @@
 package jmathlib.toolbox.jmathlib.graphics;
 
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 public class clf extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         
         if (getNArgIn(operands) >1)
 			throwMathLibException("clf: number of arguments <=1");
 
         // get figure number
-        double n = getGraphicsManager().getCurrentFigureNumber();
+        double n = globals.getGraphicsManager().getCurrentFigureNumber();
         
         // in case n>1 there is no current figure, -> create one
         if (n<1)
         {
             // create figure
-            getGraphicsManager().createNewFigure();
+            globals.getGraphicsManager().createNewFigure();
 
             // get figure number again (should be at least "1")
-            n = getGraphicsManager().getCurrentFigureNumber();
+            n = globals.getGraphicsManager().getCurrentFigureNumber();
         }
         
-        getGraphicsManager().getCurrentFigure().clearFigure();
+        globals.getGraphicsManager().getCurrentFigure().clearFigure();
         
 		return null;
 	}

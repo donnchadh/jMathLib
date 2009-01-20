@@ -3,13 +3,14 @@ package jmathlib.toolbox.jmathlib.graphics;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Holds the current axes. All subsequent uses of plot will accumulate in
    this axes */
 public class hold extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("hold evaluate");
@@ -42,9 +43,9 @@ public class hold extends ExternalFunction
 
 		// switch hold on/off 
 	    if (value)
-	        getGraphicsManager().getCurrentFigure().getCurrentAxes().set("NextPlot","add");
+	        globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().set("NextPlot","add");
         else
-            getGraphicsManager().getCurrentFigure().getCurrentAxes().set("NextPlot","replace");
+            globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().set("NextPlot","replace");
             
         return null;
 	}

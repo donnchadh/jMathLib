@@ -3,12 +3,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for 2 dimensional plots*/
 public class figure extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("figure evaluate");
@@ -16,14 +17,14 @@ public class figure extends ExternalFunction
         if (operands==null) 
 		{
 			// figure called with no arguments
-			getGraphicsManager().createNewFigure();
+            globals.getGraphicsManager().createNewFigure();
 
 		}
         else
         {
             
             if (getNArgIn(operands) == 0)
-                getGraphicsManager().createNewFigure();
+                globals.getGraphicsManager().createNewFigure();
 
             if (getNArgIn(operands) != 1)
 			throwMathLibException("figure: number of arguments != 1");
@@ -33,10 +34,10 @@ public class figure extends ExternalFunction
 
 			int figureNumber  = (int)(((DoubleNumberToken)operands[0]).getReValues()[0][0]); 
 
-			getGraphicsManager().createNewFigure(figureNumber);
+			globals.getGraphicsManager().createNewFigure(figureNumber);
         }
 		
-		getGraphicsManager().getCurrentFigure().repaint();
+        globals.getGraphicsManager().getCurrentFigure().repaint();
 		
 
 		return null;

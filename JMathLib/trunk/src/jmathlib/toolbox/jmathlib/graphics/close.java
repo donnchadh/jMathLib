@@ -3,12 +3,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for closing figures*/
 public class close extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("figure evaluate");
@@ -16,8 +17,8 @@ public class close extends ExternalFunction
         if (operands==null) 
 		{
 			
-			int i = getGraphicsManager().getCurrentFigureNumber();
-            getGraphicsManager().removeFigure(i);
+			int i = globals.getGraphicsManager().getCurrentFigureNumber();
+			globals.getGraphicsManager().removeFigure(i);
 
 		}
         else
@@ -30,10 +31,10 @@ public class close extends ExternalFunction
 
 			int i  = (int)(((DoubleNumberToken)operands[0]).getReValues()[0][0]); 
 
-            getGraphicsManager().removeFigure(i);
+			globals.getGraphicsManager().removeFigure(i);
         }
 		
-		getGraphicsManager().getCurrentFigure().repaint();
+        globals.getGraphicsManager().getCurrentFigure().repaint();
 		
 
 		return null;

@@ -3,12 +3,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Add a grid to the current axes*/
 public class grid extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("grid evaluate");
@@ -41,11 +42,11 @@ public class grid extends ExternalFunction
         }
         
 		// switch grid on/off 
-		getGraphicsManager().getCurrentFigure().getCurrentAxes().set("XGrid",new Boolean(value));
-        getGraphicsManager().getCurrentFigure().getCurrentAxes().set("YGrid",new Boolean(value));
-        getGraphicsManager().getCurrentFigure().getCurrentAxes().set("ZGrid",new Boolean(value));
+	    globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().set("XGrid",new Boolean(value));
+	    globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().set("YGrid",new Boolean(value));
+	    globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().set("ZGrid",new Boolean(value));
 
-		getGraphicsManager().getCurrentFigure().repaint();
+	    globals.getGraphicsManager().getCurrentFigure().repaint();
 
 		return null;
 	}
