@@ -2,12 +2,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Add text to the x-axis of the current axes*/
 public class xlabel extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("xlabel evaluate");
@@ -20,8 +21,8 @@ public class xlabel extends ExternalFunction
 
         String xLabel = ((CharToken)operands[0]).toString();
 
-		getGraphicsManager().getCurrentFigure().getCurrentAxes().setXLabel(xLabel);
-		getGraphicsManager().getCurrentFigure().repaint();
+        globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().setXLabel(xLabel);
+        globals.getGraphicsManager().getCurrentFigure().repaint();
 
 		return null;
 	}

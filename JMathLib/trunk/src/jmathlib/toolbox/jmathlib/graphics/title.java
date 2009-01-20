@@ -2,12 +2,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Add text to the title of the current axes*/
 public class title extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("title: evaluate");
@@ -20,8 +21,8 @@ public class title extends ExternalFunction
 
 		String title = ((CharToken)operands[0]).toString();
 
-		getGraphicsManager().getCurrentFigure().getCurrentAxes().setTitle(title);
-		getGraphicsManager().getCurrentFigure().repaint();
+		globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().setTitle(title);
+		globals.getGraphicsManager().getCurrentFigure().repaint();
 
 		return null;
 	}

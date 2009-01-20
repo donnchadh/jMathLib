@@ -2,12 +2,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Add text to the z-axis of the current axes*/
 public class zlabel extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("zlabel evaluate");
@@ -20,8 +21,8 @@ public class zlabel extends ExternalFunction
 
 		String zLabel = ((CharToken)operands[0]).toString();
 
-		getGraphicsManager().getCurrentFigure().getCurrentAxes().setZLabel(zLabel);
-		getGraphicsManager().getCurrentFigure().repaint();
+		globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().setZLabel(zLabel);
+		globals.getGraphicsManager().getCurrentFigure().repaint();
 
 		return null;
 	}
