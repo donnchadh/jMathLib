@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for computing XOr of two matrices        */
 public class xor extends ExternalFunction
@@ -12,7 +13,7 @@ public class xor extends ExternalFunction
 	* @param operands[0] = matrix 
 	* @param operands[1] = matrix 
 	* @return matrix  XOr of each element of the first and second argument  */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// two operands (e.g. xor(A,B) )

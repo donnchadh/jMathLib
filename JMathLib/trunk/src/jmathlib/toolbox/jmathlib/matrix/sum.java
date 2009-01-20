@@ -5,6 +5,7 @@ import jmathlib.core.tokens.MathLibObject;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.interpreter.Variable;
 
 import java.util.*;
@@ -15,7 +16,7 @@ public class sum extends ExternalFunction
 {
 	/**Calculate the sum of the values within a matrix or structure
 	@param operands[0] = the matrix or structure to sum*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 

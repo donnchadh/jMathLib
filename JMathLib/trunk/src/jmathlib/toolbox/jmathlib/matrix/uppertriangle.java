@@ -4,12 +4,13 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for converting a matrix into upper 
 triangular form*/
 public class uppertriangle extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 		Token operand = operands[0];

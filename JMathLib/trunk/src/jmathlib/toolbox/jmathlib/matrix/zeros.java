@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for creating matrices that consist of zeros          *
 * (e.g.: zeros(2) will return a 2-by-2 matrix [0,0;0,0],                     *
@@ -13,7 +14,7 @@ public class zeros extends ExternalFunction
 	/**return matrix of zeros 
 	@param operands[0] = number of rows
 	@param operands[1] = number of columns */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// at least one operands (e.g. zeros(n) )
