@@ -3,6 +3,7 @@ package jmathlib.toolbox.string;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.MatrixToken;
 
@@ -12,7 +13,7 @@ public class strvcat extends ExternalFunction
 {
 	/**Concatenates strings into a vertical vector
 	@param operands[n] = the strings to concatenate*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken[][] values = new OperandToken[operands.length][1];
 		

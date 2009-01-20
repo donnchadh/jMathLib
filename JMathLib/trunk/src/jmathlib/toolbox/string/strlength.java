@@ -13,7 +13,7 @@ public class strlength extends ExternalFunction
 {
 	/**Calculate the length of the string
 	@param operands[0] the string to get the length for*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 

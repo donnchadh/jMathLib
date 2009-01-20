@@ -13,7 +13,7 @@ public class strncmpi extends ExternalFunction
 	/**compares two strings
 	@param operands[0] = first string
 	@param operands[1] = second string*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		int result = 0;
 		

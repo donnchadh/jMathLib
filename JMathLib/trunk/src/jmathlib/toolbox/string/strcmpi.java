@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 
 /**An external function for comparing two strings*/
@@ -12,7 +13,7 @@ public class strcmpi extends ExternalFunction
 	/**compares two strings
 	@param operands[0] = first string
 	@param operands[1] = second string*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		int result = 0;
 		

@@ -13,7 +13,7 @@ public class strfind extends ExternalFunction
 	/**finds shorter string within a longer one
 	@param operands[0] = first string
 	@param operands[1] = second string*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 		

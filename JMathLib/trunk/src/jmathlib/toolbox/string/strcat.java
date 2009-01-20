@@ -3,12 +3,13 @@ package jmathlib.toolbox.string;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 
 /**An external function for concatenating strings*/
 public class strcat extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		String result = "";
 		
