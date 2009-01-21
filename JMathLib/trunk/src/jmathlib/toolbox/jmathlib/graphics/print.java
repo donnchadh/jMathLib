@@ -2,6 +2,8 @@ package jmathlib.toolbox.jmathlib.graphics;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.print.*;
 
 /**An external function for printing plots*/
@@ -9,7 +11,7 @@ public class print extends ExternalFunction
 {
 
     
-	public OperandToken evaluate(Token[] operands) 
+	public OperandToken evaluate(Token[] operands, GlobalValues globals) 
 	{
 
 		debugLine("print evaluate");
@@ -38,7 +40,7 @@ public class print extends ExternalFunction
         PrinterJob pjob = PrinterJob.getPrinterJob();
         PageFormat defaultPF = pjob.defaultPage();
         PageFormat pageformat = pjob.pageDialog(defaultPF);
-        pjob.setPrintable(getGraphicsManager().getCurrentFigure(), pageformat);
+        pjob.setPrintable(globals.getGraphicsManager().getCurrentFigure(), pageformat);
         
         // somebody hit cancel
         if (pageformat != defaultPF)
@@ -61,7 +63,7 @@ public class print extends ExternalFunction
         catch (PrinterException e)
         {
             debugLine("print: Printer Exception");
-            getInterpreter().displayText("print: Printer Exception");
+            globals.getInterpreter().displayText("print: Printer Exception");
         }
         
 		//getGraphicsManager().getCurrentFigure().print();

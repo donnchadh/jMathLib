@@ -5,6 +5,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.graphics.HandleObject;
 import jmathlib.core.graphics.properties.Property;
+import jmathlib.core.interpreter.GlobalValues;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -15,7 +16,7 @@ import javax.swing.*;
 public class propertyeditor extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         
         //if (getNArgIn(operands) != 0)

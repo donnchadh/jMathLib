@@ -4,12 +4,14 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.graphics.*;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.Color;
 
 public class ginput extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 

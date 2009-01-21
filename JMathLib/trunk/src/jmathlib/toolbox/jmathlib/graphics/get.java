@@ -4,12 +4,14 @@ import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.graphics.*;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.Color;
 
 public class get extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 
@@ -43,8 +45,8 @@ public class get extends ExternalFunction
         if (getNArgIn(operands) == 1)
         {
             // e.g. get(1234)
-            getInterpreter().displayText("");
-            ho.show(getInterpreter());
+            globals.getInterpreter().displayText("");
+            ho.show(globals.getInterpreter());
             return null;
         }
         else if (getNArgIn(operands) == 2)

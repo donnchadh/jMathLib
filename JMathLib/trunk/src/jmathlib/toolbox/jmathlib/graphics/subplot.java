@@ -3,12 +3,13 @@ package jmathlib.toolbox.jmathlib.graphics;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for 2 dimensional plots*/
 public class subplot extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//ErrorLogger.debugLine("subplot evaluate");
@@ -25,8 +26,8 @@ public class subplot extends ExternalFunction
 		int gridX       = (int)(((DoubleNumberToken)operands[1]).getReValues()[0][0]); 
 		int currentAxes = (int)(((DoubleNumberToken)operands[2]).getReValues()[0][0]); 
 
-		getGraphicsManager().getCurrentFigure().setSubPlot(gridY, gridX, currentAxes);
-		getGraphicsManager().getCurrentFigure().repaint();
+		globals.getGraphicsManager().getCurrentFigure().setSubPlot(gridY, gridX, currentAxes);
+		globals.getGraphicsManager().getCurrentFigure().repaint();
 		
 
 		return null;
