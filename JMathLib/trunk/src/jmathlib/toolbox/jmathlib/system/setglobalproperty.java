@@ -1,6 +1,7 @@
 package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
@@ -12,7 +13,7 @@ public class setglobalproperty extends ExternalFunction
 	@param operand[0] = the name of the variable
 	@param operand[1] = a default value (optional)
 	@return the enviroment value*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 		
@@ -27,7 +28,7 @@ public class setglobalproperty extends ExternalFunction
 			String name = operands[0].toString();
             String prop = operands[1].toString();
 		
-			getInterpreter().prefs.setGlobalProperty(name, prop);
+            globals.getInterpreter().prefs.setGlobalProperty(name, prop);
 			
 			
 		return result;

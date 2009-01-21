@@ -6,30 +6,31 @@ import java.util.Properties;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for updating JMathLib*/
 public class update extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         String lineFile = "";
  		boolean successB = true;    
         
-        getInterpreter().displayText("UPDATING JMathLib\n");
+ 		globals.getInterpreter().displayText("UPDATING JMathLib\n");
 
         // get update site of jmathlib
-        String updateSiteS   = getInterpreter().prefs.getLocalProperty("update.site.primary");
-        getInterpreter().displayText("update site: "+updateSiteS);
+        String updateSiteS   = globals.getInterpreter().prefs.getLocalProperty("update.site.primary");
+        globals.getInterpreter().displayText("update site: "+updateSiteS);
 
         // get local version of jmathlib
-        String localVersionS = getInterpreter().prefs.getLocalProperty("jmathlib.version");
+        String localVersionS = globals.getInterpreter().prefs.getLocalProperty("jmathlib.version");
         localVersionS = localVersionS.replaceAll("/", ".");
-        getInterpreter().displayText("current version: "+localVersionS);
+        globals.getInterpreter().displayText("current version: "+localVersionS);
 
         
         // first check to which version an update is possible
-        getInterpreter().displayText("Checking to which version an update is possible");
+        globals.getInterpreter().displayText("Checking to which version an update is possible");
         
         
         // url of the update site including the request for the version
@@ -63,20 +64,20 @@ public class update extends ExternalFunction
         String updateVersionS = props.getProperty("update.toversion");
         if (updateVersionS.equals("no_update_available"))
         {
-            getInterpreter().displayText("No update available right now.");
+            globals.getInterpreter().displayText("No update available right now.");
             return null;
         }
 
         if (updateVersionS.equals("full_download_required"))
         {
-            getInterpreter().displayText("\n");
-            getInterpreter().displayText("Full download required in order to update!");
-            getInterpreter().displayText("Please visit www.jmathlib.de for details.");
-            getInterpreter().displayText("\n");
+            globals.getInterpreter().displayText("\n");
+            globals.getInterpreter().displayText("Full download required in order to update!");
+            globals.getInterpreter().displayText("Please visit www.jmathlib.de for details.");
+            globals.getInterpreter().displayText("\n");
             return null;
         }
 
-        getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
+        globals.getInterpreter().displayText("updating to version >"+updateVersionS+"< \n");
 
         
         // download new files from server 
@@ -106,7 +107,7 @@ public class update extends ExternalFunction
                 {
                     // read a file from the server and place it on the local disc
                     String fileS = s.substring(5).trim();
-                    getInterpreter().displayText("new file: >"+fileS+"<");
+                    globals.getInterpreter().displayText("new file: >"+fileS+"<");
                     
                     // open URL to file on update server
                     try 
@@ -115,7 +116,7 @@ public class update extends ExternalFunction
                         InputStream in = fileURL.openStream();
     
                         // open file on local disc
-                        File file = new File(getWorkingDirectory(),fileS);
+                        File file = new File(globals.getWorkingDirectory(),fileS);
                         OutputStream out = new FileOutputStream(file);
     
                         byte[] cbuf = new byte[4096]; 
@@ -131,7 +132,7 @@ public class update extends ExternalFunction
                     catch (Exception e)
                     {
                         successB = false;
-                        getInterpreter().displayText("update: problem downloading "+fileS);    
+                        globals.getInterpreter().displayText("update: problem downloading "+fileS);    
                     }
                     
                 }
@@ -139,16 +140,16 @@ public class update extends ExternalFunction
                 {
                     // create a directory on the local disc
                     String dirS = s.substring(4).trim();
-                    getInterpreter().displayText("new directory: >"+dirS+"<");
+                    globals.getInterpreter().displayText("new directory: >"+dirS+"<");
                     try
                     {
-                        File file = new File(getWorkingDirectory(),dirS);
+                        File file = new File(globals.getWorkingDirectory(),dirS);
                         file.mkdir();
                     }
                     catch (Exception e)
                     {
                         successB = false;
-                        getInterpreter().displayText("update: problem creating directory "+dirS);    
+                        globals.getInterpreter().displayText("update: problem creating directory "+dirS);    
                     }
                       
                 }
@@ -156,25 +157,25 @@ public class update extends ExternalFunction
                 {
                     // delete a file/directory on the local disc
                     String delS = s.substring(4).trim();
-                    getInterpreter().displayText("delete file/dir: >"+delS+"<");
+                    globals.getInterpreter().displayText("delete file/dir: >"+delS+"<");
                     try
                     {
-                        File   file = new File(getWorkingDirectory(),delS);
+                        File   file = new File(globals.getWorkingDirectory(),delS);
                         file.delete();
                     }
                     catch (Exception e)
                     {
                         successB = false;
-                        getInterpreter().displayText("update: problem deleting "+delS);    
+                        globals.getInterpreter().displayText("update: problem deleting "+delS);    
                     }
                 }
                 else if (s.startsWith("prop"))
                 {
                     // delete a file/directory on the local disc
                     String propS = s.substring(5).trim();
-                    getInterpreter().displayText("new property: >"+propS+"<");
+                    globals.getInterpreter().displayText("new property: >"+propS+"<");
                     String[]   p = propS.split("=");
-                    getInterpreter().prefs.setLocalProperty(p[0],p[1]);
+                    globals.getInterpreter().prefs.setLocalProperty(p[0],p[1]);
                 }
                 else
                 {
@@ -196,7 +197,7 @@ public class update extends ExternalFunction
         
         // notifiy user
         if (!successB)
-            getInterpreter().displayText("\n Update was not successful. Repeat again later on or inform the admin.");
+            globals.getInterpreter().displayText("\n Update was not successful. Repeat again later on or inform the admin.");
                     
 		return null;		
 	}

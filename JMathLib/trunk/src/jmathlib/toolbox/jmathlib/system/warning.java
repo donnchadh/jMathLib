@@ -5,6 +5,7 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.interpreter.Variable;
 
 /**An external function for writing to the main display
@@ -13,16 +14,16 @@ public class warning extends ExternalFunction
 {
 	/**write operand to main display
 	@param operand[n] = items to display*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		String message = "";
 		for(int index = 0; index < operands.length; index++)
 		{
 			message = operands[index].toString();
-			getInterpreter().displayText(message);
+			globals.getInterpreter().displayText(message);
 		}
 		
-		Variable var = createVariable("lastwarning");
+		Variable var = globals.createVariable("lastwarning");
 		var.assign(new CharToken(message));	
 
 		return new DoubleNumberToken(1);

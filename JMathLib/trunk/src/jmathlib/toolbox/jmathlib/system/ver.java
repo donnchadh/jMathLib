@@ -2,31 +2,32 @@ package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for returning versionn information*/
 public class ver extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		String s        = "";
  		    
-        getInterpreter().displayText("Version information for JMathLib");
+		globals.getInterpreter().displayText("Version information for JMathLib");
 
-        s = getInterpreter().prefs.getLocalProperty("jmathlib.version");
-        getInterpreter().displayText("version: "+s);
+        s = globals.getInterpreter().prefs.getLocalProperty("jmathlib.version");
+        globals.getInterpreter().displayText("version: "+s);
 
-        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.date");
-        getInterpreter().displayText("release date: "+s);
+        s = globals.getInterpreter().prefs.getLocalProperty("jmathlib.release.date");
+        globals.getInterpreter().displayText("release date: "+s);
 
-        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.name");
-        getInterpreter().displayText("release name: "+s);
+        s = globals.getInterpreter().prefs.getLocalProperty("jmathlib.release.name");
+        globals.getInterpreter().displayText("release name: "+s);
 
-        s = getInterpreter().prefs.getLocalProperty("jmathlib.release.description");
-        getInterpreter().displayText("release description: "+s);
+        s = globals.getInterpreter().prefs.getLocalProperty("jmathlib.release.description");
+        globals.getInterpreter().displayText("release description: "+s);
 
-        s = getInterpreter().prefs.getLocalProperty("jmathlib.copyright");
-        getInterpreter().displayText(s);
+        s = globals.getInterpreter().prefs.getLocalProperty("jmathlib.copyright");
+        globals.getInterpreter().displayText(s);
 
 		return null;		
 	}
