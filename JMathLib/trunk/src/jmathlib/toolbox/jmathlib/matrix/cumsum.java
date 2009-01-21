@@ -3,11 +3,12 @@ package jmathlib.toolbox.jmathlib.matrix;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for computing a mesh of a matrix  */
 public class cumsum extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		if ((getNArgIn(operands) < 1) ||

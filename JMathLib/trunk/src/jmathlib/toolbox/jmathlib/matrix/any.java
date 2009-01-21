@@ -5,6 +5,7 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.LogicalToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function that return 1.0 is any element of the argument is nonzero  */
 public class any extends ExternalFunction
@@ -12,7 +13,7 @@ public class any extends ExternalFunction
 	/**return a  matrix 
 	* @param operands[0] = matrix 
 	* @return 1.0 if any element of the argument is nonzero  */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// two operands (e.g. not(A) )

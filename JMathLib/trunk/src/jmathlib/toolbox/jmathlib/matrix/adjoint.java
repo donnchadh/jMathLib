@@ -6,13 +6,14 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.FunctionToken;
 import jmathlib.core.functions.Function;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for determining the determinant of a matrix*/
 public class adjoint extends ExternalFunction
 {
 	/**Check that the parameter is a square matrix then claculate
 	it's determinant*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         OperandToken result = null;
 		
@@ -28,7 +29,7 @@ public class adjoint extends ExternalFunction
 		{
 			int size = matrix.getSizeX();
 			
-			result = new DoubleNumberToken(calcAdjoint(matrix.getReValues(), size));
+			result = new DoubleNumberToken(calcAdjoint(matrix.getReValues(), size, globals));
 		}
         else
         {
@@ -43,7 +44,7 @@ public class adjoint extends ExternalFunction
 	values = array of values
 	size   = the size of the matrix
 	result = the adjoint as a size * size array of double*/
-	private double[][] calcAdjoint(double[][] values, int size)
+	private double[][] calcAdjoint(double[][] values, int size, GlobalValues globals)
 	{
 		FunctionToken token = null;
 		Function function   = null;
@@ -51,7 +52,7 @@ public class adjoint extends ExternalFunction
 		try
 		{
 			token = new FunctionToken("Determinant");
-			function = getFunctionManager().findFunction(token);
+			function = globals.getFunctionManager().findFunction(token);
 		}
 		catch(java.lang.Exception e)
 		{}
@@ -67,7 +68,7 @@ public class adjoint extends ExternalFunction
 				operands[0] = subMatrix;
 
 								
-				double minor = ((DoubleNumberToken)function.evaluate(operands)).getValueRe();
+				double minor = ((DoubleNumberToken)function.evaluate(operands, globals)).getValueRe();
 				
 				int modifier = -1;
 				if((rowNumber + colNumber) % 2 == 0)
