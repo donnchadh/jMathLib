@@ -23,16 +23,16 @@ import java.io.*;
 public class createFunctionsList extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         Vector pathVector = new Vector();
         
         // get all search paths from all file loaders
-        for (int i=0;i<getFunctionManager().getFunctionLoaderCount();i++) 
+        for (int i=0;i<globals.getFunctionManager().getFunctionLoaderCount();i++) 
         {
 
-            FunctionLoader loader = getFunctionManager().getFunctionLoader(i);
+            FunctionLoader loader = globals.getFunctionManager().getFunctionLoader(i);
             
             if (loader instanceof FileFunctionLoader) 
             {
@@ -52,13 +52,13 @@ public class createFunctionsList extends ExternalFunction
         String path       = "";
         String line       = "";
 
-        ErrorLogger.debugLine("working directory: "+getWorkingDirectory().getAbsolutePath());
+        ErrorLogger.debugLine("working directory: "+globals.getWorkingDirectory().getAbsolutePath());
 
         try 
         {
             
             // create file to store all class-, m-files and images
-            File funcFile = new File(getWorkingDirectory().getAbsoluteFile() +
+            File funcFile = new File(globals.getWorkingDirectory().getAbsoluteFile() +
 			                         File.separator + "bin" +
                                      File.separator + "jmathlib" +
                                      File.separator + "webFunctionsList.dat");
@@ -101,7 +101,7 @@ public class createFunctionsList extends ExternalFunction
                             !line.contains(".svn")              )
                         {
                             // remove preceding absolute path
-                            line = line.substring((getWorkingDirectory().getAbsolutePath()+"/bin/").length());
+                            line = line.substring((globals.getWorkingDirectory().getAbsolutePath()+"/bin/").length());
 
                             ErrorLogger.debugLine("path = "+ line);
 

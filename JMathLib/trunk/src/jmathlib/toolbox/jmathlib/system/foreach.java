@@ -13,7 +13,7 @@ public class foreach extends ExternalFunction
 	@param operand[1] = a string containing the variable name
 	@param operand[2] = a string containing the expression
 	@return 0 if there were any errors, otherwise it returns 1*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		int result = 0;
 		//check that the first operand is a matrix
@@ -27,7 +27,7 @@ public class foreach extends ExternalFunction
 			if((operands[1] instanceof CharToken) && (operands[2] instanceof CharToken))
 			{
 				//create a variable with the correct name
-				Variable var = createVariable(((CharToken)operands[1]).toString());
+				Variable var = globals.createVariable(((CharToken)operands[1]).toString());
 				String expression = ((CharToken)operands[2]).toString();
 
 				//parse the expression
@@ -44,7 +44,7 @@ public class foreach extends ExternalFunction
 						
 						OperandToken exp = ((OperandToken)expressionTree.clone());			
 						
-						exp.evaluate(null);
+						exp.evaluate(null, globals);
 					}
 				}
 				result = 1;

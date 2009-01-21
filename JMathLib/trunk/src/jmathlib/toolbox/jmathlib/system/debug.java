@@ -12,7 +12,7 @@ public class debug extends ExternalFunction
 	/**Executes an expression, displaying the parse tree.
 	@param operand[0] = the string containing the expression
 	@return the result of the expression*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		String answer = "";
 		if(operands[0] instanceof CharToken)
@@ -26,7 +26,7 @@ public class debug extends ExternalFunction
 			// open a tree to show the expression-tree for a parsed command
             jmathlib.tools.treeanalyser.TreeAnalyser treeAnalyser = new jmathlib.tools.treeanalyser.TreeAnalyser(expressionTree);
 
-	        OperandToken answerToken = expressionTree.evaluate(null);
+	        OperandToken answerToken = expressionTree.evaluate(null, globals);
 			//while(answerToken != null)
 			//{        
 	        	if(answerToken != null)
@@ -36,7 +36,7 @@ public class debug extends ExternalFunction
 					//if(answerToken.display)
 		            //	answer += answerToken.toString() + "\n";
 
-		            answerToken = expressionTree.evaluate(null);
+		            answerToken = expressionTree.evaluate(null, globals);
 		          
 		        }
 	        //}

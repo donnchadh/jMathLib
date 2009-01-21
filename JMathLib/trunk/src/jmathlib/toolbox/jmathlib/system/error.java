@@ -5,6 +5,7 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for displaying error messages
 aborts the current function being processed*/
@@ -12,7 +13,7 @@ public class error extends ExternalFunction
 {
 	/**write operand to main display then abort processing
 	@param operand[n] = error messages to display*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{	
 		if(operands[0] instanceof CharToken)
 		{

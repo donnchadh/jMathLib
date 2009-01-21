@@ -2,6 +2,8 @@ package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.net.*;
 import java.util.*;
 
@@ -11,15 +13,19 @@ import java.util.*;
 /**An external function for checking for updates over the network*/
 public class checkforupdates extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+    GlobalValues globals = null;
+    
+	public OperandToken evaluate(Token[] operands, GlobalValues _globals)
 	{
+	    
+	    globals = _globals;
 
 		String s           = "";
         String lineFile    = "";
         String updateSiteS = "http://www.jmathlib.de/checkForUpdates/";
  		boolean silentB    = false;
         
-        s = getInterpreter().prefs.getLocalProperty("update.site.primary");
+        s = globals.getInterpreter().prefs.getLocalProperty("update.site.primary");
         if (s != null)
             updateSiteS = s;
         
@@ -37,22 +43,22 @@ public class checkforupdates extends ExternalFunction
                 else
                 {
                     updateSiteS = s; 
-                    getInterpreter().displayText("Update Site "+updateSiteS);
+                    globals.getInterpreter().displayText("Update Site "+updateSiteS);
                 }
         	}
         }
 
         if (!silentB)
-            getInterpreter().displayText("Checking for Updates at "+updateSiteS);
+            globals.getInterpreter().displayText("Checking for Updates at "+updateSiteS);
         
         
-        String[] lastUpdateS = getInterpreter().prefs.getLocalProperty("update.date.last").split("/");
+        String[] lastUpdateS = globals.getInterpreter().prefs.getLocalProperty("update.date.last").split("/");
         int year  = Integer.parseInt(lastUpdateS[0]);
         int month = Integer.parseInt(lastUpdateS[1])-1;
         int day   = Integer.parseInt(lastUpdateS[2]);
         //getInterpreter().displayText("check:"+year+"/"+month+"/"+day);
                 
-        int intervall = Integer.parseInt(getInterpreter().prefs.getLocalProperty("update.intervall"));
+        int intervall = Integer.parseInt(globals.getInterpreter().prefs.getLocalProperty("update.intervall"));
 
         GregorianCalendar calFile = new GregorianCalendar(year,month,day);
         GregorianCalendar calCur  = new GregorianCalendar();
@@ -136,7 +142,7 @@ public class checkforupdates extends ExternalFunction
                 System.out.println("checkForUpdates: Properties error");    
             }
 
-            String[] localVersionS  = getInterpreter().prefs.getLocalProperty("jmathlib.version").replace("/",".").split("\\.");
+            String[] localVersionS  = globals.getInterpreter().prefs.getLocalProperty("jmathlib.version").replace("/",".").split("\\.");
             String[] webVersionS    = props.getProperty("jmathlib.version").replace("/",".").split("\\.");
 
             // build version number of local version
@@ -166,42 +172,42 @@ public class checkforupdates extends ExternalFunction
             {
 
                 // set marker for next startup
-                getInterpreter().prefs.setLocalProperty("update.newversionavailable","yes");
+                globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable","yes");
                 
                 s = props.getProperty("update.newversionavailable.message01");
                 if (s!=null)
                 {
-                    getInterpreter().prefs.setLocalProperty("update.newversionavailable.message01", s);
-                    getInterpreter().displayText(s);
+                    globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable.message01", s);
+                    globals.getInterpreter().displayText(s);
                 }
                 else
-                    getInterpreter().displayText("There is a new version of JMathLib available");
+                    globals.getInterpreter().displayText("There is a new version of JMathLib available");
 
                 
                 s = props.getProperty("update.newversionavailable.message02");
                 if (s!=null)
                 {
-                    getInterpreter().prefs.setLocalProperty("update.newversionavailable.message02", s);
-                    getInterpreter().displayText(s);
+                    globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable.message02", s);
+                    globals.getInterpreter().displayText(s);
                 }
             }
             else if (webVersion < localVersion)
             {
-                getInterpreter().displayText("Funny! The version of JMathLib on the web is older than your local version");
+                globals.getInterpreter().displayText("Funny! The version of JMathLib on the web is older than your local version");
             }
             else
             {
                 if (!silentB)
                 {
-                    getInterpreter().displayText("The local version of JMathLib is up to date");
+                    globals.getInterpreter().displayText("The local version of JMathLib is up to date");
 
                     s=props.getProperty("update.uptodate.message01");
                     if (s!=null) 
-                        getInterpreter().displayText(s);
+                        globals.getInterpreter().displayText(s);
 
                     s=props.getProperty("update.uptodate.message02");
                     if (s!=null) 
-                        getInterpreter().displayText(s);
+                        globals.getInterpreter().displayText(s);
                 }
             }
             
@@ -213,23 +219,23 @@ public class checkforupdates extends ExternalFunction
             String checkedDate  = Integer.toString(cal.get(Calendar.YEAR))     + "/"
                                 + Integer.toString(cal.get(Calendar.MONTH)+1)  + "/"
                                 + Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-            getInterpreter().prefs.setLocalProperty("update.date.last", checkedDate);
+            globals.getInterpreter().prefs.setLocalProperty("update.date.last", checkedDate);
 
         
             // update link to primary update-site
             s= props.getProperty("update.site.primary");
             if (s!=null)
-                getInterpreter().prefs.setLocalProperty("update.site.primary",s);
+                globals.getInterpreter().prefs.setLocalProperty("update.site.primary",s);
 
             // update link to backup update-site
             s= props.getProperty("update.site.backup");
             if (s!=null)
-                getInterpreter().prefs.setLocalProperty("update.site.backup",s);
+                globals.getInterpreter().prefs.setLocalProperty("update.site.backup",s);
 
             // update message of the day
             s= props.getProperty("message.of.the.day");
             if (s!=null)
-                getInterpreter().prefs.setLocalProperty("message.of.the.day",s);
+                globals.getInterpreter().prefs.setLocalProperty("message.of.the.day",s);
 
         }
         

@@ -4,6 +4,7 @@ import java.io.File;
 import jmathlib.core.functions.FileFunctionLoader;
 import jmathlib.core.functions.FunctionLoader;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
@@ -15,7 +16,7 @@ public class addpath extends ExternalFunction
 {
     /**adds an item to the search path
     @param operands[0] = item to add*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         if (getNArgIn(operands)!=1)
             throwMathLibException("addpath: number of arguments != 1");
@@ -44,8 +45,8 @@ public class addpath extends ExternalFunction
             {
                 FunctionLoader loader = new FileFunctionLoader(new File(path), true);
                 if (!prepend)
-                  getFunctionManager().addFunctionLoader(loader);
-                else getFunctionManager().addFunctionLoaderAt(0, loader);
+                    globals.getFunctionManager().addFunctionLoader(loader);
+                else globals.getFunctionManager().addFunctionLoaderAt(0, loader);
             }
         }
             
