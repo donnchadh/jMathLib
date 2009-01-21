@@ -4,6 +4,7 @@ import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function for controlling the debug setting for the system*/
 public class setdebug extends ExternalFunction
@@ -11,7 +12,7 @@ public class setdebug extends ExternalFunction
     /**Sets the debug flag
     @param operands[0] = 1, show debug info
                          0, to turn debug info off*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         if (getNArgIn(operands) !=1)
             throwMathLibException("setdebug: number of arguments !=1");

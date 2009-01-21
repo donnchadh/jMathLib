@@ -4,13 +4,14 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for writing to the main display*/
 public class newline extends ExternalFunction
 {
 	/**write operand to main display
 	@param operand[n] = items to display*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		double count = 1;
 		
@@ -21,7 +22,7 @@ public class newline extends ExternalFunction
 		
 		for(int index = 0; index < count; index++)
 		{
-			getInterpreter().displayText("");
+		    globals.getInterpreter().displayText("");
 		}
 		
 		return new DoubleNumberToken(1);

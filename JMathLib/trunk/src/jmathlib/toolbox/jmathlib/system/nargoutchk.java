@@ -6,6 +6,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for checking the number of arguments*/
 public class nargoutchk extends ExternalFunction
@@ -17,7 +18,7 @@ public class nargoutchk extends ExternalFunction
 	@return an error string if the number of arguments is
 	not between the lowest and highest values
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 

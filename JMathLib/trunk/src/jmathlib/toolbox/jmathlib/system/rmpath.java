@@ -3,6 +3,7 @@ package jmathlib.toolbox.jmathlib.system;
 import jmathlib.core.functions.FunctionLoader;
 import jmathlib.core.functions.FileFunctionLoader;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
@@ -14,7 +15,7 @@ public class rmpath extends ExternalFunction
 {
     /**removes an item from the search path
     @param operands[0] = item to remove*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         if (getNArgIn(operands)!=1)
             throwMathLibException("rmpath: number of arguments != 1");
@@ -24,9 +25,9 @@ public class rmpath extends ExternalFunction
 
         File path = new File(((CharToken)operands[0]).toString());
         
-        for (int i=0;i<getFunctionManager().getFunctionLoaderCount();i++) 
+        for (int i=0;i<globals.getFunctionManager().getFunctionLoaderCount();i++) 
         {
-            FunctionLoader loader = getFunctionManager().getFunctionLoader(i);
+            FunctionLoader loader = globals.getFunctionManager().getFunctionLoader(i);
             
             if (loader instanceof FileFunctionLoader) 
             {
@@ -34,7 +35,7 @@ public class rmpath extends ExternalFunction
                                     
                 if (ffl.getBaseDirectory().compareTo(path) == 0) 
                 {
-                    getFunctionManager().removeFunctionLoader(loader);
+                    globals.getFunctionManager().removeFunctionLoader(loader);
                     break;
                 }
             }

@@ -2,13 +2,14 @@ package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 public class rehash extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
-        getFunctionManager().checkAndRehashTimeStamps();
+	    globals.getFunctionManager().checkAndRehashTimeStamps();
 
         return null;
         

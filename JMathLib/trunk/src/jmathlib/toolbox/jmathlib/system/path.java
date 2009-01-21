@@ -3,6 +3,7 @@ package jmathlib.toolbox.jmathlib.system;
 import jmathlib.core.functions.FunctionLoader;
 import jmathlib.core.functions.FileFunctionLoader;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
@@ -13,14 +14,14 @@ import java.io.File;
 public class path extends ExternalFunction
 {
     /**return the search path as a string token*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         StringBuffer pathString = new StringBuffer();
         
-        for (int i=0; i<getFunctionManager().getFunctionLoaderCount(); i++) 
+        for (int i=0; i<globals.getFunctionManager().getFunctionLoaderCount(); i++) 
         {
             // get one of the function loaders
-            FunctionLoader loader = getFunctionManager().getFunctionLoader(i);
+            FunctionLoader loader = globals.getFunctionManager().getFunctionLoader(i);
             
             // check if loader is loading files
             if (loader instanceof FileFunctionLoader) 
