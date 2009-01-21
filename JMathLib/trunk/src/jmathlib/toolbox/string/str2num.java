@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 
 /**An external function for changing strings into numbers */
@@ -12,7 +13,7 @@ public class str2num extends ExternalFunction
     /**returns a matrix of numbers 
     * @param operands[0] = string (e.g. ["hello"]) 
     * @return a matrix of numbers                                */
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
         // one operand 

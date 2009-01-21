@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 
 /**An external function for finding a string within another*/
@@ -12,7 +13,7 @@ public class findstr extends ExternalFunction
 	/**finds shorter string within a longer one
 	@param operands[0] = first string
 	@param operands[1] = second string*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
         if (getNArgIn(operands) !=2)
