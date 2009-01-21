@@ -6,12 +6,13 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.graphics.*;
 import jmathlib.core.graphics.axes.*;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for 3 dimensional surface plots*/
 public class surf extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
     	double[][] x = {{0.0}};
         double[][] y = {{0.0}};
@@ -90,16 +91,16 @@ public class surf extends ExternalFunction
      
 
 		// add surface to current axes
-        getGraphicsManager().getCurrentFigure().getCurrentAxes();
-        getGraphicsManager().getCurrentFigure().convertCurrentAxesTo3DAxes();
-		AxesObject axesOb = getGraphicsManager().getCurrentFigure().getCurrentAxes();
+        globals.getGraphicsManager().getCurrentFigure().getCurrentAxes();
+        globals.getGraphicsManager().getCurrentFigure().convertCurrentAxesTo3DAxes();
+		AxesObject axesOb = globals.getGraphicsManager().getCurrentFigure().getCurrentAxes();
         if (axesOb instanceof Axes3DObject)
         	((Axes3DObject)axesOb).addSurface(x, y, z);
         else
         	ErrorLogger.debugLine("surf: eval: something wrong");
             
         // call repaint to initiate drawing of plot																	  lineStyleC);
-		getGraphicsManager().getCurrentFigure().repaint();
+        globals.getGraphicsManager().getCurrentFigure().repaint();
         		
 
 		return null;

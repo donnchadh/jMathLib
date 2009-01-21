@@ -5,13 +5,14 @@ import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.graphics.*;
 import jmathlib.core.graphics.axes.*;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 /** rotate*/
 public class rotate extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		double phiX = 0;
@@ -36,9 +37,9 @@ public class rotate extends ExternalFunction
         }
         
 		// rotate axes 
-		((Axes3DObject)getGraphicsManager().getCurrentFigure().getCurrentAxes()).rotate(phiX,phiY,phiZ);
+		((Axes3DObject)globals.getGraphicsManager().getCurrentFigure().getCurrentAxes()).rotate(phiX,phiY,phiZ);
 
-		getGraphicsManager().getCurrentFigure().repaint();
+		globals.getGraphicsManager().getCurrentFigure().repaint();
 
 		return null;
 	}

@@ -5,13 +5,14 @@ import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.graphics.*;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.graphics.axes.*;
 
 /**An external function for 3 dimensional plots*/
 public class plot3 extends ExternalFunction
 {
 
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		ErrorLogger.debugLine("plot3 evaluate. no of args: "+getNArgIn(operands));
@@ -125,9 +126,9 @@ public class plot3 extends ExternalFunction
 		}
 
 		// add Lines to current axes
-        getGraphicsManager().getCurrentFigure().getCurrentAxes();
-        getGraphicsManager().getCurrentFigure().convertCurrentAxesTo3DAxes();
-		AxesObject axesOb = getGraphicsManager().getCurrentFigure().getCurrentAxes();
+		globals.getGraphicsManager().getCurrentFigure().getCurrentAxes();
+		globals.getGraphicsManager().getCurrentFigure().convertCurrentAxesTo3DAxes();
+		AxesObject axesOb = globals.getGraphicsManager().getCurrentFigure().getCurrentAxes();
         if (axesOb instanceof Axes3DObject)
         	((Axes3DObject)axesOb).add3DLines(x, 
         									  y,
@@ -139,7 +140,7 @@ public class plot3 extends ExternalFunction
         	ErrorLogger.debugLine("plot3: eval: something wrong");
             
         // call repaint to initiate drawing of plot																	  lineStyleC);
-		getGraphicsManager().getCurrentFigure().repaint();
+        globals.getGraphicsManager().getCurrentFigure().repaint();
         		
 
 		return new DoubleNumberToken(1);

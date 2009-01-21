@@ -2,6 +2,7 @@ package jmathlib.toolbox.jmathlib.graphics.graph3d;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
 /*
@@ -16,7 +17,7 @@ public class meshgrid extends ExternalFunction
 	* @param operands[0] = x values (e.g. [-2:0.2:2]) 
 	* @param operands[1] = y values (e.g. [-2:0.2:2])
 	* @return [X,Y] as matrices                                 */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// one operand (e.g. [x,y]=meshgrid([-2:0.2:2],[-2:0.2:2]) )
