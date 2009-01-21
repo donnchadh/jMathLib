@@ -1,6 +1,7 @@
 package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
@@ -14,7 +15,7 @@ public class format extends ExternalFunction
 	@param operand[0] = the name of the variable
 	@param operand[1] = a default value (optional)
 	@return the enviroment value*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 		
@@ -34,23 +35,23 @@ public class format extends ExternalFunction
         //setNumberFormat(DecimalFormat.getInstance(Locale.ENGLISH));
 		
 		if (type.equals("short"))
-		    setNumberFormat(new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH)));
+		    globals.setNumberFormat(new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH)));
 		else if (type.equals("long"))
-            setNumberFormat(new DecimalFormat("0.000000000000000", new DecimalFormatSymbols(Locale.ENGLISH)));
+		    globals.setNumberFormat(new DecimalFormat("0.000000000000000", new DecimalFormatSymbols(Locale.ENGLISH)));
 		else if (type.equals("short e"))
-            setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+		    globals.setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
         else if (type.equals("long e"))
-            setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+            globals.setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
         else if (type.equals("short g"))
-            setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+            globals.setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
         else if (type.equals("long g"))
-            setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+            globals.setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
         else if (type.equals("short eng"))
-            setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+            globals.setNumberFormat(new DecimalFormat("0.0000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
         else if (type.equals("long eng"))
-            setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
+            globals.setNumberFormat(new DecimalFormat("0.000000000000000E000", new DecimalFormatSymbols(Locale.ENGLISH)));
 		else
-            setNumberFormat(new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH)));
+		    globals.setNumberFormat(new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH)));
 		    
 		return result;
 	}

@@ -13,7 +13,7 @@ public class getenv extends ExternalFunction
 	@param operand[0] = the name of the variable
 	@param operand[1] = a default value (optional)
 	@return the enviroment value*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
 		

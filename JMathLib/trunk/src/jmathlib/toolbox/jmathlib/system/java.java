@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.plugins.dynjava.JavaPlugin;
 
 /**An example of an external function - it returns the first parameter*/
@@ -12,13 +13,13 @@ public class java extends ExternalFunction
 	/**Executes the function - returning the first parameter
 	@param operands - the array of parameters
 	@return the result of the function as an OperandToken*/	
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{    
 	    
         // load java plugin
-        getPluginsManager().addPlugin("JavaPlugin");
+	    globals.getPluginsManager().addPlugin("JavaPlugin");
         
-        String result = ((JavaPlugin)getPluginsManager().getPlugin("JavaPlugin")).executeJavaExpression(operands[0].toString());
+        String result = ((JavaPlugin)globals.getPluginsManager().getPlugin("JavaPlugin")).executeJavaExpression(operands[0].toString());
 
 	    return new CharToken(result);
 	}
