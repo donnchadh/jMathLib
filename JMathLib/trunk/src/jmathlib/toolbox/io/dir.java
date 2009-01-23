@@ -2,12 +2,14 @@ package jmathlib.toolbox.io;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function for getting a directory listing         */
 public class dir extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 0)
@@ -15,7 +17,7 @@ public class dir extends ExternalFunction
 
 		String path=".";
 
-		File dir = new File(getWorkingDirectory(), path);
+		File dir = new File(globals.getWorkingDirectory(), path);
 		String[] files = dir.list();
 
 		
@@ -25,9 +27,9 @@ public class dir extends ExternalFunction
 			String name = files[i]; 
 			File   f    = new File(name);
 			if (f.isDirectory())
-				getInterpreter().displayText(files[i]+"/");
+			    globals.getInterpreter().displayText(files[i]+"/");
 			else
-				getInterpreter().displayText(files[i]);
+			    globals.getInterpreter().displayText(files[i]);
 
 		}
 

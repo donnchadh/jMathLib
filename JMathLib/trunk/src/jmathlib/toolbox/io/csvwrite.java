@@ -7,6 +7,8 @@ import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function for loading a matrix from a csv file*/
@@ -18,7 +20,7 @@ public class csvwrite extends ExternalFunction
        @param operands[1] = the matrix to save    
        @param operands[2] = the start row (optional)
        @param operands[3] = the start column (optional)*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		// at least one operand
         if (getNArgIn(operands) != 2)
@@ -31,7 +33,7 @@ public class csvwrite extends ExternalFunction
 				double[][] values = ((DoubleNumberToken)operands[1]).getReValues();
 				String fileName = ((CharToken)operands[0]).toString();
 		
-				File CSVFile = new File(getWorkingDirectory(), fileName);
+				File CSVFile = new File(globals.getWorkingDirectory(), fileName);
 		
 				ErrorLogger.debugLine("Writing CSV>"+fileName+"<");
 				

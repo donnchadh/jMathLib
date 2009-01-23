@@ -5,6 +5,8 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function for loading and running m-files  (script-files)      *
@@ -14,7 +16,7 @@ public class runfile extends ExternalFunction
 	/** Check that the operand is a string then open the file                *
 	 *  referenced.                                                          *
          * @param operands[0] string which specifies the function to load    */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		String answerString="";
@@ -36,7 +38,7 @@ public class runfile extends ExternalFunction
 		if(fileName.indexOf(".m") == -1)	fileName += ".m";
 			
 
-		File scriptFile = new File(getWorkingDirectory(), fileName);
+		File scriptFile = new File(globals.getWorkingDirectory(), fileName);
 
 		if(!scriptFile.exists()) return null;
 
@@ -54,7 +56,7 @@ public class runfile extends ExternalFunction
 			inReader.close();					
 
 			//execute the file and store the answer
-			answerString = getInterpreter().executeExpression(lineFile);		
+			answerString = globals.getInterpreter().executeExpression(lineFile);		
 
 		}
 		catch (Exception e)

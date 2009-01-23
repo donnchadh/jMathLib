@@ -2,12 +2,14 @@ package jmathlib.toolbox.io;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function for changing to another directory         */
 public class rmdir extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
@@ -22,7 +24,7 @@ public class rmdir extends ExternalFunction
         
 		try
 		{
-			file = new File(getWorkingDirectory(),name);
+			file = new File(globals.getWorkingDirectory(),name);
 		}
 		catch (Exception e)
 		{

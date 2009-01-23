@@ -3,6 +3,8 @@ package jmathlib.toolbox.io;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function used to execute an external program
@@ -13,7 +15,7 @@ public class systemcommand extends ExternalFunction
 	@param operands[0] = filename
 	@param operands[n] = arguments
 	@return 1*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		String[] cmdarray = new String[operands.length];
 		

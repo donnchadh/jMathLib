@@ -2,11 +2,13 @@ package jmathlib.toolbox.io;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 public class loadvariables extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) > 1)
@@ -23,7 +25,7 @@ public class loadvariables extends ExternalFunction
             file = ((CharToken)operands[0]).toString();
         }
 
-        getLocalVariables().loadVariables(file);
+        globals.getLocalVariables().loadVariables(file);
         
 		return null;		
 

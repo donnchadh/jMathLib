@@ -4,6 +4,8 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function used to check if a file exists*/
@@ -12,7 +14,7 @@ public class exist extends ExternalFunction
 	/**Check if file exists
 	@param 0 = filename
 	@return 1 if the file exists*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
     
     	// at least one operand
@@ -26,7 +28,7 @@ public class exist extends ExternalFunction
 			testFile = new File(fileName);
 		else
 		{
-			File path = getWorkingDirectory();
+			File path = globals.getWorkingDirectory();
 			testFile = new File(path, fileName);
 		}
 		

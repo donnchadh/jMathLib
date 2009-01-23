@@ -2,11 +2,13 @@ package jmathlib.toolbox.io;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 public class createnewfile extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
@@ -21,7 +23,7 @@ public class createnewfile extends ExternalFunction
 
         try
 		{
-			file = new File(getWorkingDirectory(),name);
+			file = new File(globals.getWorkingDirectory(),name);
 
             if(!file.createNewFile())
                 throwMathLibException("create new file: did not work");

@@ -3,6 +3,7 @@ package jmathlib.toolbox.io;
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.*;
+
 import java.io.*;
 
 /**An external function for changing to another directory         */
@@ -12,7 +13,7 @@ public class cd extends ExternalFunction
     /* @param operands[0] string which specifies the directory               *
      *   to change to (optional).                                            *
 	 *   If invoked with now paramenter the current directory is returned.   */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		String path=".";
@@ -34,18 +35,18 @@ public class cd extends ExternalFunction
         
 		try
 		{
-			File dir = new File(getWorkingDirectory(), path);
+			File dir = new File(globals.getWorkingDirectory(), path);
 
 			//getInterpreter().displayText("canonical path = "+dir.getCanonicalPath());		
 
 			if (dir.isDirectory())
 			{
-				setWorkingDirectory(dir);		
+			    globals.setWorkingDirectory(dir);		
 
 				if (getNoOfLeftHandArguments()==1)
 					return new CharToken(dir.getCanonicalPath());
 				else 
-					getInterpreter().displayText(dir.getCanonicalPath());
+				    globals.getInterpreter().displayText(dir.getCanonicalPath());
 
 			}
 		}

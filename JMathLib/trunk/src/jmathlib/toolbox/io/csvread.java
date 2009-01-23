@@ -7,6 +7,8 @@ import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 import java.util.Stack;
 
@@ -20,7 +22,7 @@ public class csvread extends ExternalFunction
        @param operands[2] = the start column (optional)
        @param operands[3] = range(optional, not implemented)
        @return the matrix as an OperandToken*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		DoubleNumberToken result = null;
         
@@ -32,7 +34,7 @@ public class csvread extends ExternalFunction
 		{
 			String fileName = ((CharToken)operands[0]).toString();
 	
-			File CSVFile = new File(getWorkingDirectory(), fileName);
+			File CSVFile = new File(globals.getWorkingDirectory(), fileName);
 	
 			if(!CSVFile.exists()) return null;
 	

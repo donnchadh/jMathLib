@@ -3,11 +3,13 @@ package jmathlib.toolbox.io;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 public class lastmodified extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
@@ -20,7 +22,7 @@ public class lastmodified extends ExternalFunction
 
 		try
 		{
-			File file = new File(getWorkingDirectory(), name);
+			File file = new File(globals.getWorkingDirectory(), name);
 
             // check if file exists in current workspace
             if (!file.exists())

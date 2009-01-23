@@ -3,11 +3,13 @@ package jmathlib.toolbox.io;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 public class isdirectory extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
@@ -20,7 +22,7 @@ public class isdirectory extends ExternalFunction
 
 		try
 		{
-			File dir = new File(getWorkingDirectory(),name);
+			File dir = new File(globals.getWorkingDirectory(),name);
 
 			if (dir.isDirectory())
 			    return new DoubleNumberToken(1);

@@ -5,6 +5,8 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.io.*;
 
 /**An external function for loading a matrix from a csv file*/
@@ -68,7 +70,7 @@ public class load extends ExternalFunction
        @param operands[2] = the start column (optional)
        @param operands[3] = range(optional, not implemented)
        @return the matrix as an OperandToken*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
         
@@ -80,8 +82,8 @@ public class load extends ExternalFunction
         //    fileName = ((StringToken)operands[0]).toString();
         //}
             
-        System.out.println("load dir "+getWorkingDirectory() );
-        File fileHandle = new File(getWorkingDirectory(), fileName);
+        System.out.println("load dir "+globals.getWorkingDirectory() );
+        File fileHandle = new File(globals.getWorkingDirectory(), fileName);
 	
 		if(!fileHandle.exists()) 
             throwMathLibException("load file does not exist");
