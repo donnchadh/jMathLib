@@ -4,6 +4,7 @@ import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.GlobalValues;
 
 /**External function for controlling the debug setting for the system*/
@@ -22,9 +23,9 @@ public class setdebug extends ExternalFunction
             int debug = ((DoubleNumberToken)operands[0]).getIntValue(0,0);
             
             if(debug == 0)
-                setDebug(false);
+                ErrorLogger.setDebug(false);
             else
-                setDebug(true);                                    
+                ErrorLogger.setDebug(true);                                    
 
             return new DoubleNumberToken(1);                
         }
@@ -39,13 +40,13 @@ public class setdebug extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-SETDEBUG(value)
+setdebug(value)
 @DOC
 Switches debug output on or off
 @NOTES
 @EXAMPLES
-SETDEBUG(1) turns debug output on
-SETDEBUG(0) turns debug output off
+setdebug(1) turns debug output on
+setdebug(0) turns debug output off
 @SEE
 */
 
