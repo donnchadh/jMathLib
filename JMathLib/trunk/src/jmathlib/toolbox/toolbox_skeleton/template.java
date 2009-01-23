@@ -1,8 +1,13 @@
-package jmathlib.toolbox.toolbox_skeleton;
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  Stefan Mueller (stefan@held-mueller.de) 
+ * (c) 2009   
+ */
 
-/* This file is part or JMathLib 
- * author:  stefan (stefan@held-mueller.de) 2009   
- * */
+package jmathlib.toolbox.toolbox_skeleton;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
