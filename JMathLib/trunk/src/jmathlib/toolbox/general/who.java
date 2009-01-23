@@ -9,7 +9,7 @@ import java.util.*;
 /**An external function for getting the stored variables*/
 public class who extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		//if (operands != null)
@@ -17,14 +17,14 @@ public class who extends ExternalFunction
 
 		Variable var;
 
-		getInterpreter().displayText("\nYour variables are:\n");
+		globals.getInterpreter().displayText("\nYour variables are:\n");
 
-		Iterator iter = getLocalVariables().getIterator();
+		Iterator iter = globals.getLocalVariables().getIterator();
 		while(iter.hasNext())
 		{
 		    Map.Entry next = ((Map.Entry)iter.next());
 		    var = ((Variable)next.getValue());
-		    getInterpreter().displayText(var.getName());
+		    globals.getInterpreter().displayText(var.getName());
 		}
 
 		return null;		

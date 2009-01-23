@@ -8,14 +8,14 @@ import java.util.*;
 /**An external function for getting the stored variables*/
 public class whos extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         
-        Iterator iter = getLocalVariables().getIterator();
+        Iterator iter = globals.getLocalVariables().getIterator();
 
         // display header information
-        getInterpreter().displayText("\nYour variables are:\n");
-        getInterpreter().displayText("\nName: \t size: \t type \n");
+        globals.getInterpreter().displayText("\nYour variables are:\n");
+        globals.getInterpreter().displayText("\nName: \t size: \t type \n");
 
         // check if global context is requested
         if (getNArgIn(operands) == 1)
@@ -24,7 +24,7 @@ public class whos extends ExternalFunction
             {
                 String data = ((CharToken)operands[0]).getValue();
                 if (data.equals("global"))
-                    iter = getGlobalVariables().getIterator();
+                    iter = globals.getGlobalVariables().getIterator();
             }
         }
 
@@ -42,7 +42,7 @@ public class whos extends ExternalFunction
             
             // if variable is global get data from global context
             if (global)
-                op = (OperandToken)getGlobalVariables().getVariable(name).getData();
+                op = (OperandToken)globals.getGlobalVariables().getVariable(name).getData();
             
             // check which type of variable
             if (op instanceof DataToken)
@@ -59,7 +59,7 @@ public class whos extends ExternalFunction
             if (global)
                    line += "(global)";
             
-		    getInterpreter().displayText(line);
+            globals.getInterpreter().displayText(line);
 		}
 
 		return null;		
