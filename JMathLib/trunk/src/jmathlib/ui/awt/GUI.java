@@ -80,7 +80,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         } 
         else if (o == checkForUpdatesMenuItem) 
         {
-            String answerString = interpreter.executeExpression("checkForUpdates()");
+            String answerString = interpreter.executeExpression("checkforupdates()");
             answer.displayText(answerString);
             answer.displayPrompt();
         } 
@@ -233,7 +233,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             answer.displayPrompt();
 
             // silent check for updates
-            interpreter.executeExpression("checkForUpdates('-silent')");
+            interpreter.executeExpression("checkforupdates('-silent')");
 
             this.setTitle(TITLE + " - Console Window");
 
