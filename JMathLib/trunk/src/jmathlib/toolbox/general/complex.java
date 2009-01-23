@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**Display the debug information of an expression*/
 public class complex extends ExternalFunction
@@ -12,7 +13,7 @@ public class complex extends ExternalFunction
 	@param operand[0] = real part
 	@param operand[2] = imaginary part
 	@return the complex number*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = null;
         if (getNArgIn(operands) != 2)

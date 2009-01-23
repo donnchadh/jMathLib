@@ -3,13 +3,14 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.VariableToken;
 import jmathlib.core.tokens.OperandToken;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.interpreter.Variable;
 import jmathlib.core.functions.ExternalFunction;
 
 /**An external function which checks if the argument is numeric*/
 public class global extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 1)
@@ -23,8 +24,8 @@ public class global extends ExternalFunction
         
         debugLine("global "+operands[0].toString());
         
-        debugLine("global: local  variable:"+getLocalVariables().isVariable(var.getName()));
-        debugLine("global: global variable:"+getGlobalVariables().isVariable(var.getName()));
+        debugLine("global: local  variable:"+globals.getLocalVariables().isVariable(var.getName()));
+        debugLine("global: global variable:"+globals.getGlobalVariables().isVariable(var.getName()));
 
         // this is the procedure for global variables:
         // - normally all variables a local to each workspace
@@ -40,22 +41,22 @@ public class global extends ExternalFunction
         
         
         // check if variable is already created in global context
-        if (getGlobalVariables().isVariable(name))
+        if (globals.getGlobalVariables().isVariable(name))
         {
             // variable is already created in global context
 
             // check if local context already contains variable
-            if (getLocalVariables().isVariable(name))
+            if (globals.getLocalVariables().isVariable(name))
             {
                 // variable is already created in local context
                 
                 // remove variable from current workspace (may delete current value)
                 // create empty variable and set pointer to "global" property
-                getLocalVariables().remove(name);
-                getLocalVariables().createVariable(name);
-                getLocalVariables().getVariable(name).setGlobal(true);
+                globals.getLocalVariables().remove(name);
+                globals.getLocalVariables().createVariable(name);
+                globals.getLocalVariables().getVariable(name).setGlobal(true);
 
-                getInterpreter().displayText("WARNING global: variable "+name+
+                globals.getInterpreter().displayText("WARNING global: variable "+name+
                   " already existed in the local workspace. \n"+
                   " It has been overwritten with the value from"+
                   " the global workspace.\n" +
@@ -67,8 +68,8 @@ public class global extends ExternalFunction
                 // variable is not yet created in local context
                 
                 // create empty variable and set "global" property
-                getLocalVariables().createVariable(name);
-                getLocalVariables().getVariable(name).setGlobal(true);
+                globals.getLocalVariables().createVariable(name);
+                globals.getLocalVariables().getVariable(name).setGlobal(true);
                 
             }
          }
@@ -77,28 +78,28 @@ public class global extends ExternalFunction
             // variable not yet created in global context
             
             // create variable in global context (data only in global context)
-            getGlobalVariables().createVariable(name);
-            getGlobalVariables().getVariable(name).setGlobal(true);                
+            globals.getGlobalVariables().createVariable(name);
+            globals.getGlobalVariables().getVariable(name).setGlobal(true);                
 
             // check if current context already contains variable
-            if (getLocalVariables().isVariable(name))
+            if (globals.getLocalVariables().isVariable(name))
             {
                 // current context already contains variable
-                Variable varCurrent = getLocalVariables().getVariable(name);
-                getGlobalVariables().getVariable(name).assign(varCurrent.getData());
+                Variable varCurrent = globals.getLocalVariables().getVariable(name);
+                globals.getGlobalVariables().getVariable(name).assign(varCurrent.getData());
                 
                 // remove variable, create new one and set variable to global
-                getLocalVariables().remove(name);
+                globals.getLocalVariables().remove(name);
             }
 
         }
 
         // create new variable in current context and set variable to global
-        getLocalVariables().createVariable(name);
-        getLocalVariables().getVariable(name).setGlobal(true);
+        globals.getLocalVariables().createVariable(name);
+        globals.getLocalVariables().getVariable(name).setGlobal(true);
 
-        debugLine("global:global var:"+name+" global="+getGlobalVariables().getVariable(name).isGlobal());
-        debugLine("global:local  var:"+name+" global="+getLocalVariables().getVariable(name).isGlobal());
+        debugLine("global:global var:"+name+" global="+globals.getGlobalVariables().getVariable(name).isGlobal());
+        debugLine("global:local  var:"+name+" global="+globals.getLocalVariables().getVariable(name).isGlobal());
        
         
         return null;

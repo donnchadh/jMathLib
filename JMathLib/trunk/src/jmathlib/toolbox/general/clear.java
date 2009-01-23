@@ -10,7 +10,7 @@ import jmathlib.core.functions.ExternalFunction;
 /**An external function for clearing stored variables*/
 public class clear extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		Variable var;
@@ -34,38 +34,38 @@ public class clear extends ExternalFunction
 		if (s.equals("variables"))
 		{
 		    // only clear local variables
-            getLocalVariables().clear();
+            globals.getLocalVariables().clear();
 		}
 		else if (s.equals("globals"))
 		{
 		    // clear global variables
-            getGlobalVariables().clear();
-            getLocalVariables().clear();
+		    globals.getGlobalVariables().clear();
+		    globals.getLocalVariables().clear();
             //TODO: when removing global variables also remove 
             //     pointers from local to global varaibles in "getLocalVariables"
 		}
 		else if (s.equals("functions"))
 		{
 		    // clear cache for m-files, class-files, script-files
-            getFunctionManager().clear();
+		    globals.getFunctionManager().clear();
 		}
 		else if (s.equals("all"))
 		{
 		    // clear everything
-		    getLocalVariables().clear();
-		    getGlobalVariables().clear();
-		    getFunctionManager().clear();
+		    globals.getLocalVariables().clear();
+		    globals.getGlobalVariables().clear();
+		    globals.getFunctionManager().clear();
 
 		}
 		else if (!s.equals(" "))
 		{
 			// remove one variable from local workspace
-			getLocalVariables().remove(s);
+		    globals.getLocalVariables().remove(s);
 		}
 		else
 		{
 		    // clear without any arguments only clears the local workspace
-		    getLocalVariables().clear();
+		    globals.getLocalVariables().clear();
 		}
 
 		return null;		

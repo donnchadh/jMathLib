@@ -5,6 +5,7 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for enabling/disabling of caching of p-files  */
 public class getpfilecaching extends ExternalFunction
@@ -12,12 +13,12 @@ public class getpfilecaching extends ExternalFunction
 	/**status of caching of p-files 
 	* @return whether or not caching of p-files is enabled/disabled 
     */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		if (getNArgIn(operands)!=0)
 			throwMathLibException("getPFileCaching: number of input arguments != 0");
 
-		boolean cachingEnabled = getFunctionManager().getPFileCaching();  	
+		boolean cachingEnabled = globals.getFunctionManager().getPFileCaching();  	
 
 		if (cachingEnabled)
 		    return new DoubleNumberToken(1);

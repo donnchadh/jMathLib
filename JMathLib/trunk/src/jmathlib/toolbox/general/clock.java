@@ -4,6 +4,8 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.util.Date;
 import java.util.Calendar;
 
@@ -12,7 +14,7 @@ public class clock extends ExternalFunction
 {
 	/**@return the current date and time as a 6 by 1 vector containing
 	[year month day hours minutes seconds]*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		Date now = new Date();
 		

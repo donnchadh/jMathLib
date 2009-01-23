@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to calculate the number of combinations
 when k objects are taken from a set of k*/
@@ -14,7 +15,7 @@ public class combinations extends ExternalFunction
 	@param operand[1] = The total number of objects
 	@return the number of combinations
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = new DoubleNumberToken(0);
 		

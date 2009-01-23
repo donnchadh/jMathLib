@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to create a vector of the prime
 factors of a number*/
@@ -11,7 +12,7 @@ public class factor extends ExternalFunction
 {
 	/**@param operands[0] = the number
 	@return a vector containing the prime factors*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		DoubleNumberToken result = null;
 

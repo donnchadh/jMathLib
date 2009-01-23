@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.functions.*;
 
 /**An external function to shift the bit pattern of a number*/
@@ -13,7 +14,7 @@ public class bitshift extends ExternalFunction
 	@param operands[0] - The number to shift
 	@param operands[1] - The number of binary places to shift
 	@return the result of the function as an OperandToken*/	
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         DoubleNumberToken result = DoubleNumberToken.zero;
         if (getNArgIn(operands) != 2)

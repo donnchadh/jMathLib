@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to calculate the nth fibonacci number*/
 public class fibonacci extends ExternalFunction
@@ -12,7 +13,7 @@ public class fibonacci extends ExternalFunction
 	@param operand[0] = The index of the Fibonacci number
 	@return the Fibonacci number
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		if (getNArgIn(operands) != 1)
 			throwMathLibException("fibonacci: number of arguments != 1");

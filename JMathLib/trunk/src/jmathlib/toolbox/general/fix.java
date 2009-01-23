@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 public class fix extends ExternalFunction
@@ -11,7 +12,7 @@ public class fix extends ExternalFunction
 	/**rounds the element to the nearest element towards zero.
 	@param operands[0] = value to round
 	@return a matrix of the same size as the operands*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		
         // exactly one operand

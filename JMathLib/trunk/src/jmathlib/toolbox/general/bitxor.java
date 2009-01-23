@@ -4,6 +4,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.functions.*;
 
 /**An external function to compute the binary exclusive or of two numbers*/
@@ -13,7 +14,7 @@ public class bitxor extends ExternalFunction
 	@param operands[0] - The first number
 	@param operands[1] - The second number
 	@return the result of the function as an OperandToken*/	
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         DoubleNumberToken result = DoubleNumberToken.zero;
         if (getNArgIn(operands) != 2)

@@ -4,6 +4,7 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to calculate the nth harmonic number*/
 public class harmonic extends ExternalFunction
@@ -12,7 +13,7 @@ public class harmonic extends ExternalFunction
 	@param operand[0] = The index of the harmonic number
 	@return the harmonic number
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		OperandToken result = new DoubleNumberToken(0);
 		if(operands.length >= 1 && operands[0] instanceof DoubleNumberToken)
