@@ -8,16 +8,31 @@ public class ErrorLogger extends RootObject
     /**stores the size of indent for the next line*/ 
     private static int indentSize = 0;
 
-
     /**flags wether text should be indented*/
     private static boolean displayIndent = false;
 
+    /**flag for logging mode of JMathLib*/
+    private static boolean debugB = false;
+    
+    /**@return the setting of the debug flag*/
+    public static boolean getDebug()
+    {
+        return debugB;
+    }
+    
+    /**sets the debug flag
+    @param _debug = should debug information be displayed*/
+    public static void setDebug(boolean _debug)
+    {
+        debugB = _debug;
+    }
+    
     /**display a debug line to the standard output and the file MathLib.log
        @param text = the text to display*/
     public static void debugLine(String text)
     {
 
-        if(getDebug())
+        if(debugB)
         {
             //if(displayIndent)
             //    text = text + ";" + indentSize;
@@ -33,9 +48,11 @@ public class ErrorLogger extends RootObject
             }
             catch(IOException error) 
             {
+                System.out.println("ERROR LOGGER: IOException");
             }
             catch(SecurityException error)
             {
+                System.out.println("ERROR LOGGER: SecurityException");
             }
     
             System.out.println(text);
