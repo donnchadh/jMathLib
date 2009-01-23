@@ -3,6 +3,8 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
 import java.awt.event.*;
 import jmathlib.ui.common.*;
 
@@ -13,12 +15,12 @@ public class kbhit extends ExternalFunction implements KeyListener
     boolean lock = false;
     
 	/** waits until a key is hit on the keyboard*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         
 	    lock =  true;
-  ((Console)(getInterpreter().getOutputPanel())).addKeyListener(this);  // this = null?
-  ((Console)getInterpreter().getOutputPanel()).displayText("asdfasdf");
+  ((Console)(globals.getInterpreter().getOutputPanel())).addKeyListener(this);  // this = null?
+  ((Console)globals.getInterpreter().getOutputPanel()).displayText("asdfasdf");
   
   
   

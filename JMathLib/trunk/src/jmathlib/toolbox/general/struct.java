@@ -12,7 +12,7 @@ public class struct extends ExternalFunction
     /**create a structure
     @param operands[n]   = name of field
     @param operands[n+1] = field value*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         MathLibObject obj;
         int length = operands.length;

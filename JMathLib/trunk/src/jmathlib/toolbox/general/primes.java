@@ -5,13 +5,14 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to create a vector of primes*/
 public class primes extends ExternalFunction
 {
 	/**@param operands[0] = the maximum number
 	@return a vector containing the prime values*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		DoubleNumberToken result = null;
         

@@ -7,6 +7,7 @@ package jmathlib.toolbox.general;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 public class ndims extends ExternalFunction
@@ -14,7 +15,7 @@ public class ndims extends ExternalFunction
 	/**returns the dimensions of an array 1,2,3,4-dimensional 
 
 	*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		if (getNArgIn(operands)!=1)

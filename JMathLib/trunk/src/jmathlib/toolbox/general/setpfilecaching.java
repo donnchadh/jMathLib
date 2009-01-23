@@ -5,6 +5,7 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for enabling/disabling of caching of p-files  */
 public class setpfilecaching extends ExternalFunction
@@ -12,7 +13,7 @@ public class setpfilecaching extends ExternalFunction
 	/**enable or disable caching of p-files 
 	* @param operands[0] 1, 0 , 'on', 'off' 
     */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		// one operand (e.g. setPFileCaching(1)
 		// one operand (e.g. setPFileCaching('on')
@@ -23,16 +24,16 @@ public class setpfilecaching extends ExternalFunction
 		if (operands[0] instanceof DoubleNumberToken)
 		{
 			if ( ((DoubleNumberToken)operands[0]).getValueRe()==0)
-				getFunctionManager().setPFileCaching(false);
+			    globals.getFunctionManager().setPFileCaching(false);
 			else
-				getFunctionManager().setPFileCaching(true);  	
+			    globals.getFunctionManager().setPFileCaching(true);  	
 		}
 		else if (operands[0] instanceof CharToken)
 		{
 			if ( ((CharToken)operands[0]).getValue().equals("on"))
-				getFunctionManager().setPFileCaching(true);
+			    globals.getFunctionManager().setPFileCaching(true);
 			else
-				getFunctionManager().setPFileCaching(false);  	
+			    globals.getFunctionManager().setPFileCaching(false);  	
 		}
        
 		return null;

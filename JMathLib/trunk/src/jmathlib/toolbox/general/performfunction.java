@@ -5,13 +5,14 @@ import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.FunctionToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**An external function for performing functions*/
 public class performfunction extends ExternalFunction
 {
 	/**Perform the named function on the operands
 	@param operand[0] = the name of the function*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 		FunctionToken function = null;
 
@@ -38,7 +39,7 @@ public class performfunction extends ExternalFunction
 		
         function.setOperands(op);
         
-		return function.evaluate(null);
+		return function.evaluate(null, globals);
 	}
 }
 
