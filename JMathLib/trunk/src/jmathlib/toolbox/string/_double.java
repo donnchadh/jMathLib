@@ -7,6 +7,7 @@ package jmathlib.toolbox.string;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 /**An external function for changing strings into numbers */
@@ -15,14 +16,14 @@ public class _double extends ExternalFunction
     /**returns a matrix of numbers 
     * @param operands[0] = string (e.g. ["hello"]) 
     * @return a matrix of numbers                                */
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
         // one operand 
         if (getNArgIn(operands)!=1)
             throwMathLibException("_double: number of input arguments != 1");
 
-        if ( (operands[0] instanceof CharToken))
+        if (operands[0] instanceof CharToken)
         {
             // get data from arguments
             String stringValue = ((CharToken)operands[0]).getValue();
@@ -40,7 +41,7 @@ public class _double extends ExternalFunction
     
             return new DoubleNumberToken( X );
         }
-        else if ( (operands[0] instanceof Int8NumberToken))
+        else if (operands[0] instanceof Int8NumberToken)
         {
             Int8NumberToken tok = (Int8NumberToken)operands[0];
 
@@ -54,7 +55,7 @@ public class _double extends ExternalFunction
             return d;
             
         }
-        else if ( (operands[0] instanceof UInt8NumberToken))
+        else if (operands[0] instanceof UInt8NumberToken)
         {
             UInt8NumberToken tok = (UInt8NumberToken)operands[0];
 
@@ -68,7 +69,7 @@ public class _double extends ExternalFunction
             return d;
             
         }
-        else if ( (operands[0] instanceof DoubleNumberToken))
+        else if (operands[0] instanceof DoubleNumberToken)
         {
             return (DoubleNumberToken)operands[0];
         }
@@ -97,5 +98,5 @@ str2num("hello 12")  returns [104, 101, 108, 108, 111, 32, 49, 50]
 @NOTES
 
 @SEE
-num2str
+num2str, char
 */

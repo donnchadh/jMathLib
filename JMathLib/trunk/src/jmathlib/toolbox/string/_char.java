@@ -4,12 +4,13 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.numbertokens.*;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.CharToken;
 
 /**An external function for changing numbers into strings*/
 public class _char extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         // one operand 
@@ -37,7 +38,7 @@ public class _char extends ExternalFunction
         }
         catch (Exception e)
         {
-            throwMathLibException("_char: exceptiion");
+            throwMathLibException("_char: exception");
         }
 
         return new CharToken(data);		
