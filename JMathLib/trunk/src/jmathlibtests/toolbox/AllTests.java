@@ -49,6 +49,7 @@ public class AllTests {
         //suite.addTest(jmathlibtests.toolbox.symbolic.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.test.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.time.AllTests.suite());
+        suite.addTest(jmathlibtests.toolbox.toolbox_skeleton.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.trigonometric.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.video.AllTests.suite());
         
