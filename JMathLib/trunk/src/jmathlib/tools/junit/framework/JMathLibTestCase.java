@@ -41,6 +41,12 @@ public class JMathLibTestCase extends TestCase
         
     }
 
+    public void assertEvalScalarEquals(String func, String var, boolean b)
+    {
+        ml.executeExpression(func);
+        boolean ansRe = ml.getScalarValueBoolean(var);        
+        assertEquals(ansRe, b);
+    }
 
     public void assertScalarEquals(String var, double varRe )
     {
