@@ -7,6 +7,7 @@ package jmathlib.toolbox.funfun;
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 /**An external function for computing a mesh of a matrix  */
@@ -15,7 +16,7 @@ public class euler extends ExternalFunction
 	/**integrates a "function" using the euler forward integration method
     *     [t,y] = euler (function, [t0 tf], y0, dt) 
     */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// [t,y] = euler (function, [t0 tf], y0, dt)
@@ -96,7 +97,7 @@ public class euler extends ExternalFunction
             function.setOperands(op);
         
             //evaluate function
-            OperandToken result =  function.evaluate(null);
+            OperandToken result =  function.evaluate(null, globals);
         
             // retrieve output vector of integration
             if ( !(result instanceof DoubleNumberToken) )
