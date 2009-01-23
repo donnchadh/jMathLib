@@ -48,5 +48,6 @@ Switches debug output on or off
 setdebug(1) turns debug output on
 setdebug(0) turns debug output off
 @SEE
+getdebug
 */
 
