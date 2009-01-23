@@ -5,13 +5,14 @@ import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.FunctionHandleToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /**External function to check if an argument is of type function hanlde*/
 public class isfunctionhandle extends ExternalFunction
 {
 	/**@param operands[0] = a matrix of numbers
 	@return a matrix the same size with 1 if the number is a prime*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         if (getNArgIn(operands) != 1)
 			throwMathLibException("isfunctionhandle: number of arguments != 1");

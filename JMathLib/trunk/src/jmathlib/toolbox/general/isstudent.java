@@ -4,13 +4,14 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.Token;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 /** */
 public class isstudent extends ExternalFunction
 {
 	/**@param operands[0] = a matrix of numbers
 	@return a matrix the same size with 1 if the number is a prime*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         if (getNArgIn(operands) != 0)
 			throwMathLibException("isstudent: number of arguments != 0");

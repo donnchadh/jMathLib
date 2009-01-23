@@ -2,12 +2,12 @@ package jmathlib.toolbox.general;
 
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
 
 public class isa extends ExternalFunction
 {
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
         if (getNArgIn(operands) != 2)
