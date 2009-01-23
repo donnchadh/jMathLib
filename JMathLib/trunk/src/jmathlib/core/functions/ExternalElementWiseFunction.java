@@ -1,5 +1,15 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  Stefan Mueller (stefan@held-mueller.de) 
+ * (c) 2008, 2009   
+ */
+
 package jmathlib.core.functions;
 
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.Token;
@@ -11,9 +21,10 @@ abstract public class ExternalElementWiseFunction extends ExternalFunction
     /**
      *  standard function for evaluation of general external functions
      *  @param operands
+     *  @param pointer to the global values (interpreter, function manager, graphics,...)
      *  @return 
      */
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
         // function works for one argument only
