@@ -18,7 +18,9 @@ public class AllTests {
 		// none
         
 	    /* include tests in this directory here */
-		suite.addTest(jmathlibtests.toolbox.jmathlib.system.testUsage.suite());
+		suite.addTest(jmathlibtests.toolbox.jmathlib.system.testGetDebug.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.system.testSetDebug.suite());
+        suite.addTest(jmathlibtests.toolbox.jmathlib.system.testUsage.suite());
 
 	    return suite;
 	}
