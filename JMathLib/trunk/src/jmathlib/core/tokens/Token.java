@@ -14,26 +14,31 @@ abstract public class Token extends RootObject implements TokenConstants
        displayed at the prompt */
     private boolean displayResultSwitch = false;
 
-    /**Default Constructor - create a token with the type not set*/
+    /**Default Constructor - create a token with the type not set
+     */
     public Token()
     {
         priority = 0;
     }
 
     /**Constructor 
-    @param _priority = priority of token
-    @param _type = the type of token being created*/
+     * @param _priority = priority of token
+     */
     public Token(int _priority)
     {
         priority = _priority;
     }
 
     /**evaluate the token
-       @param operands = an array of RootObject containing the tokens operands
-       @return the result of the token evaluation as a RootObject*/
-    public abstract OperandToken evaluate(Token[] operands);
+     * @param operands = an array of RootObject containing the tokens operands
+     * @param 
+     * @return the result of the token evaluation as a RootObject
+     * */
+    public abstract OperandToken evaluate(Token[] operands, GlobalValues globals);
     
-    /**@return a string representation of the token*/
+    /**
+     * @return a string representation of the token
+     */
     abstract public String toString();
 
     /**Converts the token to its MathML representation. At the moment this is unimplemented and just
@@ -49,7 +54,9 @@ abstract public class Token extends RootObject implements TokenConstants
     	displayResultSwitch = _displayResultSwitch;
     }
     
-    /** return if the display flag for a given token is set */
+    /** return if the display flag for a given token is set 
+     * @return
+     */
     public boolean isDisplayResult()
     {
     	return displayResultSwitch;
