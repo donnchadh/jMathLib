@@ -25,6 +25,7 @@ public class AllTests {
         suite.addTest(jmathlibtests.toolbox.ftp.AllTests.suite());
         suite.addTest(jmathlibtests.toolbox.funfun.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.general.AllTests.suite());
+        suite.addTest(jmathlibtests.toolbox.help.AllTests.suite());
         suite.addTest(jmathlibtests.toolbox.image.AllTests.suite());
 		//suite.addTest(jmathlibtests.toolbox.GuiTools.AllTests.suite());
 		suite.addTest(jmathlibtests.toolbox.io.AllTests.suite());
