@@ -28,7 +28,7 @@ public class subassign extends ExternalFunction
      a = subassign(a,b,:,2)      assigns b as the second column of a,
      a = subassign(a,b,2:3,0:2)  assigns b as a 2-by-3 submatrix of a,
 	 a = subassign(a,b,2) returns the first element of the second row of a*/
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
         DataToken retToken = null;
 
@@ -178,7 +178,7 @@ public class subassign extends ExternalFunction
                 throwMathLibException("SubMatrix: colon wrong number of childs");
 
             // evaluate new colon expression
-            colonOp = colonOp.evaluate(null);
+            colonOp = colonOp.evaluate(null, globals);
             
             if ( !(colonOp instanceof DoubleNumberToken))
                 throwMathLibException("SubMatrix: colon error wrong type");
@@ -280,7 +280,7 @@ public class subassign extends ExternalFunction
                     throwMathLibException("SubMatrix: colon wrong number of childs");
         
                 // evaluate new colon expression
-                colonOp = colonOp.evaluate(null);
+                colonOp = colonOp.evaluate(null, globals);
                 
                 if ( !(colonOp instanceof DoubleNumberToken))
                     throwMathLibException("SubMatrix: colon error wrong type");

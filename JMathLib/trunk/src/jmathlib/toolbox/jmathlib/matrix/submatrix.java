@@ -34,7 +34,7 @@ public class submatrix extends ExternalFunction
      then  submatrix(a,:)     return [1,2,3,4,5,6,7,8,9...]' column     <br>
          (also see subassign() )
      */
-	public OperandToken evaluate(Token[] operands)
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
 	{
 
 		// at least two operands (e.g. submatrix(a,2) )
@@ -176,7 +176,7 @@ public class submatrix extends ExternalFunction
                 throwMathLibException("SubMatrix: colon wrong number of childs");
 
             // evaluate new colon expression
-            colonOp = colonOp.evaluate(null);
+            colonOp = colonOp.evaluate(null, globals);
             
             if ( !(colonOp instanceof DoubleNumberToken))
                 throwMathLibException("SubMatrix: colon error wrong type");
@@ -334,7 +334,7 @@ public class submatrix extends ExternalFunction
                 throwMathLibException("SubMatrix: colon wrong number of childs");
     
             // evaluate new colon expression
-            colonOp = colonOp.evaluate(null);
+            colonOp = colonOp.evaluate(null, globals);
             
             if ( !(colonOp instanceof DoubleNumberToken))
                 throwMathLibException("SubMatrix: colon error wrong type");
