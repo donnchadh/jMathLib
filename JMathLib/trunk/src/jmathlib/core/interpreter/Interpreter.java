@@ -1,4 +1,13 @@
-package jmathlib.core.interpreter;
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2002-2009   
+ */
+ 
+ package jmathlib.core.interpreter;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
@@ -7,13 +16,16 @@ import java.applet.Applet;
 
 /**This is the main interface for the program. Any interface to the MathLib program would access
 it through the functions exposed by this class.*/
-public class Interpreter extends RootObject
+public class Interpreter 
 {
     /**Is the class being called from an application or an applet*/
     boolean runningStandalone;
 
     /**panel used for displaying text*/
     private MathLibOutput outputPanel;
+    
+    /**global pointers and values */
+    public GlobalValues globals = null;
     
     /**for testing purposes additional throwing of errors can be enables */
     public boolean throwErrorsB = false;
@@ -22,23 +34,27 @@ public class Interpreter extends RootObject
     public Preferences prefs = new Preferences();
     
     /**Constructs the interpreter and sets the constants
-	@param _runningStandalone = true if this is being used from an application */
+	 * @param _runningStandalone = true if this is being used from an application 
+	 */
     public Interpreter(boolean _runningStandalone)
     {
     	this(_runningStandalone, null);
     }
  
     /**Constructs the interpreter and sets the constants
-       @param _runningStandalone = true if this is being used from an application
-       @param _applet pointer to applet structure if this is an applet and not an
-       application*/	
+     * @param _runningStandalone = true if this is being used from an application
+     * @param _applet pointer to applet structure if this is an applet and not an
+     *         application
+     */	
     public Interpreter(boolean _runningStandalone, Applet _applet)
     {
     	runningStandalone = _runningStandalone;
         
-        setConstants(runningStandalone, this, _applet);
+    	// initialize global pointers, this pointer will be passed to
+    	//  all expressions for access to function manager, variable lists, contexts,...
+    	globals = new GlobalValues(this, runningStandalone, _applet);;
 
-	    outputPanel = null;
+    	outputPanel = null;
 
 	    // read preferences from a file on the disc or on the web
 	    prefs.loadPropertiesFromFile();
@@ -46,29 +62,33 @@ public class Interpreter extends RootObject
     }
     
     /**sets the panel to write any text to
-       @param _outputPanel = the panel to write to, must implement the
-       MathLibOutput interface*/
+     * @param _outputPanel = the panel to write to, must implement the
+     *         MathLibOutput interface
+     */
     public void setOutputPanel(MathLibOutput _outputPanel)
     {
 	    outputPanel = _outputPanel;
     }
 
     /**returns the panel to write any text to
-       @return outputPanel = the panel to write to*/
+     * @return outputPanel = the panel to write to
+     */
     public MathLibOutput getOutputPanel()
     {
 	    return outputPanel;
     }
 
     /**displays a string to the outputPanel
-       @param text = the text to display*/
+     *  @param text = the text to display
+     */
     public void displayText(String text)
     {
 	    if(outputPanel != null)
 	        outputPanel.displayText(text);
     }
 	
-    /**saves the variable list*/
+    /**saves the variable list
+     */
     public void save() 
     {
 	    if(runningStandalone)
@@ -81,8 +101,9 @@ public class Interpreter extends RootObject
     }
 	
     /**execute a single line.
-    @param expression = the line to execute
-    @return the result as a String*/
+     * @param expression = the line to execute
+     * @return the result as a String
+     */
     public String executeExpression(String expression)
     {    	
         String answer = "";
@@ -91,7 +112,7 @@ public class Interpreter extends RootObject
         // if required rehash m-files
         if(runningStandalone)
         {
-            getFunctionManager().checkAndRehashTimeStamps();
+            globals.getFunctionManager().checkAndRehashTimeStamps();
         }        
 
         try
@@ -105,7 +126,9 @@ public class Interpreter extends RootObject
 	        // evaluate tree of expressions
             OperandToken answerToken = null;
             if (expressionTree!=null)
-            	answerToken = expressionTree.evaluate(null);
+            {
+                answerToken = expressionTree.evaluate(null, globals);
+            }
 			
             //getVariables().listVariables();
         }
@@ -121,7 +144,7 @@ public class Interpreter extends RootObject
             ErrorLogger.debugLine(answer);
         	
             // save last error to special variable
-            Variable var = createVariable("lasterror");
+            Variable var = globals.createVariable("lasterror");
 	        var.assign(new CharToken(answer));
             
 	        // rethrow erros if enabled
@@ -140,7 +163,7 @@ public class Interpreter extends RootObject
             }
 
             // save last error to special variable
-            Variable var = createVariable("lasterror");
+            Variable var = globals.createVariable("lasterror");
             var.assign(new CharToken(answer));	
         }
 
@@ -149,13 +172,13 @@ public class Interpreter extends RootObject
     }
 
     /**get the real part of a scalar variable 
-    @param name = name of the scalar variable
-    @return numerical value of the variable */
+     * @param name = name of the scalar variable
+     * @return numerical value of the variable 
+     */
     public double getScalarValueRe(String name)
     {
 	    // get variable from variable list		 
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
 				    	
         // check if variable is already set
         if (variableData == null) return 0.0;
@@ -173,13 +196,13 @@ public class Interpreter extends RootObject
     }
 
     /**get the imaginary part of a scalar variable 
-    @param name = name of the scalar variable
-    @return numerical value of the variable */
+     * @param name = name of the scalar variable
+     * @return numerical value of the variable 
+     */
     public double getScalarValueIm(String name)
     {
 		// get variable from variable list		 
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
         		    	
         // check if variable is already set
         if (variableData == null) return 0.0;
@@ -204,8 +227,7 @@ public class Interpreter extends RootObject
     public boolean getScalarValueBoolean(String name)
     {
         // get variable from variable list       
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
                         
         // check if variable is already set
         if (variableData == null) return false;
@@ -223,13 +245,13 @@ public class Interpreter extends RootObject
     }
 
     /**get the real values of a an array 
-    @param name = name of the array
-    @return numerical value of the array */
+     * @param name = name of the array
+     * @return numerical value of the array 
+     */
     public double[][] getArrayValueRe(String name)
     {
         // get variable from variable list		 
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
 				    	
         // check if variable is already set
         if (variableData == null) return null;
@@ -244,13 +266,13 @@ public class Interpreter extends RootObject
     }
     
     /**get the imaginary values of a an array 
-    @param name = name of the array
-    @return numerical value of the array */
+     * @param name = name of the array
+     * @return numerical value of the array 
+     */
     public double[][] getArrayValueIm(String name)
 	{
         // get variable from variable list		 
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
 				    	
         // check if variable is already set
         if (variableData == null) return null;
@@ -272,8 +294,7 @@ public class Interpreter extends RootObject
     public boolean[][] getArrayValueBoolean(String name)
     {
         // get variable from variable list       
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        OperandToken variableData = globals.getVariable(name).getData(); 
                         
         // check if variable is already set
         if (variableData == null) return null;
@@ -296,35 +317,34 @@ public class Interpreter extends RootObject
     {
         // Create variable. In case variable is already created it will
         // return the current variable
-        Variable answervar =  createVariable(name);
+        Variable answervar =  globals.createVariable(name);
 
         // assign value to variable
         answervar.assign(new DoubleNumberToken(valueRe, valueIm));
     }
     
     /** Store an array variable in jmathlib's workspace
-    * @param name    = name of the array
-    * @param valueRe = real values of the array
-    * @param valueIM = imaginary values of the array
-    */
+     * @param name    = name of the array
+     * @param valueRe = real values of the array
+     * @param valueIM = imaginary values of the array
+     */
     public void setArray(String name, double[][] valueRe, double[][] valueIm)
     {
         // Create variable. In case variable is already created it will
         // return the current variable
-        Variable answervar = createVariable(name);
+        Variable answervar = globals.createVariable(name);
 
         // assign value to variable
         answervar.assign(new DoubleNumberToken(valueRe, valueIm));
     }
 
     /** Return the result of the last calculation
-    * @return a string containing the last result
-    */
+     * @return a string containing the last result
+     */
     public String getResult()
     {
         // get variable from variable list		 
-        //OperandToken variableData = getVariables().getVariable("ans").getData(); 
-        OperandToken variableData = getVariable("ans").getData(); 
+        OperandToken variableData = globals.getVariable("ans").getData(); 
 				    	
         // check if variable is already set
         if (variableData == null) return "";
@@ -333,13 +353,12 @@ public class Interpreter extends RootObject
     }
 
     /** Return the result of the last calculation
-    * @return a string containing the last result
-    */
+     * @return a string containing the last result
+     */
     public String getString(String name)
     {
-        //      get variable from variable list      
-        //OperandToken variableData = getVariables().getVariable(name).getData(); 
-        OperandToken variableData = getVariable(name).getData(); 
+        // get variable from variable list      
+        OperandToken variableData = globals.getVariable(name).getData(); 
                         
         // check if variable is already set
         if (variableData == null) return "";
