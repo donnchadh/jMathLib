@@ -27,18 +27,20 @@ abstract public class Function extends RootObject
 	}
 
 	/**Creates a function called _name
-	@param _name = the name of the function*/
+	 * @param _name = the name of the function
+	 */
 	public Function(String _name)
 	{
 		name = _name;
 	}
 
-    /**@return the name of the function*/
+    /**
+     * @return the name of the function
+     */
     public String getName()
     {
         return name;
     }
-
 
     /**
      * sets the path and filename that belongs to this functions 
@@ -77,33 +79,37 @@ abstract public class Function extends RootObject
     }
 
     /**Sets the name of this function
-    @param name = name of this function */
+     * @param name = name of this function 
+     */
 	public void setName(String _name)
 	{
 	    name = _name;
 	}  
  
 	/**Returns the number of left-hand arguments of the function 
-	 (e.g.) [a,b,c]=some_function will return "3"              
-	 @return the number of left hand arguments*/
+	 * (e.g.) [a,b,c]=some_function will return "3"              
+	 * @return the number of left hand arguments
+	 */
 	public int getNoOfLeftHandArguments()
 	{
 		return nargout;
 	}
 
 	/**Returns the number of left-hand arguments of the function 
-	 (e.g.) [a,b,c]=some_function will return "3"              
-	 @return the number of left hand arguments*/
+	 * (e.g.) [a,b,c]=some_function will return "3"              
+	 * @return the number of left hand arguments
+	 */
 	protected int getNArgOut()
 	{
 		return nargout;
 	}
 
 	/**Returns the number of right-hand arguments of the function
-      (e.g.: a=some_function(a,b,c,d) will return "4"
-      @return number of right hand arguments. Returns -1 if there
-              are no right hand arguments. Returns also -1 if there
-              if one argument==null  */
+     * (e.g.: a=some_function(a,b,c,d) will return "4"
+     * @return number of right hand arguments. Returns -1 if there
+     *         are no right hand arguments. Returns also -1 if there
+     *         if one argument==null  
+     */
 	protected int getNArgIn(Token[] operands)
 	{
 		// Check if there are arguments at all
@@ -114,8 +120,9 @@ abstract public class Function extends RootObject
 	}
 
 	/**Sets the number of left-hand arguments of the function    
-	 (e.g.) [a,b,c]=some_function will return set a "3"        
-	@param _number = the number of left hand arguments*/
+	 * (e.g.) [a,b,c]=some_function will return set a "3"        
+     * @param _number = the number of left hand arguments
+     */
 	public void setNoOfLeftHandArguments(int _number)
 	{
 		nargout = _number;
@@ -123,27 +130,36 @@ abstract public class Function extends RootObject
 
 
 	/**Tests if an object is equal to this function
-		if obj is an instance of Function or Function token then it
-		compares the name of obj to the functions name otherwise it
-		calls the superclasses version
-		@param obj = object to test
-		@return true if the objects are equal*/
+     * if obj is an instance of Function or Function token then it
+     * compares the name of obj to the functions name otherwise it
+     * calls the superclasses version
+     * @param obj = object to test
+     * @return true if the objects are equal
+     */
 	public boolean equals(Object obj)
 	{
 		boolean equal = false;
 		if(obj instanceof Function)
-			equal = ((Function)obj).getName().toUpperCase() == name.toUpperCase();
+		{
+			equal = ((Function)obj).getName() == name;
+		}
 		else if(obj instanceof FunctionToken)
-			equal = ((FunctionToken)obj).getName().toUpperCase() == name.toUpperCase();
+		{
+		    equal = ((FunctionToken)obj).getName() == name;
+		}
 		else
-			equal = super.equals(obj);
+		{
+		    equal = super.equals(obj);
+		}
 		return equal;
 	}
 
 	/**Executes the function
-		@param operands - an array of the functions paramaters
-		@return the result as an OperandToken*/
-	abstract public OperandToken evaluate(Token[] operands);
+	 * @param operands - an array of the functions paramaters
+	 * @param globals TODO
+	 * @return the result as an OperandToken
+	 */
+	abstract public OperandToken evaluate(Token[] operands, GlobalValues globals);
 
     /**Throws arithmetic exception for external functions
      * @param error text to display
@@ -154,7 +170,6 @@ abstract public class Function extends RootObject
     }
     
     /** write debug line to std-out and file
-     * 
      * @param s
      */
     public void debugLine(String s)
