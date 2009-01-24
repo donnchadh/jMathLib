@@ -8,7 +8,8 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 public class UnaryOperatorToken extends OperatorToken
 {
     /**Constructor taking the operator and priority
-    @param _operator = the operator being constructed */
+     * @param _operator = the operator being constructed 
+     */
     public UnaryOperatorToken(char _operator) 
     {
     	/**call the super constructor, type defaults to ttoperator and operands to 1*/
@@ -19,7 +20,7 @@ public class UnaryOperatorToken extends OperatorToken
     /**evaluate the operator
     @param operands = the operator operands
     @return the result as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         OperandToken result = null;
 
@@ -51,7 +52,7 @@ public class UnaryOperatorToken extends OperatorToken
                 if(operand instanceof VariableToken)
                 {
                     // first: evaluate and return original value variable
-                    result = operand.evaluate(null);
+                    result = operand.evaluate(null, globals);
                     
                     // second: decrease variable
                     OperandToken op = result.subtract(new DoubleNumberToken(1));
@@ -59,7 +60,7 @@ public class UnaryOperatorToken extends OperatorToken
                     // save new variable value
                     String variable = ((VariableToken)operand).getName();
                     //getVariables().getVariable(variable).assign(op);
-                    getVariable(variable).assign(op);
+                    globals.getVariable(variable).assign(op);
                 }
                 else if(operand instanceof NumberToken)
                 {
@@ -79,7 +80,7 @@ public class UnaryOperatorToken extends OperatorToken
                 if(operand instanceof VariableToken)
                 {    
                     // first: evaluate and return original value variable
-            		result = operand.evaluate(null);
+            		result = operand.evaluate(null, globals);
             		
             		// second: increase variable
                     OperandToken op = result.add(new DoubleNumberToken(1));
@@ -87,7 +88,7 @@ public class UnaryOperatorToken extends OperatorToken
                     // save new variable value
                     String variable = ((VariableToken)operand).getName();
             		//getVariables().getVariable(variable).assign(op);
-                    getVariable(variable).assign(op);
+                    globals.getVariable(variable).assign(op);
                 }
                 else if(operand instanceof NumberToken)
                 {
@@ -113,7 +114,9 @@ public class UnaryOperatorToken extends OperatorToken
         return result;
     }
 
-    /**@return the operator as a string*/
+    /**
+     * @return the operator as a string
+     */
     public String toString()
     {
         if (value=='-')
