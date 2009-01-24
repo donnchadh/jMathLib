@@ -27,7 +27,8 @@ public class FunctionToken extends OperandToken
     public boolean evaluationLockB = false;
     
     /**constructor for function tokens
-    @param _name = the name of the function*/
+     * @param _name = the name of the function
+     */
     public FunctionToken(String _name)
     {
         name = _name;
@@ -64,19 +65,10 @@ public class FunctionToken extends OperandToken
         noOfLeftHandArguments = _number;
     }
 
-    /**Return number of arguments (size of operands[]) 
-    @return operands.length number or operands*/
-    //  public int getNumberOfArguments()
-    //{
-    //    if (operands != null)
-    //        return operands.length;
-    //    else
-    //        return 0;
-    //}
-    
     /**Return one of the operands
-    @param index    = index of operand 
-    @return operand = requested operand     */
+     * @param index    = index of operand 
+     * @return operand = requested operand
+     */
     public OperandToken getOperand(int index)
     {
         if (operands == null)
@@ -111,14 +103,18 @@ public class FunctionToken extends OperandToken
     }
 
     /**Executes the function referenced by this token
-    @param operands = the functions operands
-    @return the result of the function as an OperandToken*/
-    public OperandToken evaluate(Token[] _operands)
+     * @param operands = the functions operands
+     * @param
+     * @return the result of the function as an OperandToken
+     */
+    public OperandToken evaluate(Token[] _operands, GlobalValues globals)
     {
         Function     function = null;
         OperandToken result   = null;
         ErrorLogger.debugLine("FunctionToken: eval "+name);
             
+        //setGlobals(globals);
+        
         // special handling for "return" function
         //  throw control exception
         if (name.equals("return"))
@@ -129,7 +125,7 @@ public class FunctionToken extends OperandToken
         
         // check if the function is overloaded by a variable name
         //if( getVariables().getVariable(name) != null)
-        if( getVariable(name) != null)
+        if( globals.getVariable(name) != null)
         {
             // Variable overloads function 
             ErrorLogger.debugLine("FunctionToken: eval: variable overloads function");
@@ -138,14 +134,14 @@ public class FunctionToken extends OperandToken
             VariableToken  varToken = new VariableToken(name, operands);
          
             // evaluate variable with limits and return result
-            return varToken.evaluate(null); 
+            return varToken.evaluate(null, globals); 
         }
     
         // Function is not overloaded by a variable
         // Now try to find the function
         try
         {
-            function = getFunctionManager().findFunction(this);
+            function = globals.getFunctionManager().findFunction(this);
         }
         catch(Exception exception)
         {
@@ -172,7 +168,7 @@ public class FunctionToken extends OperandToken
             {
                 for (int i=0; i<operands.length; i++)
                 {
-                    operands[i]=operands[i].evaluate(null);
+                    operands[i]=operands[i].evaluate(null, globals);
                 }
             }
             
@@ -180,9 +176,9 @@ public class FunctionToken extends OperandToken
             // If the function if of type UserFunction it has to be cloned so that
             //    the original m-function or m-script stays untouched
             if (function instanceof UserFunction)
-                result = ((Function)function.clone()).evaluate(operands);
+                result = ((Function)function.clone()).evaluate(operands, globals);
             else
-                result = function.evaluate(operands);
+                result = function.evaluate(operands, globals);
             
             // remember that this function has been evaluated
             // (important for functions which are overloading variables (e.g. who ))
@@ -201,7 +197,6 @@ public class FunctionToken extends OperandToken
             return result;
         } // end function!=null
             
-        ErrorLogger.debugLine("FunctionToken: function not found ");
         Errors.throwMathLibException("FunctionToken: undefinded variable or function "+name);
         return result;
     } // end evaluate
