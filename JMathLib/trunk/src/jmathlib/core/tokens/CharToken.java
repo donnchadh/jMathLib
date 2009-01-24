@@ -1,6 +1,7 @@
 package jmathlib.core.tokens;
 
 import jmathlib.core.interpreter.*;
+import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
 /**Class used to represent any strings used in an expression*/
 public class CharToken extends DataToken
@@ -121,6 +122,31 @@ public class CharToken extends DataToken
     }
 
     /**
+     * cast all char-values into double-array
+     * @return
+     */
+    public double[][] getValuesRe()
+    {
+        // in case char-array is empty return null
+        if ((sizeY==0) && (sizeX==0))
+            return null;        
+
+        // create empty return array
+        double[][] d = new double[sizeY][sizeX];
+
+        // convert array of byte to array of double
+        for (int y=0; y<sizeY; y++)
+        {
+            for (int x=0; x<sizeX; x++)
+            {
+                d[y][x]= (double)values[y][x];
+            }
+        } 
+
+        return d;
+    }
+    
+    /**
      * @param
      * @param
      */
@@ -161,10 +187,25 @@ public class CharToken extends DataToken
     	if (sizeY!=1)
             Errors.throwMathLibException("CharToken: add not supported");
         
-        String answer = new String(values[0]) + arg.toString();
-        values[0] = answer.toCharArray();
-        sizeX     = values[0].length;
-        return new CharToken(answer);
+    	if (arg instanceof CharToken)
+    	{
+            String answer = new String(values[0]) + arg.toString();
+            values[0] = answer.toCharArray();
+            sizeX     = values[0].length;
+            return new CharToken(answer);
+    	    
+    	}
+    	else if (arg instanceof DoubleNumberToken)
+    	{
+    	    double[][] d = getValuesRe();
+
+            DoubleNumberToken num = new DoubleNumberToken(d);
+
+            return arg.add(num);
+    	}
+        
+        Errors.throwMathLibException("DoubleNumberToken: add: no number");
+        return null;
     }
     
   }

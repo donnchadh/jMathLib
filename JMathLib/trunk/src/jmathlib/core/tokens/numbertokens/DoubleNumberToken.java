@@ -6,8 +6,6 @@ import jmathlib.core.tokens.DataToken;
 import jmathlib.core.tokens.NumberToken;
 import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
-import jmathlib.toolbox.string._double;
-
 
 public class DoubleNumberToken extends NumberToken
 {            
@@ -104,8 +102,9 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**Constructor taking the numbers value as two double[][]
-    @param _real = the numbers value as a 2D array of double
-    @param _imaginary = the numbers value as a 2D array of double*/
+     * @param _real = the numbers value as a 2D array of double
+     * @param _imaginary = the numbers value as a 2D array of double
+     */
     public DoubleNumberToken(double[][] _real, double[][] _imaginary)
     {
         super(5, "double");
@@ -142,7 +141,8 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**Constructor taking the numbers value as a double[][][]
-       @param _values = the numbers value as a 3D array of double*/
+     * @param _values = the numbers value as a 3D array of double
+     */
     public DoubleNumberToken(double[][][] _values)
     {
         super(5, "double");
@@ -253,7 +253,9 @@ public class DoubleNumberToken extends NumberToken
 
 
     /** return a new Number Token of size y*x
-     * 
+     * @param x
+     * @param y
+     * @return
      */
     public DataToken getElementSized(int y, int x)
     {
@@ -293,14 +295,15 @@ public class DoubleNumberToken extends NumberToken
         noElem = sizeY * sizeX;
     } // end setSize
 
-    /**@return the real value of the first number*/
+    /**
+     * @return the real value of the first number
+     */
     public double getValueRe()
     {
         return getValueRe(0);
     }
 
     /**
-     * 
      * @param y
      * @param x
      * @return the real value of the number at position y, x
@@ -311,7 +314,6 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**
-     * 
      * @param index
      * @return
      */
@@ -321,7 +323,6 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**
-     * 
      * @param n
      * @return
      */
@@ -330,28 +331,36 @@ public class DoubleNumberToken extends NumberToken
         return values[n][REAL];
     }
 
-
-    /**@return the real value of the number at position y, x as an integer*/
+    /**
+     * @param y
+     * @param x
+     * @return the real value of the number at position y, x as an integer
+     */
     public int getIntValue(int y, int x)
     {
         double temp = getValueRe( yx2n(y,x) );
         return (new Double(temp)).intValue();
     }
     
-    /**@return the imaginary value of the first number*/
+    /**
+     * @return the imaginary value of the first number
+     */
     public double getValueIm()
     {
         return getValueIm(0);
     }
 
-    /**@return the imaginary value of the number at position y, x*/
+    /**
+     * @param y
+     * @param x
+     * @return the imaginary value of the number at position y, x
+     */
     public double getValueIm(int y, int x)
     {
         return getValueIm( yx2n(y,x) );
     }
     
     /**
-     * 
      * @param index
      * @return
      */
@@ -361,7 +370,6 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**
-     * 
      * @param n
      * @return
      */
@@ -371,7 +379,11 @@ public class DoubleNumberToken extends NumberToken
     }
 
     
-    /**@return the absolute value of the number at position y, x*/
+    /**
+     * @param y
+     * @param x
+     * @return the absolute value of the number at position y, x
+     * */
     public double getValueAbs(int y, int x)
     {
         int n = yx2n(y,x);
@@ -379,15 +391,20 @@ public class DoubleNumberToken extends NumberToken
         return Math.sqrt(temp);
     }
 
-    /**@return the angle of the number at position y, x in radians*/
+    /**
+     * @param y
+     * @param x
+     * @return the angle of the number at position y, x in radians
+     */
     public double getValueArg(int y, int x)
     {
         int n = yx2n(y,x);
         return Math.atan2(values[n][IMAG], values[n][REAL]);
     }
 
-
-    /**@return the real values of the number*/
+    /**
+     * @return the real values of the number
+     */
     public double[][] getValuesRe()
     {       
         double[][] temp = new double[sizeY][sizeX];
@@ -406,13 +423,17 @@ public class DoubleNumberToken extends NumberToken
         return temp;
     }
 
-    /**@return the real values of the number*/
+    /**
+     * @return the real values of the number
+     */
     public double[][] getReValues()
     {
         return getValuesRe();
     }
 
-    /**@return the imaginary values of the number*/
+    /**
+     * @return the imaginary values of the number
+     */
     public double[][] getValuesIm()
     {
         double[][] temp = new double[sizeY][sizeX];
@@ -433,7 +454,6 @@ public class DoubleNumberToken extends NumberToken
     
 
     /**
-     * 
      * @param n
      * @return
      */
@@ -444,7 +464,6 @@ public class DoubleNumberToken extends NumberToken
 
 
     /**
-     * 
      * @param n
      * @param num
      */
@@ -453,11 +472,12 @@ public class DoubleNumberToken extends NumberToken
         values[n][REAL] = ((DoubleNumberToken)num).getValueRe();
         values[n][IMAG] = ((DoubleNumberToken)num).getValueIm();
     }
-
     
-    /**@return an array of double representing the element at y,x
-    @param y = y position in matrix
-    @param x = x position in matrix*/
+    /**
+     * @param y = y position in matrix
+     * @param x = x position in matrix
+     * @return an array of double representing the element at y,x 
+     */
     public double[] getValueComplex(int y, int x)
     {
         int n = yx2n(y,x);
@@ -465,7 +485,6 @@ public class DoubleNumberToken extends NumberToken
     }
    
     /**
-     * 
      * @param n
      * @return
      */
@@ -475,7 +494,6 @@ public class DoubleNumberToken extends NumberToken
     }
     
     /**
-     * 
      * @param n
      * @param _value
      */
@@ -509,7 +527,6 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**
-     * 
      * @param n
      * @param _real
      * @param _imag
@@ -521,7 +538,6 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**
-     * 
      * @param index  multidimensional index
      * @param _real
      * @param _imag
@@ -534,9 +550,10 @@ public class DoubleNumberToken extends NumberToken
         setValue(n, _real, _imag);
         
     }
-
     
-    /**return the number as a string*/
+    /**return the number as a string
+     * @return
+     */
     public String toString()
     {
         String result = null;
@@ -569,6 +586,11 @@ public class DoubleNumberToken extends NumberToken
         return result;
     }
     
+    /**
+     * @param dim
+     * @param i
+     * @return
+     */
     private String toString(int[] dim, int i)
     {
         String ret="";
@@ -605,6 +627,10 @@ public class DoubleNumberToken extends NumberToken
         return ret;
     }
 
+    /**
+     * @param nn
+     * @return
+     */
     private String toString2d(int[] nn)
     {
         StringBuffer buffer = new StringBuffer(20);
@@ -630,7 +656,9 @@ public class DoubleNumberToken extends NumberToken
     }
         
     /** create string representation of (complex) double values 
-    @param _values[]={REAL,IMAG} real and imaginary part of number*/
+     * @param _values[]={REAL,IMAG} real and imaginary part of number
+     * @return
+     */
     public String toString(double _values[])
     {
         
@@ -654,8 +682,10 @@ public class DoubleNumberToken extends NumberToken
         else if (Double.isNaN(re))    
             result.append("NaN");
         else
-            result.append(getNumberFormat().format(re));
-
+            //result.append(globals.getNumberFormat().format(re));
+            result.append(numFormat.format(re));
+//stefan
+        
         // imaginary part of number
         if((im != 0.0) || Double.isNaN(im))
         {
@@ -670,8 +700,10 @@ public class DoubleNumberToken extends NumberToken
             else if (Double.isNaN(im))    
                 result.append("NaN");
             else
-                result.append(getNumberFormat().format(im));
-        
+                //result.append(getNumberFormat().format(im));
+                result.append(numFormat.format(im));
+     //stefan
+            
             result.append("i)");
         }
         return  result.toString();
@@ -684,7 +716,9 @@ public class DoubleNumberToken extends NumberToken
     //}
 
     /**Check if two tokens are equal
-       @param arg = the object to check against*/
+     * @param arg = the object to check against
+     * @return
+     */
     public boolean equals(Object arg)
     {
         if(arg instanceof DoubleNumberToken)
@@ -710,7 +744,11 @@ public class DoubleNumberToken extends NumberToken
         return false;
     }
 
-    /**calculate the arg of the complex number at y, x*/
+    /**calculate the arg of the complex number at y, x
+     * @param y
+     * @param x
+     * @return
+     */
     public double arg(int y, int x) 
     {
         int n = yx2n(y,x);
@@ -721,8 +759,9 @@ public class DoubleNumberToken extends NumberToken
     ////////////////////////////////////////////////////////////
     
     /**add arg to this object for a number token
-    @param = the value to add to it
-    @return the result as an OperandToken*/
+     * @param = the value to add to it
+     * @return the result as an OperandToken
+     */
     public OperandToken add(OperandToken arg)
     {
 
@@ -798,11 +837,11 @@ public class DoubleNumberToken extends NumberToken
         else if(arg instanceof CharToken)
         {
             // 2+'a b'
-            CharToken         nArg = ((CharToken)arg);
-            _double           d    = new _double();
-            DoubleNumberToken numT = (DoubleNumberToken)d.evaluate(new OperandToken[]{nArg});
-                        
-            return this.add(numT);
+            double[][] d = ((CharToken)arg).getValuesRe();
+
+            DoubleNumberToken num = new DoubleNumberToken(d);
+
+            return this.add(num);
         }
 
         Errors.throwMathLibException("DoubleNumberToken: add: no number");
@@ -811,8 +850,9 @@ public class DoubleNumberToken extends NumberToken
     } // and add
 
     /**subtract arg from this object for a number token
-    @param = the value to subtract
-    @return the result as an OperandToken*/
+     * @param = the value to subtract
+     * @return the result as an OperandToken
+     */
     public OperandToken subtract(OperandToken arg)
     {
         if(!(arg instanceof DoubleNumberToken))
@@ -876,8 +916,9 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**Raise this object to the power of arg
-    * @param = the value to raise it to the power of
-    * @return the result as an OperandToken*/
+     * @param = the value to raise it to the power of
+     * @return the result as an OperandToken
+     */
     public OperandToken power(OperandToken arg)
     {
         // works only on numbers
@@ -1067,8 +1108,9 @@ public class DoubleNumberToken extends NumberToken
     
     
     /**multiply arg by this object for a number token
-    @param arg = the value to multiply it by
-    @return the result as an OperandToken*/
+     * @param arg = the value to multiply it by
+     * @return the result as an OperandToken
+     */
     public OperandToken multiply(OperandToken arg) 
     {
         if(!(arg instanceof DoubleNumberToken))
@@ -1146,9 +1188,10 @@ public class DoubleNumberToken extends NumberToken
     } // end multiply
 
     /**Multiplies two complex numbers
-       @param arg1 = the first complex number as an array of double
-       @param arg2 = the second complex number as an array of double
-       @return the result as an array of double*/
+     * @param arg1 = the first complex number as an array of double
+     * @param arg2 = the second complex number as an array of double
+     * @return the result as an array of double
+     */
     public double[] multiply(double[] arg1, double[]arg2) 
     {
         double[] temp = new double[2];
@@ -1158,8 +1201,9 @@ public class DoubleNumberToken extends NumberToken
     }
 
     /**divide this object by arg for a number token
-    @param arg = the value to divide it by
-    @return the result as an OperandToken*/
+     * @param arg = the value to divide it by
+     * @return the result as an OperandToken
+     */
     public OperandToken divide(OperandToken arg)
     {       
         if(!(arg instanceof DoubleNumberToken))
