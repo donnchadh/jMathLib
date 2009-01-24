@@ -27,7 +27,7 @@ public class ReflectionFunctionCall extends ExternalFunction
         externalClass = _externalClass;
     }
     
-    public OperandToken evaluate(Token []operands)
+    public OperandToken evaluate(Token []operands, GlobalValues globals)
     {
         boolean found = false;
         ErrorLogger.debugLine("evaluating reflection function");

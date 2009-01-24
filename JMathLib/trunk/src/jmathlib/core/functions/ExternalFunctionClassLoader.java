@@ -79,7 +79,7 @@ public class ExternalFunctionClassLoader extends ClassLoader
             ErrorLogger.debugLine("ext func loader: NOTFOUND");
             return null;
         }
-        else if (!classFile.getName().toLowerCase().endsWith(".class")){            
+        else if (!classFile.getName().endsWith(".class")){            
             ErrorLogger.debugLine("ext func loader: Non-class file attempted load");
             return null;
         }else

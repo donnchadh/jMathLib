@@ -80,10 +80,10 @@ public class FunctionPathBroker
                 if(index > -1)
                 {                    
                     String tempFunction = fileName.substring(0, index);
-                    if(tempFunction.equalsIgnoreCase(functionName) &&
-                       (fileName.equalsIgnoreCase(functionName+".m")   ||
-                        fileName.equalsIgnoreCase(functionName+".p")   ||
-                        fileName.equalsIgnoreCase(functionName+".class") ) )
+                    if(tempFunction.equals(functionName) &&
+                       (fileName.equals(functionName+".m")   ||
+                        fileName.equals(functionName+".p")   ||
+                        fileName.equals(functionName+".class") ) )
                     {
                         result = files[fileNo];
                         break;

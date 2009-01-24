@@ -85,7 +85,7 @@ public class FileFunctionLoader extends FunctionLoader
     
     protected Function parseFunctionFile(File functionFile, String functionName) {
         Function func = null;
-        String fileName = functionFile.getName().toLowerCase();
+        String fileName = functionFile.getName();
         if (fileName.endsWith(".m"))
         {
             func = mLoader.loadMFile(functionFile.getParent(), functionName);
