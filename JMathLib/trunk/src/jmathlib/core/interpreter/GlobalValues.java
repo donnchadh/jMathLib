@@ -39,7 +39,7 @@ public class GlobalValues
     private jmathlib.plugins.PluginsManager pluginsManager;     
 
     /**sets whether to write debug lines to console and log files*/
-    private boolean debug = true;
+    //private boolean debug = true;
     
     /**stores the number format for displaying the number*/
     public /*static transient*/ NumberFormat numFormat = new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH));
