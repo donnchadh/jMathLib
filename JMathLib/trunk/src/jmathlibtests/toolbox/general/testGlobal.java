@@ -1,3 +1,12 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  Stefan Mueller (stefan@held-mueller.de) 
+ * (c) 2008, 2009   
+ */
+
 package jmathlibtests.toolbox.general;
 
 import jmathlib.core.interpreter.Interpreter;
@@ -61,7 +70,7 @@ public class testGlobal extends TestCase {
             //Expected an exception here
             try {
                 doit = funcParser.parseFunction(b.toString());
-                doit.evaluate(null);
+                doit.evaluate(null, ml.globals);
             } 
             catch (MathLibException ex) {
                 exCaught = true;
@@ -81,7 +90,7 @@ public class testGlobal extends TestCase {
             FunctionParser funcParser = new FunctionParser();
             Function doit = funcParser.parseFunction(b.toString());
             assertNotNull(doit);
-            ml.getFunctionManager().addFunctionLoader(new TestFunctionLoader(doit));
+            ml.globals.getFunctionManager().addFunctionLoader(new TestFunctionLoader(doit));
             
             b = new StringBuffer();
             b.append("a = 1;\n");
