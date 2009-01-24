@@ -6,8 +6,8 @@ import jmathlib.core.interpreter.*;
  * e.g. a={ 3, [1,2,3;4,5,6], "hello" ; "barfoo" , rand(5), 1+2 } */
 public class CellArrayToken extends DataToken
 {
-    
-    OperandToken values[][];  // values of the cell array
+    /** values of the cell array */
+    OperandToken values[][];  
     
     /** Constructor creating empty cell array token
      */
@@ -22,7 +22,8 @@ public class CellArrayToken extends DataToken
     }
 
     /**Constructor for cell arrays
-    @param _value = the values of the elements of the cell array*/
+     * @param _value = the values of the elements of the cell array
+     */
     public CellArrayToken(OperandToken[][] _values)
     {
         super(5, "cell"); 
@@ -34,7 +35,8 @@ public class CellArrayToken extends DataToken
     }
 
     /**Constructor for cell array with 1x1 size
-    @param _value = the values of the elements of the matrix*/
+     * @param _value = the values of the elements of the matrix
+     */
     public CellArrayToken(OperandToken _value)
     {
         super(5, "cell");
@@ -47,7 +49,9 @@ public class CellArrayToken extends DataToken
     }
 
     /** return a new CellArrayToken of size y*x
-     * 
+     * @param y
+     * @param x
+     * @return DataToken
      */
     public DataToken getElementSized(int y, int x)
     {
@@ -55,7 +59,8 @@ public class CellArrayToken extends DataToken
     }
     
     /**
-     * 
+     * @param dy
+     * @praram dx
      */
     public void setSize(int dy, int dx)
     {
@@ -80,7 +85,10 @@ public class CellArrayToken extends DataToken
 
     } // end setSize
     
-    
+    /**
+     * @param n
+     * @return
+     */
     public OperandToken getElement(int n)
     {
         int x = (int) (n/sizeY); // column to start
@@ -90,7 +98,9 @@ public class CellArrayToken extends DataToken
     }
 
     /**
-     * 
+     * @param y
+     * @param x
+     * @return
      */
     public OperandToken getElement(int y, int x)
     {
@@ -99,13 +109,19 @@ public class CellArrayToken extends DataToken
     }
 
     /**
-     * 
+     * @param y
+     * @param x
+     * @param op
      */
     public void setElement(int y, int x, OperandToken op)
     {
         values[y][x]= op; //((CellArrayToken)op).getValue()[0][0];
     }
     
+    /**
+     * @param n
+     * @param num
+     */
     public void setElement(int n, OperandToken num)
     {
         int    x    = (int)(n/sizeY); // column to start
@@ -116,9 +132,10 @@ public class CellArrayToken extends DataToken
 
  
     /**evaluate function - just returns the object itself
-    @param operands = the cell arrray operands (not used)
-    @return the cell array itself*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the cell arrray operands (not used)
+     * @return the cell array itself
+     */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 		ErrorLogger.debugLine("CellArray evaluate size: "+sizeY+" "+sizeX);
 		
@@ -135,7 +152,7 @@ public class CellArrayToken extends DataToken
 		    for (int xx=0; xx<values[yy].length; xx++)
 			{
 				if (values[yy][xx] != null) // only evaluate non-null elements  
-					values[yy][xx] = values[yy][xx].evaluate(null);
+					values[yy][xx] = values[yy][xx].evaluate(null, globals);
 
 			} // end xx
             
@@ -154,7 +171,8 @@ public class CellArrayToken extends DataToken
    } // end evaluate
 
     /**Convert the matrix to a string
-     * @return string representation of cell array*/
+     * @return string representation of cell array
+     */
     public String toString()
     {
         
@@ -187,7 +205,8 @@ public class CellArrayToken extends DataToken
 
     
     /**Return the value of the number
-    @return the value as an 2D array of double*/
+     * @return the value as an 2D array of double
+     */
     public OperandToken[][] getValue()
     {
 		ErrorLogger.debugLine("CellArray getValue");
