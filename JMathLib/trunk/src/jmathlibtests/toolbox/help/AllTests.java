@@ -7,7 +7,7 @@
  * (c) 2007, 2008, 2009   
  */
 
-package jmathlibtests.toolbox.ftp;
+package jmathlibtests.toolbox.help;
 
 import jmathlib.tools.junit.framework.*;
 
@@ -21,7 +21,7 @@ public class AllTests {
 		jmathlib.tools.junit.textui.TestRunner.run (suite());
 	}
 	public static Test suite ( ) {
-		TestSuite suite= new TestSuite("ftp functions");
+		TestSuite suite= new TestSuite("help functions");
 
 		/* include subdirectories here */
 		// none
