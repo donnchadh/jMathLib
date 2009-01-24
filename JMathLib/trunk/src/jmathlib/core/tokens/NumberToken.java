@@ -18,7 +18,7 @@ public class NumberToken extends DataToken
      *          2
      *          4         */
     /**stores the number format for displaying the number*/
-    private static NumberFormat numFormat = NumberFormat.getInstance();
+    protected static NumberFormat numFormat = NumberFormat.getInstance();
 
     /**Index for real values within array*/
     protected static final int REAL = 0;
@@ -115,7 +115,7 @@ public class NumberToken extends DataToken
     }
     
     /**Evaluate the token. This causes it to return itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;    
     }
