@@ -1,3 +1,12 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  Stefan Mueller (stefan@held-mueller.de) 
+ * (c) 2007, 2008, 2009   
+ */
+
 package jmathlibtests.toolbox.toolbox_skeleton;
 
 import jmathlib.tools.junit.framework.*;
