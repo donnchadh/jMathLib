@@ -24,26 +24,26 @@ public class testSetPFileCaching extends TestCase {
 	}
 
 	public void testSetPFileCaching01() {
-        ml.executeExpression("setPFileCaching(1)");
-        ml.executeExpression("a=getPFileCaching()");
+        ml.executeExpression("setpfilecaching(1)");
+        ml.executeExpression("a=getpfilecaching()");
 		assertTrue(1 == ml.getScalarValueRe("a"));
 	}
 
 	public void testSetPFileCaching02() {
-        ml.executeExpression("setPFileCaching(0)");
-        ml.executeExpression("a=getPFileCaching()");
+        ml.executeExpression("setpfilecaching(0)");
+        ml.executeExpression("a=getpfilecaching()");
 		assertTrue(0 == ml.getScalarValueRe("a"));
 	}
 
 	public void testSetPFileCaching03() {
-        ml.executeExpression("setPFileCaching('on')");
-        ml.executeExpression("a=getPFileCaching()");
+        ml.executeExpression("setpfilecaching('on')");
+        ml.executeExpression("a=getpfilecaching()");
 		assertTrue(1 == ml.getScalarValueRe("a"));
 	}
 
 	public void testSetPFileCaching04() {
-        ml.executeExpression("setPFileCaching('off')");
-        ml.executeExpression("a=getPFileCaching()");
+        ml.executeExpression("setpfilecaching('off')");
+        ml.executeExpression("a=getpfilecaching()");
 		assertTrue(0 == ml.getScalarValueRe("a"));
 	}
 
