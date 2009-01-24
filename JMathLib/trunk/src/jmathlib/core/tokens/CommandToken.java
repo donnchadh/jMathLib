@@ -1,5 +1,7 @@
 package jmathlib.core.tokens;
 
+import jmathlib.core.interpreter.GlobalValues;
+
 /**Class for implementing commands */
 public class CommandToken extends OperandToken
 {
@@ -18,7 +20,7 @@ public class CommandToken extends OperandToken
 	/**Evaluates the command
 	@param operands = the commands operands
 	@return the result of the command as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return null;
     }

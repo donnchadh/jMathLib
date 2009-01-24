@@ -16,7 +16,7 @@ public class ColonOperatorToken extends BinaryOperatorToken
     }
 
     /**evaluates the operator*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
 		double x1;      // minimum

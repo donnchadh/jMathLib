@@ -13,8 +13,9 @@ public class ConditionToken extends OperandToken
     private OperandToken code;
     
     /**Constructor setting ifRelation and ifCode
-       @param _ifRelation = the test relation
-       @param _ifCode     = the code to execute if the test is true*/
+     * @param _ifRelation = the test relation
+     * @param _ifCode     = the code to execute if the test is true
+     */
     public ConditionToken(OperandToken _condition, OperandToken _code)
     {
 	   condition   = _condition;
@@ -40,14 +41,15 @@ public class ConditionToken extends OperandToken
     }
 
     /**evaluates the operator
-    @param operands = the operators operands
-    @return the result of the test as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the operators operands
+     * @param
+     * @return the result of the test as an OperandToken*/
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
     	if(condition != null)
     	{
 	    	ErrorLogger.debugLine("ConditionToken: testing " + condition.toString());
-	    	OperandToken result = condition.evaluate(null);
+	    	OperandToken result = condition.evaluate(null, globals);
 	    	
 	    	if(result instanceof DoubleNumberToken)
 	    	{
@@ -64,7 +66,7 @@ public class ConditionToken extends OperandToken
 	    		if(tag)
 	    		{
 	    			// evaluate Code
-                    code.evaluate(null);
+                    code.evaluate(null, globals);
 	    			return DoubleNumberToken.one;
                 }
 	    	}
@@ -83,21 +85,20 @@ public class ConditionToken extends OperandToken
                 if (tag)
                 {
                     // evaluate Code
-                    code.evaluate(null);
+                    code.evaluate(null, globals);
                     return DoubleNumberToken.one;
                 }
             }
 	 	}
         else
         {
-            code.evaluate(null);
+            code.evaluate(null, globals);
 	 	    return DoubleNumberToken.one;
         }
         	   	
     	return null;
     }
     
-
     /**Convert the operator to a string
      * @return the operator as a string
      */
