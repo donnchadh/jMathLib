@@ -447,7 +447,7 @@ public class SparseNumberToken extends DataToken
     }
 
     /**Evaluate the token. This causes it to return itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;    
     }

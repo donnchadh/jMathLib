@@ -51,7 +51,7 @@ public class RelationOperatorToken extends BinaryOperatorToken
      * @param operands = the operators operands
      * @return the result as an OperandToken
      */
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 
 		ErrorLogger.debugLine("RelationToken: evaluate");

@@ -17,7 +17,7 @@ public class PowerOperatorToken extends BinaryOperatorToken
     /**evaluates the operator
     @param operands = the operators operands
     @return the result as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         OperandToken result = null;
 
