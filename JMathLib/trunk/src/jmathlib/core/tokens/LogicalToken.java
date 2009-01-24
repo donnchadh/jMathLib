@@ -2,11 +2,13 @@ package jmathlib.core.tokens;
 
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
 
 public class LogicalToken extends DataToken
 {            
+    /** data */
     private boolean values[]; 
 
     
@@ -89,9 +91,7 @@ public class LogicalToken extends DataToken
         }
     }
 
-
     /**
-     * 
      * @param _dy
      * @param _dx
      * @param _reValues
@@ -418,6 +418,11 @@ public class LogicalToken extends DataToken
         return result;
     }
     
+    /**
+     * @param dim
+     * @param i
+     * @return
+     */
     private String toString(int[] dim, int i)
     {
         String ret="";
@@ -454,6 +459,11 @@ public class LogicalToken extends DataToken
         return ret;
     }
 
+    /**
+     * 
+     * @param nn
+     * @return
+     */
     private String toString2d(int[] nn)
     {
         StringBuffer buffer = new StringBuffer(20);
@@ -480,7 +490,7 @@ public class LogicalToken extends DataToken
         
 
     /**Evaluate the token. This causes it to return itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;    
     }
@@ -601,7 +611,9 @@ public class LogicalToken extends DataToken
     }
 
     
-    /**@return true if this number token is a scalar (1*1 matrix)*/
+    /**
+     * @return true if this number token is a scalar (1*1 matrix)
+     */
     public boolean isScalar()
     {
 
