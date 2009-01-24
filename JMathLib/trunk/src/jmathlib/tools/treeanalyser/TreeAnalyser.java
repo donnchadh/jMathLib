@@ -198,7 +198,8 @@ public class TreeAnalyser extends RootObject
 		    Function function = null;
 		    try
 		    {
-			function = getFunctionManager().findFunction(func);
+		    // stefan: this needs some work
+			//function = globals.getFunctionManager().findFunction(func);
 		    }
 		    catch(Exception exception)
 		    {
