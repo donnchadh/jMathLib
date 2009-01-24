@@ -36,48 +36,66 @@ public class ForOperatorToken extends CommandToken
 		forCode				= _forCode;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public OperandToken getForInitialisation()
 	{
 		return forInitialisation;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public OperandToken getForRelation()
 	{
 		return forRelation;	
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public OperandToken getForIncrement()
 	{
 		return forIncrement;
 	}
 
+	/**
+	 * 
+	 * @return
+	 */
 	public OperandToken getForCode()
 	{
 		return forCode;
 	}
 
     /**evaluates the operator
-    @param operands = the tokens parameters (not used)
-    @return the result as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the tokens parameters (not used)
+     * @param
+     * @return the result as an OperandToken
+     */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 		ErrorLogger.debugLine("Parser: For: evaluate");
 
 		if(forRelation == null)
 		{
-			vectorFor();
+			vectorFor(globals);
 		}
 		else
 		{	
 			OperandToken intialisationLine = ((OperandToken)forInitialisation.clone());
-			intialisationLine.evaluate(null);
+			intialisationLine.evaluate(null, globals);
 			
 			while(true)
 			{
 	
 				// Check condition of For(...)
 				OperandToken relationLine = ((OperandToken)forRelation.clone());
-				OperandToken result       = relationLine.evaluate(null);
+				OperandToken result       = relationLine.evaluate(null, globals);
                 
 				if (result instanceof DoubleNumberToken)
 				{
@@ -111,11 +129,11 @@ public class ForOperatorToken extends CommandToken
 					{
 						OperandToken codeLine = ((OperandToken)forCode.clone());
 						ErrorLogger.debugLine("Parser: for number is true");
-						code = codeLine.evaluate(null);
+						code = codeLine.evaluate(null, globals);
 	
 						//evaluate increment code
 						OperandToken incrementLine = ((OperandToken)forIncrement.clone());
-						incrementLine.evaluate(null);
+						incrementLine.evaluate(null, globals);
 					}
 				}
                 else if (result instanceof LogicalToken)
@@ -131,11 +149,11 @@ public class ForOperatorToken extends CommandToken
                     {
                         OperandToken codeLine = ((OperandToken)forCode.clone());
                         ErrorLogger.debugLine("Parser: for boolean is true");
-                        code = codeLine.evaluate(null);
+                        code = codeLine.evaluate(null, globals);
     
                         //evaluate increment code
                         OperandToken incrementLine = ((OperandToken)forIncrement.clone());
-                        incrementLine.evaluate(null);
+                        incrementLine.evaluate(null, globals);
                     }
 
                 }
@@ -149,7 +167,9 @@ public class ForOperatorToken extends CommandToken
     }
     
 
-    /**@return the operator as a string*/
+    /**
+     * @return the operator as a string
+     */
     public String toString()
     {
         return "For";
@@ -157,7 +177,7 @@ public class ForOperatorToken extends CommandToken
 
     
 	/**evaluate for loop defined with a vector*/
-	private void vectorFor()
+	private void vectorFor(GlobalValues globals)
 	{
 		ErrorLogger.debugLine("vector for " + forInitialisation.toString());
 		
@@ -172,7 +192,7 @@ public class ForOperatorToken extends CommandToken
 				{
 					ErrorLogger.debugLine("vector for evaluating 1");
 					VariableToken variableToken = ((VariableToken)forExpression.getChild(0));
-					Variable variable = createVariable(variableToken.getName());
+					Variable variable = globals.createVariable(variableToken.getName());
 
 					DoubleNumberToken   vector = null;
 					Token child = forExpression.getChild(1);
@@ -185,7 +205,7 @@ public class ForOperatorToken extends CommandToken
 					{
 						ErrorLogger.debugLine("vector for evaluating 3");
 						OperandToken childOp = (OperandToken)child.clone();
-                        childOp = childOp.evaluate(null);
+                        childOp = childOp.evaluate(null, globals);
                         ErrorLogger.debugLine("for op "+ childOp);
                         
                         //child = ((Expression)child).getChild(1);
@@ -211,7 +231,7 @@ public class ForOperatorToken extends CommandToken
 							variable.assign(value);
 							
 							Expression exp = ((Expression)forCode.clone());
-							exp.evaluate(null);
+							exp.evaluate(null, globals);
 						}
 					}
 				}
