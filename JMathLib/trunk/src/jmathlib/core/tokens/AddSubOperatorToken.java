@@ -1,16 +1,15 @@
 package jmathlib.core.tokens;
 
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 
 /**Used to implement addition and subtraction operations within an expression*/
 public class AddSubOperatorToken extends BinaryOperatorToken
 {
-    /**constant values*/
-    //static public final AddSubOperatorToken add      = new AddSubOperatorToken('+');
-    //static public final AddSubOperatorToken subtract = new AddSubOperatorToken('-');
 
     /**Constructor taking the operator and priority
-    @param _operator = the actual operator		   */
+     * @param _operator = the actual operator		   
+     */
     public AddSubOperatorToken (char _operator)
     {
     	/**call the super constructor, type defaults to ttoperator and operands to 2*/
@@ -18,9 +17,11 @@ public class AddSubOperatorToken extends BinaryOperatorToken
     }
 
     /**evaluates the operator
-    @param operands = the operators operands
-    @return the result of the operation as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the operators operands
+     * @param globals
+     * @return the result of the operation as an OperandToken
+     */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         OperandToken result = null;
 
@@ -51,6 +52,5 @@ public class AddSubOperatorToken extends BinaryOperatorToken
 
         return result;
     }
-    
-    
+        
 }
