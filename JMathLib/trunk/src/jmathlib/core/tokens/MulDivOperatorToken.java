@@ -7,13 +7,10 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 /**Class representing multiplicaton and division operations within an expression*/
 public class MulDivOperatorToken extends BinaryOperatorToken
 {
-    /**constant values*/
-    //static public final MulDivOperatorToken divide   = new MulDivOperatorToken('/');
-    //static public final MulDivOperatorToken multiply = new MulDivOperatorToken('*');
-
 
     /**Constructor taking the operator and priority
-    @param _operator = the actual operator	  */
+     * @param _operator = the actual operator
+     */
     public MulDivOperatorToken (char _operator)
     {
     	/**call the super constructor, type defaults to ttoperator and operands to 2*/
@@ -23,7 +20,7 @@ public class MulDivOperatorToken extends BinaryOperatorToken
     /**evaluate the operator
     @param operands = the operators operands
     @return the result as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         OperandToken result = null;
 
