@@ -21,7 +21,8 @@ public class CharToken extends DataToken
      }
 
     /**Creates a string with a value of _value
-       @param _value = the value of the string*/
+     * @param _value = the value of the string
+     */
     public CharToken(String _value)
     {
         super(99, "char"); 
@@ -34,7 +35,8 @@ public class CharToken extends DataToken
     }
     
     /**Creates a string with a value of _value
-       @param _value = the value of the string*/
+     * @param _value = the value of the string
+     */
     public CharToken(String[] _values)
     {
         super(99, "char"); 
@@ -53,7 +55,8 @@ public class CharToken extends DataToken
     
 
     /**Creates a string with a value of _value
-    @param _value = the value of the string*/
+     * @param _value = the value of the string
+     */
      public CharToken(char[][] _values)
      {
          super(99, "char"); 
@@ -65,7 +68,8 @@ public class CharToken extends DataToken
      }
 
      /**Creates a string with a value of _value
-     @param _value = the value of the string*/
+      * @param _value = the value of the string
+      */
       public CharToken(char _value)
       {
           super(99, "char"); 
@@ -78,14 +82,18 @@ public class CharToken extends DataToken
       }
 
     /**Evaluates the token, just returns the token itself
-       @param operands = the tokens operands (not used)
-       @return the token itself as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the tokens operands (not used)
+     * @param
+     * @return the token itself as an OperandToken
+     */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;
     }
 
-    /**@return the string value*/    
+    /**
+     * @return the string value
+     */    
     public String toString()
     {
         String ret = new String();
@@ -96,24 +104,36 @@ public class CharToken extends DataToken
     	return ret;
     }
 
-    /**@return the value of the string*/
+    /**
+     * @return the value of the string
+     */
     public String getValue()
     {
         return new String(values[0]);
     }
 
-    /**@return the value of the string*/
+    /**
+     * @return the value of the string
+     */
     public char getCharValue()
     {
         return values[0][0];
     }
 
-    
+    /**
+     * @param
+     * @param
+     */
     public OperandToken getElement(int y, int x)
     {
         return new CharToken(values[y][x]);
     }
 
+    /**
+     * @param
+     * @param
+     * @param
+     */
     public void setElement(int y, int x, OperandToken op)
     {
         char c = ((CharToken)op).getCharValue();
@@ -122,13 +142,20 @@ public class CharToken extends DataToken
         values[y][x] = c;
     }
     
+    /**
+     * @param
+     * @param
+     * @return
+     */
     public DataToken getElementSized(int y, int x)
     {
         return new CharToken(new char[y][x]); 
     }
 
     /**add arg to this object to create a new string
-    @param arg = the value to add to the string*/
+     * @param arg = the value to add to the string
+     * @return
+     */
     public OperandToken add(OperandToken arg)
     {
     	if (sizeY!=1)
