@@ -4,6 +4,7 @@
 package jmathlib.core.functions;
 
 import jmathlib.core.interpreter.Errors;
+import jmathlib.core.interpreter.GlobalValues;
 import jmathlib.core.tokens.OperandToken;
 import jmathlib.core.tokens.Token;
 
@@ -22,7 +23,7 @@ public class SFunction extends ExternalFunction{
     //
     //}
     
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         Errors.throwMathLibException("SFunction: not yet implemented");
         return null;
