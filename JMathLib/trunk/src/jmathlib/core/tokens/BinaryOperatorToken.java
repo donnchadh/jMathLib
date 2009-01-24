@@ -1,5 +1,7 @@
 package jmathlib.core.tokens;
 
+import jmathlib.core.interpreter.GlobalValues;
+
 
 /**The base class for all binary operators*/
 public class BinaryOperatorToken extends OperatorToken
@@ -26,7 +28,7 @@ public class BinaryOperatorToken extends OperatorToken
     /**evaluate the operator
     @param operands = the operators operands
     @return the result as and OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return null;
     }

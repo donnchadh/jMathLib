@@ -1,6 +1,7 @@
 package jmathlib.core.tokens;
 
 import jmathlib.core.interpreter.ErrorLogger;
+import jmathlib.core.interpreter.GlobalValues;
 
 
 /**Used to implement if-then-else operations within an expression*/
@@ -31,7 +32,7 @@ public class CaseToken extends CommandToken
     /**evaluates the operator
     @param operands = the operators operands
     @return the result of the test as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
     	if(value != null)
     	{
@@ -39,14 +40,14 @@ public class CaseToken extends CommandToken
 	    									((OperandToken)operands[0]), 
 											value);
 	    	
-	    	OperandToken result = exp.evaluate(null);
+	    	OperandToken result = exp.evaluate(null, globals);
 	    	
 	    	if(result instanceof LogicalToken)
 	    	{
 	    		if(((LogicalToken)result).getValue(0))
 	    		{
 	    			ErrorLogger.debugLine("case is TRUE ");
-	    			code.evaluate(null);
+	    			code.evaluate(null, globals);
 	    			return new LogicalToken(true);
 	    		}
 	    	}
@@ -54,7 +55,7 @@ public class CaseToken extends CommandToken
 	 	else
 	 	{
 	 		ErrorLogger.debugLine("case is DEFAULT ");
-	    	code.evaluate(null);
+	    	code.evaluate(null, globals);
 	    	return new LogicalToken(true);
 	 	}
 	 		   	
