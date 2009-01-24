@@ -1,6 +1,7 @@
 package jmathlib.core.tokens;
 
 import jmathlib.core.constants.TokenConstants;
+import jmathlib.core.interpreter.GlobalValues;
 
 /*Class used to represent delimiter tokens such as ( ) and ,*/
 public class DelimiterToken extends OperandToken implements TokenConstants
@@ -29,7 +30,7 @@ public class DelimiterToken extends OperandToken implements TokenConstants
 	/**Evaluate the delimiter, just returns the object itself
 	@param operands = the delimiters operands
 	@return the delimter token as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {   		
     	return this;
     }

@@ -1,5 +1,7 @@
 package jmathlib.core.tokens;
 
+import jmathlib.core.interpreter.GlobalValues;
+
 
 /**
  * 
@@ -31,7 +33,7 @@ public class FunctionHandleToken extends DataToken
     
     
     /**Evaluate the token. This causes it to return itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;    
     }
