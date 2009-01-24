@@ -1,6 +1,7 @@
 package jmathlib.core.tokens;
 
 import jmathlib.core.interpreter.*;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -50,23 +51,25 @@ public class IfThenOperatorToken extends CommandToken implements Collection
 
     public Expression getIfRelation()
     {
-	return null;  //ifRelation;
+        return null;  //ifRelation;
     }
 
     public Expression getIfCode()
     {
-	return null;  //ifCode;
+        return null;  //ifCode;
     }
 
     public Expression getElseCode()
     {
-	return null;  //elseCode;
+        return null;  //elseCode;
     }
 
     /**evaluates the operator
-    @param operands = the operators operands
-    @return the result of the test as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the operators operands
+     * @param
+     * @return the result of the test as an OperandToken
+     */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
     	ErrorLogger.debugLine("Parser: IfThen: evaluate "+conditions.size());
 
@@ -79,7 +82,7 @@ public class IfThenOperatorToken extends CommandToken implements Collection
     		ConditionToken conditionToken = ((ConditionToken)conditions.get(pos));
     		ErrorLogger.debugLine("Parser: IfThen: cond: " + conditionToken.toString());
     		
-    		result = conditionToken.evaluate(null);
+    		result = conditionToken.evaluate(null, globals);
     		
     		pos++;
     	}
