@@ -5,7 +5,7 @@ function t=test_while(z)
     {
 		y=y+1;
 		t=t+y;
-        disp("y=" + y + " t= " + t);
+        disp(["y=" num2str(y) " t= " num2str(t)]);
 		newline();
 	}
     end;
