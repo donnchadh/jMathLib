@@ -10,7 +10,7 @@ public class MatrixToken extends DataToken
     /**The values of the matrix (array)*/
     OperandToken value[][];
 
-    
+    /** type of matrix */
     private int typeOfMatrix;   // 0 = numeric array
                                 // 1 = cell    array
     
@@ -45,7 +45,7 @@ public class MatrixToken extends DataToken
     /**evaluate function - just returns the object itself
     @param operands = the matrices operands (not used)
     @return the matrix token itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 		ErrorLogger.debugLine("Matrix evaluate size: "+sizeY+" "+sizeX);
 		
@@ -70,7 +70,7 @@ public class MatrixToken extends DataToken
 			{
 				//if (value[yy][xx] != null)  // maybe not necessary
 				//{
-					value[yy][xx] = value[yy][xx].evaluate(null);
+					value[yy][xx] = value[yy][xx].evaluate(null, globals);
 
 					// Check if value[yy][xx] is array of number tokens
                     //  e.g.: [1,2,[3,4],5]
@@ -260,7 +260,7 @@ public class MatrixToken extends DataToken
     /**multiply arg by this object for a number token
     @param arg = the amount to multiply the matrix by
     @return the result as an OperandToken*/
-    public OperandToken multiply(OperandToken arg)
+   /* public OperandToken multiply(OperandToken arg)
     {
 			
  		int y = value.length;
@@ -268,7 +268,7 @@ public class MatrixToken extends DataToken
 		ErrorLogger.debugLine("matrix multiply dimension "+y+" "+x);
 
 
-		/* Multiply every single element of the matrix */
+		// Multiply every single element of the matrix 
 		for (int yy=0; yy<y; yy++)
 		{
 			for (int xx=0; xx<x; xx++)
@@ -286,7 +286,7 @@ public class MatrixToken extends DataToken
 						ErrorLogger.debugLine("Matrix multiply variable "+value[yy][xx].toString()+" "+argument.toString());
 						value[yy][xx] = new Expression(new MulDivOperatorToken('*'), value[yy][xx], argument);
 						ErrorLogger.debugLine("mt1");
-						value[yy][xx] = value[yy][xx].evaluate(null);
+				//stefan		value[yy][xx] = value[yy][xx].evaluate(null, globals);
 						ErrorLogger.debugLine("mt2");
 						//value[yy][xx] = value[yy][xx].multiply(arg);
 						ErrorLogger.debugLine("mt3");
@@ -305,25 +305,25 @@ public class MatrixToken extends DataToken
 		MatrixToken retvalue = new MatrixToken(value);
 		//retvalue = retvalue.evaluate(null);
 
-		return retvalue.evaluate(null);
+		return retvalue;  //stefan retvalue.evaluate(null, globals);
     }
-
+*/
 
     /**add arg to this object for a number token
     @param arg = the amount to add to the matrix
     @return the result as an OperandToken*/
-    public OperandToken add(OperandToken arg)
+ /*   public OperandToken add(OperandToken arg)
     {
   		ErrorLogger.debugLine("matrix add");
 		//if(arg instanceof VariableToken)
 		//return arg;
 
-		/* left argument */
+		// left argument 
 		int y1 = value.length;
 		int x1 = value[0].length;
 
 
-		/* right argument */
+		// right argument 
         OperandToken value2[][] = ((MatrixToken)arg).getValue();
 		int y2 = value2.length;
 		int x2 = value2[0].length;
@@ -351,7 +351,7 @@ public class MatrixToken extends DataToken
 					ErrorLogger.debugLine("Matrix add Expressions");
 
 					value[yy][xx] = new Expression(new AddSubOperatorToken('+'), left, right);
-					value[yy][xx] = value[yy][xx].evaluate(null);
+			//stefam		value[yy][xx] = value[yy][xx].evaluate(null, globals);
 				}
 
 				ErrorLogger.debugLine("Matrix add to String "+value[yy][xx].toString());
@@ -360,7 +360,7 @@ public class MatrixToken extends DataToken
 
         return new MatrixToken(value);
     }
-
+*/
 
 	public OperandToken elementAt(int y, int x)
 	{
