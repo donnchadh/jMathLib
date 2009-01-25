@@ -23,7 +23,7 @@ public class WorkingDirectoryPanel extends JPanel {
     public WorkingDirectoryPanel() {
         initialiseGUI();
         registerListeners();        
-        File cwd = KeyHandler.runningReference.interpreter.getFunctionManager().getWorkingDirectory();
+        File cwd = KeyHandler.runningReference.interpreter.globals.getFunctionManager().getWorkingDirectory();
         if (cwd != null) {
             setWorkingDirectory(cwd, false);
         }
@@ -195,7 +195,7 @@ public class WorkingDirectoryPanel extends JPanel {
         }
         
         //Set the working directory in Mathlib (to find function files)
-        KeyHandler.runningReference.interpreter.getFunctionManager().setWorkingDirectory(dir);
+        KeyHandler.runningReference.interpreter.globals.getFunctionManager().setWorkingDirectory(dir);
         
         //Update the list view (ie files in the current working directory)
         updateFileList(dir);

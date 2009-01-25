@@ -67,7 +67,7 @@ public class SearchPathSelection extends JPanel {
      */
     public static void showPathSelectionDialog(Component container) {
         SearchPathSelection p = new SearchPathSelection();
-        FunctionManager fm = KeyHandler.runningReference.interpreter.getFunctionManager();
+        FunctionManager fm = KeyHandler.runningReference.interpreter.globals.getFunctionManager();
         for (int i = 0; i < fm.getFunctionLoaderCount(); i++) {
             FunctionLoader fl = fm.getFunctionLoader(i);
             if (fl instanceof FileFunctionLoader) {

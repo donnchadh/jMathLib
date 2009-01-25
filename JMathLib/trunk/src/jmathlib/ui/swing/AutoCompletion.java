@@ -41,7 +41,7 @@ public class AutoCompletion
             i++;
         }
 
-        KeyHandler.runningReference.interpreter.getFunctionManager().clearCustomFunctionLoaders();
+        KeyHandler.runningReference.interpreter.globals.getFunctionManager().clearCustomFunctionLoaders();
         s = System.getProperty("AUTOCOMP_SEARCH_DIRS");
         st = new StringTokenizer(s," ");
         String[] fileDirectories = new String[st.countTokens()];
@@ -96,7 +96,7 @@ public class AutoCompletion
                 {
                     try
                     {
-                        KeyHandler.runningReference.interpreter.getFunctionManager().addFunctionLoader(new FileFunctionLoader(fa[i].getCanonicalFile(), false));
+                        KeyHandler.runningReference.interpreter.globals.getFunctionManager().addFunctionLoader(new FileFunctionLoader(fa[i].getCanonicalFile(), false));
                     }
                     catch (IOException ioe) { ; }
                 }
