@@ -4,8 +4,6 @@ import jmathlib.core.interpreter.*;
 import jmathlib.core.tokens.numbertokens.*;
 import java.util.*;
 
-//import java.util.ArrayList;
-
 /** */
 public class MathLibObject extends DataToken
 {
@@ -102,11 +100,15 @@ public class MathLibObject extends DataToken
     
     /**Evaluates the structure
     @return the structure itself*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         return this;
     }
 
+    /**
+     * @param
+     * @return
+     */
     public OperandToken add(OperandToken arg)
     {
 		 MathLibObject result = new MathLibObject(this);
@@ -135,6 +137,10 @@ public class MathLibObject extends DataToken
         return result;
     }
     
+    /**
+     * @param
+     * @return
+     */
     public OperandToken subtract(OperandToken arg)
     {
     	MathLibObject result = new MathLibObject(this);
@@ -164,6 +170,10 @@ public class MathLibObject extends DataToken
     	return result;
     }
     
+    /**
+     * @param arg
+     * @return 
+     */
     public OperandToken multiply(OperandToken arg)
     {
     	MathLibObject result = new MathLibObject(this);
@@ -192,6 +202,10 @@ public class MathLibObject extends DataToken
     	 return result;
     }
 
+    /**
+     * @param
+     * @return
+     */
     public OperandToken divide(OperandToken arg)
     {
     	 MathLibObject result = new MathLibObject(this);
@@ -220,6 +234,9 @@ public class MathLibObject extends DataToken
     	 return result;
     }
 
+    /**
+     * @param
+     */
     public OperandToken power(OperandToken arg)
     {
     	 MathLibObject result = new MathLibObject(this);
@@ -230,345 +247,22 @@ public class MathLibObject extends DataToken
                 
     	      while(argFields.hasNext())
     	      {
-    		   Variable var = ((Variable)((Map.Entry)argFields.next()).getValue());
-    		   String fieldName = var.getName();
-    		   
-    		   OperandToken data = getFieldData(fieldName);
-                    
-    		   if(data != null)
-    		   {
-    			result.setField(fieldName, data.power(var.getData()));
-    		   }
-    		   else
-    		   {
-    			result.setField(fieldName, DoubleNumberToken.zero);
-    		   }
+                   Variable var = ((Variable)((Map.Entry)argFields.next()).getValue());
+                   String fieldName = var.getName();
+                   
+                   OperandToken data = getFieldData(fieldName);
+                        
+                   if(data != null)
+                   {
+                       result.setField(fieldName, data.power(var.getData()));
+                   }
+                   else
+                   {
+                       result.setField(fieldName, DoubleNumberToken.zero);
+                   }
     	      }                
     	 }
     	 return result;
     }
-    
-    //unary operations
-    /**calculate the factorial
-    @return the result as an OperandToken*/
-    public OperandToken factorial()
-    {
-    	 MathLibObject result = new MathLibObject();
-    	 Iterator fields = getFields();
-                
-    	 while(fields.hasNext())
-    	 {
-    	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-    	      String fieldName = var.getName();
-    		   
-    	      OperandToken data = var.getData();
-                
-    	      result.setField(fieldName, data.factorial());
-    	 }                
-         return result;
-    }
-
-    /**trigonometric functions - calculate the sine of this token
-    @return the result as an OperandToken*/
- /*  public OperandToken sin()
-    {
-    	 MathLibObject result = new MathLibObject();
-    	 Iterator fields = getFields();
-                
-    	 while(fields.hasNext())
-    	 {
-    	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-    	      String fieldName = var.getName();
-    		   
-    	      OperandToken data = var.getData();
-                
-    	      result.setField(fieldName, data.sin());
-    	 }                
-         return result;
-    }*/
-
-    /**trigonometric functions - calculate the cosine of this token
-    @return the result as an OperandToken*/
-/*    public OperandToken cos()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-	      result.setField(fieldName, data.cos());
-	 }                
-        return result;
-    }*/
-
-    /**trigonometric functions - calculate the tangent of this token
-    @return the result as an OperandToken*/
-    public OperandToken tan()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.tan());
-	 }                
-        return result;
-    }
-
-    /**trigonometric functions - calculate the arc sine of this token
-    @return the result as an OperandToken*/
-    public OperandToken asin()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.asin());
-	 }                
-        return result;
-    }
-
-    /**trigonometric functions - calculate the arc cosine of this token
-    @return the result as an OperandToken*/
-    public OperandToken acos()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.acos());
-	 }                
-        return result;
-    }
-
-    /**trigonometric functions - calculate the arc tangent of this token
-    @return the result as an OperandToken*/
-    public OperandToken atan()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.atan());
-	 }                
-        return result;
-    }
-
-	
-	/**Trigonometric function - calculates the hyperbolic sine
-    @return the result as an OperandToken*/   
-    public OperandToken sinh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.sinh());
-	 }                
-        return result;
-    }
-    
-	/**Trigonometric function - calculates the hyperbolic cosine
-    @return the result as an OperandToken*/   
-    public OperandToken cosh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.cosh());
-	 }                
-        return result;
-	}
-
-	/**Trigonometric function - calculates the hyperbolic tan
-    @return the result as an OperandToken*/   
-    public OperandToken tanh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.tanh());
-	 }                
-        return result;
-	}
-		
-	/**Trigonometric function - calculates the inverse hyperbolic sine
-    @return the result as an OperandToken*/   
-  /*  public OperandToken asinh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-	      result.setField(fieldName, data.asinh());
-	 }                
-        return result;
-    }*/
-	
-    /**Trigonometric function - calculates the inverse hyperbolic cosine
-       @return the result as an OperandToken*/   
-    public OperandToken acosh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.acosh());
-	 }                
-        return result;
-    }
-
-    /**Trigonometric function - calculates the inverse hyperbolic tangent
-       @return the result as an OperandToken*/   
-    public OperandToken atanh()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.atanh());
-	 }                
-        return result;
-    }
-    
-	/**Standard functions - calculates the absolute value
-    @return the result as an OperandToken*/
-    public OperandToken abs()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.abs());
-	 }                
-        return result;
-    }
-
-	/**Standard functions - calculates the exponent
-    @return the result as an OperandToken*/
-    public OperandToken exp()
-    {
-	 MathLibObject result = new MathLibObject();
-	 Iterator fields = getFields();
-            
-	 while(fields.hasNext())
-	 {
-	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-	      String fieldName = var.getName();
-		   
-	      OperandToken data = var.getData();
-            
-//	      result.setField(fieldName, data.exp());
-	 }                
-        return result;
-    }
-
-    public OperandToken degreesToRadians()
-    {
-		 MathLibObject result = new MathLibObject();
-		 Iterator fields = getFields();
-	            
-		 while(fields.hasNext())
-		 {
-		      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-		      String fieldName = var.getName();
-			   
-		      OperandToken data = var.getData();
-	            
-//		      result.setField(fieldName, data.degreesToRadians());
-		 }                
-	     return result;
-	
-    }
-
-    public OperandToken radiansToDegrees()
-    {
-    	 MathLibObject result = new MathLibObject();
-    	 Iterator fields = getFields();
-                
-    	 while(fields.hasNext())
-    	 {
-    	      Variable var = ((Variable)((Map.Entry)fields.next()).getValue());
-    	      String fieldName = var.getName();
-    		   
-    	      OperandToken data = var.getData();
-                
-//    	      result.setField(fieldName, data.radiansToDegrees());
-    	 }                
-         return result;
-    }
-    
-    
+   
 }
