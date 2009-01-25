@@ -5,16 +5,16 @@ import jmathlib.core.tokens.*;
 /**class for binding a variable name to some data*/
 public class Variable extends RootObject
 {
-    /**The variable name*/
+    /**variable name*/
     private String name;
 
-    /**Variable data*/
+    /**variable data*/
     private OperandToken data;
 
-    // local or global context
+    /** local or global context */
     private boolean globalB = false;
     
-    /**Default constructor*/
+    /**default constructor*/
     public Variable()
     {
         super();
@@ -22,7 +22,8 @@ public class Variable extends RootObject
         data = null;
     }
 
-    /**constructor containing a variable name*/
+    /**constructor containing a variable name
+     * @param _name*/
     public Variable(String _name)
     {
         super();
@@ -30,7 +31,9 @@ public class Variable extends RootObject
         data = null;
     }
 
-    /**constructor containing the variables name and data*/
+    /**constructor containing the variables name and data
+     * @param _name
+     * @param _data*/
     public Variable(String _name, OperandToken  _data)
     {
         super();
@@ -51,8 +54,10 @@ public class Variable extends RootObject
         //}
     }
 
-    /**Assign a new value to the variable*/
-    //public OperandToken assign(Token _data)
+    /**Assign a new value to the variable
+     * @param _data
+     * @return
+     */
     public OperandToken assign(OperandToken _data)
     {
         if (_data!=null)
@@ -86,9 +91,12 @@ public class Variable extends RootObject
         return equal;
     }
 
-    /**Converts the variable to a string.*/
+    /**Converts the variable to a string.
+     * @return
+     */
     public String toString()
     {
+        //Errors.throwMathLibException("Variable");
         if(data == null)
             return null;
         else
@@ -107,7 +115,9 @@ public class Variable extends RootObject
     	return name;
     }
     
-    /**Returns the variables data*/
+    /**Returns the variables data
+     * @return
+     */
     public OperandToken getData()
     {
     	return data;

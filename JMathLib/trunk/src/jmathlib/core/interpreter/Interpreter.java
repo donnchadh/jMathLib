@@ -54,6 +54,8 @@ public class Interpreter
     	//  all expressions for access to function manager, variable lists, contexts,...
     	globals = new GlobalValues(this, runningStandalone, _applet);;
 
+    	// set output panel to NULL
+    	// ?? needed? outputPanel is initialized with NULl anyway (see above)
     	outputPanel = null;
 
 	    // read preferences from a file on the disc or on the web
@@ -111,9 +113,7 @@ public class Interpreter
 
         // if required rehash m-files
         if(runningStandalone)
-        {
             globals.getFunctionManager().checkAndRehashTimeStamps();
-        }        
 
         try
         {
@@ -167,6 +167,7 @@ public class Interpreter
             var.assign(new CharToken(answer));	
         }
 
+        ErrorLogger.debugLine("Interpreter: done");
 	    
         return answer;
     }
