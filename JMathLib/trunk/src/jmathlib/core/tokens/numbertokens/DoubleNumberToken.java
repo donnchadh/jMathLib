@@ -682,7 +682,7 @@ public class DoubleNumberToken extends NumberToken
         else if (Double.isNaN(re))    
             result.append("NaN");
         else
-            //result.append(globals.getNumberFormat().format(re));
+            //result.append(getNumberFormat().format(re));
             result.append(numFormat.format(re));
 //stefan
         

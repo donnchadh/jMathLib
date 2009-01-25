@@ -99,7 +99,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
                 // clone limits functions/values to preserve for future evalutation
                 ops[0] = left.getData();
 				ops[1] = right;
-                ops[2] = ((OperandToken)limits[0].clone());
+                ops[2] = (OperandToken)limits[0].clone();
                 ops[2] = ops[2].evaluate(null, globals);
                 
 				if (limitsLength==2)
@@ -128,7 +128,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
             {
                 ErrorLogger.debugLine("AssignmentOperatorToken: displayResult");
                 if ((right!=null))
-                    globals.getInterpreter().displayText(left.getName() +" = "+ right.toString());
+                    globals.getInterpreter().displayText(left.getName() +" = "+ right.toString(globals));
                 else
                     globals.getInterpreter().displayText(left.getName() +" = []");
             }
