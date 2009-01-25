@@ -13,7 +13,7 @@ public class Expression extends OperandToken
      /**The number of operands*/
     private int noChildren = 0;
 
-    /*the operator being held within the node*/
+    /**the operator being held within the node*/
     private OperatorToken data;
     
     /**Stores the index of the child being executed*/
@@ -24,14 +24,14 @@ public class Expression extends OperandToken
     {
         super(50);// , "EXPRESSION");
         data         = null;
-        children     = null;  //new OperandToken[5];
+        children     = null; 
     }
 
     /**Creates an expression with no operands
     @param _data = the expressions operator*/    
     public Expression(OperatorToken _data)
     {
-        super(50); //, "EXPRESSION");
+        super(50); 
         data         = _data;
         children     = null; 
     }
@@ -41,7 +41,7 @@ public class Expression extends OperandToken
     @param operand = the expressions operand*/    
     public Expression(OperatorToken _data, OperandToken operand)
     {
-        super(50); //, "EXPRESSION");
+        super(50); 
         data         = _data;
         children     = new OperandToken[1]; 
         children[0] = operand;
@@ -54,7 +54,7 @@ public class Expression extends OperandToken
     @param right = the right hand operand*/    
     public Expression(OperatorToken _data, OperandToken left, OperandToken right)
     {
-        super(50); //, "EXPRESSION");
+        super(50); 
         data         = _data;
         children    = new OperandToken[2]; 
         children[0] = left;
@@ -86,7 +86,7 @@ public class Expression extends OperandToken
     @param _noChildren     = the number of operands*/    
     public Expression(OperatorToken _data, OperandToken[] _children, int _noChildren)
     {
-        super(50); //, "EXPRESSION");
+        super(50); 
         data         = _data;
         children     = _children;
         noChildren   = _noChildren;
@@ -201,7 +201,7 @@ public class Expression extends OperandToken
     /**evaluate the data item held within this node
     @param ops = the expressions operands
     @return the result of the expression as an OperandToken*/
-    public OperandToken evaluate(Token[] ops)
+    public OperandToken evaluate(Token[] ops, GlobalValues globals)
     {
         OperandToken result = null;
         ErrorLogger.debugLine("Expression: evaluate " + toString());
@@ -232,7 +232,7 @@ public class Expression extends OperandToken
             }
         
             // evaluate right-hand argument (e.g. a= 2+3)
-            children[1] = right.evaluate(null);
+            children[1] = right.evaluate(null, globals);
             
             //check LEFT side for submatrices (e.g. a(1,:) = [1,2,3] )
             if (left instanceof FunctionToken)
@@ -250,7 +250,7 @@ public class Expression extends OperandToken
             }
         }
         else if(data instanceof UnaryOperatorToken && (((UnaryOperatorToken)data).getValue() == '+' || 
-                                                  ((UnaryOperatorToken)data).getValue() == '-'   ) )
+                                                       ((UnaryOperatorToken)data).getValue() == '-'   ) )
         {
             //!!! is this line really necessary !!!!???
             //do nothing
@@ -269,11 +269,14 @@ public class Expression extends OperandToken
             {
                 if(children[i] != null)
                 {
+                    ErrorLogger.debugLine("Expression: child: "+children[i].toString());
+                    //ErrorLogger.debugLine("Expression: globals: "+globals);
+
                     // check if result should be displayed
                     dispB = children[i].isDisplayResult(); 
                     
                     // evaluate children
-                    children[i] = children[i].evaluate(null);                    
+                    children[i] = children[i].evaluate(null, globals);                    
                      
                     // check if result should be displayed before
                     if (dispB && children[i]!=null)
@@ -292,14 +295,12 @@ public class Expression extends OperandToken
                 data.setDisplayResult(true); 
             
             // evaluate expression
-            result = data.evaluate(children); 
+            result = data.evaluate(children, globals); 
             
             /* set the display state of the result, if the original expression
                also has the display state set  */
             if (isDisplayResult() && (result != null))
-            {
                 result.setDisplayResult(true);
-            }
         }
         else
         {
@@ -314,16 +315,16 @@ public class Expression extends OperandToken
                 if (children[i]!=null)
                 {
                     ErrorLogger.debugLine("Expression: store ans "+children[i].toString());
-                    Variable answervar = createVariable("ans");
+                    Variable answervar = globals.createVariable("ans");
                     answervar.assign(children[i]);
                 }
                 
                 /* display the result this expression in the user console*/
-                if ((children[i] != null)         &&
-                    children[i].isDisplayResult()  )
+                if ((children[i] != null)          &&
+                     children[i].isDisplayResult()    )
                 {
                     //ErrorLogger.debugLine("Expression: !!!!!!!!! showResult");
-                    getInterpreter().displayText(" ans = "+ children[i].toString());
+                    globals.getInterpreter().displayText(" ans = "+ children[i].toString(globals));
                 }
             }                                
         }                
@@ -338,7 +339,7 @@ public class Expression extends OperandToken
         String result = "";
         if (data != null)
         {
-            result = (data).toString(children);
+            result = data.toString(children);
         }
         else
         {
@@ -351,40 +352,6 @@ public class Expression extends OperandToken
 
         return result;
     }
-
-    
-    /**Performs a multiplication
-    @param argument = the value to multiply the expression by
-    @return the result as an OperandToken*/
-    /*public OperandToken multiply(OperandToken argument)
-    {
-        return null;
-    }
-    */
-    /**Raise this object to the power of arg
-    @param = the value to raise it to the power of
-    @return the result as an OperandToken*/
-    /*public OperandToken powerOf(OperandToken argument)
-    {
-        return null;
-    }*/
-    
-    /**add this token to another
-    @param arg = the amount to add to it 
-    @return the result as an OperandToken*/
-    /*public OperandToken add(OperandToken argument)
-    {
-        return null;
-    }
-    */
-
-    /**subtract this token from another
-    @param arg = the amount to subtract from it 
-    @return the result as an OperandToken*/
-    /*public OperandToken subtract(OperandToken argument)
-    {
-        return null;
-    }*/
 
     /**Builds an expression tree
     @param op      = the expressions operator

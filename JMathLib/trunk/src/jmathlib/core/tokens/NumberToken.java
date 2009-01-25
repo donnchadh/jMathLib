@@ -18,7 +18,7 @@ public class NumberToken extends DataToken
      *          2
      *          4         */
     /**stores the number format for displaying the number*/
-    protected static NumberFormat numFormat = NumberFormat.getInstance();
+    protected /*static*/ NumberFormat numFormat = NumberFormat.getInstance();
 
     /**Index for real values within array*/
     protected static final int REAL = 0;
@@ -36,6 +36,22 @@ public class NumberToken extends DataToken
     {
         super(priority, type);
     }
+    
+    /**
+     * 
+     * @return
+     */
+ /*   protected NumberFormat getNumberFormat()
+    {
+        if (globals==null)
+            ErrorLogger.debugLine("NumberToken: numberFormat: null");
+            
+        if (globals!=null)
+            return globals.getNumberFormat();
+        else
+            return NumberFormat.getInstance();
+    }
+   */
     
     /**
      * Convert y,x points to element number n
@@ -117,6 +133,7 @@ public class NumberToken extends DataToken
     /**Evaluate the token. This causes it to return itself*/
     public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
+        ErrorLogger.debugLine("NumberToken: eval");
         return this;    
     }
 
@@ -146,6 +163,16 @@ public class NumberToken extends DataToken
     public String toString()
     {
         return null;
+    }
+
+    /**
+     * 
+     */
+    public String toString(GlobalValues globals)
+    {
+        ErrorLogger.debugLine("NumberToken: toString(globals)");
+        numFormat = globals.getNumberFormat();
+        return toString();
     }
 
 

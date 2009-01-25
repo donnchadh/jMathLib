@@ -41,6 +41,16 @@ abstract public class Token extends RootObject implements TokenConstants
      */
     abstract public String toString();
 
+    /**
+     * 
+     * @param globals
+     * @return
+     */
+    public String toString(GlobalValues globals)
+    {
+        return toString();
+    }
+    
     /**Converts the token to its MathML representation. At the moment this is unimplemented and just
        converts the token into a string*/
     public String toMathMlString(OperandToken[] operands)
