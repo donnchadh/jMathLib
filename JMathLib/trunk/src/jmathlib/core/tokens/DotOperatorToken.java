@@ -12,7 +12,7 @@ public class DotOperatorToken extends OperatorToken
     }
 
     /**evaluates the operator*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
     	ErrorLogger.debugLine("DotOperatorToken: evaluate");
         
@@ -20,7 +20,7 @@ public class DotOperatorToken extends OperatorToken
         Token left  = operands[0];
         Token right = operands[1];
         
-		left = left.evaluate(null);
+		left = left.evaluate(null, globals);
         
         // not needed. is done by variable token
         // check if left is a variable (e.g. a.abc, where "a" is a structure)
@@ -50,12 +50,12 @@ public class DotOperatorToken extends OperatorToken
 	        try
 	   	 	{
 	    	    //check if a function with this name exists
-	    	    if (getFunctionManager().findFunctionByName(name) != null)
+	    	    if (globals.getFunctionManager().findFunctionByName(name) != null)
 				{
 	                ErrorLogger.debugLine("parser value.function");
 		        	FunctionToken func = new FunctionToken(name, (OperandToken)left);
 	     
-	    	        return func.evaluate(null);
+	    	        return func.evaluate(null, globals);
 				}
 	        }
 	    	catch(Exception e){}
