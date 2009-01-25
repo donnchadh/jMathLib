@@ -85,7 +85,8 @@ public class testInterpreter extends TestCase {
 	}
     public void testAccessMethods11() {
         double[][] dr = {{1.0, 2.0, 1.0},{3.0, 4.0, 5.0}};
-		ml.executeExpression("d=[1,2,1\n3,4,5]");
+        ml.executeExpression("setdebug(1)");
+        ml.executeExpression("d=[1,2,1\n3,4,5]");
  		assertTrue(Compare.ArrayEquals(dr, ml.getArrayValueRe("d")));
 	}
 
