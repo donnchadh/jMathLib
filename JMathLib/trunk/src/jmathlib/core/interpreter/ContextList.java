@@ -99,7 +99,7 @@ public class ContextList
         {
             // variable is local only
             // return data from current context
-            return localContext.getVariables().getVariable(name);
+            return var;
         }
     }
     
