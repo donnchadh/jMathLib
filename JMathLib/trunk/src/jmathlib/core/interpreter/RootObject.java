@@ -11,19 +11,12 @@ public class RootObject implements java.io.Serializable,
                                    jmathlib.core.constants.ErrorCodes, 
                                    jmathlib.core.constants.TokenConstants
 {
+    
 	/**
 	 * 
 	 */
     public RootObject()
     {
-    }
-
-    /**Convert the object into a string
-     * @param
-     */	
-    public String toString()
-    {
-    	return "";
     }
 
     /**Converts the object to a string based on the operand list
@@ -33,7 +26,6 @@ public class RootObject implements java.io.Serializable,
     {
     	return "root object";
     }
-    
 
     /**Duplicates the object by serialising it to a piped stream then reading it back into
      * the new object
@@ -74,9 +66,9 @@ public class RootObject implements java.io.Serializable,
 	 	}
 	 	catch(java.io.IOException except)
 	 	{
+            except.printStackTrace();
 			ErrorLogger.debugLine("RootObject: IO exception");
 			ErrorLogger.debugLine(except.getMessage());
-			//except.printStackTrace();
 	 	}
 	 	catch(java.lang.ClassNotFoundException except)
 	 	{
