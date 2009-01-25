@@ -25,8 +25,7 @@ public class VariableToken extends DataToken implements ErrorCodes
     /**Boolean indicator if limits are active */
     private boolean limitSwitch = false;
     
-    /** true if e.g. a{8}...
-     * */
+    /** true if e.g. a{8}... */
     private boolean cellB = false;
     
     /**constructor containing the variables name
@@ -133,10 +132,11 @@ public class VariableToken extends DataToken implements ErrorCodes
    
     /**@return the value of the data held within the variable
     if the variable has not been inisitalised then it returns the variable*/
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 		ErrorLogger.debugLine("VariableToken: eval: " + name);
-
+        //ErrorLogger.debugLine("VariableToken: evalG: " + globals);
+        
         // Check if variable is defined (in object storage)
         if(fieldName != null)
         {
@@ -148,10 +148,10 @@ public class VariableToken extends DataToken implements ErrorCodes
             //else
             //{
                 ErrorLogger.debugLine("VariableToken: " + name + "getting field " + fieldName);
-                return ((MathLibObject)getVariable(name).getData()).getFieldData(fieldName);
+                return ((MathLibObject)globals.getVariable(name).getData()).getFieldData(fieldName);
             //}            
         }
-        else if( getVariable(name) == null )
+        else if( globals.getVariable(name) == null )
         {
             // variable is not yet defined (e.g. user typed sin(a) and "a" is unknown)
             //  or it is a function
@@ -172,7 +172,7 @@ public class VariableToken extends DataToken implements ErrorCodes
     	    // If it is not a variable maybe it's a function or script-file
     	    FunctionToken function = new FunctionToken(name, limitTokens);
     	    function.setOperands(new OperandToken[] {}); 
-    	    OperandToken  retValue = function.evaluate(null); 
+    	    OperandToken  retValue = function.evaluate(null, globals); 
             
             // if the "function" is really a script it won't return anything
             if (function.isScript())
@@ -196,12 +196,12 @@ public class VariableToken extends DataToken implements ErrorCodes
 
     	// variable is defined already/now
     	// get data of variable
-        OperandToken variableData = getVariable(name).getData();
+        OperandToken variableData = globals.getVariable(name).getData();
 
         // check if data is available
         if(variableData != null)
         {
-            ErrorLogger.debugLine("Variable data = " + variableData.toString());
+            ErrorLogger.debugLine("VariableToken data = " + variableData.toString());
         	
             // clone data so that original values are not changed
             variableData = ((OperandToken)variableData.clone());
@@ -219,7 +219,7 @@ public class VariableToken extends DataToken implements ErrorCodes
 					//ErrorLogger.debugLine(i);
 					// clone limits functions/values to preserve for future evalutation
                     opTok[i+1] = ((OperandToken)limitTokens[i].clone());
-                    opTok[i+1] = opTok[i+1].evaluate(null);
+                    opTok[i+1] = opTok[i+1].evaluate(null, globals);
 
 					if (opTok[i+1] != null)
 						ErrorLogger.debugLine("VariableToken: eval: toString("+i+") "+opTok[i+1].toString());
@@ -234,14 +234,14 @@ public class VariableToken extends DataToken implements ErrorCodes
                 }
                 
                 // create instance of external function SubMatix and compute submatrix
-                result = subM.evaluate(opTok);
+                result = subM.evaluate(opTok, globals);
 
 			}
 
 			/* display the result of this variable in the user console*/
             if (isDisplayResult())
-			    getInterpreter().displayText(name +" = "+ result.toString());
-    	    
+                globals.getInterpreter().displayText(name +" = "+ result.toString(globals));
+            
             return result;
         }
         else
@@ -250,7 +250,7 @@ public class VariableToken extends DataToken implements ErrorCodes
             
             // display the result of this variable in the user console
             if (isDisplayResult())
-                getInterpreter().displayText(name +" = []");
+                globals.getInterpreter().displayText(name +" = []");
 
             return null;
 		}
@@ -297,14 +297,14 @@ public class VariableToken extends DataToken implements ErrorCodes
     }
     
 	/**return the data of the variable*/
-    public OperandToken getData()
+/*    public OperandToken getData()
     {
         if(fieldName == null)
     	   return getVariable(name).getData();
         else
            return ((MathLibObject)getVariable(name).getData()).getFieldData(fieldName);
     }
-
+*/
     public boolean equals(Object obj)
     {
         if(obj instanceof VariableToken)
@@ -319,7 +319,7 @@ public class VariableToken extends DataToken implements ErrorCodes
     /**Checks if this operand is a numeric value
     @return true if this is a number, false if it's 
     an algebraic expression*/
-    public boolean isNumeric()
+/*    public boolean isNumeric()
     {
     	boolean numeric = false;
     	OperandToken data = null;
@@ -330,6 +330,7 @@ public class VariableToken extends DataToken implements ErrorCodes
     		
     	return numeric;
     }
+ */   
     
     /**
      * check if variable is a struct
@@ -354,13 +355,13 @@ public class VariableToken extends DataToken implements ErrorCodes
     }
 
     /**get the variable that this token references*/
-    public Variable getVariable()
+    public Variable getVariable(GlobalValues globals)
     {
         if(fieldName == null)
-            return getVariable(name);
+            return globals.getVariable(name);
         
-        if(getVariable(name)!=null)
-             return ((MathLibObject)getVariable(name).getData()).getFieldVariable(fieldName);
+        if(globals.getVariable(name)!=null)
+             return ((MathLibObject)globals.getVariable(name).getData()).getFieldVariable(fieldName);
 
         return null;
     }
