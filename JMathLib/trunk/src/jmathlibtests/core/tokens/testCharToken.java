@@ -49,7 +49,7 @@ public class testCharToken extends TestCase
     {
         CharToken expectedResult = new CharToken("A String1");
         Token actualResult = string1.add(number);
-        assertEquals(expectedResult.toString(), actualResult.toString());
+        assertEquals(" [66 ,  33 ,  84 ,  117 ,  115 ,  106 ,  111 ,  104]\n", actualResult.toString());
     }
     
     public void testCharToken003() {
