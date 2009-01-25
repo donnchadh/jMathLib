@@ -1,6 +1,5 @@
 package jmathlib.core.tokens;
 
-import jmathlib.core.interpreter.Variable;
 import jmathlib.core.interpreter.*;
 import jmathlib.toolbox.jmathlib.matrix.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
@@ -23,7 +22,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
      * @param operands = the operators operands
      * @return the result as and OperandToken
      */
-    public OperandToken evaluate(Token[] operands)
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
         OperandToken result = null;
 
@@ -40,7 +39,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
             
             // if leftVarTok is of type MathLibObject the next line will return
             //  a reference to the field values (e.g. a.b)
-	        Variable      left       = leftVarTok.getVariable();
+	        Variable      left       = leftVarTok.getVariable(globals);
 
 			// check if variable already exists
 			if (left == null)
@@ -53,32 +52,32 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
                 {
                     // e.g. a{8}=...
                     ErrorLogger.debugLine("AssignmentOpTok: new cell");
-                    left = createVariable(name);
+                    left = globals.createVariable(name);
                     left.assign(new CellArrayToken());
                 }
                 else if (!leftVarTok.isStruct())
 				{
 					// auto create a new variable
-	               	left = createVariable(name);
+	               	left = globals.createVariable(name);
 				}
 				else if (leftVarTok.isStruct() && 
-						 getVariable(name) ==  null)
+						 globals.getVariable(name) ==  null)
 				{
 					// struct is not created yet
 					ErrorLogger.debugLine("AssignmentOpTok: new struct: "+name+"."+fieldName);
 					MathLibObject obj = new MathLibObject();
 					obj.setField(fieldName, DoubleNumberToken.zero);
-					Variable var = createVariable(name );
+					Variable var = globals.createVariable(name );
 					var.assign(obj);
-					left = ((MathLibObject)getVariable(name).getData()).getFieldVariable(fieldName);
+					left = ((MathLibObject)globals.getVariable(name).getData()).getFieldVariable(fieldName);
 				}
 				else
 				{
 					// struct is already created, but field is missing
 					// variable is a struct -> auto create new field variable
 					ErrorLogger.debugLine("AssignmentOpTok: struct new field: "+name+"."+fieldName);
-					((MathLibObject)getVariable(name).getData()).setField(fieldName,DoubleNumberToken.zero);
-					left       = leftVarTok.getVariable();
+					((MathLibObject)globals.getVariable(name).getData()).setField(fieldName,DoubleNumberToken.zero);
+					left       = leftVarTok.getVariable(globals);
 				}
 			}
 
@@ -101,12 +100,12 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
                 ops[0] = left.getData();
 				ops[1] = right;
                 ops[2] = ((OperandToken)limits[0].clone());
-                ops[2] = ops[2].evaluate(null);
+                ops[2] = ops[2].evaluate(null, globals);
                 
 				if (limitsLength==2)
 				{
                     ops[3] = ((OperandToken)limits[1].clone()); 
-                    ops[3] = ops[3].evaluate(null);
+                    ops[3] = ops[3].evaluate(null, globals);
                 }
 
                 subassign subA = new subassign();
@@ -118,7 +117,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
                 }
                 
 				// create instance of external function SubAssign and compute assignment
-                right = subA.evaluate(ops);
+                right = subA.evaluate(ops, globals);
 			}
 
 			result = left.assign(right);
@@ -127,11 +126,11 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
             /* display the result this expression in the user console*/
             if (isDisplayResult())
             {
-                ErrorLogger.debugLine("AssignmentOperatorToken: !!!!!!!!! displayResult");
+                ErrorLogger.debugLine("AssignmentOperatorToken: displayResult");
                 if ((right!=null))
-                    getInterpreter().displayText(left.getName() +" = "+ right.toString());
+                    globals.getInterpreter().displayText(left.getName() +" = "+ right.toString());
                 else
-                    getInterpreter().displayText(left.getName() +" = []");
+                    globals.getInterpreter().displayText(left.getName() +" = []");
             }
             
             return null;
@@ -139,7 +138,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
         else if (operands[0] instanceof Expression)
         {
             ErrorLogger.debugLine("AssignmentOpTok: eval: Expression *******");
-            operands[0] = operands[0].evaluate(null);
+            operands[0] = operands[0].evaluate(null, globals);
             //return evaluate(operands);
             return null;
         }
@@ -156,8 +155,8 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 			   || (left.getSizeY()  != 1)
 			   || (right.getSizeY() != 1) )
 		    {
-			ErrorLogger.debugLine("AssignOperatorToken: unequal sizes");
-			return null;
+		        ErrorLogger.debugLine("AssignOperatorToken: unequal sizes");
+		        return null;
 		    }
 
 		    OperandToken[][] leftOps  = left.getValue();
@@ -166,29 +165,31 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 		    // assign all right side elements to left side variables
 		    for (int i=0; i<left.getSizeX(); i++)
 		    {
-			if (!(leftOps[0][i]  instanceof VariableToken)) return null; 
-			//ErrorLogger.debugLine("AssignOpToken: inst Var..");
-			
-			if (!(rightOps[0][i] instanceof DoubleNumberToken  )) return null;
-			//ErrorLogger.debugLine("AssignOpToken: inst Num..");
-
-			// get one variable element of left side 
-			VariableToken varToken = (VariableToken)leftOps[0][i];
-			Variable leftVar = getVariable(varToken.getName());
-
-			// get number-matrix of an element on the right side
-			DoubleNumberToken   number   = (DoubleNumberToken)rightOps[0][i]; 
-
-			if (leftVar == null)
-			{
-			    ErrorLogger.debugLine("AssignmentOpTok: variable is null");
-			    
-			    // create variable
-			    leftVar = createVariable(varToken.getName() );
-			}
-
-			// assign right side matrix to left side variable
-			result = leftVar.assign(number);
+                if (!(leftOps[0][i]  instanceof VariableToken)) 
+                    return null; 
+                //ErrorLogger.debugLine("AssignOpToken: inst Var..");
+                
+                if (!(rightOps[0][i] instanceof DoubleNumberToken  )) 
+                    return null;
+                //ErrorLogger.debugLine("AssignOpToken: inst Num..");
+                
+                // get one variable element of left side 
+                VariableToken varToken = (VariableToken)leftOps[0][i];
+                Variable leftVar = globals.getVariable(varToken.getName());
+                
+                // get number-matrix of an element on the right side
+                DoubleNumberToken   number   = (DoubleNumberToken)rightOps[0][i]; 
+                
+                if (leftVar == null)
+                {
+                    ErrorLogger.debugLine("AssignmentOpTok: variable is null");
+                    
+                    // create variable
+                    leftVar = globals.createVariable(varToken.getName() );
+                }
+                
+                // assign right side matrix to left side variable
+                result = leftVar.assign(number);
 		    }
 		    //return DoubleNumberToken.one;
 		    return null;
@@ -212,12 +213,13 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 	        // assign all right side elements to left side variables
 	        for (int i=0; i<left.getSizeX(); i++)
 	        {
-	            if (!(leftOps[0][i]  instanceof VariableToken)) return null; 
+	            if (!(leftOps[0][i]  instanceof VariableToken)) 
+	                return null; 
 	            //ErrorLogger.debugLine("AssignOpToken: inst Var..");
 		    
 	            // get one variable element of left side 
 	            VariableToken varToken = ((VariableToken)leftOps[0][i]);
-	            Variable leftVar = getVariable(varToken.getName());
+	            Variable leftVar = globals.getVariable(varToken.getName());
 
 		            // check if variable already exists
 		            if (leftVar == null)
@@ -225,7 +227,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 		                ErrorLogger.debugLine("AssignmentOpTok: variable is null");
 			
 			            // create variable
-			            leftVar = createVariable(varToken.getName() );
+			            leftVar = globals.createVariable(varToken.getName() );
 		            }
 					
 		            // get number-matrix of an element on the right side
@@ -234,7 +236,7 @@ public class AssignmentOperatorToken extends BinaryOperatorToken
 		            // assign right side matrix to left side variable
 		            result = leftVar.assign(number);
 		        }
-		        return null; //result; //DoubleNumberToken.one;
+		        return null; 
 	        }
         }
         else
