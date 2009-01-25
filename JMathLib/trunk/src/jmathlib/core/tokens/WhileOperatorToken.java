@@ -7,7 +7,6 @@ import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 /**Used to implement if-then-else operations within an expression*/
 public class WhileOperatorToken extends CommandToken
 {
-
 	/**condition */
 	OperandToken whileRelation;
 
@@ -15,19 +14,21 @@ public class WhileOperatorToken extends CommandToken
 	OperandToken whileCode;
 
 	/**Constructor setting the whileRelation and whileCode
-	@param _whileRelation = the test relationship
-	@param _whileCode     = the code to execute while the test is true*/
+	 * @param _whileRelation = the test relationship
+	 * @param _whileCode     = the code to execute while the test is true
+	 */
 	public WhileOperatorToken(OperandToken _whileRelation, OperandToken _whileCode)
 	{
 		whileRelation 	= _whileRelation;
 		whileCode		= _whileCode;
 	}
 
-
     /**evaluates the operator
-    @param operands = the tokens parameters (not used)
-    @return the result as an OperandToken*/
-    public OperandToken evaluate(Token[] operands)
+     * @param operands = the tokens parameters (not used)
+     * @param globals
+     * @return the result as an OperandToken
+     * */
+    public OperandToken evaluate(Token[] operands, GlobalValues globals)
     {
 		ErrorLogger.debugLine("Parser: While: evaluate");
 	
@@ -37,7 +38,7 @@ public class WhileOperatorToken extends CommandToken
 			// Check condition of while(...)
 			OperandToken relationLine = ((OperandToken)whileRelation.clone());
 ErrorLogger.debugLine("line = " + relationLine.toString());			
-			OperandToken result = relationLine.evaluate(null);
+			OperandToken result = relationLine.evaluate(null, globals);
             
 			if (result instanceof DoubleNumberToken)
 			{
@@ -72,7 +73,7 @@ ErrorLogger.debugLine("line = " + relationLine.toString());
 				{
 					OperandToken codeLine = ((OperandToken)whileCode.clone());
 					ErrorLogger.debugLine("Parser: while number is true");
-					code = codeLine.evaluate(null);
+					code = codeLine.evaluate(null, globals);
 				}
 			}
             else if (result instanceof LogicalToken)
@@ -88,7 +89,7 @@ ErrorLogger.debugLine("line = " + relationLine.toString());
                 {
                     OperandToken codeLine = ((OperandToken)whileCode.clone());
                     ErrorLogger.debugLine("Parser: while boolean is true");
-                    code = codeLine.evaluate(null);
+                    code = codeLine.evaluate(null, globals);
                 }
 
             }
@@ -100,12 +101,12 @@ ErrorLogger.debugLine("line = " + relationLine.toString());
 		return null;
     }
     
-
-    /**@return the operator as a string*/
+    /**
+     * @return the operator as a string
+     */
     public String toString()
     {
         return "while";
     }
-
     
 }
