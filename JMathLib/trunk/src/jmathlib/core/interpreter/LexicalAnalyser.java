@@ -220,7 +220,7 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
 	For each character it calls a series of functions until it
 	finds one that can handle the character
 	@return the next token contained within the expression string */
-    private boolean scanNextToken() throws MathLibException
+    private boolean scanNextToken() throws JMathLibException
     {
         negative = false;  // reset sign indicator
 

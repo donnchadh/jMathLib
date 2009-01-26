@@ -132,7 +132,7 @@ public class Interpreter
 			
             //getVariables().listVariables();
         }
-        catch(MathLibException e)
+        catch(JMathLibException e)
         {
             answer = e.getMessage();
             

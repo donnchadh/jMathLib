@@ -26,7 +26,7 @@ public class Errors
     public static void throwMathLibException(int errorCode)
     {
     	String text = getErrorText(errorCode);
-        throw (new MathLibException(text));
+        throw (new JMathLibException(text));
     	
     }
 
@@ -36,7 +36,7 @@ public class Errors
        @param errorCode = the error message*/
     public static void throwMathLibException(String errorMessage)
     {
-        throw (new MathLibException("ERROR: "+errorMessage));
+        throw (new JMathLibException("ERROR: "+errorMessage));
     }
 
     /**
@@ -46,7 +46,7 @@ public class Errors
      */
     public static void throwParserException(String errorMessage)
     {
-        throw (new MathLibException("PARSER: "+errorMessage));
+        throw (new JMathLibException("PARSER: "+errorMessage));
     }
 
     
@@ -57,7 +57,7 @@ public class Errors
      */
     public static void throwUsageException(String errorMessage)
     {
-        throw (new MathLibException("USAGE: "+errorMessage));
+        throw (new JMathLibException("USAGE: "+errorMessage));
     }
 
     /**returns the localised error string for a specific code, 
@@ -68,7 +68,7 @@ public class Errors
     public static String getErrorText(int errorCode, Object[] params)
     {
         String text = "";
-        ResourceBundle bundle = ResourceBundle.getBundle("MathLib.ResourceBundles.ErrorBundle");
+        ResourceBundle bundle = ResourceBundle.getBundle("jmathlib.resourcebundles.ErrorBundle");
         text = MessageFormat.format(bundle.getString(Integer.toString(errorCode)), params);
 
         return text;
@@ -81,7 +81,7 @@ public class Errors
     public static void throwMathLibException(int errorCode, Object[] params)
     {
     	String text = getErrorText(errorCode, params);
-        throw (new MathLibException(text));
+        throw (new JMathLibException(text));
     	
     }
 }
