@@ -1,3 +1,12 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2002-2009   
+ */
+
 package jmathlib.core.interpreter;
 
 import jmathlib.core.tokens.OperandToken;

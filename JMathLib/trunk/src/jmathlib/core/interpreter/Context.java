@@ -1,6 +1,14 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2002-2009   
+ */
+
 package jmathlib.core.interpreter;
 
-//import MathLib.Tokens.*;
 
 /**A context object contains the variables and code for the executing function*/
 public class Context implements java.io.Serializable 
@@ -11,8 +19,6 @@ public class Context implements java.io.Serializable
      /**Reference to the contexts calling context*/
      private Context parent;
     
-     /**The name of the function that defined this context, used for diagnostics*/
-     //private String functionName;
 
      /**Create a Context with an empty variable list, used to construct the global context*/        
      public Context()
@@ -22,8 +28,9 @@ public class Context implements java.io.Serializable
      }
 
      /**Create a Context with the supplied values
-        @param _variables = the variable list of the new context
-        @param _parent    = the calling context*/
+      * @param _variables = the variable list of the new context
+      * @param _parent    = the calling context
+      */
      public Context(VariableList _variables, Context _parent)
      {
          variables    = _variables;
