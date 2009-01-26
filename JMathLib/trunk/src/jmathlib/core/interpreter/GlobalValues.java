@@ -1,3 +1,12 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2002-2009   
+ */
+
 package jmathlib.core.interpreter;
 
 import java.io.*;
@@ -26,9 +35,6 @@ public class GlobalValues
     /**Object to control function usage*/
     private jmathlib.core.functions.FunctionManager functionManager;
 
-    /**Class Loader for loading classes for handling casting*/
-    //static transient private MathLib.Casts.CastClassLoader castClassLoader; 
-
     /**A pointer to the interpreter itself*/
     private Interpreter interpreter;
     
@@ -38,28 +44,24 @@ public class GlobalValues
     /**Object to control plugins */
     private jmathlib.plugins.PluginsManager pluginsManager;     
 
-    /**sets whether to write debug lines to console and log files*/
-    //private boolean debug = true;
-    
     /**stores the number format for displaying the number*/
-    public /*static transient*/ NumberFormat numFormat = new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH));
+    public NumberFormat numFormat = new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH));
 
     /**Initialises the global values
-       @param _interpreter = the Interpreter object
-       @param _runningStandalone = true if this was run from an application*/
+     * @param _interpreter = the Interpreter object
+     * @param _runningStandalone = true if this was run from an application
+     */
     public GlobalValues(Interpreter _interpreter, boolean _runningStandalone, Applet applet)
     {
+        // the list of contexts
         contextList     = new ContextList();
 
+        // the function manager for loading m-files class-files
         functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone, applet);
         
+        // the graphics manager for plotting functions
         graphicsManager = new jmathlib.core.graphics.GraphicsManager();
 
-        //if(_runningStandalone)
-        //    castClassLoader = new MathLib.Casts.CastClassLoader("." + File.separator, flags);
-        //else
-        //    castClassLoader = null;
-            
         //set up a pointer to the interpreter object
         interpreter = _interpreter;
 
@@ -136,8 +138,8 @@ public class GlobalValues
         return contextList;
     }
 
-    /**@return the interpreter object
-     * @return
+    /**returns the interpreter object
+     * @return pointer to Interpreter
      */
     public Interpreter getInterpreter()
     {
