@@ -1506,15 +1506,14 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         boolean numberIndicatorB = false;         //
         boolean singleIndicatorB = false;         //
         boolean imagIndicatorB   = false;         //
-        System.out.println("*+*");
+
         // remove spaces between "[" and first element (e.g. [  2,3] -> [2,3]
         while (isExpectedDelimiter(peekNextToken(MATRIX), ' '))
         		getNextToken();
-        System.out.println("*++*");
+
         // parse code of matrices (e.g. [1,2,3;4,5,6] or [1 sin(2) 3; 4 5+1 a]
         while(!endMatrix) 
         {
-            System.out.println("**");
             // get next parameter (whitespaces are treated as delimiter, too)
             OperandToken nextParameter = parseArithExpression(MATRIX);    
 
