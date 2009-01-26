@@ -23,7 +23,8 @@ public class Variable extends RootObject
     }
 
     /**constructor containing a variable name
-     * @param _name*/
+     * @param _name
+     */
     public Variable(String _name)
     {
         super();
@@ -33,25 +34,13 @@ public class Variable extends RootObject
 
     /**constructor containing the variables name and data
      * @param _name
-     * @param _data*/
+     * @param _data
+     */
     public Variable(String _name, OperandToken  _data)
     {
         super();
         name = _name;
 		data = _data;
-
-        //if(_data != null)
-        //{
-        //    OperandToken subTree = null;
-        //    //if the item is an Expression node then just set the data value
-        //    //without creating a new node
-        //    if(_data instanceof Expression)
-        //        subTree = ((Expression)_data);
-        //    else if(_data instanceof OperandToken)
-        //    	subTree = ((OperandToken)_data);
-        //
-        //    data = subTree;
-        //}
     }
 
     /**Assign a new value to the variable
@@ -84,19 +73,18 @@ public class Variable extends RootObject
         //    equal = super.equals(_data);
 
         if(_data instanceof Variable)
-            equal = this.name.equalsIgnoreCase(((Variable)_data).getName());
+            equal = this.name.equals(((Variable)_data).getName());
         else
             equal = super.equals(_data);
 
         return equal;
     }
 
-    /**Converts the variable to a string.
+    /**Converts the variable into a string.
      * @return
      */
     public String toString()
     {
-        //Errors.throwMathLibException("Variable");
         if(data == null)
             return null;
         else
@@ -109,7 +97,9 @@ public class Variable extends RootObject
     	return toString();
     }
 
-    /**Returns the variables name*/
+    /**Returns the variables name
+     * @return
+     */
     public String getName()
     {
     	return name;
