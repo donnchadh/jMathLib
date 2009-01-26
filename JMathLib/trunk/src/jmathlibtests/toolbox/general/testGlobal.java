@@ -72,7 +72,7 @@ public class testGlobal extends TestCase {
                 doit = funcParser.parseFunction(b.toString());
                 doit.evaluate(null, ml.globals);
             } 
-            catch (MathLibException ex) {
+            catch (JMathLibException ex) {
                 exCaught = true;
             }
             assertTrue(exCaught);
