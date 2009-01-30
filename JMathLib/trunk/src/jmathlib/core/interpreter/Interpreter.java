@@ -30,9 +30,6 @@ public class Interpreter
     /**for testing purposes additional throwing of errors can be enables */
     public boolean throwErrorsB = false;
 
-    /** list of preferences */
-    public Preferences prefs = new Preferences();
-    
     /**Constructs the interpreter and sets the constants
 	 * @param _runningStandalone = true if this is being used from an application 
 	 */
@@ -59,7 +56,7 @@ public class Interpreter
     	outputPanel = null;
 
 	    // read preferences from a file on the disc or on the web
-	    prefs.loadPropertiesFromFile();
+	    globals.loadPropertiesFromFile();
         
     }
     
@@ -98,7 +95,7 @@ public class Interpreter
 	        executeExpression("finish");
 	    
 	        // store current properties to file
-            prefs.storeLocalPropertiesToFile();
+            globals.storePropertiesToFile();
         }
     }
 	

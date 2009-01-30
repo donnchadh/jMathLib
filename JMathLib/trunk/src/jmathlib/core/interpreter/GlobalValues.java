@@ -11,6 +11,7 @@ package jmathlib.core.interpreter;
 
 import java.io.*;
 import java.util.Locale;
+import java.util.Properties;
 import java.applet.Applet;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -47,6 +48,9 @@ public class GlobalValues
     /**stores the number format for displaying the number*/
     public NumberFormat numFormat = new DecimalFormat("0.0000", new DecimalFormatSymbols(Locale.ENGLISH));
 
+    /** global properties */
+    private static Properties props = new Properties();  
+    
     /**Initialises the global values
      * @param _interpreter = the Interpreter object
      * @param _runningStandalone = true if this was run from an application
@@ -202,6 +206,73 @@ public class GlobalValues
     public void setNumberFormat(NumberFormat _numFormat)
     {
         numFormat = _numFormat;
+    }
+
+    /**
+     * 
+     *
+     */
+    public void loadPropertiesFromFile()
+    {
+         
+        // load global properties from disc 
+        try 
+        {
+             props.load(new FileInputStream(new File("JMathLib.properties")));
+        }
+        catch (Exception e)
+        {
+            System.out.println("Properties global error");    
+        }
+        //System.out.println("Properties loaded");    
+
+        // display properties
+        //Enumeration propnames = props.propertyNames();
+        //while (globalPropnames.hasMoreElements())
+        //{
+        //    String propname = (String)globalPropnames.nextElement();
+        //    System.out.println("Property: "+propname+" = "+globalProps.getProperty(propname));
+        //}
+         
+
+    }
+
+    /**
+     * 
+     */
+    public void storePropertiesToFile()
+    {
+        
+        // store properties back to file
+        try
+        {
+            props.store(new FileOutputStream(new File("JMathLib.properties")), 
+                             "JMathLib property file" );
+        }
+        catch (Exception e)
+        {
+            System.out.println("Property: Error");
+        }
+    }
+    
+    /**
+     * 
+     * @param property
+     * @return
+     */
+    public String getProperty(String property)
+    {
+        return props.getProperty(property);
+    }
+
+    /**
+     * 
+     * @param property
+     * @param value
+     */
+    public void setProperty(String property, String value)
+    {
+        props.setProperty(property, value);
     }
 
 }
