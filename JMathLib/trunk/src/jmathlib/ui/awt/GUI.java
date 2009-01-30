@@ -238,11 +238,11 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             this.setTitle(TITLE + " - Console Window");
 
             // in case an update is available inform the user
-            String u = interpreter.prefs.getLocalProperty("update.newversionavailable");
+            String u = interpreter.globals.getProperty("update.newversionavailable");
             if ((u!=null) && u.equals("yes"))
             {
                 this.setTitle(TITLE + " - (NEW version available: type update at prompt)");
-                String s = interpreter.prefs.getLocalProperty("update.newversionavailable.message01");
+                String s = interpreter.globals.getProperty("update.newversionavailable.message01");
                 if (s==null)
                     answer.displayText("A NEW version of JMathLib is available\n     type update   or  visit www.jmathlib.de");
                 else
