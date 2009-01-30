@@ -9,6 +9,13 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/01/xx stefan:
 
+2009/01/30 stefan: changed handling of properties
+                   removed getLocalProperty, setLocalProperty
+                   renamed getGlobalProperty into getProperty
+                   renamed setGlobalProperty into setProperty
+                   JMathLib.local.properties is obsolete
+                   JMathLib.propertis is the master now
+
 2009/01/26 stefan: changed MathLibException into JMathLibException
 
 2009/01/25 stefan: JMathLib has not been thread save for more than one
