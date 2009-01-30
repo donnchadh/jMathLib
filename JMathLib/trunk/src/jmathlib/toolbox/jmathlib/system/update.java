@@ -20,11 +20,11 @@ public class update extends ExternalFunction
  		globals.getInterpreter().displayText("UPDATING JMathLib\n");
 
         // get update site of jmathlib
-        String updateSiteS   = globals.getInterpreter().prefs.getLocalProperty("update.site.primary");
+        String updateSiteS   = globals.getProperty("update.site.primary");
         globals.getInterpreter().displayText("update site: "+updateSiteS);
 
         // get local version of jmathlib
-        String localVersionS = globals.getInterpreter().prefs.getLocalProperty("jmathlib.version");
+        String localVersionS = globals.getProperty("jmathlib.version");
         localVersionS = localVersionS.replaceAll("/", ".");
         globals.getInterpreter().displayText("current version: "+localVersionS);
 
@@ -175,7 +175,7 @@ public class update extends ExternalFunction
                     String propS = s.substring(5).trim();
                     globals.getInterpreter().displayText("new property: >"+propS+"<");
                     String[]   p = propS.split("=");
-                    globals.getInterpreter().prefs.setLocalProperty(p[0],p[1]);
+                    globals.setProperty(p[0],p[1]);
                 }
                 else
                 {

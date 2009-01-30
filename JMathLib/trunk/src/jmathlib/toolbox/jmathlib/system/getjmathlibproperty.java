@@ -7,7 +7,7 @@ import jmathlib.core.tokens.CharToken;
 import jmathlib.core.tokens.OperandToken;
 
 /**External function to get a enviroment variable*/
-public class getlocalproperty extends ExternalFunction
+public class getjmathlibproperty extends ExternalFunction
 {
 	/**Returns an enviroment variable
 	@param operand[0] = the name of the variable
@@ -18,17 +18,17 @@ public class getlocalproperty extends ExternalFunction
 		OperandToken result = null;
 		
         if (getNArgIn(operands)!=1)
-            throwMathLibException("getlocalproperty: number of arguments != 1");
+            throwMathLibException("getjmathlibproperty: number of arguments != 1");
         
 
         if (!(operands[0] instanceof CharToken))
-            throwMathLibException("getlocalproperty: number of arguments != 1");
+            throwMathLibException("getjmathlibproperty: number of arguments != 1");
 
 			String name = operands[0].toString();
 			String defaultVal = "";
 			
 		
-			String property = globals.getInterpreter().prefs.getLocalProperty(name);
+			String property = globals.getProperty(name);
 			
 			result = new CharToken(property);
 			
@@ -40,13 +40,13 @@ public class getlocalproperty extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-GETENV(variablename)
+getjmathlibproperty(variablename)
 @DOC
 Returns the value of the enviromental variable variablename.
 @NOTES
 @EXAMPLES
 getlocal("HOME")= "/home/user"
 @SEE
-getenv, getglobalproperty, setlocalproperty, setglobalproperty
+getenv, setjmathlibproperty
 */
 

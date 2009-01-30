@@ -25,7 +25,7 @@ public class checkforupdates extends ExternalFunction
         String updateSiteS = "http://www.jmathlib.de/checkForUpdates/";
  		boolean silentB    = false;
         
-        s = globals.getInterpreter().prefs.getLocalProperty("update.site.primary");
+        s = globals.getProperty("update.site.primary");
         if (s != null)
             updateSiteS = s;
         
@@ -52,13 +52,13 @@ public class checkforupdates extends ExternalFunction
             globals.getInterpreter().displayText("Checking for Updates at "+updateSiteS);
         
         
-        String[] lastUpdateS = globals.getInterpreter().prefs.getLocalProperty("update.date.last").split("/");
+        String[] lastUpdateS = globals.getProperty("update.date.last").split("/");
         int year  = Integer.parseInt(lastUpdateS[0]);
         int month = Integer.parseInt(lastUpdateS[1])-1;
         int day   = Integer.parseInt(lastUpdateS[2]);
         //getInterpreter().displayText("check:"+year+"/"+month+"/"+day);
                 
-        int intervall = Integer.parseInt(globals.getInterpreter().prefs.getLocalProperty("update.intervall"));
+        int intervall = Integer.parseInt(globals.getProperty("update.intervall"));
 
         GregorianCalendar calFile = new GregorianCalendar(year,month,day);
         GregorianCalendar calCur  = new GregorianCalendar();
@@ -142,7 +142,7 @@ public class checkforupdates extends ExternalFunction
                 System.out.println("checkForUpdates: Properties error");    
             }
 
-            String[] localVersionS  = globals.getInterpreter().prefs.getLocalProperty("jmathlib.version").replace("/",".").split("\\.");
+            String[] localVersionS  = globals.getProperty("jmathlib.version").replace("/",".").split("\\.");
             String[] webVersionS    = props.getProperty("jmathlib.version").replace("/",".").split("\\.");
 
             // build version number of local version
@@ -172,12 +172,12 @@ public class checkforupdates extends ExternalFunction
             {
 
                 // set marker for next startup
-                globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable","yes");
+                globals.setProperty("update.newversionavailable","yes");
                 
                 s = props.getProperty("update.newversionavailable.message01");
                 if (s!=null)
                 {
-                    globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable.message01", s);
+                    globals.setProperty("update.newversionavailable.message01", s);
                     globals.getInterpreter().displayText(s);
                 }
                 else
@@ -187,7 +187,7 @@ public class checkforupdates extends ExternalFunction
                 s = props.getProperty("update.newversionavailable.message02");
                 if (s!=null)
                 {
-                    globals.getInterpreter().prefs.setLocalProperty("update.newversionavailable.message02", s);
+                    globals.setProperty("update.newversionavailable.message02", s);
                     globals.getInterpreter().displayText(s);
                 }
             }
@@ -219,23 +219,23 @@ public class checkforupdates extends ExternalFunction
             String checkedDate  = Integer.toString(cal.get(Calendar.YEAR))     + "/"
                                 + Integer.toString(cal.get(Calendar.MONTH)+1)  + "/"
                                 + Integer.toString(cal.get(Calendar.DAY_OF_MONTH));
-            globals.getInterpreter().prefs.setLocalProperty("update.date.last", checkedDate);
+            globals.setProperty("update.date.last", checkedDate);
 
         
             // update link to primary update-site
             s= props.getProperty("update.site.primary");
             if (s!=null)
-                globals.getInterpreter().prefs.setLocalProperty("update.site.primary",s);
+                globals.setProperty("update.site.primary",s);
 
             // update link to backup update-site
             s= props.getProperty("update.site.backup");
             if (s!=null)
-                globals.getInterpreter().prefs.setLocalProperty("update.site.backup",s);
+                globals.setProperty("update.site.backup",s);
 
             // update message of the day
             s= props.getProperty("message.of.the.day");
             if (s!=null)
-                globals.getInterpreter().prefs.setLocalProperty("message.of.the.day",s);
+                globals.setProperty("message.of.the.day",s);
 
         }
         
