@@ -67,7 +67,7 @@ public class createfunctionslist extends ExternalFunction
 
 
             /* The first line of the file is a comment */
-            line = "# created with createFunctionsList.java";
+            line = "# created with createfunctionslist()";
             outWriter.write(line, 0, line.length());
 			outWriter.newLine();
             line = "# This is a generated file. DO NOT EDIT!";
@@ -101,7 +101,10 @@ public class createfunctionslist extends ExternalFunction
                             !line.contains(".svn")              )
                         {
                             // remove preceding absolute path
-                            line = line.substring((globals.getWorkingDirectory().getAbsolutePath()+"/bin/").length());
+                            File f = new File(globals.getWorkingDirectory(),"bin/");
+                            
+                            //ErrorLogger.debugLine(f.getCanonicalPath().toString());
+                            line = line.substring(f.getCanonicalPath().toString().length()+1);
 
                             ErrorLogger.debugLine("path = "+ line);
 
