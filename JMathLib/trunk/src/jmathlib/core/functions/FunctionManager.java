@@ -43,7 +43,7 @@ public class FunctionManager {
         
         if (runningStandalone) {
             //Add the predefined (system) function loader for the current directory.
-            functionLoaders.add(new SystemFileFunctionLoader(new File(""),false)); //"." + File.separator), false));
+            functionLoaders.add(new SystemFileFunctionLoader(new File("."),false)); //"." + File.separator), false));
             //webLoader   = null;
 
             String classPath = System.getProperty("java.class.path");
