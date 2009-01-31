@@ -17,6 +17,20 @@ public class getenv extends ExternalFunction
 	{
 		OperandToken result = null;
 		
+		if(getNArgIn(operands) ==0)
+		{
+		    String s = System.getProperties().toString();
+		    return new CharToken(s);
+	        // display properties
+	        //Enumeration propnames = props.propertyNames();
+	        //while (globalPropnames.hasMoreElements())
+	        //{
+	        //    String propname = (String)globalPropnames.nextElement();
+	        //    System.out.println("Property: "+propname+" = "+globalProps.getProperty(propname));
+	        //}
+
+		}
+		
 		if(operands[0] instanceof CharToken)
 		{
 			String name = operands[0].toString();
