@@ -9,6 +9,14 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/01/xx stefan:
 
+2009/01/31 stefan: changed handling of properties. Moved JMathLib.properties
+                   to src/JMathLib.properties. On first start of JMathLib
+                   it checks if it finds JMathLib.properties in root, if not
+                   it will load the file from the bin/JMathLib.properties file.
+                   It will always be saved in the root directory.
+                   The applet version always reads from the bin/ directory,
+                   it cannot save the properties back to the web server anyway.
+
 2009/01/30 stefan: changed handling of properties
                    removed getLocalProperty, setLocalProperty
                    renamed getGlobalProperty into getProperty
