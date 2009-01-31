@@ -335,8 +335,6 @@
 	       	 <!-- misc files -->
 	         <fileset dir="${build.dir}">
 	         <include name="JMathLib.html"/>
-	         <include name="JMathLib.properties"/>
-	         <include name="JMathLib.local.properties"/>
 	         <include name="license.txt"/>
 		     <include name="ChangeLog.txt"/>
 	         <include name="JMathLib.html"/>
@@ -375,22 +373,32 @@
         <jar jarfile="${dist.dir}/bin/JMathLibSmallApplet.jar" compress="true">
             <fileset dir="${dist.dir}/bin">
 	            <include name="**" />
+            	<exclude name="JMathLib.properties"/>
             	<exclude name="jmathlib/webFunctionsList.dat"/>
+            	<exclude name="jmathlib/core/functions/FileFunctionLoader.class"/>
+            	<exclude name="jmathlib/core/functions/MFileLoader.class"/>
+            	<exclude name="jmathlib/core/functions/SFunction.class"/>
+                <exclude name="jmathlib/core/tokens/numbertokens/Int*.class"/>
+                <exclude name="jmathlib/core/tokens/numbertokens/UInt*.class"/>
             	<exclude name="jmathlib/core/tokens/SparseNumberToken.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/Axes3DObject.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/coreObjects/*.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/plotObjects/**"/>
             	<exclude name="jmathlib/plugins/**"/>
             	<exclude name="jmathlib/toolbox/**"/>
                 <exclude name="jmathlib/tools/**"/>
                 <exclude name="jmathlib/ui/awt/**"/>
                 <exclude name="jmathlib/ui/swing/**"/>
+                <exclude name="jmathlib/ui/text/**"/>
                 <exclude name="jmathlibtests/**"/>
             </fileset>
             <fileset dir="${dist.dir}/bin">
-                 <include name="jmathlib/plugins/PluginsManager.class"/>
-                 <include name="jmathlib/toolbox/general/rand.class"/>
-                 <include name="jmathlib/toolbox/general/startup.m"/>
-                 <include name="jmathlib/toolbox/jmathlib/system/disp.class"/>
-                 <include name="jmathlib/toolbox/jmathlib/system/setdebug.class"/>
-                 <include name="jmathlib/toolbox/jmathlib/graphics/graph2d/plot.class"/>
+                <include name="jmathlib/core/graphics/axes/coreObjects/LineObject.class"/>
+                <include name="jmathlib/plugins/PluginsManager.class"/>
+                <include name="jmathlib/toolbox/general/rand.class"/>
+                <include name="jmathlib/toolbox/jmathlib/system/disp.class"/>
+                <include name="jmathlib/toolbox/jmathlib/system/setdebug.class"/>
+                <include name="jmathlib/toolbox/jmathlib/graphics/graph2d/plot.class"/>
              </fileset>
         </jar>
         
