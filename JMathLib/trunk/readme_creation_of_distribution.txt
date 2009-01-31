@@ -15,13 +15,9 @@ How to create a distribution:
 - run JMathLib and call createFunctionsList()
   (this is done by the ant process)
 
-- change file: JMathLib.properties
+- change file: src/JMathLib.properties
   and change to the release date 
   and change to the new versions
-
-- change file: JMathLib.local.properties
-  and change to the release date to be the same as in JMathLib.properties
-  and change to the new version  to be the same as in JMathLib.properties
 
 - change file: ChangeLog.txt
 
@@ -33,6 +29,7 @@ How to create a distribution:
   upload JMathLib_x.x.x.zip        to sourceforge.net
   
 - change the website in mathlib.sourceforge.net/CheckForUpdates/
+- change the website in www.jmathlib.de/CheckForUpdates/
   and change to new version
   and change to new date
   
