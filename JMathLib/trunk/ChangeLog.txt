@@ -9,14 +9,15 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
-2009/02/01 stefan: added a directory for temporary file /tmp
-                   changed the doc-build in order to facilitate the /tmp 
+2009/02/01 stefan: Added "cut","paste","copy" to AWT GUI.
+                   Added "ctrl-x","ctrl-v","ctrl-c" to AWT GUI.
+2009/02/01 stefan: Added a directory for temporary file /tmp
+                   Changed the doc-build in order to facilitate the /tmp 
                    directory.
-
-2009/02/01 stefan: changed location of webfunctionslist.dat from being
+2009/02/01 stefan: Changed location of webfunctionslist.dat from being
                    in bin/jmathlib to beeing in bin/
 
-2009/01/31 stefan: changed handling of properties. Moved JMathLib.properties
+2009/01/31 stefan: Changed handling of properties. Moved JMathLib.properties
                    to src/JMathLib.properties. On first start of JMathLib
                    it checks if it finds JMathLib.properties in root, if not
                    it will load the file from the bin/JMathLib.properties file.
@@ -24,14 +25,14 @@ Updated functions:
                    The applet version always reads from the bin/ directory,
                    it cannot save the properties back to the web server anyway.
 
-2009/01/30 stefan: changed handling of properties
-                   removed getLocalProperty, setLocalProperty
-                   renamed getGlobalProperty into getProperty
-                   renamed setGlobalProperty into setProperty
+2009/01/30 stefan: Changed handling of properties
+                   Removed getLocalProperty, setLocalProperty
+                   Renamed getGlobalProperty into getProperty
+                   Renamed setGlobalProperty into setProperty
                    JMathLib.local.properties is obsolete
                    JMathLib.propertis is the master now
 
-2009/01/26 stefan: changed MathLibException into JMathLibException
+2009/01/26 stefan: Changed MathLibException into JMathLibException
 
 2009/01/25 stefan: JMathLib has not been thread save for more than one
                    instance of Interpreter.class. I removed the static
@@ -41,29 +42,30 @@ Updated functions:
 2009/01/09 stefan: Changed the parser, now parsing of     cd somedirectory     
                    is possible. Also cd("somedirectory") still works.
          
-2009/01/04 stefan: added the euler number to VariableToken.java as predefined 
+2009/01/04 stefan: Added the euler number to VariableToken.java as predefined 
                    variable
+                   
 2009/01/04 stefan: pi.int documentation for pi
 2009/01/04 stefan: e.int documentation for euler number
 
-2008/12/31 stefan: added toolbox/jmathlib/system/quit.java
-2008/12/31 stefan: added toolbox/jmathlib/system/exit.m
-2008/12/31 stefan: added toolbox/jmathlib/io/pwd.java
+2008/12/31 stefan: Added toolbox/jmathlib/system/quit.java
+2008/12/31 stefan: Added toolbox/jmathlib/system/exit.m
+2008/12/31 stefan: Added toolbox/jmathlib/io/pwd.java
 
-2008/12/30 stefan: added jmathlib/ui/text/TextUI.java first version of textual 
+2008/12/30 stefan: Added jmathlib/ui/text/TextUI.java first version of textual 
                    user interface.
 
 2008/12/28 stefan: jmathlib/ui/applet/JMathLibGUI.java code cleanup and bugfixing
 
-2008/12/27 stefan: moved code from MFileWebLoader.java to WebFunctionLoader.java
-2008/12/27 stefan: removed MFileWebLoader.java
-2008/12/27 stefan: added plusplus.int describing the ++ command
-2008/12/27 stefan: added minusminus.int describing the -- command
-2008/12/27 stefan: bugfix for DoubleNumberToken.java support for 
+2008/12/27 stefan: Moved code from MFileWebLoader.java to WebFunctionLoader.java
+2008/12/27 stefan: Removed MFileWebLoader.java
+2008/12/27 stefan: Added plusplus.int describing the ++ command
+2008/12/27 stefan: Added minusminus.int describing the -- command
+2008/12/27 stefan: Bugfix for DoubleNumberToken.java support for 
                   [1,0,3].^0 = [1,1,1] and 0.^[1,0,2] = [0,1,0]
 
-2008/12/26 stefan: added toolbox/jmathlib/system/format.java for formatting numbers
-2008/12/26 stefan: changed GlobalValues.java RootObject.java for formatting numbers
+2008/12/26 stefan: Added toolbox/jmathlib/system/format.java for formatting numbers
+2008/12/26 stefan: Changed GlobalValues.java RootObject.java for formatting numbers
 
 2008/12/15 stefan: added jmathlib.sh for starting JMathLib on unix
 
