@@ -1,13 +1,20 @@
 
                 ChangeLog of JMathLib
 
----- Functional Changes:  version 0.9.2 -> 0.x.x ------------------------------
+---- Functional Changes:  version 0.9.3 -> 0.x.x ------------------------------
 New functions:
 
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
-2009/01/xx stefan:
+2009/02/xx stefan:
+
+2009/02/01 stefan: added a directory for temporary file /tmp
+                   changed the doc-build in order to facilitate the /tmp 
+                   directory.
+
+2009/02/01 stefan: changed location of webfunctionslist.dat from being
+                   in bin/jmathlib to beeing in bin/
 
 2009/01/31 stefan: changed handling of properties. Moved JMathLib.properties
                    to src/JMathLib.properties. On first start of JMathLib
