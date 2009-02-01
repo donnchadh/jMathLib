@@ -121,6 +121,6 @@ global a
 </programlisting>
 @NOTES
 @SEE
-isglobal, isvarname
+isglobal
 */
 

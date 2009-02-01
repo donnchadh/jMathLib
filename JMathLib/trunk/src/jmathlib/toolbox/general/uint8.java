@@ -69,7 +69,7 @@ converts a double array into an array of uint8 (range 0 up to +255)
 
 </programlisting>
 @SEE
-double, int16, int8, uint16, uint32, uint64
+double, int16, int8, uint16, uint32
 */
 
 /*

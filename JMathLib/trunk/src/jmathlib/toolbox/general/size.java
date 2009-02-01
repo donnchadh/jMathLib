@@ -78,6 +78,6 @@ size(a,3) -> 2
 </programlisting>
 @NOTES
 @SEE
-rowcount, colcount, row, col, ndims
+rows, columns, row, col, ndims
 */
 
