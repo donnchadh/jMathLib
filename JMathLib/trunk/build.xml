@@ -218,7 +218,7 @@
     <!-- xml to  fo -->
     <target name="xmltofo" description="convert xml to fo" depends="">
 	<java jar="libs/saxon.jar" fork="true">
-		<arg line="-o doc/src/doc.fo doc/src/doc.xml
+		<arg line="-o tmp/doc.fo doc/src/doc.xml
 		doc/DocBook/xsl/fo/docbook.xsl" />
         <arg value='paper.type="A4"' />
 		<arg value='chunk.section.depth="0"' />
@@ -233,7 +233,7 @@
     <!-- fo to  pdf   -->
      <target name="fotopdf" description="convert fo to pdf" depends="">   
         <java jar="libs/fop.jar" fork="true">
-    		<arg value="doc/src/doc.fo" />
+    		<arg value="tmp/doc.fo" />
     		<arg value='-d' />
     		<arg value="${upload.dir}/JMathLibManual_${version}.pdf" />
     	</java>
@@ -374,7 +374,7 @@
             <fileset dir="${dist.dir}/bin">
 	            <include name="**" />
             	<exclude name="JMathLib.properties"/>
-            	<exclude name="jmathlib/webFunctionsList.dat"/>
+            	<exclude name="webFunctionsList.dat"/>
             	<exclude name="jmathlib/core/functions/FileFunctionLoader.class"/>
             	<exclude name="jmathlib/core/functions/MFileLoader.class"/>
             	<exclude name="jmathlib/core/functions/SFunction.class"/>
