@@ -1,17 +1,18 @@
 package jmathlib.ui.awt;
 
 import jmathlib.core.interfaces.RemoteAccesible;
+import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Interpreter;
-//import jmathlib.ui.common.console;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.datatransfer.*;
 
 /**
- * Simple GUI for the MathLib package.
+ * Simple GUI for the JMathLib package.
 
  * Some options may be given in the command line, by example:
- * <kbd>localhost# java MathLib.GUI.GUI -width=320 -height=200</kbd>.
+ * <kbd>localhost# java jmathlib.ui.awt.GUI -width=320 -height=200</kbd>.
  * <p>
  * <b>Command line options</b>
  * <ul>
@@ -20,7 +21,7 @@ import java.awt.event.*;
  * </ul>
  * </p>
  */
-public class GUI extends Frame implements WindowListener, ActionListener, RemoteAccesible
+public class GUI extends Frame implements WindowListener, ActionListener, RemoteAccesible, ClipboardOwner
 {
         /*The menubar container.*/
         private MenuBar  mainMenuBar;
@@ -46,9 +47,6 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         /**Constant with the application title.*/
         private final String TITLE="JMathLib GUI";
 
-        /**Flag storing whether the program is running as an application or an applet*/
-        private boolean runningStandalone;
-
         /**The area used for user input and where the answers are displayed*/
         private Console answer;
 
@@ -62,6 +60,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
 
         if (o == newFileMenuItem) 
         {
+        	
         } 
         else if (o == openFileMenuItem) 
         {
@@ -86,16 +85,48 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         } 
         else if (o == exitFileMenuItem) 
         {
-                close();
+        	close();
         } 
         else if (o == cutEditMenuItem) 
         {
+        	// get text from textarea
+        	String          s    = answer.getSelectedText();
+
+        	// replace selected text with empty string
+        	answer.replaceRange("", answer.getSelectionStart(), answer.getSelectionEnd());
+
+        	// copy selected string to system clipboard
+        	StringSelection sel  = new StringSelection(s);
+        	Clipboard       clip = getToolkit().getSystemClipboard();
+        	clip.setContents(sel, this);
         } 
-        else if (o == copyEditMenuItem) 
+        else if (o == copyEditMenuItem) 	
         {
+        	// get text from textarea
+        	String          s    = answer.getSelectedText();
+
+        	// copy selected string to system clipboard
+        	StringSelection sel  = new StringSelection(s);
+        	Clipboard       clip = getToolkit().getSystemClipboard();
+        	clip.setContents(sel, this);
         } 
         else if (o == pasteEditMenuItem) 
         {
+        	// paste from system clipboard to textarea
+        	Clipboard    clip = getToolkit().getSystemClipboard();
+        	Transferable cont = clip.getContents(this);
+        	if (cont!=null)
+        	{
+        		try 
+        		{
+        			String s = (String)cont.getTransferData(DataFlavor.stringFlavor);
+        			answer.insert(s, answer.getCaretPosition());
+        		}
+        		catch (Exception ex)
+        		{
+        			ErrorLogger.debugLine("clipboard not STRING");
+        		}
+        	}
         } 
         else if (o == aboutHelpMenuItem) 
         {
@@ -113,9 +144,16 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             plotWindowMenuItem.setEnabled(false);
             consoleWindowMenuItem.setEnabled(true);
         }
+    } // end actionPerformed
+
+    /**
+     * @param
+     * @param
+     */
+    public void lostOwnership(Clipboard clip, Transferable cont)
+    {
+    	ErrorLogger.debugLine("clipboard has been changed");
     }
-
-
 
     /**
      * Command-line parameter handler
@@ -165,6 +203,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
             else
                 System.out.println(args[i] + ": Invalid option.");
         }
+        
         // Let's resize the window...
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         if  (width == -1)
@@ -184,75 +223,71 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         this.dispose();
         System.exit(0);
     }
-
     
     /**Create the main graphical interface (menu, buttons, delays...).*/
     public GUI(String[] args)
     {
-            //this is an application, so set to true
-            runningStandalone = true;
-            this.argumentHandler(args);
+        this.argumentHandler(args);
 
-            this.setVisible(false);
-            this.setLayout(new BorderLayout());
-            this.setBackground(new Color(214,211,206));
-            //Get the size of the screen
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            //position the frame in the centre of the screen
-            this.setLocation((d.width-getSize().width) / 2,
-                             (d.height-getSize().height) / 2);
-            this.addWindowListener(this);
-            this.setResizable(true);
-            this.setVisible(true);
-            
-            // add image to window
-            Toolkit tk = Toolkit.getDefaultToolkit();
-            Image icon = tk.getImage(GUI.class.getResource("smalllogo.gif"));
-            MediaTracker mt = new MediaTracker(this);
-            mt.addImage(icon,0);
-            try {
-                mt.waitForAll();
-            }
-            catch (InterruptedException e){ ;}
-            this.setIconImage(icon);
-            
-            this.setTitle(TITLE + " [1/4] Initializing menus");
-            InitMenuBar(this);
+        this.setVisible(false);
+        this.setLayout(new BorderLayout());
+        this.setBackground(new Color(214,211,206));
+        //Get the size of the screen
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        //position the frame in the centre of the screen
+        this.setLocation((d.width-getSize().width) / 2,
+                         (d.height-getSize().height) / 2);
+        this.addWindowListener(this);
+        this.setResizable(true);
+        this.setVisible(true);
+        
+        // add image to window
+        Toolkit tk = Toolkit.getDefaultToolkit();
+        Image icon = tk.getImage(GUI.class.getResource("smalllogo.gif"));
+        MediaTracker mt = new MediaTracker(this);
+        mt.addImage(icon,0);
+        try {
+            mt.waitForAll();
+        }
+        catch (InterruptedException e){ ;}
+        this.setIconImage(icon);
+        
+        this.setTitle(TITLE + " [1/4] Initializing menus");
+        InitMenuBar(this);
 
-            this.setTitle(TITLE + " [2/4] Initializing console window");
-            InitConsole();
+        this.setTitle(TITLE + " [2/4] Initializing console window");
+        InitConsole();
 
-            this.setTitle(TITLE + " [3/4] Initializing interpreter");
-            interpreter = new Interpreter(runningStandalone);
-            interpreter.setOutputPanel(answer);
+        this.setTitle(TITLE + " [3/4] Initializing interpreter");
+        interpreter = new Interpreter(true);
+        interpreter.setOutputPanel(answer);
+        
+       
+        this.setTitle(TITLE + " - [4/4] running startup script");
+        interpreter.executeExpression("startup;");
+        //interpreter.executeExpression("messageoftheday");
+        answer.displayPrompt();
+
+        // silent check for updates
+        interpreter.executeExpression("checkforupdates('-silent')");
+
+        this.setTitle(TITLE + " - Console Window");
+
+        // in case an update is available inform the user
+        String u = interpreter.globals.getProperty("update.newversionavailable");
+        if ((u!=null) && u.equals("yes"))
+        {
+            this.setTitle(TITLE + " - (NEW version available: type update at prompt)");
+            String s = interpreter.globals.getProperty("update.newversionavailable.message01");
+            if (s==null)
+                answer.displayText("A NEW version of JMathLib is available\n     type update   or  visit www.jmathlib.de");
+            else
+                answer.displayText(s);
             
-           
-            this.setTitle(TITLE + " - [4/4] running startup script");
-            interpreter.executeExpression("startup;");
-            //interpreter.executeExpression("messageoftheday");
             answer.displayPrompt();
+        }
 
-            // silent check for updates
-            interpreter.executeExpression("checkforupdates('-silent')");
-
-            this.setTitle(TITLE + " - Console Window");
-
-            // in case an update is available inform the user
-            String u = interpreter.globals.getProperty("update.newversionavailable");
-            if ((u!=null) && u.equals("yes"))
-            {
-                this.setTitle(TITLE + " - (NEW version available: type update at prompt)");
-                String s = interpreter.globals.getProperty("update.newversionavailable.message01");
-                if (s==null)
-                    answer.displayText("A NEW version of JMathLib is available\n     type update   or  visit www.jmathlib.de");
-                else
-                    answer.displayText(s);
-                
-                answer.displayPrompt();
-            }
-            
-
-    }
+    } // end GUI
 
     /**The main console initializer.*/
     private void InitConsole()
@@ -280,35 +315,51 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
 
         separator1 = new MenuItem("-");
         separator2 = new MenuItem("-");
+        
         newFileMenuItem = new MenuItem("New");
         newFileMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_N));
         newFileMenuItem.addActionListener(listener);
+        
         openFileMenuItem = new MenuItem("Open");
         openFileMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_O));
         openFileMenuItem.addActionListener(listener);
+        
         saveFileMenuItem = new MenuItem("Save");
         saveFileMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_S));
         saveFileMenuItem.addActionListener(listener);
+        
         saveAsFileMenuItem = new MenuItem("Save as...");
         saveAsFileMenuItem.addActionListener(listener);
+        
         checkForUpdatesMenuItem = new MenuItem("Check for updates");
         checkForUpdatesMenuItem.addActionListener(listener);
+        
         exitFileMenuItem = new MenuItem("Exit");
         exitFileMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_E));
         exitFileMenuItem.addActionListener(listener);
+        
         cutEditMenuItem = new MenuItem("Cut");
+        cutEditMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_X));
         cutEditMenuItem.addActionListener(listener);
+        
         copyEditMenuItem = new MenuItem("Copy");
+        copyEditMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_C));
         copyEditMenuItem.addActionListener(listener);
+        
         pasteEditMenuItem = new MenuItem("Paste");
+        pasteEditMenuItem.setShortcut(new MenuShortcut(KeyEvent.VK_V));
         pasteEditMenuItem.addActionListener(listener);
+        
         consoleWindowMenuItem = new MenuItem("Console Window");
         consoleWindowMenuItem.setEnabled(false);
         consoleWindowMenuItem.addActionListener(listener);
+        
         plotWindowMenuItem = new MenuItem("Plot Window");
         plotWindowMenuItem.addActionListener(listener);
+        
         aboutHelpMenuItem = new MenuItem("About...");
         aboutHelpMenuItem.addActionListener(listener);
+        
         fileMenu.add(newFileMenuItem);
         fileMenu.add(openFileMenuItem);
         fileMenu.add(separator1);
@@ -328,7 +379,10 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         this.setMenuBar(mainMenuBar);
     }
 
-    /**Interpret the last command line entered*/
+    /**
+     * Interpret the last command line entered
+     * @param
+     */
     public void interpretLine(String line)
     {
         String answerString = interpreter.executeExpression(line);
@@ -336,36 +390,61 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         answer.displayPrompt();
     }
 
+    /**
+     * 
+     * @param args
+     */
     public static void main (String[] args)
     {
-        GUI myGui = new GUI(args);
+        GUI gui = new GUI(args);
     }
 
+    /**
+     * 
+     */
     public void windowActivated(WindowEvent e)
     {
     }
 
+    /**
+     * 
+     */
     public void windowClosed(WindowEvent e)
     {
     }
 
+    /**
+     * 
+     */
     public void windowClosing(WindowEvent e)
     {
         close();
     }
 
+    /**
+     * 
+     */
     public void windowDeactivated(WindowEvent e)
     {
     }
 
+    /**
+     * 
+     */
     public void windowDeiconified(WindowEvent e)
     {
     }
 
+    /**
+     * 
+     */
     public void windowIconified(WindowEvent e)
     {
     }
 
+    /**
+     * 
+     */
     public void windowOpened(WindowEvent e)
     {
     }
