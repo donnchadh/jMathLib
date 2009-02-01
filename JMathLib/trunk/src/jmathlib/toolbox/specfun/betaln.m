@@ -66,5 +66,5 @@ betaln(2, 3)
 </programlisting>
 @NOTES
 @SEE
-gammaln, gammainc, beta
+gammaln, beta
 */
