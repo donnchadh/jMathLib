@@ -1,15 +1,19 @@
 rem
+
+cd tmp
+mkdir functions
+cd ..
+
 cd doc\
 
-mkdir functions
 
 cd tools\
 
 echo "building function docs"
-perl createdocs.pl ../functions/ ../../src/jmathlib/toolbox
+perl createdocs.pl ../../tmp/functions/ ../../src/jmathlib/toolbox
 
 echo "creating alphabetical list"
-perl createdoclist_xml.pl ../src ../functions
+perl createdoclist_xml.pl ../../tmp ../../tmp/functions
 
 rem echo "creating bug/ to-do and history list"
 rem perl createtdbh.pl
