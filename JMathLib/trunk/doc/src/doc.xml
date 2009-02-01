@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE book SYSTEM "../DocBook/v4.5/docbookx.dtd" [
     <!ENTITY preface SYSTEM "preface.xml">
-    <!ENTITY functions SYSTEM "functions.xml">
+    <!ENTITY functions SYSTEM "../../tmp/functions.xml">
     <!ENTITY license SYSTEM "lgpl.xml">
     <!ENTITY faq SYSTEM "faq.xml">
     <!ENTITY history SYSTEM "history.xml">
