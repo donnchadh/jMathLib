@@ -43,6 +43,6 @@ clear current figure
 .
 @NOTES
 @SEE
-gca, gco, gcbo, gcbf, cla
+gca, cla, gcf, get, set
 */
 

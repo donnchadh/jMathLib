@@ -33,6 +33,6 @@ get handle to current axis
 .
 @NOTES
 @SEE
-gcf, gco, gcbo, gcbf
+gcf, get, set
 */
 

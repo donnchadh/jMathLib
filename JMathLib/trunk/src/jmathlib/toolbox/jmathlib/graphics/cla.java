@@ -37,13 +37,13 @@ public class cla extends ExternalFunction
 @GROUP
 graphics
 @SYNTAX
-clf
+cla
 @DOC
 clear current figure
 @EXAMPLES
 .
 @NOTES
 @SEE
-gca, gco, gcbo, gcbf, cla
+gca, clf, gcf, get, set
 */
 

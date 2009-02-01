@@ -32,6 +32,6 @@ get handle to current figure
 .
 @NOTES
 @SEE
-gca, gco, gcbo, gcbf
+gca, get, set
 */
 
