@@ -6,62 +6,74 @@ import java.net.*;
 import java.util.*;
 
 
-/**Class for storing and managing the m- and p-functions
- */
+/**Class for storing and managing the m- and p-functions  */
 public class WebFunctionLoader extends FunctionLoader
 {
 
     boolean pFileCachingEnabledB = false;
     private URL codeBase;
     private String directory; 
-    private Vector functionListV = new Vector(30); // paths to external function for applet usage 
+    
+    // paths to external function for applet usage
+    private Vector functionListV = new Vector(30);  
 
     
     /**Default constructor*/
     public WebFunctionLoader(URL _codeBase, String _directory) 
     {
-        codeBase = _codeBase;
+        codeBase  = _codeBase;
         directory = _directory;
         
-        try {
+        try 
+        {
             System.out.println("WebFunctionLoader: new url"+ codeBase.toString());
-            URL url = new URL(codeBase, "jmathlib/webFunctionsList.dat");
+            URL url = new URL(codeBase, "webFunctionsList.dat");
             InputStream in = url.openStream();
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
             // read each line of the functions list
             String line = null;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null) 
+            {
                 System.out.println("read =" + line);
-                if (!line.startsWith("#")) {
+                if (!line.startsWith("#")) 
                     functionListV.addElement(line);
-                    //functionLoaders.add(new MFileWebLoader(applet.getCodeBase(), line));
-                }
             }
-        } catch (Exception ex) {
+        } 
+        catch (Exception ex) {
             //ErrorLogger.debugLine("FunctionManager: applet error");
             ex.printStackTrace();
         }
 
     }
     
-    public URL getCodeBase() {
-      return codeBase;
+    /**
+     * 
+     * @return
+     */
+    public URL getCodeBase() 
+    {
+        return codeBase;
     }
     
-    public String getDirectory() {
-      return directory;
+    /**
+     * 
+     * @return
+     */
+    public String getDirectory() 
+    {
+        return directory;
     }
 
-    /**loads an .m-file via the web
-    @param directory = the directory containing the file
-    @param mFileName = the name of the m file
-    @return the result of the file as a FunktionToken*/
+    /**
+     * loads an .m-file via the web
+     * @param directory = the directory containing the file
+     * @param mFileName = the name of the m file
+     * @return the result of the file as a FunktionToken
+     */
     public Function findFunction(String functionName)
     {
         //JMH TBD find functions on the classpath
-        
-        
         
         String       code     = "";
         UserFunction function = (UserFunction)getCachedFunction(functionName);
@@ -178,8 +190,8 @@ public class WebFunctionLoader extends FunctionLoader
      }
     
     
-    /** set caching of p-file to on of off
-     * 
+    /** 
+     * set caching of p-file to on of off
      * @param pFileCaching  true= caching of p-files on; false: caching of p-files off
      */
     public void setPFileCaching(boolean pFileCaching)
@@ -187,8 +199,8 @@ public class WebFunctionLoader extends FunctionLoader
         pFileCachingEnabledB = pFileCaching;
     }
 
-    /** return whether of not caching of p-files is enabled of not 
-     * 
+    /** 
+     * return whether of not caching of p-files is enabled of not 
      * @return status of caching p-files
      */
     public boolean getPFileCaching()
