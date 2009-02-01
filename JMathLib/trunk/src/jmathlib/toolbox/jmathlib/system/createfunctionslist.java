@@ -1,4 +1,3 @@
-package jmathlib.toolbox.jmathlib.system;
 
 /* This file is part or JMathLib 
 
@@ -8,6 +7,7 @@ package jmathlib.toolbox.jmathlib.system;
 
 //ToDo: do not include empty directories in the list
 //       relative path names
+package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
@@ -60,7 +60,6 @@ public class createfunctionslist extends ExternalFunction
             // create file to store all class-, m-files and images
             File funcFile = new File(globals.getWorkingDirectory().getAbsoluteFile() +
 			                         File.separator + "bin" +
-                                     File.separator + "jmathlib" +
                                      File.separator + "webFunctionsList.dat");
 			BufferedWriter outWriter = new BufferedWriter( new FileWriter(funcFile));
             ErrorLogger.debugLine("funcFile ="+funcFile.toString());
