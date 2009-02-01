@@ -12,7 +12,11 @@ matrix
 @SYNTAX
 answer = columns (value)
 @DOC
+.
 @EXAMPLES
+.
 @NOTES
+.
 @SEE
+col, row, rows
 */

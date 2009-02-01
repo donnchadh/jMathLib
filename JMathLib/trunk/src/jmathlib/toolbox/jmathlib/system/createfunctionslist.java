@@ -148,6 +148,6 @@ This functions is used when running JMathLib as an applet.
 @EXAMPLES
 createfunctionslist()
 @SEE
-path, setpath, rmpath
+path, rmpath, update, checkforupdates
 */
 

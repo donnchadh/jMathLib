@@ -71,6 +71,6 @@ eye(2) = [1,0;0,1]
 eye(3) = [1,0,0;0,1,0;0,0,1]
 </programlisting>
 @SEE
-identity
+ones, zeros
 */
 
