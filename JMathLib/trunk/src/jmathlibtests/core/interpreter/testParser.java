@@ -332,6 +332,75 @@ public class testParser extends TestCase {
         assertEquals(-1.0, ml.getScalarValueRe("a"), 0.001);	
 	}
     
+    
+    public void testPlusPlus01() {
+        ml.executeExpression("a=5;");
+        ml.executeExpression("a++;");
+        assertEquals(6.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+    public void testPlusPlus02() {
+        ml.executeExpression("58++;");
+        assertEquals(59.0, ml.getScalarValueRe("ans"), 0.001);    
+    }
+
+    public void testMinusMinus01() {
+        ml.executeExpression("a=5;");
+        ml.executeExpression("a--;");
+        assertEquals(4.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+    public void testMinusMinus02() {
+        ml.executeExpression("58--;");
+        assertEquals(57.0, ml.getScalarValueRe("ans"), 0.001);    
+    }
+
+    public void testPlusAssign01() {
+        ml.executeExpression("a=5;");
+        ml.executeExpression("a+=3;");
+        assertEquals(8.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testPlusAssign02() {
+        ml.executeExpression("a=23;");
+        ml.executeExpression("a+=8;");
+        assertEquals(31.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testMinusAssign01() {
+        ml.executeExpression("a=55;");
+        ml.executeExpression("a-=3;");
+        assertEquals(52.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testMinusAssign02() {
+        ml.executeExpression("a=40;");
+        ml.executeExpression("a-=8;");
+        assertEquals(32.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testMulAssign01() {
+        ml.executeExpression("a=5;");
+        ml.executeExpression("a*=3;");
+        assertEquals(15.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testMulAssign02() {
+        ml.executeExpression("a=40;");
+        ml.executeExpression("a*=2;");
+        assertEquals(80.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testDivAssign01() {
+        ml.executeExpression("a=9;");
+        ml.executeExpression("a/=3;");
+        assertEquals(3.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
+    public void testDivAssign02() {
+        ml.executeExpression("a=40;");
+        ml.executeExpression("a/=2;");
+        assertEquals(20.0, ml.getScalarValueRe("a"), 0.001);    
+    }
+
     /************* matrix ****************************************/
     public void testMatrix01() {
         double[][] dr = {{1.0, 2.0, 1.0},{3.0, 4.0, 5.0}};
