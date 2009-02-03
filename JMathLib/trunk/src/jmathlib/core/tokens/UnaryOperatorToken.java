@@ -61,6 +61,8 @@ public class UnaryOperatorToken extends OperatorToken
                     String variable = ((VariableToken)operand).getName();
                     //getVariables().getVariable(variable).assign(op);
                     globals.getVariable(variable).assign(op);
+                    
+                    return op;
                 }
                 else if(operand instanceof NumberToken)
                 {
@@ -89,6 +91,8 @@ public class UnaryOperatorToken extends OperatorToken
                     String variable = ((VariableToken)operand).getName();
             		//getVariables().getVariable(variable).assign(op);
                     globals.getVariable(variable).assign(op);
+                    
+                    return op;
                 }
                 else if(operand instanceof NumberToken)
                 {
@@ -106,12 +110,7 @@ public class UnaryOperatorToken extends OperatorToken
             }
     	}
         
-        //if(result == null)
-        //{
-        //    //return origional expression
-        //    result = new Expression(this, operand);
-        //}
-        return result;
+     	return result;
     }
 
     /**
