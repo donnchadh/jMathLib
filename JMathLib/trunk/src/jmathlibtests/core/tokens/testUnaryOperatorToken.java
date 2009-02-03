@@ -95,11 +95,11 @@ public class testUnaryOperatorToken extends TestCase {
         ml.executeExpression("a=1");
         ml.executeExpression("y=[11,22,33,44,55]");
         ml.executeExpression("y(a++)=77");
-        ml.executeExpression("b=y(1)");
+        ml.executeExpression("b=y(2)");
         ml.executeExpression("c=y(a)");
         assertTrue(77.0 == ml.getScalarValueRe("b"));
         assertTrue( 2.0 == ml.getScalarValueRe("a"));
-        assertTrue(22.0 == ml.getScalarValueRe("c"));
+        assertTrue(77.0 == ml.getScalarValueRe("c"));
     }
 
     // --
@@ -108,11 +108,12 @@ public class testUnaryOperatorToken extends TestCase {
         ml.executeExpression("a=4");
         ml.executeExpression("y=[11,22,33,44,55]");
         ml.executeExpression("y(a--)=88");
-        ml.executeExpression("b=y(4)");
-        ml.executeExpression("c=y(a)");
-        assertTrue(88.0 == ml.getScalarValueRe("b"));
         assertTrue( 3.0 == ml.getScalarValueRe("a"));
-        assertTrue(33.0 == ml.getScalarValueRe("c"));
+        ml.executeExpression("b=y(3)");
+        ml.executeExpression("c=y(a--)");
+        assertTrue( 2.0 == ml.getScalarValueRe("a"));
+        assertTrue(88.0 == ml.getScalarValueRe("b"));
+        assertTrue(22.0 == ml.getScalarValueRe("c"));
     }
     
     public void test460() {
