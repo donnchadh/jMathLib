@@ -398,8 +398,17 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
             {
                 // += or -=
                 ErrorLogger.debugLine("Parser: += or -=");
-                nextToken = getNextToken(deliTyp);
-                retToken = parseAssignmentOperator(nextToken, operandStack);
+                getNextToken(deliTyp);
+                retToken  = parseAssignmentOperator(nextToken, operandStack);
+                
+            }
+            else if((nextToken instanceof MulDivOperatorToken) &&
+                    (pToken instanceof AssignmentOperatorToken))
+            {
+                // *= or /=
+                ErrorLogger.debugLine("Parser: *= or /=");
+                getNextToken(deliTyp);
+                retToken  = parseAssignmentOperator(nextToken, operandStack);
                 
             }
             else if(    (nextToken instanceof AddSubOperatorToken)
@@ -641,6 +650,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     private OperandToken parseAssignmentOperator(Token currentToken, Stack operandStack)
     {
         // operator    (this should be a "=" or ("+" for +=) or ("-" for -=))
+        // or "*" for *=   or "/" for /=
         OperatorToken operator = (OperatorToken)currentToken; 
         
         //parse right parameter                    
@@ -658,10 +668,19 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         }
         else if (currentToken instanceof AddSubOperatorToken)
         {
-            // e.g. a+=8
-            tree = new Expression(operator, rightSide, new DoubleNumberToken(1.0));
+            // e.g. a+=8  ->  a=a+8
+            // e.g. a-=7  ->  a=a-7
+            ErrorLogger.debugLine("Parser: += or -=");
+            tree = new Expression(operator, leftSide, rightSide);
             tree = new Expression(new AssignmentOperatorToken(), leftSide, tree);
-    // ???????
+        }
+        else if (currentToken instanceof MulDivOperatorToken)
+        {
+            // e.g. a*=8 -> a=a*8
+            // e.g. a/=9 -> a=a/9
+            ErrorLogger.debugLine("Parser: *= or /=");
+            tree = new Expression(operator, leftSide, rightSide);
+            tree = new Expression(new AssignmentOperatorToken(), leftSide, tree);
         }
 
         return tree;
