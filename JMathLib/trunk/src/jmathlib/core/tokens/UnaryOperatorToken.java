@@ -47,6 +47,7 @@ public class UnaryOperatorToken extends OperatorToken
         	case '-':
         	{
                 // -- operator
+        	    // e.g. "a--" first return "a" then decrement by 1
 
                 // check if operand is a variable (e.g. a--, bar--)
                 if(operand instanceof VariableToken)
@@ -62,7 +63,7 @@ public class UnaryOperatorToken extends OperatorToken
                     //getVariables().getVariable(variable).assign(op);
                     globals.getVariable(variable).assign(op);
                     
-                    return op;
+                    return result;
                 }
                 else if(operand instanceof NumberToken)
                 {
@@ -77,6 +78,8 @@ public class UnaryOperatorToken extends OperatorToken
         	case '+':
         	{
                 // ++ operator
+                // e.g. "a++" first return "a" then increment by 1
+
 
                 // check if operand is a variable (e.g. a++, bar++)
                 if(operand instanceof VariableToken)
@@ -92,7 +95,7 @@ public class UnaryOperatorToken extends OperatorToken
             		//getVariables().getVariable(variable).assign(op);
                     globals.getVariable(variable).assign(op);
                     
-                    return op;
+                    return result;
                 }
                 else if(operand instanceof NumberToken)
                 {

@@ -859,9 +859,9 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
 
 
     /***********************************************************************************/
-    /** parse <operand><operator> (e.g. 3! or !(a<3))                                           */
-    /* @param                                                                            */
-    /* @param                                                                           */
+    /** parse <operand><operator> (e.g. 3! or !(a<3))                                  */
+    /* @param                                                                          */
+    /* @param                                                                          */
     /* @return                                                                         */
     private OperandToken parseUnaryOperator(Token nextToken, Stack operandStack)
     {
