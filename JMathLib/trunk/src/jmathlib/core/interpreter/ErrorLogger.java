@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2002-2009   
+ */
 package jmathlib.core.interpreter;
 
 import java.io.*;
@@ -20,15 +28,19 @@ public class ErrorLogger extends RootObject
         return debugB;
     }
     
-    /**sets the debug flag
-    @param _debug = should debug information be displayed*/
+    /**
+     * sets the debug flag
+     * @param _debug = should debug information be displayed
+     */
     public static void setDebug(boolean _debug)
     {
         debugB = _debug;
     }
     
-    /**display a debug line to the standard output and the file MathLib.log
-       @param text = the text to display*/
+    /**
+     * display a debug line to the standard output and the file MathLib.log
+     *  @param text = the text to display
+     */
     public static void debugLine(String text)
     {
 
