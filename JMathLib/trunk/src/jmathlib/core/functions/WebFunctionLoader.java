@@ -11,24 +11,25 @@ public class WebFunctionLoader extends FunctionLoader
 {
 
     boolean pFileCachingEnabledB = false;
-    private URL codeBase;
+
     private String directory; 
     
     // paths to external function for applet usage
     private Vector functionListV = new Vector(30);  
-
     
     /**Default constructor*/
-    public WebFunctionLoader(URL _codeBase, String _directory) 
+    public WebFunctionLoader()
     {
-        codeBase  = _codeBase;
-        directory = _directory;
         
         try 
         {
-            System.out.println("WebFunctionLoader: new url"+ codeBase.toString());
-            URL url = new URL(codeBase, "webFunctionsList.dat");
-            InputStream in = url.openStream();
+            //if (codeBase!=null) 
+            //    System.out.println("WebFunctionLoader: new url"+ codeBase.toString());
+            //URL url = new URL(codeBase, "webFunctionsList.dat");
+            //InputStream in = url.openStream();
+            
+            // load list relative to the path of THIS class.
+            InputStream    in = WebFunctionLoader.class.getResourceAsStream("../../../webFunctionsList.dat");
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
 
             // read each line of the functions list
@@ -51,10 +52,10 @@ public class WebFunctionLoader extends FunctionLoader
      * 
      * @return
      */
-    public URL getCodeBase() 
-    {
-        return codeBase;
-    }
+    //public URL getCodeBase() 
+    //{
+    //    return codeBase;
+    //}
     
     /**
      * 
@@ -146,12 +147,16 @@ public class WebFunctionLoader extends FunctionLoader
             // open file and read m-file line by line
             try 
             {          
-                ErrorLogger.debugLine("WebFunctionLoader: "+codeBase+" "+directory+"/"+functionName+".m");
+                ErrorLogger.debugLine("WebFunctionLoader: "+directory+"/"+functionName+".m");
+                //ErrorLogger.debugLine("WebFunctionLoader: "+codeBase+" "+directory+"/"+functionName+".m");
                 //URL            url      = new URL(codeBase, directory+"/"+functionName+".m");
-                URL            url      = new URL(codeBase, functionPath);
+                //URL            url      = new URL(codeBase, functionPath);
+                //InputStream    in       = url.openStream();
                 
-                InputStream    in       = url.openStream();
+                // load class or resource relative to the path of THIS class.
+                InputStream    in       = WebFunctionLoader.class.getResourceAsStream("../../../"+functionPath);
                 BufferedReader inReader = new BufferedReader(new InputStreamReader(in));
+
                 String line;
                 while ((line = inReader.readLine()) != null)
                 {               
