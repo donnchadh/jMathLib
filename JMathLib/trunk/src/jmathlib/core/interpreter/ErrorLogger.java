@@ -11,18 +11,20 @@ package jmathlib.core.interpreter;
 import java.io.*;
 
 /**write error messages + debug information to a log file*/
-public class ErrorLogger extends RootObject
+public class ErrorLogger 
 {
-    /**stores the size of indent for the next line*/ 
-    private static int indentSize = 0;
-
-    /**flags wether text should be indented*/
-    private static boolean displayIndent = false;
+    /** indent string */
+    private static String indentS = "";
 
     /**flag for logging mode of JMathLib*/
     private static boolean debugB = false;
     
-    /**@return the setting of the debug flag*/
+    /** handle to log file */
+    private static RandomAccessFile output = null;
+    
+    /**
+     * @return the setting of the debug flag
+     */
     public static boolean getDebug()
     {
         return debugB;
@@ -46,17 +48,22 @@ public class ErrorLogger extends RootObject
 
         if(debugB)
         {
-            //if(displayIndent)
-            //    text = text + ";" + indentSize;
-                
-            for (int i=1; i<indentSize; i++) text= " "+text;	
-    
+            //for (int i=1; i<indentSize; i++) text= " "+text;	
+            //text = new String( new byte[indentSize]) + text;
+            //text = indentS + text;
+            
             try
             {
-                RandomAccessFile output = new RandomAccessFile("JMathLib.log", "rw");
-                output.seek(output.length());
-                output.writeBytes(text + "\n");
-                output.close();
+                // open log file only if it is not yet open
+                if (output == null)
+                {
+                    System.out.println("ERROR LOGGER: OPENING FILE");
+                    output = new RandomAccessFile("JMathLib.log", "rw");
+                    output.seek(output.length());
+                }
+                
+                //write log message
+                output.writeBytes(indentS + text + "\n");
             }
             catch(IOException error) 
             {
@@ -67,45 +74,70 @@ public class ErrorLogger extends RootObject
                 System.out.println("ERROR LOGGER: SecurityException");
             }
     
-            System.out.println(text);
+            // write log message to display
+            System.out.println(indentS + text);
+        }
+    }
+    
+    /**
+     * Will release the file handle to the logfile
+     * @throws Throwable
+     */
+    public void finalize() throws Throwable 
+    {
+        try 
+        {
+            System.out.println("ERROR LOGGER FINALIZE");
+            output.close();    
+        } 
+        finally 
+        {
+            super.finalize();
         }
     }
 
-	/**display an integer to the standard output
-	@param value = the number to display*/
+	/**
+	 * display an integer to the standard output
+	 * @param value = the number to display
+	 */
 	public static void debugLine(int value)
 	{
 		debugLine(new Integer(value).toString());
 	}
 
-	/**display a real value to the standard output
-	@param value = the number to display*/
+	/**
+	 * display a real value to the standard output
+	 * @param value = the number to display
+	 */
 	public static void debugLine(double value)
 	{
 		debugLine(new Double(value).toString());
 	}
 
-	/**Increases the level of indent*/
+	/**
+	 * Increases the level of indent
+	 */
 	public static void increaseIndent()
 	{
-		indentSize++;
+		indentS += " ";
 	}
 
-	/**Decreases the level of indent*/
+	/**
+	 * Decreases the level of indent
+	 */
 	public static void decreaseIndent()
 	{
-		if (indentSize>=0) indentSize--;
+		if (indentS.length()==0) 
+		    return;
+		
+		indentS = indentS.substring(0, indentS.length()-1);
 	}
 
-    /**Sets whether the indent value should be displayed
-       @param _displayIndent = true if indent should be displayed*/
-    public static void setDisplayIndent(boolean _displayIndent)
-    {
-    	displayIndent = _displayIndent;
-    }
-
-    /**Prints the current execution stack trace, the list of functions that have been called up to the current one.
-       @param message = The message to display before the stack trace*/
+    /**
+     * Prints the current execution stack trace, the list of 
+     * functions that have been called up to the current one.
+     * @param message = The message to display before the stack trace
+     */
     public static void displayStackTrace(String message)
     {
         new Exception(message).printStackTrace();           
