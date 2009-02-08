@@ -58,7 +58,7 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
 
         container.add("Center", answer);
 
-        interpreter = new Interpreter(false, this);       
+        interpreter = new Interpreter(false);        
         
         interpreter.setOutputPanel(answer);
         interpreter.executeExpression("startup");
