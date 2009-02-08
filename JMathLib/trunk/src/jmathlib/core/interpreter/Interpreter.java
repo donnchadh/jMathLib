@@ -12,7 +12,6 @@
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
 import jmathlib.core.interfaces.MathLibOutput;
-import java.applet.Applet;
 
 /**This is the main interface for the program. Any interface to the MathLib program would access
 it through the functions exposed by this class.*/
@@ -30,26 +29,20 @@ public class Interpreter
     /**for testing purposes additional throwing of errors can be enables */
     public boolean throwErrorsB = false;
 
-    /**Constructs the interpreter and sets the constants
-	 * @param _runningStandalone = true if this is being used from an application 
-	 */
+    /**
+     * Constructs the interpreter and sets the constants
+     * @param _runningStandalone = true if this is being used from an application
+     */	
     public Interpreter(boolean _runningStandalone)
     {
-    	this(_runningStandalone, null);
-    }
- 
-    /**Constructs the interpreter and sets the constants
-     * @param _runningStandalone = true if this is being used from an application
-     * @param _applet pointer to applet structure if this is an applet and not an
-     *         application
-     */	
-    public Interpreter(boolean _runningStandalone, Applet _applet)
-    {
-    	runningStandalone = _runningStandalone;
+    	// indicator if this is a stand alone application or
+        // if JMathLib is running as an applet or servlet or ... without
+        // direct access to the file system
+        runningStandalone = _runningStandalone;
         
     	// initialize global pointers, this pointer will be passed to
     	//  all expressions for access to function manager, variable lists, contexts,...
-    	globals = new GlobalValues(this, runningStandalone, _applet);;
+    	globals = new GlobalValues(this, runningStandalone);
 
     	// set output panel to NULL
     	// ?? needed? outputPanel is initialized with NULl anyway (see above)
@@ -60,7 +53,8 @@ public class Interpreter
         
     }
     
-    /**sets the panel to write any text to
+    /**
+     * sets the panel to write any text to
      * @param _outputPanel = the panel to write to, must implement the
      *         MathLibOutput interface
      */
@@ -69,7 +63,8 @@ public class Interpreter
 	    outputPanel = _outputPanel;
     }
 
-    /**returns the panel to write any text to
+    /**
+     * returns the panel to write any text to
      * @return outputPanel = the panel to write to
      */
     public MathLibOutput getOutputPanel()
@@ -77,7 +72,8 @@ public class Interpreter
 	    return outputPanel;
     }
 
-    /**displays a string to the outputPanel
+    /**
+     * displays a string to the outputPanel
      *  @param text = the text to display
      */
     public void displayText(String text)
@@ -86,7 +82,8 @@ public class Interpreter
 	        outputPanel.displayText(text);
     }
 	
-    /**saves the variable list
+    /**
+     * saves the variable list
      */
     public void save() 
     {

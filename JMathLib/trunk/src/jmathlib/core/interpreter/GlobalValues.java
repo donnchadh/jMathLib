@@ -10,10 +10,8 @@
 package jmathlib.core.interpreter;
 
 import java.io.*;
-import java.net.URL;
 import java.util.Locale;
 import java.util.Properties;
-import java.applet.Applet;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -34,12 +32,12 @@ public class GlobalValues
     /**A list of contexts*/
     private ContextList contextList;
     
+    /** flag to indicate if JMathLib is running standalone or as applet,servlet */
+    private boolean runningStandalone = false;
+    
     /**Object to control function usage*/
     private jmathlib.core.functions.FunctionManager functionManager;
 
-    /** global pointer to applet */
-    private Applet applet = null;
-    
     /**A pointer to the interpreter itself*/
     private Interpreter interpreter;
     
@@ -59,16 +57,17 @@ public class GlobalValues
      * @param _interpreter = the Interpreter object
      * @param _runningStandalone = true if this was run from an application
      */
-    public GlobalValues(Interpreter _interpreter, boolean _runningStandalone, Applet _applet)
+    public GlobalValues(Interpreter _interpreter, boolean _runningStandalone)
     {
+        
+        // flag for stand alone or applet,servlet,...
+        runningStandalone = _runningStandalone;
+        
         // the list of contexts
         contextList     = new ContextList();
 
-        // pointer to applet
-        applet = _applet;
-        
         // the function manager for loading m-files class-files
-        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone, applet);
+        functionManager = new jmathlib.core.functions.FunctionManager(_runningStandalone);
         
         // the graphics manager for plotting functions
         graphicsManager = new jmathlib.core.graphics.GraphicsManager();
@@ -235,13 +234,14 @@ public class GlobalValues
         // load global properties from disc 
         try 
         {
-             // check if JMathLib is running is applet or application
-             if (applet != null)
+             // check if JMathLib is running as applet or application
+             if (!runningStandalone)
              {
                  // running as applet
                  //System.out.println("properties applet " + getWorkingDirectory());
-                 URL url = new URL(applet.getCodeBase(), "JMathLib.properties");
-                 props.load( url.openStream() );
+                 //URL url = new URL(applet.getCodeBase(), "JMathLib.properties");
+                 InputStream in = GlobalValues.class.getResourceAsStream("../../../JMathLib.properties");
+                 props.load( in); //url.openStream() );
              }
              else
              {
@@ -280,7 +280,7 @@ public class GlobalValues
     public void storePropertiesToFile()
     {
         // do not try to store properties is an applet
-        if (applet!=null)
+        if (!runningStandalone)
             return;
         
         // store properties back to file
