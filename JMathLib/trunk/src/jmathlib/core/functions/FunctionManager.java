@@ -12,11 +12,12 @@ import java.net.*;
 
 /**Class for storing and managing the functions being used*/
 public class FunctionManager {
-  class SystemFileFunctionLoader extends FileFunctionLoader {
-    SystemFileFunctionLoader(File _functionDir, boolean _traverseChildren) {
-      super(_functionDir, _traverseChildren, true);
+    class SystemFileFunctionLoader extends FileFunctionLoader {
+        SystemFileFunctionLoader(File _functionDir, boolean _traverseChildren) {
+            super(_functionDir, _traverseChildren, true);
+        }
     }
-  }
+    
     // indicates if FunctionManager is running in an application or an applet
     private boolean runningStandalone;
 
@@ -26,20 +27,12 @@ public class FunctionManager {
     // flag for caching of p files
     boolean pFileCachingEnabledB = false;
 
-    /*pointer to applet structure. Value is only unequal null if MathLib runs
-    inside a web-browser */
-    Applet applet = null;
-
-    // loader for m files via the web
-    WebFunctionLoader webFunctionLoader;
-
     /**Creates the function manager and defines any internal functions
     if this is an application then it creates a class loader to load external functions
     @param runningStandalone = true if the program is running as an application*/
-    public FunctionManager(boolean _runningStandalone, Applet _applet) {
+    public FunctionManager(boolean _runningStandalone) {  //, Applet _applet) {
        
         runningStandalone = _runningStandalone;
-        applet            = _applet;
         
         if (runningStandalone) {
             //Add the predefined (system) function loader for the current directory.
@@ -68,8 +61,10 @@ public class FunctionManager {
                 }
             }
         } else {
-                System.out.println("web:"+applet);
-                functionLoaders.add(new WebFunctionLoader(applet.getCodeBase(), ""));
+                System.out.println("web:"); //+applet);
+                //functionLoaders.add(new WebFunctionLoader(applet.getCodeBase(), ""));
+                //functionLoaders.add(new WebFunctionLoader(null, ""));
+                functionLoaders.add(new WebFunctionLoader());
         }
     }
 
@@ -189,36 +184,63 @@ public class FunctionManager {
         }
     }
 
-    /** return whether of not caching of p-files is enabled of not
-     *
+    /** 
+     * return whether of not caching of p-files is enabled of not
      * @return status of caching p-files
      */
     public boolean getPFileCaching() {
         return pFileCachingEnabledB;
     }
 
+    /**
+     * 
+     * @return
+     */
     public int getFunctionLoaderCount() {
         return functionLoaders.size();
     }
 
+    /**
+     * 
+     * @param index
+     * @return
+     */
     public FunctionLoader getFunctionLoader(int index) {
         return (FunctionLoader) functionLoaders.elementAt(index);
     }
 
+    /**
+     * 
+     * @param loader
+     * @return
+     */
     public boolean removeFunctionLoader(FunctionLoader loader) {
         if (loader.isSystemLoader())
             throw new IllegalArgumentException("Cannot remove a System Function Loader");
         return functionLoaders.remove(loader);
     }
 
+    /**
+     * 
+     * @param loader
+     * @return
+     */
     public boolean addFunctionLoader(FunctionLoader loader) {
         return functionLoaders.add(loader);
     }
 
+    /**
+     * 
+     * @param index
+     * @param loader
+     */
     public void addFunctionLoaderAt(int index, FunctionLoader loader) {
         functionLoaders.add(index, loader);
     }
 
+    /**
+     * 
+     */
     public void clearCustomFunctionLoaders() {
         Iterator itr = functionLoaders.iterator();
         while (itr.hasNext()) {
@@ -228,6 +250,10 @@ public class FunctionManager {
         }
     }
 
+    /**
+     * 
+     * @param path
+     */
     public void setWorkingDirectory(File path) {
         if (runningStandalone) {
             FileFunctionLoader l = (FileFunctionLoader) functionLoaders.get(0);
@@ -235,6 +261,10 @@ public class FunctionManager {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public File getWorkingDirectory() {
         if (runningStandalone) {
             FileFunctionLoader l = (FileFunctionLoader) functionLoaders.get(0);
