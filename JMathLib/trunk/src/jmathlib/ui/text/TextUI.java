@@ -29,7 +29,7 @@ public class TextUI implements RemoteAccesible, MathLibOutput
         functionCode = "";
         exiting = false;
 
-        interpreter = new Interpreter(true, null);
+        interpreter = new Interpreter(true);
         interpreter.setOutputPanel(this);
         interpreter.executeExpression("startup");
 
