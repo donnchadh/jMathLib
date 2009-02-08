@@ -9,6 +9,21 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
+2009/02/08 stefan: removed the applet-parameter from Interpreter(..) and
+                   various other classes. Also changed class/file-loading
+                   in applet (!standalone) mode
+
+2009/02/02 stefan: added support for  a++  and 5++
+2009/02/02 stefan: added support for  a--  and 5--
+2009/02/02 stefan: added support for  a+=5 -> a=a+5 
+2009/02/02 stefan: added support for  a-=5 -> a=a-5 
+2009/02/02 stefan: added support for  a*=5 -> a=a*5 
+2009/02/02 stefan: added support for  a/=5 -> a=a/5 
+
+2009/02/01 stefan: added a directory for temporary file /tmp
+                   changed the doc-build in order to facilitate the /tmp 
+                   directory.
+
 2009/02/01 stefan: Added "cut","paste","copy" to AWT GUI.
                    Added "ctrl-x","ctrl-v","ctrl-c" to AWT GUI.
 2009/02/01 stefan: Added a directory for temporary file /tmp
