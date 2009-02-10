@@ -9,6 +9,9 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
+2009/02/10 stefan: added libs/servlet-api.jar in order to create a servlet 
+                   for tomcat
+
 2009/02/08 stefan: removed the applet-parameter from Interpreter(..) and
                    various other classes. Also changed class/file-loading
                    in applet (!standalone) mode
