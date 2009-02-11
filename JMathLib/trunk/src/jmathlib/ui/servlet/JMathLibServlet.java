@@ -15,11 +15,7 @@ import javax.servlet.http.*;
 import jmathlib.core.interfaces.MathLibOutput;
 import jmathlib.core.interpreter.*;
 
-/**
- * 
- * @author stefan
- *
- */
+/** a basic servlet showing the usage of JMathLib */
 public class JMathLibServlet extends HttpServlet implements MathLibOutput {
 
     private String dispText ="";
@@ -47,18 +43,7 @@ public class JMathLibServlet extends HttpServlet implements MathLibOutput {
     	// tree and not have any harmful side effects.
 
 
-        //URL url = HelloWorldExample.class.getResourceAsStream("webFunctionsList.dat");
-        InputStream in = JMathLibServlet.class.getResourceAsStream("webFunctionsList.dat");
-        BufferedReader br = new BufferedReader(new InputStreamReader(in));
-
-        // read each line of the functions list
-        String line = null;
-        while ((line = br.readLine()) != null) 
-        {
-            System.out.println("read =" + line);
-        }
-        
-        
+        // open instance of JMathLib
         Interpreter jml = new Interpreter(false);
         jml.setOutputPanel(this);
         
@@ -70,9 +55,6 @@ public class JMathLibServlet extends HttpServlet implements MathLibOutput {
         
         jml.executeExpression("dir");
 
-        //String c = 
-        
-        //ClassLoader.getSystemResourceAsStream(name)
         
         String s = jml.getString("a");
         out.println("<pre>"+s+"</pre>");
@@ -89,6 +71,7 @@ public class JMathLibServlet extends HttpServlet implements MathLibOutput {
     }
     
     /**
+     * catch text from jmathlib for later display
      * @param text
      */
     public void displayText(String text)
