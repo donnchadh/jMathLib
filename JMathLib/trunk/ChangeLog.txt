@@ -9,6 +9,9 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
+2009/02/15 stefan: added a new update manager: changes made 
+                   to update.java and checkforupdates.java
+
 2009/02/10 stefan: added libs/servlet-api.jar in order to create a servlet 
                    for tomcat
 
