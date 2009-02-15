@@ -3,6 +3,7 @@ package jmathlib.toolbox.jmathlib.system;
 import jmathlib.core.tokens.*;
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.interpreter.GlobalValues;
+import jmathlib.core.interpreter.ErrorLogger;
 
 import java.net.*;
 import java.util.*;
@@ -18,11 +19,12 @@ public class checkforupdates extends ExternalFunction
 	public OperandToken evaluate(Token[] operands, GlobalValues _globals)
 	{
 	    
+	    // copy pointer to globals
 	    globals = _globals;
 
 		String s           = "";
         String lineFile    = "";
-        String updateSiteS = "http://www.jmathlib.de/checkForUpdates/";
+        String updateSiteS = "http://www.jmathlib.de/updates/";
  		boolean silentB    = false;
         
         s = globals.getProperty("update.site.primary");
@@ -42,8 +44,8 @@ public class checkforupdates extends ExternalFunction
                 }
                 else
                 {
-                    updateSiteS = s; 
-                    globals.getInterpreter().displayText("Update Site "+updateSiteS);
+                    updateSiteS = st; 
+                    globals.getInterpreter().displayText("New Update Site "+updateSiteS);
                 }
         	}
         }
@@ -75,10 +77,6 @@ public class checkforupdates extends ExternalFunction
         //getInterpreter().displayText("calCur "+calCur);
         
                 
-        //if (calCur.after(calFile))
-        //    getInterpreter().displayText("AFTER: TRUE" );
-        //else
-        //    getInterpreter().displayText("AFTER: FALSE" );
 
         if (silentB)
         {
@@ -115,16 +113,24 @@ public class checkforupdates extends ExternalFunction
             System.out.println("checkForUpdates: constructor");
         }
         
+        /**
+         * separate thread which checks the update site
+         * It is a thread in order to cause no time delay for the user.
+         */
         public synchronized void run()
         { 
             
             String s;
             
+
             // open URL
             URL url = null;
             try
             {
-                url = new URL(updateSiteS);
+                // get local version of jmathlib
+                String localVersionS = globals.getProperty("jmathlib.version").replaceAll("/", ".");
+
+                url = new URL(updateSiteS+"?jmathlib_version="+localVersionS+"&command=check");
             }
             catch (Exception e)
             {
@@ -142,77 +148,50 @@ public class checkforupdates extends ExternalFunction
                 System.out.println("checkForUpdates: Properties error");    
             }
 
-            String[] localVersionS  = globals.getProperty("jmathlib.version").replace("/",".").split("\\.");
-            String[] webVersionS    = props.getProperty("jmathlib.version").replace("/",".").split("\\.");
+            String localVersionS  = globals.getProperty("jmathlib.version");
+            String updateVersionS = props.getProperty("update.toversion");
+            String updateActionS  = props.getProperty("update.action");
 
-            // build version number of local version
-            // e.g. 2.6.7 -> 20607
-            int localVersion =0;
-            
-            if (localVersionS.length==3)
-            {   
-                localVersion    += Integer.parseInt(localVersionS[0]) * 100 * 100;
-                localVersion    += Integer.parseInt(localVersionS[1]) * 100;
-                localVersion    += Integer.parseInt(localVersionS[2]);
-            }
-                
-            // build version number of web version
-            // e.g. 2.6.7 -> 20607
-            int webVersion=0;
-            
-            if (webVersionS.length==3)
+            // evaluate the response from the web server
+            if (updateActionS.equals("INCREMENTAL_DOWNLOAD"))
             {
-                webVersion      += Integer.parseInt(webVersionS[0])  * 100 * 100;
-                webVersion      += Integer.parseInt(webVersionS[1])  * 100;
-                webVersion      += Integer.parseInt(webVersionS[2]);
-            }
-            
-            // check version number of web version against local version
-            if (webVersion > localVersion)
-            {
-
-                // set marker for next startup
-                globals.setProperty("update.newversionavailable","yes");
                 
-                s = props.getProperty("update.newversionavailable.message01");
-                if (s!=null)
+                if (!silentB)
                 {
-                    globals.setProperty("update.newversionavailable.message01", s);
-                    globals.getInterpreter().displayText(s);
+                    globals.getInterpreter().displayText("A full download ist required");
+                    globals.getInterpreter().displayText("A new version "+ updateVersionS +" is available");
+                    globals.getInterpreter().displayText("\n Just type    update    at the prompt.");
                 }
-                else
-                    globals.getInterpreter().displayText("There is a new version of JMathLib available");
 
-                
-                s = props.getProperty("update.newversionavailable.message02");
-                if (s!=null)
-                {
-                    globals.setProperty("update.newversionavailable.message02", s);
-                    globals.getInterpreter().displayText(s);
-                }
             }
-            else if (webVersion < localVersion)
-            {
-                globals.getInterpreter().displayText("Funny! The version of JMathLib on the web is older than your local version");
-            }
-            else
+            else if (updateActionS.equals("FULL_DOWNLOAD_REQUIRED"))
             {
                 if (!silentB)
                 {
-                    globals.getInterpreter().displayText("The local version of JMathLib is up to date");
-
-                    s=props.getProperty("update.uptodate.message01");
-                    if (s!=null) 
-                        globals.getInterpreter().displayText(s);
-
-                    s=props.getProperty("update.uptodate.message02");
-                    if (s!=null) 
-                        globals.getInterpreter().displayText(s);
+                    globals.getInterpreter().displayText("A full download ist required");
+                    globals.getInterpreter().displayText("A new version "+ updateVersionS +" is available");
+                    globals.getInterpreter().displayText("Go to www.jmathlib.de and download the latest version");
                 }
             }
-            
+            else if (updateActionS.equals("NO_ACTION"))
+            {
+                if (!silentB)
+                    globals.getInterpreter().displayText("The local version of JMathLib is up to date");
 
-            debugLine("checkForUpdates: web:" +webVersion +" local:"+ localVersion);
+            }
+            else if (updateActionS.equals("VERSION_UNKNOWN"))
+            {
+                if (!silentB)
+                    globals.getInterpreter().displayText("The local version of JMathLib ist not recognized by the server");
+
+            }
+            else
+            {
+                // wrong or unknown or empty "action"-command
+                globals.getInterpreter().displayText("check for updates encountered an error.");
+            }
+            
+            debugLine("checkForUpdates: web:" + updateVersionS +" local:"+ localVersionS);
             
             // set current date for property "update.date.last"
             Calendar cal   = Calendar.getInstance();
@@ -222,20 +201,17 @@ public class checkforupdates extends ExternalFunction
             globals.setProperty("update.date.last", checkedDate);
 
         
-            // update link to primary update-site
-            s= props.getProperty("update.site.primary");
-            if (s!=null)
-                globals.setProperty("update.site.primary",s);
+           
+            // copy properties from webserver to global properties
+            Enumeration propnames = props.propertyNames();
+            while (propnames.hasMoreElements())
+            {
+                String propName  = (String)propnames.nextElement();
+                String propValue = (String)props.getProperty(propName);
+                ErrorLogger.debugLine("Property: "+propName+" = "+propValue);
+                globals.setProperty(propName, propValue);
+            }
 
-            // update link to backup update-site
-            s= props.getProperty("update.site.backup");
-            if (s!=null)
-                globals.setProperty("update.site.backup",s);
-
-            // update message of the day
-            s= props.getProperty("message.of.the.day");
-            if (s!=null)
-                globals.setProperty("message.of.the.day",s);
 
         }
         
