@@ -22,7 +22,7 @@ public class Errors
     {
         String text = "";
         
-        ResourceBundle bundle = ResourceBundle.getBundle("jmathLib.resourcebundles.ErrorBundle");
+        ResourceBundle bundle = ResourceBundle.getBundle("jmathlib.resourcebundles.ErrorBundle");
     
         text = bundle.getString(Integer.toString(errorCode));
 
