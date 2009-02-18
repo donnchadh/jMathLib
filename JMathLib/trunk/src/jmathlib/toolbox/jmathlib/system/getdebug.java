@@ -1,9 +1,15 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  
+ * (c) 2005-2009   
+ */
 package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.functions.ExternalFunction;
 import jmathlib.core.tokens.*;
-import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
-import jmathlib.core.interpreter.Errors;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.GlobalValues;
 
