@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  
+ * (c) 2005-2009   
+ */
 package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.Token;
@@ -29,7 +37,7 @@ public class printstacktrace extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-PrintStackTrace(message)
+printstacktrace(message)
 @DOC
 Displays message and the current execution stack trace.
 @NOTES

@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:  
+ * (c) 2005-2009   
+ */
 package jmathlib.toolbox.jmathlib.system;
 
 import jmathlib.core.tokens.Token;
@@ -33,17 +41,14 @@ public class newline extends ExternalFunction
 @GROUP
 system
 @SYNTAX
-NEWLINE(lines)
+newline(lines)
 @DOC
 Displays number of blank lines equal to the first parameter.
 @NOTES
 @EXAMPLES
 NEWLINE(1)
 
-
 NEWLINE(2)
-
-
 
 @SEE
 */
