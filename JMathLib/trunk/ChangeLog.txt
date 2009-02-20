@@ -9,6 +9,10 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
+2009/02/20 stefan: added a new function jmathlibcreateuniqueid
+                   to create a unique ID for the current installation. The
+                   ID will be save in the standard properties.
+                   
 2009/02/15 stefan: added a new update manager: changes made 
                    to update.java and checkforupdates.java
 
