@@ -1,6 +1,5 @@
 package jmathlib.ui.common;
 
-import jmathlib.core.interfaces.MathLibOutput;
 import jmathlib.core.interfaces.RemoteAccesible;
 
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.util.Vector;
 
 /**Class implementing a console style window
 It needs the ConsoleKeyHandler class to work*/
-public class Console extends TextArea implements MathLibOutput
+public class Console extends TextArea 
 {
 	int commandNo;
 

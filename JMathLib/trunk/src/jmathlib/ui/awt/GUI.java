@@ -3,6 +3,7 @@ package jmathlib.ui.awt;
 import jmathlib.core.interfaces.RemoteAccesible;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Interpreter;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -21,37 +22,40 @@ import java.awt.datatransfer.*;
  * </ul>
  * </p>
  */
-public class GUI extends Frame implements WindowListener, ActionListener, RemoteAccesible, ClipboardOwner
+public class GUI extends Frame implements JMathLibOutput, WindowListener, ActionListener, RemoteAccesible, ClipboardOwner
 {
-        /*The menubar container.*/
-        private MenuBar  mainMenuBar;
-        private Menu     fileMenu;
-        private Menu     editMenu;
-        private Menu     windowMenu;
-        private Menu     helpMenu;
-        private MenuItem separator1;
-        private MenuItem separator2;
-        private MenuItem newFileMenuItem;
-        private MenuItem openFileMenuItem;
-        private MenuItem saveFileMenuItem;
-        private MenuItem saveAsFileMenuItem;
-        private MenuItem checkForUpdatesMenuItem;
-        private MenuItem exitFileMenuItem;
-        private MenuItem cutEditMenuItem;
-        private MenuItem copyEditMenuItem;
-        private MenuItem pasteEditMenuItem;
-        private MenuItem consoleWindowMenuItem;
-        private MenuItem plotWindowMenuItem;
-        private MenuItem aboutHelpMenuItem;
+    /*The menubar container.*/
+    private MenuBar  mainMenuBar;
+    private Menu     fileMenu;
+    private Menu     editMenu;
+    private Menu     windowMenu;
+    private Menu     helpMenu;
+    private MenuItem separator1;
+    private MenuItem separator2;
+    private MenuItem newFileMenuItem;
+    private MenuItem openFileMenuItem;
+    private MenuItem saveFileMenuItem;
+    private MenuItem saveAsFileMenuItem;
+    private MenuItem checkForUpdatesMenuItem;
+    private MenuItem exitFileMenuItem;
+    private MenuItem cutEditMenuItem;
+    private MenuItem copyEditMenuItem;
+    private MenuItem pasteEditMenuItem;
+    private MenuItem consoleWindowMenuItem;
+    private MenuItem plotWindowMenuItem;
+    private MenuItem aboutHelpMenuItem;
 
-        /**Constant with the application title.*/
-        private final String TITLE="JMathLib GUI";
+    /** status message in frame */
+    private Label    statusLabel;
+    
+    /**Constant with the application title.*/
+    private final String TITLE="JMathLib GUI";
 
-        /**The area used for user input and where the answers are displayed*/
-        private Console answer;
+    /**The area used for user input and where the answers are displayed*/
+    private Console answer;
 
-        /**The interpreter*/
-        private Interpreter interpreter;
+    /**The interpreter*/
+    private Interpreter interpreter;
 
     /**Reacts to the user menu and update (if necessary) the interface.*/
     public void actionPerformed(ActionEvent e)
@@ -207,7 +211,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         // Let's resize the window...
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         if  (width == -1)
-            width = (d.width*70)/100;
+            width = (d.width*50)/100;
         
         if  (height == -1)
             height = (d.height*50)/100;
@@ -232,6 +236,7 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         this.setVisible(false);
         this.setLayout(new BorderLayout());
         this.setBackground(new Color(214,211,206));
+
         //Get the size of the screen
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         //position the frame in the centre of the screen
@@ -256,14 +261,26 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         InitMenuBar(this);
 
         this.setTitle(TITLE + " [2/4] Initializing console window");
-        InitConsole();
+        answer = new Console(this);
+        this.add(answer, BorderLayout.CENTER);
+        answer.displayPrompt();
+        // Sometimes I get an unfocused console, so I request it manually.
+        answer.requestFocus();
+
+
+        statusLabel = new Label("JMathLib");
+        this.add(statusLabel, BorderLayout.SOUTH);
+        
+
+        this.validate();
 
         this.setTitle(TITLE + " [3/4] Initializing interpreter");
         interpreter = new Interpreter(true);
-        interpreter.setOutputPanel(answer);
+        interpreter.setOutputPanel(this); //answer);
+        //interpreter.regStatus(statusLabel);
         
        
-        this.setTitle(TITLE + " - [4/4] running startup script");
+        this.setTitle(TITLE + " [4/4] running startup script");
         interpreter.executeExpression("startup;");
         //interpreter.executeExpression("messageoftheday");
         answer.displayPrompt();
@@ -289,17 +306,8 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
 
     } // end GUI
 
-    /**The main console initializer.*/
-    private void InitConsole()
-    {
-        answer = new Console(this);
-        this.add(answer);
-        this.validate();
-        answer.displayPrompt();
-        // Sometimes I get an unfocused console, so I request it manually.
-        answer.requestFocus();
-    }
 
+    
     /**The menu initializer.*/
     private void InitMenuBar(ActionListener listener)
     {
@@ -389,9 +397,28 @@ public class GUI extends Frame implements WindowListener, ActionListener, Remote
         answer.displayText(answerString);
         answer.displayPrompt();
     }
+    
+    
+    /**
+     * displays the output of an evaluation
+     * @param  text to display
+     */
+    public void displayText(String text)
+    {
+        answer.displayText(text);
+    }
+    
+    /**
+     * displays the current status message at the bottom of the frame
+     * @param status  message
+     */
+    public void setStatusText(String status)
+    {
+        statusLabel.setText(status);
+    }
 
     /**
-     * 
+     * main method
      * @param args
      */
     public static void main (String[] args)

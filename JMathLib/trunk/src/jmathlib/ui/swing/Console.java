@@ -1,6 +1,5 @@
 package jmathlib.ui.swing;
 
-import jmathlib.core.interfaces.MathLibOutput;
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -8,7 +7,7 @@ import javax.swing.text.*;
 /**
  * Main input text area class.
  */
-public class Console extends JTextArea implements MathLibOutput
+public class Console extends JTextArea 
 {
     public static Console runningReference = null;
 

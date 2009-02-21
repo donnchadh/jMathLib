@@ -2,6 +2,7 @@ package jmathlib.ui.applet;
 
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.interfaces.RemoteAccesible;
+import jmathlib.core.interfaces.JMathLibOutput;
 import jmathlib.ui.common.Console;
 
 import java.awt.*;
@@ -9,7 +10,7 @@ import java.awt.event.*;
 import java.applet.*;
 
 /**Rudimentary interface used to test the program*/
-public class JMathLibGUI extends Applet implements RemoteAccesible
+public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutput
 {
 	/**Flag storing whether the program is running as an application or an applet*/
     boolean 		runningStandalone;
@@ -60,7 +61,7 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
 
         interpreter = new Interpreter(false);        
         
-        interpreter.setOutputPanel(answer);
+        interpreter.setOutputPanel(this);
         interpreter.executeExpression("startup");
         
         // get parameter for background color (e.g. ff00cc)
@@ -78,6 +79,23 @@ public class JMathLibGUI extends Applet implements RemoteAccesible
                 answer.setForeground(color);
         }
         catch (NumberFormatException e){ }  
+        
+    }
+    
+    /**
+     * display text
+     */
+    public void displayText(String text)
+    {
+        answer.displayText(text);
+    }
+    
+
+    /**
+     * display status message
+     */
+    public void setStatusText(String status)
+    {
         
     }
 

@@ -6,7 +6,7 @@ import jmathlib.ui.common.Console;
 
 import java.io.*;
 
-public class TextUI implements RemoteAccesible, MathLibOutput
+public class TextUI implements RemoteAccesible, JMathLibOutput
 {
     /**store whether executing lines or entering a function def*/
     private boolean interactiveMode;
@@ -110,6 +110,15 @@ public class TextUI implements RemoteAccesible, MathLibOutput
     {
         System.out.println(text);
     }    
+    
+    /**
+     * display status
+     * @param status message
+     */
+    public void setStatusText(String status)
+    {
+        
+    }
     
     public void displayPrompt()
     {

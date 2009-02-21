@@ -4,6 +4,7 @@ import java.awt.event.*;
 import javax.swing.text.*;
 import java.util.*;
 import jmathlib.core.interpreter.Interpreter;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 
 
@@ -17,7 +18,7 @@ import jmathlib.core.interpreter.Interpreter;
  * See GN0004 for more information.</td></table></p>
  * @version 3.1.1
  */
-public class KeyHandler implements KeyListener
+public class KeyHandler implements KeyListener, JMathLibOutput
 {
     public static KeyHandler runningReference = null;
 
@@ -26,6 +27,7 @@ public class KeyHandler implements KeyListener
     // The interpreter
     Interpreter interpreter = new Interpreter(true);
 
+    Console con = null;
 
 
     /**
@@ -34,13 +36,24 @@ public class KeyHandler implements KeyListener
      * Initializes the interpreter.
      * @param con Where the interpreter will place its output.
      */
-    public KeyHandler(Console con)
+    public KeyHandler(Console _con)
     {
+        con = _con;
         if (runningReference == null)
         {
             runningReference = this;
         }
-        interpreter.setOutputPanel(con);
+        interpreter.setOutputPanel(this);
+    }
+    
+    public void displayText(String text)
+    {
+        con.displayText(text);
+    }
+    
+    public void setStatusText(String status)
+    {
+        
     }
 
 

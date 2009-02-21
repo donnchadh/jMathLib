@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.io.*;
 import java.util.*;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 
 
@@ -21,7 +22,8 @@ import java.util.*;
  * </table>
  * @version 2.0
  */
-public class SwingGUI extends JFrame {
+public class SwingGUI extends JFrame 
+{
 
     final String appTitle = "JMathLib SwingGUI";
 

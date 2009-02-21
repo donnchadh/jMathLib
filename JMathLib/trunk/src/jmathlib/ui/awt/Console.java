@@ -1,15 +1,16 @@
 package jmathlib.ui.awt;
 
-import jmathlib.core.interfaces.MathLibOutput;
 import jmathlib.core.interfaces.RemoteAccesible;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Vector;
 
-/**Class implementing a console style window
-It needs the ConsoleKeyHandler class to work*/
-public class Console extends TextArea implements MathLibOutput
+/**
+ * Class implementing a console style window
+ * It needs the ConsoleKeyHandler class to work
+ */
+public class Console extends TextArea 
 {
 	int commandNo;
 

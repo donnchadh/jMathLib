@@ -12,11 +12,11 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-import jmathlib.core.interfaces.MathLibOutput;
+import jmathlib.core.interfaces.JMathLibOutput;
 import jmathlib.core.interpreter.*;
 
 /** a basic servlet showing the usage of JMathLib */
-public class JMathLibServlet extends HttpServlet implements MathLibOutput {
+public class JMathLibServlet extends HttpServlet implements JMathLibOutput {
 
     private String dispText ="";
 
@@ -78,6 +78,15 @@ public class JMathLibServlet extends HttpServlet implements MathLibOutput {
     {
         dispText += text;
     } 
+    
+    /** 
+     * this method ist used to display status messages
+     * @param status message
+     */
+    public void setStatusText(String status)
+    {
+        
+    }
 }
 
 
