@@ -1,0 +1,232 @@
+<!-- :xml.root=doc.xml: -->
+<part id="usage">
+    <title >Usage</title >
+    
+<chapter id="usage_basicoperations">
+    <title >Basic Operations</title>
+    <para>
+        <application class="software">JMathLib</application > understands the basic operators +,-,*,/,^ and !.
+    </para >
+<programlisting>
+> 2+3
+5.0
+> 5!
+120.0
+> 2*3
+6.0
+> 2^3
+8.0
+> 2/3      
+0.6666666666666666                
+</programlisting>
+        <simpara >The operators work in the following order</simpara >        
+        <simpara >^</simpara >        
+        <simpara >* /</simpara >        
+        <simpara >+ -</simpara >        
+        <simpara >!</simpara >                
+        <simpara >This can be modified by using brackets</simpara >        
+<programlisting>
+> 2+3*4
+14.0
+
+> (2+3)*4
+20.0
+
+> 2*3^2
+18.0
+
+> (2*3)^2
+36.0
+
+> 2^3!
+40320.0
+
+> 2^(3!)
+64.0
+
+> 2+3!
+120.0
+
+> 2+(3!)
+8.0
+</programlisting>                    
+</chapter>
+
+<chapter id="usage_usingvariables">
+        <title >Variables</title >
+        <simpara >Variables are assigned values by using the assignment operator =</simpara >
+        <informalexample >
+            <simpara >> x=5</simpara >
+            <simpara >5.0</simpara >        
+            <simpara >> x*2</simpara >
+            <simpara >10.0</simpara >    
+            <simpara >> x^2</simpara >
+            <simpara >25.0</simpara >
+        </informalexample>        
+    </chapter >
+    
+    <chapter id="usage_complexnumbers">
+        <title >Complex Numbers</title >
+        <simpara >
+            Complex numbers are used with the variables <code>j</code> or <code>i</code>. 
+            This is defined as being the square root of -1.
+        </simpara >
+        <programlisting>    
+> 1+i
+(1.0 + i)
+> i^2
+-1.0
+> i^3
+-1.0i
+> i^4
+1.0
+> (1+i)*(1-j)
+2.0i
+</programlisting>
+</chapter >
+    
+<chapter id="usage_matrices">
+    <title >Matrices</title >
+        <simpara>
+            Matrices are entered by enclosing the values in [ ]. Each item in a row is 
+            separated by a <code>,</code> and each row is separated by a 
+            <code>;</code>.
+        </simpara >
+        <informalexample >
+            <simpara>entering [1,2] will produce the 1 by 2 matrix</simpara >
+            <simpara>[1 2]</simpara >
+            <simpara>entering [1,2;3,4] will produce the 2*2 matrix</simpara >
+            <simpara>[1 2]</simpara >
+            <simpara>[3 4]</simpara >
+            <simpara>entering [1;2] will produce the 2*1 matrix </simpara >
+            <simpara>[1]</simpara >
+            <simpara>[2]</simpara >
+        </informalexample >
+        <simpara>
+            The identity matrix can be entered using the function <code>eye</code>
+            with the size of the matrix as the parameter.
+            A zero filled matrix can be entered using the <code>zeros</code>
+            function. This accepts either one parameter to produce a square matrix or two to produce a rectangular matrix.
+            A one filled matrix can be entered using the ONES function. This accepts either one parameter to produce a square matrix or two to produce a rectangular matrix.
+        </simpara >
+        <simpara >
+            A one dimensional matrix containing a series of numbers can be created using the colon operator either with the form
+        </simpara >
+        <informalexample >
+            <simpara>start : end</simpara >
+            <simpara>start : increment : end</simpara >
+            <simpara>e.g</simpara >
+            <simpara>2:9 = [2,3,4,5,6,7,8,9]</simpara >
+            <simpara>2:2:8 = [2,4,6,8]</simpara >
+        </informalexample >
+</chapter >
+    
+<chapter id="usage_controlstructures">
+    <title >Control Structures</title >
+    <sect1 id="if">
+        <title >If</title >
+        <simpara >There are two ways of writing if statements</simpara >
+<programlisting>
+if(test1)
+{
+    code1;
+}
+elseif(test2)
+{
+    code2;
+}
+else
+{
+    code3;
+};
+</programlisting>
+
+<programlisting>
+if test1
+    code1;
+elseif test2
+    code2;
+else
+    code3;
+end;
+</programlisting>
+        </sect1 >
+        
+        <sect1 id="switch">
+            <title >Switch</title >
+            <simpara >The two ways of writing switch statements are:</simpara >
+<programlisting>
+switch(variable)
+{
+    case(val1):
+    {
+        code1;
+    }
+    case(val2):
+    {
+        code2;
+    }
+    default/otherwise:
+    {
+        code3;
+    }
+};
+</programlisting>
+
+<programlisting>
+switch(variable)
+    case val1:
+        code1;
+    case val2:
+        code2;
+    default/otherwise:
+        code3:
+end;
+</programlisting>
+        </sect1 >
+        
+        <sect1 id="for">
+            <title >For</title >
+            <simpara >The two ways of writing the for statement are:</simpara >
+<programlisting>
+        for(initialisiation, test, increment)
+        {
+            code;
+        };
+</programlisting>
+
+<programlisting>
+        for variable = vector
+            code;
+        end;
+</programlisting >            
+        </sect1 >
+        
+        <sect1 id="while">
+            <title >While</title >
+            <simpara >The two ways of writing a while statement are:</simpara >
+<programlisting>
+        while(test)
+        {
+            code;
+        };
+</programlisting>
+
+<programlisting>
+
+        while(test)
+            code;
+        end;
+</programlisting>
+        </sect1 >
+    </chapter >
+    
+    <chapter id="SymbolicComputation">
+        <title>Symbolic computations</title>
+		<warning>
+			<simpara>Symbolic functions are not supported right now!</simpara>
+		</warning>
+    </chapter>
+    
+</part>
+

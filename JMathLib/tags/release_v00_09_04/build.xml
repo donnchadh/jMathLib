@@ -1,0 +1,528 @@
+<?xml version="1.0"?>
+
+<project name="JMathLib" basedir="." default="compile">
+
+    <!-- grab the properties file -->
+    <!--    <property file="${user.home}/build.properties" /> -->
+    <property file="build.properties" />
+
+    <!-- include all the jars in the classpath -->
+    <path id="classpath">
+      <fileset dir="." >
+        <include name="**/*.jar" />
+      </fileset>
+    </path>
+
+    <!-- ================================================================= -->
+    <!-- E N V                                                             -->
+    <!-- ================================================================= -->
+    <target name="env" >
+        <echo message="java.home = ${java.home}" />
+        <echo message="user.home = ${user.home}" />
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- C L E A N                                                         -->
+    <!-- ================================================================= -->
+    <target name="clean" >
+	    <delete dir="${build.dest}/jmathlib" />
+	    <delete dir="${build.dest}/jmathlibtests" />
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- C O M P I L E                                                     -->
+    <!-- ================================================================= -->
+    <target name="compile" depends="env">
+        <javac srcdir="${build.src}"
+               destdir="${build.dest}"
+               debug="${debug}"
+               deprecation="${deprecation}"
+               optimize="${optimize}"
+	       classpath="${junitpath}:${build.dest}:.:${java.class.path}"
+               >
+            <classpath refid="classpath" />
+        </javac>
+
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- Copy M-files to bin directories                                   -->
+    <!-- ================================================================= -->
+    <target name = "mfiles">
+    <copy todir="${build.dest}">
+    	<fileset dir="${build.src}" includes="**/*.m">
+        </fileset>
+    </copy>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- Copy Resource Bundles to bin directories                          -->
+    <!-- ================================================================= -->
+    <target name = "resources">
+    <copy todir="${build.dest}">
+    	<fileset dir="${build.src}" includes="**/*.properties">
+        </fileset>
+    </copy>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- Copy images to bin directories                                    -->
+    <!-- ================================================================= -->
+    <target name = "images">
+    <copy todir="${build.dest}">
+    	<fileset dir="${build.src}">
+          <include name="**/*.gif" />
+          <include name="**/*.jpg" />
+      </fileset>
+    </copy>
+    </target>
+
+	<!-- ================================================================= -->
+    <!-- Test                                                              -->
+    <!-- ================================================================= -->
+    <target name = "test" depends="compile">
+    <java classpath="${build.dest}:.:${java.class.path}"
+          classname="${test.class}"
+	  fork="true">
+          <classpath refid="classpath" />
+    </java>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- Run                                                               -->
+    <!-- ================================================================= -->
+    <target name = "run" depends="compile,mfiles,resources,images">
+    <java classpath="${junitpath}:${build.dest}:.:${java.class.path}"
+          classname="jmathlib.ui.awt.GUI"
+	  fork="true">
+	  <arg value='-d' /> 
+	  <classpath refid="classpath" />
+   </java>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- J A R                                                             -->
+    <!-- ================================================================= -->
+    <target name="jar" depends="compile">
+        <jar jarfile="${jar.dest}/${final.name}.jar"
+             compress="true"
+             basedir="${build.dest}"
+             excludes="${jar.excludelist}">
+        </jar>
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- C L E A N  - U P L O A D                                          -->
+    <!-- ================================================================= -->
+    <target name="cleanupload" >
+        <delete dir="${upload.dir}"  includes="**" excludes=".svn" 
+         includeEmptyDirs="true" />
+    </target>
+
+	
+    <!-- ================================================================= -->
+    <!-- Documentation processes                                           -->
+    <!-- ================================================================= -->
+
+    <!-- JavaDoc -->
+    <!-- creates Reference.xml -->
+    <target name="javadoc" depends="">
+    	<javadoc destdir="${doc.src}"
+    	    packagenames="${packages}"
+    	    failonerror="true"
+    	    additionalparam="-breakiterator"
+    	    sourcepath="${build.src}">
+    	    <doclet name="com.mf.doclet.docbook.DocBookDoclet"
+    		    path="Documentation/src/Tools/dbdoclet.jar"> 
+    	    </doclet>
+	    </javadoc>
+    </target>
+
+    <!-- FunctionDocs                                                      -->
+    <target name="functiondocs" depends="">
+    	<exec command="doc/tools/builddocs.bat"/>
+    </target>
+
+    <!-- Copy image-files to handbook directory -->
+    <target name = "imageFiles">
+	    <copy todir="${dist.dir}/handbook">
+	    	<fileset dir="${doc.src}"> 
+	    		<include name="**/*.gif" />
+	    		<include name="**/*.jpg" />
+	    		<include name="**/*.svg" />
+	        </fileset>
+	    </copy>
+	    <copy todir="${upload.dir}/handbook_php/">
+	    	<fileset dir="${doc.src}"> 
+	    		<include name="**/*.gif" />
+	    		<include name="**/*.jpg" />
+	    		<include name="**/*.svg" />
+	        </fileset>
+	    </copy>
+	    <copy todir="${upload.dir}/handbook_epub/">
+	    	<fileset dir="${doc.src}"> 
+	    		<include name="**/*.gif" />
+	    		<include name="**/*.jpg" />
+	    		<include name="**/*.svg" />
+	        </fileset>
+	    </copy>
+	    <copy todir="${upload.dir}/handbook_eclipse/">
+	    	<fileset dir="${doc.src}"> 
+	    		<include name="**/*.gif" />
+	    		<include name="**/*.jpg" />
+	    		<include name="**/*.svg" />
+	        </fileset>
+	    </copy>
+    </target>
+	
+    <!-- xml to  php  -->
+    <target name="xmltophp" description="convert xml to php" depends="">
+	<java jar="./libs/saxon.jar" fork="true">
+		<arg value='doc/src/doc.xml' />
+		<arg value='doc/DocBook/xsl/html/chunk.xsl' />
+		<arg value="base.dir=${upload.dir}/handbook_php/" />
+		<arg value='chunk.section.depth="1"' />
+		<arg value='chunk.first.sections="0"' />
+		<arg value='generate.section.toc.level="0"' />
+		<arg value='toc.section.depth="1"' />
+		<arg value='toc.max.depth="3"' />
+		<arg value='generate.index="1"' />
+		<arg value='html.ext=".php"' /> 
+		<arg value='use.id.as.filename="1"' /> 
+		<arg value='html.extra.head.links="0"' />
+		<arg value='html.stylesheet="../../formats.css"' /> 
+		<arg value='ignore.image.scaling="1"' />
+    </java>
+    </target>
+
+    <!-- xml to  html  -->
+    <target name="xmltohtml" description="convert xml to html" depends="">
+	<java jar="libs/saxon.jar" fork="true">
+		<arg value='doc/src/doc.xml' />
+		<arg value='doc/DocBook/xsl/html/chunk2.xsl' />
+		<arg value="base.dir=${dist.dir}/handbook/" />
+		<arg value='chunk.section.depth="1"' />
+		<arg value='chunk.first.sections="0"' />
+		<arg value='generate.section.toc.level="0"' />
+		<arg value='toc.section.depth="1"' />
+		<arg value='toc.max.depth="3"' />
+		<arg value='generate.index="1"' />
+		<arg value='html.ext=".html"' /> 
+		<arg value='use.id.as.filename="1"' /> 
+		<arg value='html.extra.head.links="0"' />
+		<arg value='html.stylesheet="../../formats.css"' /> 
+		<arg value='ignore.image.scaling="1"' />
+    </java>
+    </target>
+ 
+    <!-- xml to  fo -->
+    <target name="xmltofo" description="convert xml to fo" depends="">
+	<java jar="libs/saxon.jar" fork="true">
+		<arg line="-o tmp/doc.fo doc/src/doc.xml
+		doc/DocBook/xsl/fo/docbook.xsl" />
+        <arg value='paper.type="A4"' />
+		<arg value='chunk.section.depth="0"' />
+		<arg value='chunk.first.sections="0"' />
+		<arg value='generate.section.toc.level="1"' />
+		<arg value='toc.section.depth="1"' />
+		<arg value='toc.max.depth="3"' />
+		<arg value='generate.index="1"' />
+	</java>
+    </target>
+
+    <!-- fo to  pdf   -->
+     <target name="fotopdf" description="convert fo to pdf" depends="">   
+        <java jar="libs/fop.jar" fork="true">
+    		<arg value="tmp/doc.fo" />
+    		<arg value='-d' />
+    		<arg value="${upload.dir}/JMathLibManual_${version}.pdf" />
+    	</java>
+     </target>
+
+    <!-- xml to epub  -->
+    <target name="xmltoepub" description="convert xml to epub" depends="">
+	<java jar="libs/saxon.jar" fork="true">
+		<arg value='doc/src/doc.xml' />
+		<arg value='doc/DocBook/xsl/epub/docbook.xsl' />
+		<arg value="base.dir=${upload.dir}/handbook_epub/" />
+		<arg value='chunk.section.depth="1"' />
+		<arg value='chunk.first.sections="0"' />
+		<arg value='generate.section.toc.level="0"' />
+		<arg value='toc.section.depth="1"' />
+		<arg value='toc.max.depth="3"' />
+		<arg value='generate.index="1"' />
+		<arg value='use.id.as.filename="1"' /> 
+		<arg value='html.extra.head.links="0"' />
+		<arg value='html.stylesheet="../../formats.css"' /> 
+		<arg value='ignore.image.scaling="1"' />
+    </java>
+    </target>
+
+    <!-- xml to eclipse  -->
+    <target name="xmltoeclipse" description="convert xml to eclipse" depends="">
+	<java jar="libs/saxon.jar" fork="true">
+		<arg value='doc/src/doc.xml' />
+		<arg value='doc/DocBook/xsl/eclipse/eclipse.xsl' />
+		<arg value="base.dir=${upload.dir}/handbook_eclipse/" />
+		<arg value='chunk.section.depth="1"' />
+		<arg value='chunk.first.sections="0"' />
+		<arg value='generate.section.toc.level="0"' />
+		<arg value='toc.section.depth="1"' />
+		<arg value='toc.max.depth="3"' />
+		<arg value='generate.index="1"' />
+		<arg value='use.id.as.filename="1"' /> 
+		<arg value='html.extra.head.links="0"' />
+		<arg value='html.stylesheet="../../formats.css"' /> 
+		<arg value='ignore.image.scaling="1"' />
+    </java>
+    </target>
+
+    <!-- zip doc files -->
+	<target name = "zip_docs" description="zip doc files" depends="">
+		  <zip zipfile="${upload.dir}/${final.name}_docs_php.zip" >
+	        <zipfileset dir="${upload.dir}/handbook_php" >
+				<include name="**"/>
+			</zipfileset>
+	      </zip>
+	
+		  <zip zipfile="${upload.dir}/${final.name}_docs_html.zip" >
+	        <zipfileset dir="${dist.dir}/handbook/" >
+				<include name="**"/>
+			</zipfileset>
+	      </zip>
+	
+		  <zip zipfile="${upload.dir}/${final.name}_docs_epub.zip" >
+	        <zipfileset dir="${upload.dir}/handbook_epub" >
+				<include name="**"/>
+			</zipfileset>
+	      </zip>
+
+		<zip zipfile="${upload.dir}/${final.name}_docs_eclipse.zip" >
+	        <zipfileset dir="${upload.dir}/handbook_eclipse" >
+				<include name="**"/>
+			</zipfileset>
+	      </zip>
+	</target>
+
+    <!-- AllDocs: create all documenation files -->
+    <target name="alldocs" description="all doc targets"
+    	depends="functiondocs, imageFiles, xmltophp, 
+    	xmltohtml, xmltofo, fotopdf, xmltoepub, xmltoeclipse, zip_docs"> 
+    </target>
+
+	
+    <!-- ================================================================= -->
+    <!-- COPY to DIST                                                      -->
+    <!-- ================================================================= -->
+    <target name = "copy_to_dist" description="copy distribution files to upload directory">
+   
+    	<!-- classes directory -->
+        <copy todir="${dist.dir}/bin">
+	         <fileset dir="${build.dest}">
+	         <include name="**"/>
+	         </fileset>
+        </copy>
+
+        <!-- source directory -->
+        <copy todir="${dist.dir}/src">
+	         <fileset dir="${build.src}">
+	         <include name="**"/>
+	         </fileset>
+        </copy>
+
+        <!-- others -->
+        <copy todir="${dist.dir}">
+	       	 <!-- misc files -->
+	         <fileset dir="${build.dir}">
+	         <include name="JMathLib.html"/>
+	         <include name="license.txt"/>
+		     <include name="ChangeLog.txt"/>
+	         <include name="JMathLib.html"/>
+             </fileset>
+        </copy>
+    	
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- APPLET  DIST                                                      -->
+    <!-- ================================================================= -->
+	<target name="applet_dist" description="prepare applet distribution" 
+    	depends="">
+
+        <delete file="${dist.dir}/bin/JMathLibSmallApplet.jar"/>
+        <delete file="${upload.dir}/JMathLib-web.tar.gz"/>
+        <delete file="${upload.dir}/JMathLib-web.zip"/>
+        
+		<!-- create functions list -->
+		<java classpath="${junitpath}:${build.dest}:.:${java.class.path}"
+    	          classname="jmathlib.ui.text.TextUI"
+    		  fork="true">
+    		  <arg value='createfunctionslist;quit(\"force\")' /> 
+    		  <classpath refid="classpath" />
+    	</java>
+
+		<!-- copy functions list to dist -->
+        <copy todir="${dist.dir}/bin">
+	         <fileset dir="${build.dest}">
+	         <include name="webFunctionsList.dat"/>
+	         </fileset>
+        </copy>
+
+        <!-- Create jar files with minimun size. Necessary files only!! -->
+        <!-- User functions and m-files are only loaded on demand       -->
+        <jar jarfile="${dist.dir}/bin/JMathLibSmallApplet.jar" compress="true">
+            <fileset dir="${dist.dir}/bin">
+	            <include name="**" />
+            	<exclude name="JMathLib.properties"/>
+            	<exclude name="webFunctionsList.dat"/>
+            	<exclude name="jmathlib/core/functions/FileFunctionLoader.class"/>
+            	<exclude name="jmathlib/core/functions/MFileLoader.class"/>
+            	<exclude name="jmathlib/core/functions/SFunction.class"/>
+                <exclude name="jmathlib/core/tokens/numbertokens/Int*.class"/>
+                <exclude name="jmathlib/core/tokens/numbertokens/UInt*.class"/>
+            	<exclude name="jmathlib/core/tokens/SparseNumberToken.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/Axes3DObject.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/coreObjects/*.class"/>
+            	<exclude name="jmathlib/core/graphics/axes/plotObjects/**"/>
+            	<exclude name="jmathlib/plugins/**"/>
+            	<exclude name="jmathlib/toolbox/**"/>
+                <exclude name="jmathlib/tools/**"/>
+                <exclude name="jmathlib/ui/awt/**"/>
+                <exclude name="jmathlib/ui/swing/**"/>
+                <exclude name="jmathlib/ui/text/**"/>
+                <exclude name="jmathlibtests/**"/>
+            </fileset>
+            <fileset dir="${dist.dir}/bin">
+                <include name="jmathlib/core/graphics/axes/coreObjects/LineObject.class"/>
+                <include name="jmathlib/plugins/PluginsManager.class"/>
+                <include name="jmathlib/toolbox/general/rand.class"/>
+                <include name="jmathlib/toolbox/jmathlib/system/disp.class"/>
+                <include name="jmathlib/toolbox/jmathlib/system/setdebug.class"/>
+                <include name="jmathlib/toolbox/jmathlib/graphics/graph2d/plot.class"/>
+             </fileset>
+        </jar>
+        
+    	<!-- create distribution as tar-file -->
+        <tar tarfile="${upload.dir}/${final.name}-applet.tar">
+            <tarfileset dir="${dist.dir}">
+                <include name="bin/**" />
+                <exclude name="bin/jmathlib/tools/**"/>
+                <exclude name="bin/jmathlibtests/**"/>
+                <include name="ChangeLog.txt"/>
+                <include name="license.txt"/>
+                <include name="JMathLib.html"/>
+                <include name="readme-web.txt"/>
+            </tarfileset>
+        </tar>
+
+    	<!-- create distribution as tar-gz-file -->
+	    <gzip zipfile="${upload.dir}/${final.name}-applet.tar.gz"
+		    src="${upload.dir}/${final.name}-applet.tar" />
+    	
+    	<!-- delete previously created tar-file -->
+        <delete file="${upload.dir}/${final.name}-applet.tar"/>
+
+    	<!-- create distribution as zip-file -->
+        <zip zipfile="${upload.dir}/${final.name}-applet.zip">
+            <zipfileset dir="${dist.dir}">
+                <include name="bin/**" />
+                <exclude name="bin/jmathlib/tools/**"/>
+                <exclude name="bin/jmathlibtests/**"/>
+                <include name="ChangeLog.txt"/>
+                <include name="license.txt"/>
+                <include name="JMathLib.html"/>
+                <include name="readme-web.txt"/>
+            </zipfileset>
+        </zip>
+
+    </target>
+
+    <!-- ================================================================= -->
+    <!-- create installer                                                  -->
+    <!-- ================================================================= -->
+	
+    <!-- copy classes and sources -->
+    <target name = "copy_to_upload" description="copy distribution files to upload directory">
+	       	 <!-- full doc-->
+	         <fileset dir="${upload.dir}">
+		     <include name="JMathLibManual_${version}.pdf"/>
+			 </fileset>
+        	
+    </target>
+
+    <!-- create java launcher for awt gui-->
+    <target name="javalauncher" depends="">
+    	<exec executable="c:\programme\nsis\makensis">
+    		<arg value="installer\JMathLib.nsi"/>
+    	</exec>
+    </target>
+
+    <!-- create java launcher for swing gui-->
+    <target name="javalauncherswing" depends="">
+    	<exec executable="c:\programme\nsis\makensis">
+    		<arg value="installer\JMathLibSwing.nsi"/>
+    	</exec>
+    </target>
+
+    <!-- create installer -->
+    <target name="installer" depends="">
+    	<exec executable="${nsis.path}makensis">
+    		<arg value="installer\JMathLibInstall.nsi"/>
+    		<env key="JMathLibVersion" value="${version}"/>
+    	</exec>
+    </target>
+	
+    <!-- AllInstall: create full installers -->
+    <target name="allinstallers" depends="copy_to_upload,
+    	javalauncher, javalauncherswing, installer"> 
+    </target>
+
+
+
+    <!-- create zip files for distribution -->
+    <target name = "distro_zips" description="build desktop distro">
+    
+        <delete file="${upload.dir}/${final.name}-all.tar.gz" />
+        <delete file="${upload.dir}/${final.name}-all.zip" />
+
+	    <!-- create tar.gz file -->
+        <tar tarfile="${upload.dir}/${final.name}-all.tar">
+            <tarfileset dir="${dist.dir}">
+		    	<include name="bin/**" />
+		    	<include name="src/**"/>
+			    <include name="handbook/**"/>
+				<include name="JMathLib.exe"/>
+				<include name="JMathLibSwing.exe"/>
+            	<include name="*.*"/>
+		    </tarfileset>
+        </tar>
+
+        <gzip zipfile="${upload.dir}/${final.name}-all.tar.gz"
+            src="${upload.dir}/${final.name}-all.tar" />
+
+        <delete file="${upload.dir}/${final.name}-all.tar" />
+
+        <!-- create a zip file -->
+	    <zip zipfile="${upload.dir}/${final.name}-all.zip" >
+            <zipfileset dir="${dist.dir}" >
+			    <include name="bin/**" />
+			    <include name="src/**"/>
+			    <include name="handbook/**"/>
+				<include name="JMathLib.exe"/>
+				<include name="JMathLibSwing.exe"/>
+			    <include name="*.*"/>
+	     </zipfileset>
+        </zip>
+	</target>
+
+
+    <!-- ================================================================= -->
+    <!-- Full distribution:                                                -->
+    <!-- ================================================================= -->
+    <target name="all" description="create ALL files, docs, installers, ..."
+	     depends="cleanupload, alldocs, copy_to_dist, applet_dist,
+    	 allinstallers, distro_zips"> 
+    </target>
+
+	
+</project>

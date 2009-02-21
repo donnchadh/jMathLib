@@ -1,0 +1,20 @@
+<!-- :xml.root=doc.xml: -->
+<chapter  id="testing">
+    <title>Testing JMathLib</title >
+    <sect1 id="testing_intro">
+        <title >Testing Introduction</title >
+        <simpara >
+		JMathLib also has a testing engine which is used to support quality issues.
+		A central goal of JMathLib is to test all functions automatically with
+		a regression test framework. Currently we use 
+		<ulink url="http://www.junit.org">JUnit</ulink> to improve code quality.
+        </simpara >
+        <simpara >
+		There is also a mechanism to attach testing code to the standard user functions
+		so that code and test-code can be kept in the same file. These tests are
+		extracted from the general source, individual test case are going to be
+		generated automatically.
+        </simpara >
+    </sect1>
+</chapter >
+

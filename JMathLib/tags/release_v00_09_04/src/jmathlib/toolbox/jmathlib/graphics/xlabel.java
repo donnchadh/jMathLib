@@ -1,0 +1,47 @@
+package jmathlib.toolbox.jmathlib.graphics;
+
+import jmathlib.core.tokens.*;
+import jmathlib.core.functions.ExternalFunction;
+import jmathlib.core.interpreter.GlobalValues;
+
+/**Add text to the x-axis of the current axes*/
+public class xlabel extends ExternalFunction
+{
+
+	public OperandToken evaluate(Token[] operands, GlobalValues globals)
+	{
+
+		//ErrorLogger.debugLine("xlabel evaluate");
+
+		if (getNArgIn(operands) != 1)
+			throwMathLibException("xlabel: number of arguments != 1");
+            
+	    if (!(operands[0] instanceof CharToken)) 
+        	throwMathLibException("xlabel: argument must be a string");
+
+        String xLabel = ((CharToken)operands[0]).toString();
+
+        globals.getGraphicsManager().getCurrentFigure().getCurrentAxes().setXLabel(xLabel);
+        globals.getGraphicsManager().getCurrentFigure().repaint();
+
+		return null;
+	}
+}
+
+/*
+@GROUP
+graphics
+@SYNTAX
+xlabel(label)
+@DOC
+Sets the label on the x axis of a graph
+@EXAMPLES
+<programlisting>
+xlabel("x axis")
+</programlisting>
+@NOTES
+.
+@SEE
+ylabel, zlabel, title
+*/
+
