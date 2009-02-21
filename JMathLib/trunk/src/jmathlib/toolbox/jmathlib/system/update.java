@@ -8,6 +8,8 @@
  */
 package jmathlib.toolbox.jmathlib.system;
 
+import java.awt.FileDialog;
+import java.awt.Frame;
 import java.io.*;
 import java.net.*;
 import java.util.Properties;
@@ -73,17 +75,20 @@ public class update extends ExternalFunction
         // reaction on the response from the update server
         if (updateActionS.equals("VERSION_UNKNOWN"))
         {
+            // the server does not recognize the local version of JMathLib
             globals.getInterpreter().displayText("Your version of JMathLib is not known by the update server.");
             return null; 
         }
         else if (updateVersionS.equals("NO_UPDATE_AVAILABLE") ||
                  updateActionS.equals("NO_ACTION")               )
         {
+            // there is no update available on the server
             globals.getInterpreter().displayText("No update available right now.");
             return null;
         }
         else if (updateActionS.equals("FULL_DOWNLOAD_REQUIRED"))
         {
+            // the updates requires to do a full download of a new version of JMathLib
             globals.getInterpreter().displayText("\n");
             globals.getInterpreter().displayText("Full download required in order to update!");
             globals.getInterpreter().displayText("Please visit www.jmathlib.de for details.");
@@ -96,30 +101,45 @@ public class update extends ExternalFunction
             if ((urlS==null) || (fileS==null))
                 return null;
             
-            
-  // put a message box here
+            // open a file dialog to choose the download directory and download filename
+            Frame f = new Frame();
+            FileDialog theFileDialog = new FileDialog(f, "Save to ...", FileDialog.SAVE);
+            theFileDialog.setFile(fileS);
+            theFileDialog.setVisible(true);
+            String downloadDirS = theFileDialog.getDirectory();
+            fileS     = theFileDialog.getFile();
+
+            if (downloadDirS==null)
+                throwMathLibException("download directory error");
+
+            if (fileS==null)
+                throwMathLibException("download file error");
+
+            globals.getInterpreter().setStatusText("You selected "+downloadDirS+" as download directory.");
 
             // open URL to file on update server
             try 
             {
-                globals.getInterpreter().displayText("Downloading ...");
+                globals.getInterpreter().displayText("Downloading ...  (please wait some minutes)");
                 URL fileURL = new URL(urlS);
                 InputStream in = fileURL.openStream();
 
-                // open file on local disc
-                File         file = new File(globals.getWorkingDirectory(),fileS);
+                // open file on local disc and download the new version of JMathLib
+                File         file = new File(downloadDirS, fileS);
                 OutputStream out  = new FileOutputStream(file);
                 byte[]       cbuf = new byte[4096]; 
                 int          len  = -1;
-                
+                int            x  = 0;
                 while ((len = in.read(cbuf)) != -1)
                 {
                     out.write(cbuf,0,len);
+                    x+= len;
+                    globals.getInterpreter().setStatusText("downloaded "+new Integer(x).toString()+" bytes");
                 }
                 
                 in.close();
                 out.close();
-                globals.getInterpreter().displayText("Downloading done.");
+                globals.getInterpreter().setStatusText("Downloading done.");
             }
             catch (Exception e)
             {
@@ -132,7 +152,7 @@ public class update extends ExternalFunction
             try
             {   
                 globals.getInterpreter().displayText("Running installer ...");
-                Runtime.getRuntime().exec(fileS);
+                Runtime.getRuntime().exec(downloadDirS+fileS);
                 globals.getInterpreter().displayText("Please exit JMathLib");
             }
             catch(IOException exception)

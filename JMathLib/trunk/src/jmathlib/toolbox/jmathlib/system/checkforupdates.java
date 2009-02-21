@@ -16,9 +16,6 @@ import jmathlib.core.interpreter.ErrorLogger;
 import java.net.*;
 import java.util.*;
 
-// OPEN: Also send current information about toolboxes and 
-//       installed version to server
-
 /**An external function for checking for updates over the network*/
 public class checkforupdates extends ExternalFunction
 {
@@ -32,14 +29,22 @@ public class checkforupdates extends ExternalFunction
 
 		String s           = "";
         String lineFile    = "";
-        String updateSiteS = "http://www.jmathlib.de/updates/";
  		boolean silentB    = false;
         
+ 		// check the information of the primary update site
+ 		String updateSiteS = "http://www.jmathlib.de/updates/";
         s = globals.getProperty("update.site.primary");
+
+        // if update-site information is not available try the secondary site
+        if (s==null)
+            s = globals.getProperty("update.site.secondary");
+            
+        // if primary update site or secondary site information is available
+        //    take it
         if (s != null)
             updateSiteS = s;
-        
-        		
+
+        // check the arguments 
         if (getNArgIn(operands) == 1)
         {    
         	if ((operands[0] instanceof CharToken))
@@ -52,43 +57,39 @@ public class checkforupdates extends ExternalFunction
                 }
                 else
                 {
+                    // argument is maybe a different update site URL
                     updateSiteS = st; 
                     globals.getInterpreter().displayText("New Update Site "+updateSiteS);
                 }
         	}
         }
 
+        // inform the user about checking the update site
         if (!silentB)
             globals.getInterpreter().displayText("Checking for Updates at "+updateSiteS);
         
-        
+        // check the last date when an update has been performed
         String[] lastUpdateS = globals.getProperty("update.date.last").split("/");
         int year  = Integer.parseInt(lastUpdateS[0]);
         int month = Integer.parseInt(lastUpdateS[1])-1;
         int day   = Integer.parseInt(lastUpdateS[2]);
         //getInterpreter().displayText("check:"+year+"/"+month+"/"+day);
                 
+        // read the interval between updates
         int intervall = Integer.parseInt(globals.getProperty("update.intervall"));
 
+        // get the current date
         GregorianCalendar calFile = new GregorianCalendar(year,month,day);
         GregorianCalendar calCur  = new GregorianCalendar();
         
-        //getInterpreter().displayText("check: "+calCur.toString());
-
-        //getInterpreter().displayText("check: "+calFile.toString());
-
+        // add update-interval to the current date
         calFile.add(Calendar.DATE,intervall);
 
-        //getInterpreter().displayText("check: "+calFile.toString());
-        
-        //getInterpreter().displayText("calFile "+calFile);
-        //getInterpreter().displayText("calCur "+calCur);
-        
-                
 
         if (silentB)
         {
-            if (calCur.after(calFile))
+            // if silent-mode is active only check for updates when update intervall has been reached
+            if  (calCur.after(calFile) )
             {
                 checkForUpdatesThread ch = new checkForUpdatesThread(updateSiteS, silentB);
             }
@@ -99,8 +100,9 @@ public class checkforupdates extends ExternalFunction
         }
         return null; 		
 
-    }
+    } // end evaluate
     
+	
     // create separate thread for checking the update site, because this may take
     //  some time 
     public class checkForUpdatesThread extends Thread
@@ -234,11 +236,17 @@ checkForUpdates()
 checkForUpdates(site)
 checkForUpdates("-silent")
 @DOC
+This functions checks via network if the current 
+installation of JMathLib is up to date.
+
+This functions is also called during startup of JMathLib's GUI.
 @EXAMPLE
+checkforupdates()
 @NOTES
 This functions checks via network if the current 
 installation of JMathLib is up to date.
 
 This functions is also called during startup of JMathLib's GUI.
 @SEE
+update
 */
