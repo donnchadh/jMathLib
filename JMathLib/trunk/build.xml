@@ -362,8 +362,8 @@
     	</java>
 
 		<!-- copy functions list to dist -->
-        <copy todir="${dist.dir}/bin/jmathlib">
-	         <fileset dir="${build.dest}/jmathlib">
+        <copy todir="${dist.dir}/bin">
+	         <fileset dir="${build.dest}">
 	         <include name="webFunctionsList.dat"/>
 	         </fileset>
         </copy>

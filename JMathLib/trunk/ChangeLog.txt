@@ -1,13 +1,17 @@
 
                 ChangeLog of JMathLib
 
----- Functional Changes:  version 0.9.3 -> 0.x.x ------------------------------
+---- Functional Changes:  version 0.9.4 -> 0.x.x ------------------------------
 New functions:
 
 Updated functions:
 
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
+
+
+---- Functional Changes:  version 0.9.0 -> 0.9.4 ------------------------------
+2009/02/21 stefan: generation of release version 0.9.4
 
 2009/02/20 stefan: added a new function jmathlibcreateuniqueid
                    to create a unique ID for the current installation. The

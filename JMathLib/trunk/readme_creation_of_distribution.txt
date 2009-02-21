@@ -37,7 +37,7 @@ How to create a distribution:
 
 - send an email to the list mathlib-update@lists.sourceforge.net
 
-- tag all files in SVN with new a new tag "v0_x_x"
+- tag all files in SVN with new a new tag "release_v00_09_xx/"
 
 - wait for user feedback
 
