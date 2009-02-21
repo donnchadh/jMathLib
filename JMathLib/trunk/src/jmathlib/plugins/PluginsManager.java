@@ -1,7 +1,7 @@
 package jmathlib.plugins;
 
 import jmathlib.core.interpreter.*;
-import jmathlib.core.interfaces.MathLibOutput;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 
 
@@ -16,7 +16,7 @@ public class PluginsManager
     
     VariableList globals;
     
-    MathLibOutput outputPanel;
+    JMathLibOutput outputPanel;
      
     public PluginsManager()
     {
