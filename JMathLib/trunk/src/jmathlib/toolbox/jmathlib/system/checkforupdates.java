@@ -155,7 +155,7 @@ public class checkforupdates extends ExternalFunction
             }
             catch (Exception e)
             {
-                System.out.println("checkForUpdates: Properties error");    
+               ErrorLogger.debugLine("checkForUpdates: Properties error");    
             }
 
             String localVersionS  = globals.getProperty("jmathlib.version");
