@@ -41,7 +41,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     public OperandToken parseExpression(String expression)
     {
         // show indention for every logging message
-    	ErrorLogger.setDisplayIndent(true);
+    	//ErrorLogger.setDisplayIndent(true);
 
         lex.analyseExpression(expression);
         //endOfTokens = false;
@@ -49,7 +49,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         // parse ALL available Tokens
         OperandToken expr = parseCommandList();             
         
-        ErrorLogger.setDisplayIndent(false);
+        //ErrorLogger.setDisplayIndent(false);
         return expr; 
     }
 
@@ -59,12 +59,12 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     public void setExpression(String expression)
     {
     	// display indention while parsing
-        ErrorLogger.setDisplayIndent(true);
+        //ErrorLogger.setDisplayIndent(true);
 
         lex.analyseExpression(expression);
         //endOfTokens = false;
 
-        ErrorLogger.setDisplayIndent(false);
+        //ErrorLogger.setDisplayIndent(false);
     }
 
     /** parse remaining tokens of a m-function file or m-script file 
@@ -72,12 +72,12 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
     public OperandToken parseRemainingExpression()
     {
     	// display indention while parsing
-        ErrorLogger.setDisplayIndent(true);
+        //ErrorLogger.setDisplayIndent(true);
 
         // parse ALL available Tokens
         OperandToken expr = parseCommandList();             
         
-        ErrorLogger.setDisplayIndent(false);
+        //ErrorLogger.setDisplayIndent(false);
         return expr; 
     }
             
@@ -163,19 +163,7 @@ public class Parser extends RootObject implements TokenConstants, ErrorCodes
         ErrorLogger.increaseIndent();
 
  
-        //      parsing is not useful if the next token will be a closing ")"
-        // (e.g. who() or a.getColor() )
-        //if (    isExpectedDelimiter(peekNextToken(), "elseif") ||
-        //		isExpectedDelimiter(peekNextToken(), "else")   ||
-		//		isExpectedDelimiter(peekNextToken(), "end")       )
-        //{
-        //	ErrorLogger.decreaseIndent();
-        //	ErrorLogger.debugLine("Parser deli return");
-        //	return null; 
-        //}
-
-        
-        OperandToken retToken  = null;                    // holds token to be returned
+        OperandToken retToken  = null;                   // holds token to be returned
         Token        peekToken = peekNextToken(deliTyp); // holds next (actual) token
 
         if (peekToken == null)

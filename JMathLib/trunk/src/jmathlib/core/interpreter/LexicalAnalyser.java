@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2005-2009   
+ */
 package jmathlib.core.interpreter;
 
 import jmathlib.core.tokens.*;
@@ -694,6 +702,7 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
                 else
                     negative = false;  // e.g. +4444
             
+                int numberOfSigns = 1;
                 
                 // +++++-+-+-8 
                 while (inspectNextChar()=='-' || inspectNextChar()=='+')
@@ -704,11 +713,26 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
 
                     advance();
                     
+                    numberOfSigns++;
+
                     if (EOChars())
                         Errors.throwMathLibException("end of chars");
                 }
                 
-                
+                // looking for ++asdfasdf --asdfasdf
+                if ( ((nextChar=='+') && !negative && (numberOfSigns==2)) ||
+                     ((nextChar=='-') &&  negative && (numberOfSigns==2))    )
+                {
+                    // found ++ or --
+                    if ( textChars.indexOf(inspectNextChar()) != -1 )
+                    {
+                        // found something like ++asdfasdf... oer --qweqwer..
+                        ErrorLogger.debugLine("LexAna: ++asdf --sdfg "+nextChar);
+                        nextToken = new UnaryOperatorToken(nextChar);
+                    }
+                    
+                }
+
                 // e.g. if other than number return sign (plus/minus)
                 // e.g. -*  -hello +foo +(3+4) 
             	if (numberChars.indexOf(inspectNextChar())==-1    )
@@ -727,7 +751,7 @@ public class LexicalAnalyser implements TokenConstants, ErrorCodes
                 {
                     //++ or --
                     advance();
-                    //ErrorLogger.debugLine("LexAna: Increment/Decrement "+nextChar);
+                    ErrorLogger.debugLine("LexAna: Increment/Decrement "+nextChar);
                     nextToken = new UnaryOperatorToken(nextChar); //, bracketLevel);
                 }
 	            else

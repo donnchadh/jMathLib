@@ -11,7 +11,7 @@
 
 import jmathlib.core.tokens.*;
 import jmathlib.core.tokens.numbertokens.DoubleNumberToken;
-import jmathlib.core.interfaces.MathLibOutput;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 /**This is the main interface for the program. Any interface to the MathLib program would access
 it through the functions exposed by this class.*/
@@ -21,7 +21,7 @@ public class Interpreter
     boolean runningStandalone;
 
     /**panel used for displaying text*/
-    private MathLibOutput outputPanel;
+    private JMathLibOutput outputPanel = null;
     
     /**global pointers and values */
     public GlobalValues globals = null;
@@ -44,10 +44,6 @@ public class Interpreter
     	//  all expressions for access to function manager, variable lists, contexts,...
     	globals = new GlobalValues(this, runningStandalone);
 
-    	// set output panel to NULL
-    	// ?? needed? outputPanel is initialized with NULl anyway (see above)
-    	outputPanel = null;
-
 	    // read preferences from a file on the disc or on the web
 	    globals.loadPropertiesFromFile();
         
@@ -58,7 +54,7 @@ public class Interpreter
      * @param _outputPanel = the panel to write to, must implement the
      *         MathLibOutput interface
      */
-    public void setOutputPanel(MathLibOutput _outputPanel)
+    public void setOutputPanel(JMathLibOutput _outputPanel)
     {
 	    outputPanel = _outputPanel;
     }
@@ -67,11 +63,22 @@ public class Interpreter
      * returns the panel to write any text to
      * @return outputPanel = the panel to write to
      */
-    public MathLibOutput getOutputPanel()
+    public JMathLibOutput getOutputPanel()
     {
 	    return outputPanel;
     }
 
+
+    /**
+     * write status message to GUI
+     * @param _status
+     */
+    public void setStatusText(String _status)
+    {
+        outputPanel.setStatusText(_status);
+    }
+    
+    
     /**
      * displays a string to the outputPanel
      *  @param text = the text to display
