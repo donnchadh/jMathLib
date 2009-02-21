@@ -15,6 +15,8 @@ import jmathlib.core.interpreter.*;
 import jmathlib.core.functions.FunctionLoader;
 import jmathlib.core.functions.FileFunctionLoader;
 import jmathlib.core.functions.ExternalFunction;
+
+import java.util.Calendar;
 import java.util.Vector;
 import java.io.*;
 
@@ -72,7 +74,19 @@ public class createfunctionslist extends ExternalFunction
             line = "# This is a generated file. DO NOT EDIT!";
             outWriter.write(line, 0, line.length());
 			outWriter.newLine();
-            
+			
+			// add date and time to the webFunctionsList
+			Calendar cal = Calendar.getInstance();
+            String date  = Integer.toString(cal.get(Calendar.YEAR))        + "/"
+                         + Integer.toString(cal.get(Calendar.MONTH)+1)     + "/"
+                         + Integer.toString(cal.get(Calendar.DAY_OF_MONTH))+ " "
+                         + Integer.toString(cal.get(Calendar.HOUR_OF_DAY)) + ":"
+                         + Integer.toString(cal.get(Calendar.MINUTE))      + ":"
+                         + Integer.toString(cal.get(Calendar.SECOND));
+            line = "# created on "+ date;
+            outWriter.write(line, 0, line.length());
+            outWriter.newLine();
+	        
 	        // search through all serach directories
 	        for(int n = 0; n < size; n++)
 	        {
