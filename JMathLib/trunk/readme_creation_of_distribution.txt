@@ -38,6 +38,8 @@ How to create a distribution:
 - send an email to the list mathlib-update@lists.sourceforge.net
 
 - tag all files in SVN with new a new tag "release_v00_09_xx/"
+  (Eclipse: right click on JMathLib-root, Team , Branch/Tag... , 
+   https://mathlib.svn.sourceforge.net/svnroot/mathlib/JMathLib/tags/release_v00_09_xx )
 
 - wait for user feedback
 
