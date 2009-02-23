@@ -159,6 +159,13 @@
 	    		<include name="**/*.svg" />
 	        </fileset>
 	    </copy>
+	    <copy todir="tmp">
+	    	<fileset dir="${doc.src}"> 
+	    		<include name="**/*.gif" />
+	    		<include name="**/*.jpg" />
+	    		<include name="**/*.svg" />
+	        </fileset>
+	    </copy>
 	    <copy todir="${upload.dir}/handbook_epub/">
 	    	<fileset dir="${doc.src}"> 
 	    		<include name="**/*.gif" />
