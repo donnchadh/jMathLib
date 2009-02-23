@@ -9,6 +9,8 @@ Updated functions:
 ---- HISTORY ------------------------------------------------------------------
 2009/02/xx stefan:
 
+2009/02/23 stefan: small fix in build.xml for pdf-file generation
+
 
 ---- Functional Changes:  version 0.9.0 -> 0.9.4 ------------------------------
 2009/02/21 stefan: generation of release version 0.9.4
