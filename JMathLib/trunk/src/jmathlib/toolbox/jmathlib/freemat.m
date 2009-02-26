@@ -10,6 +10,7 @@ Freemat is a great tool. JMathLib is a clone of Freemat, but written 100% in jav
 @EXAMPLES
 .
 @NOTES
+You may find Freemat at http://freemat.sourceforge.net/
 @SEE
 jmathlib, matlab, scilab, octave
 */
