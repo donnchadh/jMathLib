@@ -11,6 +11,7 @@ is written completely in java
 @EXAMPLES
 .
 @NOTES
+Your are going to find JMathLib at http://www.jmathlib.de
 @SEE
 matlab, scilab, freemat, octave
 */
