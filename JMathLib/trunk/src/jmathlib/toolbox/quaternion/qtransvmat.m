@@ -50,7 +50,7 @@ endfunction
 
 /*
 @GROUP
-quarternion
+quaternion
 @SYNTAX
 qtransvmat([a,b,c,d])
 @DOC
