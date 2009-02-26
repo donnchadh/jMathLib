@@ -1,0 +1,10 @@
+<sect1 id="toolbox_introduction_test">
+<title>Introduction to the toolbox test</title>
+<indexterm><primary>toolbox test</primary></indexterm>
+<simpara>
+
+This toolbox is used to perform some internal JMathLib tests in 
+order to check for bugs.
+
+</simpara>
+</sect1>
