@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2008-2009   
+ */
 package jmathlib.core.graphics;
 
 import jmathlib.core.interpreter.ErrorLogger;
