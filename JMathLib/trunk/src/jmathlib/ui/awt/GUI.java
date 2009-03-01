@@ -4,6 +4,7 @@ import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.interfaces.JMathLibOutput;
 import jmathlib.core.interfaces.RemoteAccessible;
+import jmathlib.ui.common.Console;
 
 import java.awt.*;
 import java.awt.event.*;
