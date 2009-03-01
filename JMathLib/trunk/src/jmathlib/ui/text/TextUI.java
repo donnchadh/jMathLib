@@ -1,12 +1,21 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   stefan@held-mueller.de
+ * (c) 2008-2009   
+ */
 package jmathlib.ui.text;
 
 import jmathlib.core.interpreter.*;
-import jmathlib.core.interfaces.*;
-import jmathlib.ui.common.Console;
+import jmathlib.core.interfaces.RemoteAccessible;
+import jmathlib.core.interfaces.JMathLibOutput;
 
 import java.io.*;
 
-public class TextUI implements RemoteAccesible, JMathLibOutput
+/** text GUI for JMathLib */
+public class TextUI implements RemoteAccessible, JMathLibOutput
 {
     /**store whether executing lines or entering a function def*/
     private boolean interactiveMode;
