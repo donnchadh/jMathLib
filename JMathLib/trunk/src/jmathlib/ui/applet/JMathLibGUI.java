@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   stefan@held-mueller.de
+ * (c) 2008-2009   
+ */
 package jmathlib.ui.applet;
 
 import jmathlib.core.interpreter.Interpreter;
@@ -9,11 +17,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.applet.*;
 
-/**Rudimentary interface used to test the program*/
+/**applet version of JMathLib*/
 public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutput
 {
 	/**Flag storing whether the program is running as an application or an applet*/
-    boolean 		runningStandalone;
+    //boolean 		runningStandalone;
 
 	/**The area used for user input and where the answers are displayed*/
     Console 		answer;
@@ -25,10 +33,10 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
     Container 		container;
 
     /**string used for defining user functions*/
-    String 			function;
+    //String 			function;
 
     /**Flag storing whether each line input should be executed straight away*/
-    boolean 		interactiveMode = true;
+    //boolean 		interactiveMode = true;
 
     /**Layout manager used for the components*/
     BorderLayout layout;
@@ -37,24 +45,27 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
     WindowListener handler;
 
     /**Temporary store for function code*/
-    String functionCode;
+    //String functionCode;
     
-    /**Construct the applet*/
+    /**
+     * Constructor of the applet
+     */
     public JMathLibGUI()
     {
     	container         = this;
     }
 
-    /**Initialize the applet*/
+    /**
+     * Initialize the applet
+     */
     public void init()
     {
-
+        
         container.setSize(700,400);
 
         layout = new BorderLayout();
         container.setLayout(layout);
         
-       	//answer 			= new Console((MathLib.Interfaces.RemoteAccesible)this);
         answer          = new Console(this);
 
         container.add("Center", answer);
@@ -80,7 +91,7 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
         }
         catch (NumberFormatException e){ }  
         
-    }
+    } // end init
     
     /**
      * display text
@@ -99,7 +110,9 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
         
     }
 
-    /**start the applet*/
+    /**
+     * start the applet
+     */
     public void start()
     {
     	answer.displayPrompt();
@@ -116,7 +129,9 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
     }
 
    
-    /**Interpret the last command line entered*/
+    /**
+     * Interpret the last command line entered
+     */
     public void interpretLine(String line)
     {
         String answerString = interpreter.executeExpression(line);
@@ -124,11 +139,11 @@ public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutp
         answer.displayPrompt();
     }
     
-    /**Function called when the gui is being close*/
+    /**
+     * Function called when the GUI is being close
+     */
     public void close()
     {
-    	//interpreter.save();
-    	
-    	//System.exit(0);
+
     }
 }
