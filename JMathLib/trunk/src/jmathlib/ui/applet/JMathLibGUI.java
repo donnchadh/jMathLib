@@ -9,7 +9,7 @@
 package jmathlib.ui.applet;
 
 import jmathlib.core.interpreter.Interpreter;
-import jmathlib.core.interfaces.RemoteAccesible;
+import jmathlib.core.interfaces.RemoteAccessible;
 import jmathlib.core.interfaces.JMathLibOutput;
 import jmathlib.ui.common.Console;
 
@@ -18,7 +18,7 @@ import java.awt.event.*;
 import java.applet.*;
 
 /**applet version of JMathLib*/
-public class JMathLibGUI extends Applet implements RemoteAccesible, JMathLibOutput
+public class JMathLibGUI extends Applet implements RemoteAccessible, JMathLibOutput
 {
 	/**Flag storing whether the program is running as an application or an applet*/
     //boolean 		runningStandalone;
