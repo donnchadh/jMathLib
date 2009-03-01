@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   stefan@held-mueller.de and others
+ * (c) 2008-2009   
+ */
 package jmathlib.core.graphics;
 
 import java.util.Vector;
