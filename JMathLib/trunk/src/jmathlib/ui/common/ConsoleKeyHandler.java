@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   stefan@held-mueller.de
+ * (c) 2006-2009   
+ */
 package jmathlib.ui.common;
 
 import java.awt.event.*;
