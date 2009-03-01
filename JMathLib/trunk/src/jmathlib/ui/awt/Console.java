@@ -1,6 +1,6 @@
 package jmathlib.ui.awt;
 
-import jmathlib.core.interfaces.RemoteAccesible;
+import jmathlib.core.interfaces.RemoteAccessible;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -21,13 +21,13 @@ public class Console extends TextArea
 	int 			lineStart;
 
 	/**The applet containing the console*/	
-	RemoteAccesible callerClass;
+	RemoteAccessible callerClass;
 	
     /**Event Handler used for handling key events*/
     //public KeyListener keyHandler;
 
     /**Construct the console*/
-	public Console(RemoteAccesible _callerClass)
+	public Console(RemoteAccessible _callerClass)
 	{
 		
 	    commandNo = 0;

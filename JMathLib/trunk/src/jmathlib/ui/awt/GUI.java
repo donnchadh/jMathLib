@@ -1,9 +1,9 @@
 package jmathlib.ui.awt;
 
-import jmathlib.core.interfaces.RemoteAccesible;
 import jmathlib.core.interpreter.ErrorLogger;
 import jmathlib.core.interpreter.Interpreter;
 import jmathlib.core.interfaces.JMathLibOutput;
+import jmathlib.core.interfaces.RemoteAccessible;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -22,7 +22,7 @@ import java.awt.datatransfer.*;
  * </ul>
  * </p>
  */
-public class GUI extends Frame implements JMathLibOutput, WindowListener, ActionListener, RemoteAccesible, ClipboardOwner
+public class GUI extends Frame implements JMathLibOutput, WindowListener, ActionListener, RemoteAccessible, ClipboardOwner
 {
     /*The menubar container.*/
     private MenuBar  mainMenuBar;
