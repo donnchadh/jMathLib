@@ -1,3 +1,11 @@
+/* 
+ * This file is part or JMathLib 
+ * 
+ * Check it out at http://www.jmathlib.de
+ *
+ * Author:   
+ * (c) 2005-2009   
+ */
 package jmathlib.core.constants;
 
 public interface ErrorCodes
